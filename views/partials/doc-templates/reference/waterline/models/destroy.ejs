@@ -54,6 +54,12 @@
   console.log(&apos;The record has been deleted&apos;);
 });
 
+// Or if there are multiple records to delete
+
+User.destroy({id:[&apos;id1&apos;, &apos;id2&apos;]}).exec(function deleteCB(err){
+  console.log(&apos;The record has been deleted&apos;);
+});
+
 // If the record existed, then it has been deleted
 // Don&apos;t forget to handle your errors
 </code></pre><!-- __LANG=%%__ -->

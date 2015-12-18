@@ -44,7 +44,22 @@
 }
 // ...
 </code></pre><!-- __LANG=%%__ -->
-<p>The default database connection for a Sails app is located in the base model configuration (<code>config/models.js</code>), but it can also be overriden on a per-model basis by specifying a <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.connections.html" target="_blank"><code>connection</code></a>.</p>
+<p>Depending on the adapter in use, it&apos;s also possible to use unix sockets, without port and host. Here&apos;s an example using an existing MAMP mysql server and sails-mysql adapter:</p>
+<pre><code data-language="javascript">// in config/local.js
+// ...
+connections:{
+  local_mysql:{ //arbitrary name
+    module: &apos;sails-mysql&apos;,
+    user: &apos;root&apos;,
+    password: &apos;root&apos;,
+    database: &apos;sailstest1&apos;,
+    socketPath: &apos;/Applications/MAMP/tmp/mysql/mysql.sock&apos;
+  }
+}
+// ...
+</code></pre><!-- __LANG=%%__ -->
+<p>The default database connection for a Sails app is located in the base model configuration (<code>config/models.js</code>), but it can also be overriden on a per-model basis by specifying a <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.connections.html" target="_blank"><code>connection</code></a>.
+Often it is also useful override the connections object in <a href="http://sailsjs.org/documentation/concepts/configuration/the-local-js-file" target="_blank"><code>config/local.js</code></a></p>
 <h3 id="analogy" permalink="analogy">Analogy</h3>
 <p>Imagine a file cabinet full of completed pen-and-ink forms. All of the forms have the same fields (e.g. &quot;name&quot;, &quot;birthdate&quot;, &quot;maritalStatus&quot;), but for each form, the <em>values</em> written in the fields vary.  For example, one form might contain &quot;Lara&quot;, &quot;2000-03-16T21:16:15.127Z&quot;, &quot;single&quot;, while another form contains &quot;Larry&quot;, &quot;1974-01-16T21:16:15.127Z&quot;, &quot;married&quot;.</p>
 <p>Now imagine you&apos;re running a hotdog business.  If you were <em>very</em> organized, you might set up your file cabinets as follows:</p>

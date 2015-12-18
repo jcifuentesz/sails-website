@@ -11,4 +11,13 @@
 <p>If you still want to use Grunt for other purposes, but don&apos;t want any of the default web front-end stuff, just delete your project&apos;s assets folder and remove the front-end oriented tasks from the <code>grunt/register/</code> and <code>grunt/config/</code> folders.  You can also run <code>sails new myCoolApi --no-frontend</code> to omit the assets folder and front-end-oriented Grunt tasks for future projects.  You can also replace your <code>sails-generate-frontend</code> module with alternative community generators, or <a href="https://github.com/balderdashy/sails-generate-generator" target="_blank">create your own</a>.  This allows <code>sails new</code> to create the boilerplate for native iOS apps, Android apps, Cordova apps, SteroidsJS apps, etc.</p>
 <p><docmeta name="uniqueID" value="DisablingGrunt970874"></docmeta></p>
 <docmeta name="displayName" value="Disabling Grunt">
+
+<h3 id="note-" permalink="note">NOTE:</h3>
+<p>When removing the grunt hook above you must also specify the following in <code>.sailsrc</code> in order for your assets to be served, otherwise all assets will return a <code>404</code>.</p>
+<pre><code data-language="json">{
+    &quot;paths&quot;: {
+        &quot;public&quot;: &quot;assets&quot;
+    }
+}
+</code></pre><!-- __LANG=%%__ -->
 </docmeta>

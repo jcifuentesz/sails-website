@@ -26,8 +26,8 @@
       "displayName": "Installation"
     },
     "children": [
-      "getting-started/WhatIsSails.ejs",
-      "getting-started/NewToNode.ejs"
+      "getting-started/NewToNode.ejs",
+      "getting-started/WhatIsSails.ejs"
     ],
     "isParent": true
   }

@@ -10,7 +10,7 @@
 ^verb^ ^^path^^
 </code></pre><!-- __LANG=%%__ -->
 <p>If no verb is specified, the target will be applied to any request that matches the path, regardless of the HTTP method used (<strong>GET</strong>, <strong>POST</strong>, <strong>PUT</strong> etc.).  Note the initial <code>/</code> in the path--all paths should start with one in order to work properly.</p>
-<p>####Wildcards and dynamic parameters</p>
+<h4 id="wildcards-and-dynamic-parameters" permalink="wildcards-and-dynamic-parameters">Wildcards and dynamic parameters</h4>
 <p>In addition to specifying a static path like <strong>foo/bar</strong>, you can use <code>*</code> as a wildcard:</p>
 <pre><code data-language="javascript">&apos;/*&apos;
 </code></pre><!-- __LANG=%%__ -->
@@ -51,7 +51,7 @@
 </code></pre><!-- __LANG=%%__ -->
 <p>Each one maps <code>GET /foo/go</code> to the <code>myGoAction</code> action of the controller in <strong>api/controllers/FooController.js</strong>.  If no such controller or action exists, Sails will output an error message and ignore the route.  Otherwise, whenever a <strong>GET</strong> request to <strong>/foo/go</strong> is made, the code in that action will be run.</p>
 <p>The controller and action names in this syntax are case-insensitive.</p>
-<p>Note that the <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprints API</a> adds several actions to your controllers by default (like &quot;find&quot;, &quot;create&quot;, &quot;update&quot; and &quot;delete&quot;), all of which are available for routing:</p>
+<p>Note that the <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprint API</a> adds several actions to your controllers by default (like &quot;find&quot;, &quot;create&quot;, &quot;update&quot; and &quot;delete&quot;), all of which are available for routing:</p>
 <pre><code data-language="javascript">&apos;GET /foo/go&apos;: &apos;UserController.find&apos;
 </code></pre><!-- __LANG=%%__ -->
 <p>Assuming that your have a <strong>api/controllers/UserController.js</strong> file and a <strong>api/models/User.js</strong> file, browsing to <strong>/foo/go</strong> in a browser will, using the above config, run the default &quot;find* blueprint action which displays a list of all <code>User</code> models.  If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions" target="_blank">custom action</a> named <code>find</code> in UserController, that action will be run instead.</p>
