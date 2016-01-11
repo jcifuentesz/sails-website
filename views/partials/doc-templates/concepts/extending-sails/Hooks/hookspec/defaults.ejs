@@ -19,7 +19,6 @@
 <p>then it will, by default, provide default settings for the <code>sails.config.myawesomehook.name</code> value.  If the end-user of the hook overrides the hook name to be <code>foo</code>, then the <code>defaults</code> object will provide a default value for <code>sails.config.foo.name</code>.</p>
 <h5 id="using-defaults-as-a-function" permalink="using-defaults-as-a-function">Using <code>defaults</code> as a function</h5>
 <p>If you specify a function for the <code>defaults</code> feature instead of a plain object, it takes a single argument (<code>config</code>) which receives any Sails configuration overrides.  Configuration overrides can be made by passing settings to the command line when lifting Sails (e.g. <code>sails lift --prod</code>), by passing an object as the first argument when programmatically lifting or loading Sails (e.g. <code>Sails.lift({port: 1338}, ...)</code>) or by using a <a href="http://sailsjs.org/documentation/anatomy/myApp/sailsrc.html" target="_blank"><code>.sailsrc</code></a> file.  The <code>defaults</code> function should return a plain object representing configuration defaults for your hook.</p>
-<p><docmeta name="uniqueID" value="Hooks75003"></docmeta></p>
 <p><docmeta name="displayName" value=".defaults"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 </docmeta>

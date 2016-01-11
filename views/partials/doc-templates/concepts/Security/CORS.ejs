@@ -36,7 +36,7 @@ Your default Sails setup is already equipped to handle AJAX requests from a web 
 }
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="security-levels" permalink="security-levels">Security Levels</h3>
-<p>By default, Sails will still process all the requests that come in regardless of domain, even with CORS enabled: it will simply set the appropriate headers on the response so that the <em>client</em> can decide whether or not to show the response.  For example, if you send a <code>GET</code> request to <code>/foo/bar</code> from a domain that is not in your CORS whitelist, the <code>bar</code> action in your <code>FooController.js</code> file will still run, but the browser will throw away the result.  This may seem counterintuitive, but it is important because it allows non-browser-based clients (like <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en" target="_blank">Postman</a> and <a href="http://curl.haxx.se/" target="_blank">curl</a>) to work while still blocking the kind of attacks that the <a href="http://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">Same-Origin Policy</a> is meant to protect against.</p>
+<p>By default, Sails will still process all the requests that come in regardless of domain, even with CORS enabled: it will simply set the appropriate headers on the response so that the <em>client</em> can decide whether or not to show the response.  For example, if you send a <code>GET</code> request to <code>/foo/bar</code> from a domain that is not in your CORS whitelist, the <code>bar</code> action in your <code>FooController.js</code> file will still run, but the browser will throw away the result.  This may seem counterintuitive, but it is important because it allows non-browser-based clients (like <a href="https://www.getpostman.com" target="_blank">Postman</a> and <a href="http://curl.haxx.se/" target="_blank">curl</a>) to work while still blocking the kind of attacks that the <a href="http://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">Same-Origin Policy</a> is meant to protect against.</p>
 <p>If you want to completely prevent Sails from processing requests from disallowed domains, you can use the <code>securityLevel</code> setting:</p>
 <pre><code data-language="javascript">module.exports.cors = {
   allRoutes: true,
@@ -45,6 +45,5 @@ Your default Sails setup is already equipped to handle AJAX requests from a web 
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>Security level 1 (high) will respond with a 403 status code to any request from a disallowed origin prefixed with the <code>http</code> or <code>https</code> protocol.  Security level 2 (very high) will do the same, but extended to <em>all</em> protocols (so things like Postman and curl won&apos;t work).</p>
-<p><docmeta name="uniqueID" value="cors198259"></docmeta></p>
 <docmeta name="displayName" value="CORS">
 </docmeta>

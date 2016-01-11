@@ -12,7 +12,6 @@
     "templateTitle": "WhatIsSails.ejs",
     "fullPathAndFileName": "getting-started/WhatIsSails.ejs",
     "data": {
-      "uniqueID": "WhatIsSails126387",
       "displayName": "What Is Sails"
     },
     "parent": "getting-started/getting-started.ejs",

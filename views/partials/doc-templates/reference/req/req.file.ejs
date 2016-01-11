@@ -31,7 +31,6 @@ req.file(&apos;avatar&apos;).upload( SomeReceiver(), function (err, files) {
 <li>If you prefer to work directly with the Upstream as a stream of streams, you can omit the <code>.upload()</code> method and bind &quot;finish&quot; and &quot;error&quot; events (or use <code>.pipe()</code>) instead.  <a href="https://github.com/balderdashy/skipper/blob/master/lib/Upstream.js#L126" target="_blank">Under the covers</a>, all <code>.upload()</code> is doing is piping the <strong>Upstream</strong> into the specified receiver instance, then running the specified callback when the Upstream emits either a <code>finish</code> or <code>error</code> event.</li>
 </ul>
 </blockquote>
-<p><docmeta name="uniqueID" value="reqfile784692"></docmeta></p>
 <docmeta name="displayName" value="req.file()">
 
 </docmeta>

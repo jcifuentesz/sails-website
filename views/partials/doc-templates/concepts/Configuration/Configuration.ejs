@@ -31,6 +31,11 @@ if (sails.config.environment === &apos;production&apos; &amp;&amp; !sails.config
   throw new Error(&apos;STOP IMMEDIATELY ! CSRF should always be enabled in a production deployment!&apos;);
 }
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="setting-sails-config-values-directly-using-environment-variables" permalink="setting-sailsconfig-values-directly-using-environment-variables">Setting <code>sails.config</code> values directly using environment variables</h3>
+<p>In addition to using configuration <em>files</em>, you can set individual configuration values on the command line when you lift Sails by prefixing the config key names with <code>sails_</code>, and separating nested key names with double-underscores (<code>__</code>).  For example, you could do the following to set the <a href="http://sailsjs.org/documentation/concepts/security/cors" target="_blank">CORS origin</a> (<code>sails.config.cors.origin</code>) to &quot;<a href="http://somedomain.com" target="_blank">http://somedomain.com</a>&quot; on the command line:</p>
+<pre><code data-language="javascript">sails_cors__origin=&quot;http://somedomain.com&quot; sails lift
+</code></pre><!-- __LANG=%%__ -->
+<p>This value will be in effect <em>only</em> for the lifetime of this particular Sails instance, and will override any values in the configuration files.</p>
 <h3 id="custom-configuration" permalink="custom-configuration">Custom Configuration</h3>
 <p>Sails recognizes many different settings, namespaced under different top level keys (e.g. <code>sails.config.sockets</code> and <code>sails.config.blueprints</code>).  However you can also use <code>sails.config</code> for your own custom configuration (e.g. <code>sails.config.someProprietaryAPI.secret</code>).</p>
 <h5 id="example" permalink="example">Example</h5>

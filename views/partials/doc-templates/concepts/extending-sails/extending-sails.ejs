@@ -5,8 +5,7 @@
 <li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Adapters" target="_blank"><strong>Adapters</strong></a> - for integrating Waterline (Sails&apos; ORM) with new data sources, including databases, APIs, or even hardware. <em>Example</em>: <a href="https://www.npmjs.com/package/sails-postgresql" target="_blank">sails-postgresql</a>, the official <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> adapter for Sails.</li>
 <li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks" target="_blank"><strong>Hooks</strong></a> - for overriding or injecting new functionality in the Sails runtime.  <em>Example</em>: <a href="https://www.npmjs.com/package/sails-hook-autoreload" target="_blank">sails-hook-autoreload</a>, which adds auto-refreshing for a Sails project&apos;s API without having to manually restart the server.</li>
 </ul>
-<p>If you&#x2019;re interested in developing a &#x201C;plugin&#x201D; for Sails, you will most often want to make a <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks" target="_blank">hook</a>.  </p>
-<p><a name="foot1">*</a> <sub>Some of the more important modules, like the Request hook, are still bundled with the Sails core, but they could technically be removed and installed separately.</sub></p>
-<p><docmeta name="uniqueID" value="extendingsails78468"></docmeta></p>
+<p>If you&#x2019;re interested in developing a plugin for Sails, you will most often want to make a <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks" target="_blank">hook</a>.  </p>
+<p><a name="foot1">*</a> <sub><em>Core hooks</em>, like <code>http</code>, <code>request</code>, etc. are hooks which are bundled with Sails out of the box.  They can be disabled by specifying a <code>hooks</code> configuration in your <code>.sailsrc</code> file, or when lifting Sails programatically.</sub></p>
 <docmeta name="displayName" value="Extending Sails">
 </docmeta>

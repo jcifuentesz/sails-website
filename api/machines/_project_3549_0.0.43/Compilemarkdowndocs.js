@@ -105,7 +105,7 @@ module.exports = {
       //   href="#/asdjgasdg"      =>  href="/asdjgasdg"
 
       // Get rid of the '.html' at the end of ANY internal web-root-relative URL that
-      // point at the documentation pages. Any links form the docs that start with 
+      // point at the documentation pages. Any links form the docs that start with
       // '/documentation' and ends in '.html' will have the file extension stripped off.
       html = html.replace(/(href="\/documentation)([^"]*)\.html"/g, '$1$2"');
 
@@ -163,7 +163,7 @@ module.exports = {
         DocTemplater()
           .build([{
             remote: 'git://github.com/balderdashy/sails-docs.git',
-            branch: '0.11.3',
+            branch: 'master',
             remoteSubPath: inputs.path,
             htmlDirPath: path.join('views/partials/doc-templates/', inputs.path),
             jsMenuPath: path.join('views/partials/doc-menus', inputs.path + '.jsmenu'),

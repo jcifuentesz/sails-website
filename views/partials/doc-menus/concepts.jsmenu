@@ -3,7 +3,6 @@
     "templateTitle": "DefaultTasks.ejs",
     "fullPathAndFileName": "concepts/Assets/DefaultTasks.ejs",
     "data": {
-      "uniqueID": "DefaultTasks764297",
       "displayName": "Default Tasks"
     },
     "parent": "concepts/Assets/Assets.ejs",
@@ -13,7 +12,6 @@
     "templateTitle": "DisablingGrunt.ejs",
     "fullPathAndFileName": "concepts/Assets/DisablingGrunt.ejs",
     "data": {
-      "uniqueID": "DisablingGrunt970874",
       "displayName": "Disabling Grunt"
     },
     "parent": "concepts/Assets/Assets.ejs",
@@ -41,7 +39,6 @@
     "templateTitle": "usingsailsrcfiles.ejs",
     "fullPathAndFileName": "concepts/Configuration/usingsailsrcfiles.ejs",
     "data": {
-      "uniqueID": "sailsrc374211",
       "displayName": "Using `.sailsrc` Files"
     },
     "parent": "concepts/Configuration/Configuration.ejs",
@@ -87,7 +84,6 @@
     "templateTitle": "FAQ.ejs",
     "fullPathAndFileName": "concepts/Deployment/FAQ.ejs",
     "data": {
-      "uniqueID": "FAQ475097",
       "displayName": "FAQ"
     },
     "parent": "concepts/Deployment/Deployment.ejs",
@@ -97,7 +93,6 @@
     "templateTitle": "Hosting.ejs",
     "fullPathAndFileName": "concepts/Deployment/Hosting.ejs",
     "data": {
-      "uniqueID": "Hosting276234",
       "displayName": "Hosting"
     },
     "parent": "concepts/Deployment/Deployment.ejs",
@@ -107,7 +102,6 @@
     "templateTitle": "Scaling.ejs",
     "fullPathAndFileName": "concepts/Deployment/Scaling.ejs",
     "data": {
-      "uniqueID": "Scaling291270",
       "displayName": "Scaling"
     },
     "parent": "concepts/Deployment/Deployment.ejs",
@@ -162,7 +156,6 @@
     "templateTitle": "sails.log.ejs",
     "fullPathAndFileName": "concepts/Logging/sails.log.ejs",
     "data": {
-      "uniqueID": "sailslog321347",
       "displayName": "sails.log()"
     },
     "parent": "concepts/Logging/Logging.ejs",
@@ -182,18 +175,17 @@
     "fullPathAndFileName": "concepts/ORM/Associations/Associations.ejs",
     "realPath": "concepts/ORM/Associations/",
     "data": {
-      "uniqueID": "Associations913185",
       "displayName": "Associations"
     },
     "parent": "concepts/ORM/ORM.ejs",
     "isChild": true,
     "children": [
       "concepts/ORM/Associations/OneWayAssociation.ejs",
-      "concepts/ORM/Associations/Dominance.ejs",
-      "concepts/ORM/Associations/OnetoMany.ejs",
       "concepts/ORM/Associations/ManytoMany.ejs",
-      "concepts/ORM/Associations/OnetoOne.ejs",
-      "concepts/ORM/Associations/ThroughAssociations.ejs"
+      "concepts/ORM/Associations/OnetoMany.ejs",
+      "concepts/ORM/Associations/Dominance.ejs",
+      "concepts/ORM/Associations/ThroughAssociations.ejs",
+      "concepts/ORM/Associations/OnetoOne.ejs"
     ],
     "isParent": true
   },
@@ -201,7 +193,6 @@
     "templateTitle": "Dominance.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/Dominance.ejs",
     "data": {
-      "uniqueID": "Dominance904539",
       "displayName": "Dominance"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -211,7 +202,6 @@
     "templateTitle": "ManytoMany.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/ManytoMany.ejs",
     "data": {
-      "uniqueID": "ManytoMany276455",
       "displayName": "Many-to-Many"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -221,7 +211,6 @@
     "templateTitle": "OneWayAssociation.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/OneWayAssociation.ejs",
     "data": {
-      "uniqueID": "OneWayAssociation708096",
       "displayName": "One Way Association"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -231,7 +220,6 @@
     "templateTitle": "OnetoMany.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/OnetoMany.ejs",
     "data": {
-      "uniqueID": "OnetoMany478093",
       "displayName": "One-to-Many"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -241,7 +229,6 @@
     "templateTitle": "OnetoOne.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/OnetoOne.ejs",
     "data": {
-      "uniqueID": "OnetoOne169258",
       "displayName": "One-to-One"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -251,7 +238,6 @@
     "templateTitle": "ThroughAssociations.ejs",
     "fullPathAndFileName": "concepts/ORM/Associations/ThroughAssociations.ejs",
     "data": {
-      "uniqueID": "ThroughAssociations740718",
       "displayName": "Through Associations"
     },
     "parent": "concepts/ORM/Associations/Associations.ejs",
@@ -261,7 +247,6 @@
     "templateTitle": "Attributes.ejs",
     "fullPathAndFileName": "concepts/ORM/Attributes.ejs",
     "data": {
-      "uniqueID": "Attributes951609",
       "displayName": "Attributes"
     },
     "parent": "concepts/ORM/ORM.ejs",
@@ -271,7 +256,6 @@
     "templateTitle": "Lifecyclecallbacks.ejs",
     "fullPathAndFileName": "concepts/ORM/Lifecyclecallbacks.ejs",
     "data": {
-      "uniqueID": "Lifecyclecallbacks631538",
       "displayName": "Lifecycle callbacks"
     },
     "parent": "concepts/ORM/ORM.ejs",
@@ -281,7 +265,6 @@
     "templateTitle": "Models.ejs",
     "fullPathAndFileName": "concepts/ORM/Models.ejs",
     "data": {
-      "uniqueID": "Models413907",
       "displayName": "Models"
     },
     "parent": "concepts/ORM/ORM.ejs",
@@ -300,7 +283,6 @@
     "templateTitle": "Validations.ejs",
     "fullPathAndFileName": "concepts/ORM/Validations.ejs",
     "data": {
-      "uniqueID": "Validations576587",
       "displayName": "Validations"
     },
     "parent": "concepts/ORM/ORM.ejs",
@@ -310,7 +292,6 @@
     "templateTitle": "model-settings.ejs",
     "fullPathAndFileName": "concepts/ORM/model-settings.ejs",
     "data": {
-      "uniqueID": "Modelconfiguration960213",
       "displayName": "Model Settings"
     },
     "parent": "concepts/ORM/ORM.ejs",
@@ -320,7 +301,6 @@
     "templateTitle": "SailsAndPassport.ejs",
     "fullPathAndFileName": "concepts/Policies/SailsAndPassport.ejs",
     "data": {
-      "uniqueID": "Policies766425",
       "displayName": "Sails + Passport"
     },
     "parent": "concepts/Policies/Policies.ejs",
@@ -330,7 +310,6 @@
     "templateTitle": "RouteTargetSyntax.ejs",
     "fullPathAndFileName": "concepts/Routes/RouteTargetSyntax.ejs",
     "data": {
-      "uniqueID": "RouteTargetSyntax278177",
       "displayName": "Custom Routes"
     },
     "parent": "concepts/Routes/Routes.ejs",
@@ -340,7 +319,6 @@
     "templateTitle": "URLSlugs.ejs",
     "fullPathAndFileName": "concepts/Routes/URLSlugs.ejs",
     "data": {
-      "uniqueID": "URLSlugs805236",
       "displayName": "URL Slugs"
     },
     "parent": "concepts/Routes/Routes.ejs",
@@ -350,7 +328,6 @@
     "templateTitle": "CORS.ejs",
     "fullPathAndFileName": "concepts/Security/CORS.ejs",
     "data": {
-      "uniqueID": "cors198259",
       "displayName": "CORS"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -360,7 +337,6 @@
     "templateTitle": "CSRF.ejs",
     "fullPathAndFileName": "concepts/Security/CSRF.ejs",
     "data": {
-      "uniqueID": "CSRF300312",
       "displayName": "CSRF"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -370,7 +346,6 @@
     "templateTitle": "Clickjacking.ejs",
     "fullPathAndFileName": "concepts/Security/Clickjacking.ejs",
     "data": {
-      "uniqueID": "Clickjacking879453",
       "displayName": "Clickjacking",
       "tags": "clickjacking,ui redress attack"
     },
@@ -381,7 +356,6 @@
     "templateTitle": "ContentSecurityPolicy.ejs",
     "fullPathAndFileName": "concepts/Security/ContentSecurityPolicy.ejs",
     "data": {
-      "uniqueID": "ContentSecurityPolicy649437",
       "displayName": "Content Security Policy"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -391,7 +365,6 @@
     "templateTitle": "DDOS.ejs",
     "fullPathAndFileName": "concepts/Security/DDOS.ejs",
     "data": {
-      "uniqueID": "DDOS139869",
       "displayName": "DDOS"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -401,7 +374,6 @@
     "templateTitle": "P3P.ejs",
     "fullPathAndFileName": "concepts/Security/P3P.ejs",
     "data": {
-      "uniqueID": "P3P183449",
       "displayName": "P3P"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -411,7 +383,6 @@
     "templateTitle": "SocketHijacking.ejs",
     "fullPathAndFileName": "concepts/Security/SocketHijacking.ejs",
     "data": {
-      "uniqueID": "SocketHijacking397141",
       "displayName": "Socket Hijacking"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -421,7 +392,6 @@
     "templateTitle": "StrictTransportSecurity.ejs",
     "fullPathAndFileName": "concepts/Security/StrictTransportSecurity.ejs",
     "data": {
-      "uniqueID": "HSTSecurity397141",
       "displayName": "Strict Transport Security"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -431,7 +401,6 @@
     "templateTitle": "XSS.ejs",
     "fullPathAndFileName": "concepts/Security/XSS.ejs",
     "data": {
-      "uniqueID": "XSS397141",
       "displayName": "XSS"
     },
     "parent": "concepts/Security/Security.ejs",
@@ -477,7 +446,6 @@
     "templateTitle": "Layouts.ejs",
     "fullPathAndFileName": "concepts/Views/Layouts.ejs",
     "data": {
-      "uniqueID": "Layouts870655",
       "displayName": "Layouts"
     },
     "parent": "concepts/Views/Views.ejs",
@@ -487,7 +455,6 @@
     "templateTitle": "Locals.ejs",
     "fullPathAndFileName": "concepts/Views/Locals.ejs",
     "data": {
-      "uniqueID": "Locals453748",
       "displayName": "Locals"
     },
     "parent": "concepts/Views/Views.ejs",
@@ -497,7 +464,6 @@
     "templateTitle": "Partials.ejs",
     "fullPathAndFileName": "concepts/Views/Partials.ejs",
     "data": {
-      "uniqueID": "Partials610916",
       "displayName": "Partials"
     },
     "parent": "concepts/Views/Views.ejs",
@@ -507,7 +473,6 @@
     "templateTitle": "ViewEngines.ejs",
     "fullPathAndFileName": "concepts/Views/ViewEngines.ejs",
     "data": {
-      "uniqueID": "ViewEngines339501",
       "displayName": "View Engines"
     },
     "parent": "concepts/Views/Views.ejs",
@@ -518,7 +483,6 @@
     "fullPathAndFileName": "concepts/extending-sails/Adapters/Adapters.ejs",
     "realPath": "concepts/extending-sails/Adapters/",
     "data": {
-      "uniqueID": "Adapters83669",
       "displayName": "Adapters",
       "stabilityIndex": "3"
     },
@@ -534,7 +498,6 @@
     "templateTitle": "adapterList.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Adapters/adapterList.ejs",
     "data": {
-      "uniqueID": "adapterList22829",
       "displayName": "Available Adapters"
     },
     "parent": "concepts/extending-sails/Adapters/Adapters.ejs",
@@ -544,7 +507,6 @@
     "templateTitle": "customAdapters.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Adapters/customAdapters.ejs",
     "data": {
-      "uniqueID": "customAdapters92223",
       "displayName": "Custom Adapters"
     },
     "parent": "concepts/extending-sails/Adapters/Adapters.ejs",
@@ -555,7 +517,6 @@
     "fullPathAndFileName": "concepts/extending-sails/Generators/Generators.ejs",
     "realPath": "concepts/extending-sails/Generators/",
     "data": {
-      "uniqueID": "Generators82739",
       "displayName": "Generators",
       "stabilityIndex": "2"
     },
@@ -571,7 +532,6 @@
     "templateTitle": "customGenerators.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Generators/customGenerators.ejs",
     "data": {
-      "uniqueID": "customGenerators22840",
       "displayName": "Custom Generators"
     },
     "parent": "concepts/extending-sails/Generators/Generators.ejs",
@@ -581,7 +541,6 @@
     "templateTitle": "generatorList.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Generators/generatorList.ejs",
     "data": {
-      "uniqueID": "generatorList11719",
       "displayName": "Available Generators"
     },
     "parent": "concepts/extending-sails/Generators/Generators.ejs",
@@ -592,16 +551,15 @@
     "fullPathAndFileName": "concepts/extending-sails/Hooks/Hooks.ejs",
     "realPath": "concepts/extending-sails/Hooks/",
     "data": {
-      "uniqueID": "Hooks74998",
       "displayName": "Hooks",
       "stabilityIndex": "3"
     },
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
+      "concepts/extending-sails/Hooks/usinghooks.ejs",
       "concepts/extending-sails/Hooks/installablehooks.ejs",
       "concepts/extending-sails/Hooks/projecthooks.ejs",
-      "concepts/extending-sails/Hooks/usinghooks.ejs",
       "concepts/extending-sails/Hooks/hookspec/hookspec.ejs"
     ],
     "isParent": true
@@ -610,7 +568,6 @@
     "templateTitle": "configure.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/hookspec/configure.ejs",
     "data": {
-      "uniqueID": "Hooks75004",
       "displayName": ".configure()",
       "stabilityIndex": "3"
     },
@@ -621,7 +578,6 @@
     "templateTitle": "defaults.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
     "data": {
-      "uniqueID": "Hooks75003",
       "displayName": ".defaults",
       "stabilityIndex": "3"
     },
@@ -633,7 +589,6 @@
     "fullPathAndFileName": "concepts/extending-sails/Hooks/hookspec/hookspec.ejs",
     "realPath": "concepts/extending-sails/Hooks/hookspec/",
     "data": {
-      "uniqueID": "Hooks75002",
       "displayName": "Hook Specification",
       "stabilityIndex": "3"
     },
@@ -642,8 +597,8 @@
     "children": [
       "concepts/extending-sails/Hooks/hookspec/configure.ejs",
       "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
-      "concepts/extending-sails/Hooks/hookspec/routes.ejs",
-      "concepts/extending-sails/Hooks/hookspec/initialize.ejs"
+      "concepts/extending-sails/Hooks/hookspec/initialize.ejs",
+      "concepts/extending-sails/Hooks/hookspec/routes.ejs"
     ],
     "isParent": true
   },
@@ -651,7 +606,6 @@
     "templateTitle": "initialize.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/hookspec/initialize.ejs",
     "data": {
-      "uniqueID": "Hooks75005",
       "displayName": ".initialize()",
       "stabilityIndex": "3"
     },
@@ -662,7 +616,6 @@
     "templateTitle": "routes.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/hookspec/routes.ejs",
     "data": {
-      "uniqueID": "Hooks75006",
       "displayName": ".routes",
       "stabilityIndex": "3"
     },
@@ -673,7 +626,6 @@
     "templateTitle": "installablehooks.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/installablehooks.ejs",
     "data": {
-      "uniqueID": "Hooks74999",
       "displayName": "Installable Hooks",
       "stabilityIndex": "3"
     },
@@ -684,7 +636,6 @@
     "templateTitle": "projecthooks.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/projecthooks.ejs",
     "data": {
-      "uniqueID": "Hooks75000",
       "displayName": "Project Hooks",
       "stabilityIndex": "3"
     },
@@ -695,7 +646,6 @@
     "templateTitle": "usinghooks.ejs",
     "fullPathAndFileName": "concepts/extending-sails/Hooks/usinghooks.ejs",
     "data": {
-      "uniqueID": "Hooks75001",
       "displayName": "Using Hooks",
       "stabilityIndex": "3"
     },
@@ -717,13 +667,12 @@
     "fullPathAndFileName": "concepts/Assets/Assets.ejs",
     "realPath": "concepts/Assets/",
     "data": {
-      "uniqueID": "Assets220313",
       "displayName": "Assets"
     },
     "children": [
-      "concepts/Assets/DefaultTasks.ejs",
+      "concepts/Assets/TaskAutomation.ejs",
       "concepts/Assets/DisablingGrunt.ejs",
-      "concepts/Assets/TaskAutomation.ejs"
+      "concepts/Assets/DefaultTasks.ejs"
     ],
     "isParent": true
   },
@@ -745,7 +694,6 @@
     "fullPathAndFileName": "concepts/Controllers/Controllers.ejs",
     "realPath": "concepts/Controllers/",
     "data": {
-      "uniqueID": "Controllers464694",
       "displayName": "Controllers"
     },
     "children": [
@@ -772,13 +720,12 @@
     "fullPathAndFileName": "concepts/Deployment/Deployment.ejs",
     "realPath": "concepts/Deployment/",
     "data": {
-      "uniqueID": "Deployment402941",
       "displayName": "Deployment"
     },
     "children": [
-      "concepts/Deployment/FAQ.ejs",
+      "concepts/Deployment/Hosting.ejs",
       "concepts/Deployment/Scaling.ejs",
-      "concepts/Deployment/Hosting.ejs"
+      "concepts/Deployment/FAQ.ejs"
     ],
     "isParent": true
   },
@@ -800,7 +747,6 @@
     "fullPathAndFileName": "concepts/Globals/Globals.ejs",
     "realPath": "concepts/Globals/",
     "data": {
-      "uniqueID": "Globals668238",
       "displayName": "Globals"
     },
     "children": [
@@ -816,8 +762,8 @@
       "displayName": "Internationalization"
     },
     "children": [
-      "concepts/Internationalization/Locales.ejs",
-      "concepts/Internationalization/TranslatingDynamicContent.ejs"
+      "concepts/Internationalization/TranslatingDynamicContent.ejs",
+      "concepts/Internationalization/Locales.ejs"
     ],
     "isParent": true
   },
@@ -826,7 +772,6 @@
     "fullPathAndFileName": "concepts/Logging/Logging.ejs",
     "realPath": "concepts/Logging/",
     "data": {
-      "uniqueID": "Logging277763",
       "displayName": "Logging"
     },
     "children": [
@@ -839,7 +784,6 @@
     "fullPathAndFileName": "concepts/Middleware/Middleware.ejs",
     "realPath": "concepts/Middleware/",
     "data": {
-      "uniqueID": "middleware198259",
       "displayName": "Middleware"
     },
     "children": [
@@ -852,16 +796,15 @@
     "fullPathAndFileName": "concepts/ORM/ORM.ejs",
     "realPath": "concepts/ORM/",
     "data": {
-      "uniqueID": "ORM416997",
       "displayName": "Models and ORM"
     },
     "children": [
-      "concepts/ORM/Attributes.ejs",
-      "concepts/ORM/Models.ejs",
       "concepts/ORM/Lifecyclecallbacks.ejs",
-      "concepts/ORM/Validations.ejs",
+      "concepts/ORM/Models.ejs",
       "concepts/ORM/Querylanguage.ejs",
       "concepts/ORM/model-settings.ejs",
+      "concepts/ORM/Validations.ejs",
+      "concepts/ORM/Attributes.ejs",
       "concepts/ORM/Associations/Associations.ejs"
     ],
     "isParent": true
@@ -871,7 +814,6 @@
     "fullPathAndFileName": "concepts/Policies/Policies.ejs",
     "realPath": "concepts/Policies/",
     "data": {
-      "uniqueID": "Policies766425",
       "displayName": "Policies"
     },
     "children": [
@@ -884,12 +826,11 @@
     "fullPathAndFileName": "concepts/Routes/Routes.ejs",
     "realPath": "concepts/Routes/",
     "data": {
-      "uniqueID": "Routes849188",
       "displayName": "Routes"
     },
     "children": [
-      "concepts/Routes/RouteTargetSyntax.ejs",
-      "concepts/Routes/URLSlugs.ejs"
+      "concepts/Routes/URLSlugs.ejs",
+      "concepts/Routes/RouteTargetSyntax.ejs"
     ],
     "isParent": true
   },
@@ -905,11 +846,11 @@
       "concepts/Security/CSRF.ejs",
       "concepts/Security/Clickjacking.ejs",
       "concepts/Security/ContentSecurityPolicy.ejs",
-      "concepts/Security/P3P.ejs",
-      "concepts/Security/SocketHijacking.ejs",
       "concepts/Security/DDOS.ejs",
+      "concepts/Security/XSS.ejs",
+      "concepts/Security/SocketHijacking.ejs",
       "concepts/Security/StrictTransportSecurity.ejs",
-      "concepts/Security/XSS.ejs"
+      "concepts/Security/P3P.ejs"
     ],
     "isParent": true
   },
@@ -949,7 +890,6 @@
     "fullPathAndFileName": "concepts/Upgrading/Upgrading.ejs",
     "realPath": "concepts/Upgrading/",
     "data": {
-      "uniqueID": "Upgrading509472",
       "displayName": "Upgrading"
     },
     "children": [
@@ -963,7 +903,6 @@
     "fullPathAndFileName": "concepts/Views/Views.ejs",
     "realPath": "concepts/Views/",
     "data": {
-      "uniqueID": "Views426660",
       "displayName": "Views"
     },
     "children": [
@@ -979,13 +918,12 @@
     "fullPathAndFileName": "concepts/extending-sails/extending-sails.ejs",
     "realPath": "concepts/extending-sails/",
     "data": {
-      "uniqueID": "extendingsails78468",
       "displayName": "Extending Sails"
     },
     "children": [
-      "concepts/extending-sails/Adapters/Adapters.ejs",
+      "concepts/extending-sails/Generators/Generators.ejs",
       "concepts/extending-sails/Hooks/Hooks.ejs",
-      "concepts/extending-sails/Generators/Generators.ejs"
+      "concepts/extending-sails/Adapters/Adapters.ejs"
     ],
     "isParent": true
   }

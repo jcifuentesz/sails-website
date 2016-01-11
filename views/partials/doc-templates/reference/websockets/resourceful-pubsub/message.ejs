@@ -42,9 +42,14 @@
 <p>Arbitrary data to send to the subscribed sockets.</p>
 <h4 id="-request-" permalink="request"><code>request</code></h4>
 <p>If this argument is included then the socket attached to that request will <em>not</em> receive the notification.</p>
-<p><docmeta name="uniqueID" value="message373731"></docmeta></p>
 <p><docmeta name="methodType" value="pubsub"></docmeta></p>
 <p><docmeta name="importance" value="undefined"></docmeta></p>
 <docmeta name="displayName" value=".message()">
 
+<h3 id="example" permalink="example">Example</h3>
+<p>Find a user in the sails controller by name and send a socket message back to the client. This object can contain any data you want.</p>
+<pre><code data-language="javascript">User.findOne({name: &apos;Bob&apos;}).then(function(foundUser){
+  User.message(foundUser, {count: 12, hairColor: &apos;red&apos;});
+});
+</code></pre><!-- __LANG=%%__ -->
 </docmeta>

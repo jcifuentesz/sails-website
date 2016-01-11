@@ -3,7 +3,6 @@
     "templateTitle": "Gruntfile.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/Gruntfile.js.ejs",
     "data": {
-      "uniqueID": "Gruntfilejs375150",
       "displayName": "Gruntfile.js"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -13,7 +12,6 @@
     "templateTitle": "README.md.ejs",
     "fullPathAndFileName": "anatomy/myApp/README.md.ejs",
     "data": {
-      "uniqueID": "READMEmd869459",
       "displayName": "README"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -24,7 +22,6 @@
     "fullPathAndFileName": "anatomy/myApp/api/api.ejs",
     "realPath": "anatomy/myApp/api/",
     "data": {
-      "uniqueID": "apimd840000",
       "displayName": "api"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -32,8 +29,8 @@
     "children": [
       "anatomy/myApp/api/controllers/controllers.ejs",
       "anatomy/myApp/api/models/models.ejs",
-      "anatomy/myApp/api/policies/policies.ejs",
       "anatomy/myApp/api/responses/responses.ejs",
+      "anatomy/myApp/api/policies/policies.ejs",
       "anatomy/myApp/api/services/services.ejs"
     ],
     "isParent": true
@@ -42,7 +39,6 @@
     "templateTitle": "UserController.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/controllers/UserController.js.ejs",
     "data": {
-      "uniqueID": "UserControllerjs867576",
       "displayName": "UserController.js"
     },
     "parent": "anatomy/myApp/api/controllers/controllers.ejs",
@@ -53,14 +49,13 @@
     "fullPathAndFileName": "anatomy/myApp/api/controllers/controllers.ejs",
     "realPath": "anatomy/myApp/api/controllers/",
     "data": {
-      "uniqueID": "controllersmd841616",
       "displayName": "controllers"
     },
     "parent": "anatomy/myApp/api/api.ejs",
     "isChild": true,
     "children": [
-      "anatomy/myApp/api/controllers/gitkeep.ejs",
-      "anatomy/myApp/api/controllers/UserController.js.ejs"
+      "anatomy/myApp/api/controllers/UserController.js.ejs",
+      "anatomy/myApp/api/controllers/gitkeep.ejs"
     ],
     "isParent": true
   },
@@ -68,7 +63,6 @@
     "templateTitle": "gitkeep.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/controllers/gitkeep.ejs",
     "data": {
-      "uniqueID": "gitkeep271990",
       "displayName": ".gitkeep"
     },
     "parent": "anatomy/myApp/api/controllers/controllers.ejs",
@@ -78,7 +72,6 @@
     "templateTitle": "User.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/models/User.js.ejs",
     "data": {
-      "uniqueID": "Userjs263218",
       "displayName": "User.js"
     },
     "parent": "anatomy/myApp/api/models/models.ejs",
@@ -88,7 +81,6 @@
     "templateTitle": "gitkeep.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/models/gitkeep.ejs",
     "data": {
-      "uniqueID": "gitkeep437760",
       "displayName": ".gitkeep"
     },
     "parent": "anatomy/myApp/api/models/models.ejs",
@@ -99,14 +91,13 @@
     "fullPathAndFileName": "anatomy/myApp/api/models/models.ejs",
     "realPath": "anatomy/myApp/api/models/",
     "data": {
-      "uniqueID": "modelsmd956381",
       "displayName": "models"
     },
     "parent": "anatomy/myApp/api/api.ejs",
     "isChild": true,
     "children": [
-      "anatomy/myApp/api/models/User.js.ejs",
-      "anatomy/myApp/api/models/gitkeep.ejs"
+      "anatomy/myApp/api/models/gitkeep.ejs",
+      "anatomy/myApp/api/models/User.js.ejs"
     ],
     "isParent": true
   },
@@ -115,7 +106,6 @@
     "fullPathAndFileName": "anatomy/myApp/api/policies/policies.ejs",
     "realPath": "anatomy/myApp/api/policies/",
     "data": {
-      "uniqueID": "policiesmd630211",
       "displayName": "policies"
     },
     "parent": "anatomy/myApp/api/api.ejs",
@@ -129,7 +119,6 @@
     "templateTitle": "sessionAuth.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/policies/sessionAuth.js.ejs",
     "data": {
-      "uniqueID": "sessionAuthjs444151",
       "displayName": "sessionAuth.js"
     },
     "parent": "anatomy/myApp/api/policies/policies.ejs",
@@ -139,7 +128,6 @@
     "templateTitle": "badRequest.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/responses/badRequest.js.ejs",
     "data": {
-      "uniqueID": "badRequestjs643116",
       "displayName": "badRequest.js"
     },
     "parent": "anatomy/myApp/api/responses/responses.ejs",
@@ -149,7 +137,6 @@
     "templateTitle": "forbidden.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/responses/forbidden.js.ejs",
     "data": {
-      "uniqueID": "forbiddenjs655137",
       "displayName": "forbidden.js"
     },
     "parent": "anatomy/myApp/api/responses/responses.ejs",
@@ -159,7 +146,6 @@
     "templateTitle": "notFound.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/responses/notFound.js.ejs",
     "data": {
-      "uniqueID": "notFoundjs935866",
       "displayName": "notFound.js"
     },
     "parent": "anatomy/myApp/api/responses/responses.ejs",
@@ -169,7 +155,6 @@
     "templateTitle": "ok.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/responses/ok.js.ejs",
     "data": {
-      "uniqueID": "okjs629833",
       "displayName": "ok.js"
     },
     "parent": "anatomy/myApp/api/responses/responses.ejs",
@@ -180,17 +165,16 @@
     "fullPathAndFileName": "anatomy/myApp/api/responses/responses.ejs",
     "realPath": "anatomy/myApp/api/responses/",
     "data": {
-      "uniqueID": "responsesmd261495",
       "displayName": "responses"
     },
     "parent": "anatomy/myApp/api/api.ejs",
     "isChild": true,
     "children": [
-      "anatomy/myApp/api/responses/badRequest.js.ejs",
-      "anatomy/myApp/api/responses/serverError.js.ejs",
       "anatomy/myApp/api/responses/forbidden.js.ejs",
+      "anatomy/myApp/api/responses/badRequest.js.ejs",
+      "anatomy/myApp/api/responses/ok.js.ejs",
       "anatomy/myApp/api/responses/notFound.js.ejs",
-      "anatomy/myApp/api/responses/ok.js.ejs"
+      "anatomy/myApp/api/responses/serverError.js.ejs"
     ],
     "isParent": true
   },
@@ -198,7 +182,6 @@
     "templateTitle": "serverError.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/responses/serverError.js.ejs",
     "data": {
-      "uniqueID": "serverErrorjs285178",
       "displayName": "serverError.js"
     },
     "parent": "anatomy/myApp/api/responses/responses.ejs",
@@ -208,7 +191,6 @@
     "templateTitle": "gitkeep.ejs",
     "fullPathAndFileName": "anatomy/myApp/api/services/gitkeep.ejs",
     "data": {
-      "uniqueID": "gitkeep306979",
       "displayName": ".gitkeep"
     },
     "parent": "anatomy/myApp/api/services/services.ejs",
@@ -219,7 +201,6 @@
     "fullPathAndFileName": "anatomy/myApp/api/services/services.ejs",
     "realPath": "anatomy/myApp/api/services/",
     "data": {
-      "uniqueID": "servicesmd572453",
       "displayName": "services"
     },
     "parent": "anatomy/myApp/api/api.ejs",
@@ -233,7 +214,6 @@
     "templateTitle": "app.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/app.js.ejs",
     "data": {
-      "uniqueID": "appjs249761",
       "displayName": "app.js"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -244,7 +224,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/_templates/_templates.ejs",
     "realPath": "anatomy/myApp/assets/_templates/",
     "data": {
-      "uniqueID": "templatesmd846667",
       "displayName": "templates"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -258,7 +237,6 @@
     "templateTitle": "gitkeep.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/_templates/gitkeep.ejs",
     "data": {
-      "uniqueID": "gitkeep45946",
       "displayName": ".gitkeep"
     },
     "parent": "anatomy/myApp/assets/_templates/_templates.ejs",
@@ -269,7 +247,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/assets.ejs",
     "realPath": "anatomy/myApp/assets/",
     "data": {
-      "uniqueID": "assetsmd466929",
       "displayName": "assets"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -288,7 +265,6 @@
     "templateTitle": "favicon.ico.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/favicon.ico.ejs",
     "data": {
-      "uniqueID": "favicon738321",
       "displayName": "favicon.ico"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -298,7 +274,6 @@
     "templateTitle": "gitkeep.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/images/gitkeep.ejs",
     "data": {
-      "uniqueID": "gitkeep510726",
       "displayName": ".gitkeep"
     },
     "parent": "anatomy/myApp/assets/images/images.ejs",
@@ -309,7 +284,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/images/images.ejs",
     "realPath": "anatomy/myApp/assets/images/",
     "data": {
-      "uniqueID": "imagesmd510380",
       "displayName": "images"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -324,7 +298,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/js/dependencies/dependencies.ejs",
     "realPath": "anatomy/myApp/assets/js/dependencies/",
     "data": {
-      "uniqueID": "dependenciesmd334158",
       "displayName": "dependencies"
     },
     "parent": "anatomy/myApp/assets/js/js.ejs",
@@ -338,7 +311,6 @@
     "templateTitle": "sails.io.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/js/dependencies/sails.io.js.ejs",
     "data": {
-      "uniqueID": "sailsiojs779166",
       "displayName": "sails.io.js"
     },
     "parent": "anatomy/myApp/assets/js/dependencies/dependencies.ejs",
@@ -349,7 +321,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/js/js.ejs",
     "realPath": "anatomy/myApp/assets/js/",
     "data": {
-      "uniqueID": "jsmd574851",
       "displayName": "js"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -363,7 +334,6 @@
     "templateTitle": "robots.txt.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/robots.txt.ejs",
     "data": {
-      "uniqueID": "robotstxt863673",
       "displayName": "robots.txt"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -373,7 +343,6 @@
     "templateTitle": "importer.less.ejs",
     "fullPathAndFileName": "anatomy/myApp/assets/styles/importer.less.ejs",
     "data": {
-      "uniqueID": "importerless750226",
       "displayName": "importer.less"
     },
     "parent": "anatomy/myApp/assets/styles/styles.ejs",
@@ -384,7 +353,6 @@
     "fullPathAndFileName": "anatomy/myApp/assets/styles/styles.ejs",
     "realPath": "anatomy/myApp/assets/styles/",
     "data": {
-      "uniqueID": "stylesmd285346",
       "displayName": "styles"
     },
     "parent": "anatomy/myApp/assets/assets.ejs",
@@ -398,7 +366,6 @@
     "templateTitle": "blueprints.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/blueprints.js.ejs",
     "data": {
-      "uniqueID": "blueprintsjs106161",
       "displayName": "blueprints.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -408,7 +375,6 @@
     "templateTitle": "bootstrap.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/bootstrap.js.ejs",
     "data": {
-      "uniqueID": "bootstrapjs878964",
       "displayName": "bootstrap.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -419,7 +385,6 @@
     "fullPathAndFileName": "anatomy/myApp/config/config.ejs",
     "realPath": "anatomy/myApp/config/",
     "data": {
-      "uniqueID": "configmd867312",
       "displayName": "config"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -430,17 +395,17 @@
       "anatomy/myApp/config/connections.js.ejs",
       "anatomy/myApp/config/cors.js.ejs",
       "anatomy/myApp/config/csrf.js.ejs",
-      "anatomy/myApp/config/globals.js.ejs",
       "anatomy/myApp/config/http.js.ejs",
       "anatomy/myApp/config/i18n.js.ejs",
-      "anatomy/myApp/config/local.js.ejs",
+      "anatomy/myApp/config/globals.js.ejs",
       "anatomy/myApp/config/log.js.ejs",
-      "anatomy/myApp/config/models.js.ejs",
-      "anatomy/myApp/config/routes.js.ejs",
       "anatomy/myApp/config/policies.js.ejs",
+      "anatomy/myApp/config/local.js.ejs",
+      "anatomy/myApp/config/routes.js.ejs",
+      "anatomy/myApp/config/models.js.ejs",
       "anatomy/myApp/config/session.js.ejs",
-      "anatomy/myApp/config/sockets.js.ejs",
       "anatomy/myApp/config/views.js.ejs",
+      "anatomy/myApp/config/sockets.js.ejs",
       "anatomy/myApp/config/env/env.ejs",
       "anatomy/myApp/config/locales/locales.ejs"
     ],
@@ -450,7 +415,6 @@
     "templateTitle": "connections.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/connections.js.ejs",
     "data": {
-      "uniqueID": "connectionsjs160878",
       "displayName": "connections.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -460,7 +424,6 @@
     "templateTitle": "cors.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/cors.js.ejs",
     "data": {
-      "uniqueID": "corsjs397059",
       "displayName": "cors.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -470,7 +433,6 @@
     "templateTitle": "csrf.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/csrf.js.ejs",
     "data": {
-      "uniqueID": "csrfjs233850",
       "displayName": "csrf.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -480,7 +442,6 @@
     "templateTitle": "development.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/env/development.js.ejs",
     "data": {
-      "uniqueID": "developmentjs874591",
       "displayName": "development.js"
     },
     "parent": "anatomy/myApp/config/env/env.ejs",
@@ -491,7 +452,6 @@
     "fullPathAndFileName": "anatomy/myApp/config/env/env.ejs",
     "realPath": "anatomy/myApp/config/env/",
     "data": {
-      "uniqueID": "envmd458963",
       "displayName": "env"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -506,7 +466,6 @@
     "templateTitle": "production.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/env/production.js.ejs",
     "data": {
-      "uniqueID": "productionjs658723",
       "displayName": "production.js"
     },
     "parent": "anatomy/myApp/config/env/env.ejs",
@@ -516,7 +475,6 @@
     "templateTitle": "globals.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/globals.js.ejs",
     "data": {
-      "uniqueID": "globalsjs86282",
       "displayName": "globals.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -526,7 +484,6 @@
     "templateTitle": "http.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/http.js.ejs",
     "data": {
-      "uniqueID": "httpjs768553",
       "displayName": "http.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -536,7 +493,6 @@
     "templateTitle": "i18n.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/i18n.js.ejs",
     "data": {
-      "uniqueID": "i18njs28306",
       "displayName": "i18n.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -546,7 +502,6 @@
     "templateTitle": "local.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/local.js.ejs",
     "data": {
-      "uniqueID": "localjs386958",
       "displayName": "local.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -556,7 +511,6 @@
     "templateTitle": "_README.md.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/locales/_README.md.ejs",
     "data": {
-      "uniqueID": "READMEmd329624",
       "displayName": "_README"
     },
     "parent": "anatomy/myApp/config/locales/locales.ejs",
@@ -566,7 +520,6 @@
     "templateTitle": "de.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/locales/de.json.ejs",
     "data": {
-      "uniqueID": "dejson870097",
       "displayName": "de.json"
     },
     "parent": "anatomy/myApp/config/locales/locales.ejs",
@@ -576,7 +529,6 @@
     "templateTitle": "en.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/locales/en.json.ejs",
     "data": {
-      "uniqueID": "enjson226521",
       "displayName": "en.json"
     },
     "parent": "anatomy/myApp/config/locales/locales.ejs",
@@ -586,7 +538,6 @@
     "templateTitle": "es.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/locales/es.json.ejs",
     "data": {
-      "uniqueID": "esjson685640",
       "displayName": "es.json"
     },
     "parent": "anatomy/myApp/config/locales/locales.ejs",
@@ -596,7 +547,6 @@
     "templateTitle": "fr.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/locales/fr.json.ejs",
     "data": {
-      "uniqueID": "frjson25047",
       "displayName": "fr.json"
     },
     "parent": "anatomy/myApp/config/locales/locales.ejs",
@@ -607,17 +557,16 @@
     "fullPathAndFileName": "anatomy/myApp/config/locales/locales.ejs",
     "realPath": "anatomy/myApp/config/locales/",
     "data": {
-      "uniqueID": "localesmd383129",
       "displayName": "locales"
     },
     "parent": "anatomy/myApp/config/config.ejs",
     "isChild": true,
     "children": [
+      "anatomy/myApp/config/locales/fr.json.ejs",
       "anatomy/myApp/config/locales/_README.md.ejs",
-      "anatomy/myApp/config/locales/de.json.ejs",
       "anatomy/myApp/config/locales/es.json.ejs",
-      "anatomy/myApp/config/locales/en.json.ejs",
-      "anatomy/myApp/config/locales/fr.json.ejs"
+      "anatomy/myApp/config/locales/de.json.ejs",
+      "anatomy/myApp/config/locales/en.json.ejs"
     ],
     "isParent": true
   },
@@ -625,7 +574,6 @@
     "templateTitle": "log.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/log.js.ejs",
     "data": {
-      "uniqueID": "logjs173177",
       "displayName": "log.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -635,7 +583,6 @@
     "templateTitle": "models.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/models.js.ejs",
     "data": {
-      "uniqueID": "modelsjs643323",
       "displayName": "models.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -645,7 +592,6 @@
     "templateTitle": "policies.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/policies.js.ejs",
     "data": {
-      "uniqueID": "policiesjs831604",
       "displayName": "policies.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -655,7 +601,6 @@
     "templateTitle": "routes.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/routes.js.ejs",
     "data": {
-      "uniqueID": "routesjs120276",
       "displayName": "routes.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -665,7 +610,6 @@
     "templateTitle": "session.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/session.js.ejs",
     "data": {
-      "uniqueID": "sessionjs736525",
       "displayName": "session.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -675,7 +619,6 @@
     "templateTitle": "sockets.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/sockets.js.ejs",
     "data": {
-      "uniqueID": "socketsjs106184",
       "displayName": "sockets.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -685,7 +628,6 @@
     "templateTitle": "views.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/config/views.js.ejs",
     "data": {
-      "uniqueID": "viewsjs122314",
       "displayName": "views.js"
     },
     "parent": "anatomy/myApp/config/config.ejs",
@@ -695,7 +637,6 @@
     "templateTitle": "gitignore.ejs",
     "fullPathAndFileName": "anatomy/myApp/gitignore.ejs",
     "data": {
-      "uniqueID": "gitignore878586",
       "displayName": ".gitignore"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -705,7 +646,6 @@
     "templateTitle": "package.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/package.json.ejs",
     "data": {
-      "uniqueID": "packagejson891874",
       "displayName": "package.json"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -715,7 +655,6 @@
     "templateTitle": "sailsrc.ejs",
     "fullPathAndFileName": "anatomy/myApp/sailsrc.ejs",
     "data": {
-      "uniqueID": "sailsrc6419",
       "displayName": ".sailsrc"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -725,7 +664,6 @@
     "templateTitle": "README.md.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/README.md.ejs",
     "data": {
-      "uniqueID": "READMEmd802820",
       "displayName": "README"
     },
     "parent": "anatomy/myApp/tasks/tasks.ejs",
@@ -735,7 +673,6 @@
     "templateTitle": "clean.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/clean.js.ejs",
     "data": {
-      "uniqueID": "cleanjs253199",
       "displayName": "clean.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -745,7 +682,6 @@
     "templateTitle": "coffee.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/coffee.js.ejs",
     "data": {
-      "uniqueID": "coffeejs932693",
       "displayName": "coffee.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -755,7 +691,6 @@
     "templateTitle": "concat.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/concat.js.ejs",
     "data": {
-      "uniqueID": "concatjs243574",
       "displayName": "concat.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -766,7 +701,6 @@
     "fullPathAndFileName": "anatomy/myApp/tasks/config/config.ejs",
     "realPath": "anatomy/myApp/tasks/config/",
     "data": {
-      "uniqueID": "configmd719485",
       "displayName": "config"
     },
     "parent": "anatomy/myApp/tasks/tasks.ejs",
@@ -775,13 +709,13 @@
       "anatomy/myApp/tasks/config/clean.js.ejs",
       "anatomy/myApp/tasks/config/coffee.js.ejs",
       "anatomy/myApp/tasks/config/concat.js.ejs",
-      "anatomy/myApp/tasks/config/cssmin.js.ejs",
       "anatomy/myApp/tasks/config/copy.js.ejs",
+      "anatomy/myApp/tasks/config/cssmin.js.ejs",
       "anatomy/myApp/tasks/config/jst.js.ejs",
       "anatomy/myApp/tasks/config/less.js.ejs",
-      "anatomy/myApp/tasks/config/uglify.js.ejs",
-      "anatomy/myApp/tasks/config/sails-linker.js.ejs",
       "anatomy/myApp/tasks/config/sync.js.ejs",
+      "anatomy/myApp/tasks/config/sails-linker.js.ejs",
+      "anatomy/myApp/tasks/config/uglify.js.ejs",
       "anatomy/myApp/tasks/config/watch.js.ejs"
     ],
     "isParent": true
@@ -790,7 +724,6 @@
     "templateTitle": "copy.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/copy.js.ejs",
     "data": {
-      "uniqueID": "copyjs846396",
       "displayName": "copy.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -800,7 +733,6 @@
     "templateTitle": "cssmin.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/cssmin.js.ejs",
     "data": {
-      "uniqueID": "cssminjs49702",
       "displayName": "cssmin.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -810,7 +742,6 @@
     "templateTitle": "jst.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/jst.js.ejs",
     "data": {
-      "uniqueID": "jstjs459109",
       "displayName": "jst.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -820,7 +751,6 @@
     "templateTitle": "less.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/less.js.ejs",
     "data": {
-      "uniqueID": "lessjs876526",
       "displayName": "less.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -830,7 +760,6 @@
     "templateTitle": "sails-linker.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/sails-linker.js.ejs",
     "data": {
-      "uniqueID": "sailslinkerjs717161",
       "displayName": "sails-linker.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -840,7 +769,6 @@
     "templateTitle": "sync.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/sync.js.ejs",
     "data": {
-      "uniqueID": "syncjs116962",
       "displayName": "sync.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -850,7 +778,6 @@
     "templateTitle": "uglify.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/uglify.js.ejs",
     "data": {
-      "uniqueID": "uglifyjs687746",
       "displayName": "uglify.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -860,7 +787,6 @@
     "templateTitle": "watch.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/config/watch.js.ejs",
     "data": {
-      "uniqueID": "watchjs402491",
       "displayName": "watch.js"
     },
     "parent": "anatomy/myApp/tasks/config/config.ejs",
@@ -870,7 +796,6 @@
     "templateTitle": "pipeline.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/pipeline.js.ejs",
     "data": {
-      "uniqueID": "pipelinejs485817",
       "displayName": "pipeline.js"
     },
     "parent": "anatomy/myApp/tasks/tasks.ejs",
@@ -880,7 +805,6 @@
     "templateTitle": "build.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/build.js.ejs",
     "data": {
-      "uniqueID": "buildjs920895",
       "displayName": "build.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -890,7 +814,6 @@
     "templateTitle": "buildProd.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/buildProd.js.ejs",
     "data": {
-      "uniqueID": "buildProdjs242328",
       "displayName": "buildProd.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -900,7 +823,6 @@
     "templateTitle": "compileAssets.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/compileAssets.js.ejs",
     "data": {
-      "uniqueID": "compileAssetsjs631033",
       "displayName": "compileAssets.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -919,7 +841,6 @@
     "templateTitle": "linkAssets.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/linkAssets.js.ejs",
     "data": {
-      "uniqueID": "linkAssetsjs43498",
       "displayName": "linkAssets.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -929,7 +850,6 @@
     "templateTitle": "linkAssetsBuild.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/linkAssetsBuild.js.ejs",
     "data": {
-      "uniqueID": "linkAssetsBuildjs786345",
       "displayName": "linkAssetsBuild.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -939,7 +859,6 @@
     "templateTitle": "linkAssetsBuildProd.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/linkAssetsBuildProd.js.ejs",
     "data": {
-      "uniqueID": "linkAssetsBuildProdjs100842",
       "displayName": "linkAssetsBuildProd.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -968,9 +887,9 @@
       "anatomy/myApp/tasks/register/buildProd.js.ejs",
       "anatomy/myApp/tasks/register/compileAssets.js.ejs",
       "anatomy/myApp/tasks/register/default.js.ejs",
-      "anatomy/myApp/tasks/register/linkAssetsBuildProd.js.ejs",
-      "anatomy/myApp/tasks/register/linkAssetsBuild.js.ejs",
       "anatomy/myApp/tasks/register/linkAssets.js.ejs",
+      "anatomy/myApp/tasks/register/linkAssetsBuild.js.ejs",
+      "anatomy/myApp/tasks/register/linkAssetsBuildProd.js.ejs",
       "anatomy/myApp/tasks/register/prod.js.ejs",
       "anatomy/myApp/tasks/register/syncAssets.js.ejs"
     ],
@@ -980,7 +899,6 @@
     "templateTitle": "syncAssets.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/tasks/register/syncAssets.js.ejs",
     "data": {
-      "uniqueID": "syncAssetsjs528286",
       "displayName": "syncAssets.js"
     },
     "parent": "anatomy/myApp/tasks/register/register.ejs",
@@ -991,7 +909,6 @@
     "fullPathAndFileName": "anatomy/myApp/tasks/tasks.ejs",
     "realPath": "anatomy/myApp/tasks/",
     "data": {
-      "uniqueID": "tasksmd668626",
       "displayName": "tasks"
     },
     "parent": "anatomy/myApp/myApp.ejs",
@@ -1008,7 +925,6 @@
     "templateTitle": "403.ejs.ejs",
     "fullPathAndFileName": "anatomy/myApp/views/403.ejs.ejs",
     "data": {
-      "uniqueID": "403ejs888880",
       "displayName": "403.ejs"
     },
     "parent": "anatomy/myApp/views/views.ejs",
@@ -1018,7 +934,6 @@
     "templateTitle": "404.ejs.ejs",
     "fullPathAndFileName": "anatomy/myApp/views/404.ejs.ejs",
     "data": {
-      "uniqueID": "404ejs805188",
       "displayName": "404.ejs"
     },
     "parent": "anatomy/myApp/views/views.ejs",
@@ -1028,7 +943,6 @@
     "templateTitle": "500.ejs.ejs",
     "fullPathAndFileName": "anatomy/myApp/views/500.ejs.ejs",
     "data": {
-      "uniqueID": "500ejs917243",
       "displayName": "500.ejs"
     },
     "parent": "anatomy/myApp/views/views.ejs",
@@ -1038,7 +952,6 @@
     "templateTitle": "homepage.ejs.ejs",
     "fullPathAndFileName": "anatomy/myApp/views/homepage.ejs.ejs",
     "data": {
-      "uniqueID": "homepageejs785450",
       "displayName": "homepage.ejs"
     },
     "parent": "anatomy/myApp/views/views.ejs",
@@ -1048,7 +961,6 @@
     "templateTitle": "layout.ejs.ejs",
     "fullPathAndFileName": "anatomy/myApp/views/layout.ejs.ejs",
     "data": {
-      "uniqueID": "layoutejs708856",
       "displayName": "layout.ejs"
     },
     "parent": "anatomy/myApp/views/views.ejs",
@@ -1059,16 +971,15 @@
     "fullPathAndFileName": "anatomy/myApp/views/views.ejs",
     "realPath": "anatomy/myApp/views/",
     "data": {
-      "uniqueID": "viewsmd633977",
       "displayName": "views"
     },
     "parent": "anatomy/myApp/myApp.ejs",
     "isChild": true,
     "children": [
       "anatomy/myApp/views/403.ejs.ejs",
+      "anatomy/myApp/views/500.ejs.ejs",
       "anatomy/myApp/views/layout.ejs.ejs",
       "anatomy/myApp/views/404.ejs.ejs",
-      "anatomy/myApp/views/500.ejs.ejs",
       "anatomy/myApp/views/homepage.ejs.ejs"
     ],
     "isParent": true
@@ -1090,18 +1001,17 @@
     "fullPathAndFileName": "anatomy/myApp/myApp.ejs",
     "realPath": "anatomy/myApp/",
     "data": {
-      "uniqueID": "myAppmd870358",
       "displayName": "myApp"
     },
     "children": [
-      "anatomy/myApp/package.json.ejs",
       "anatomy/myApp/README.md.ejs",
-      "anatomy/myApp/gitignore.ejs",
       "anatomy/myApp/sailsrc.ejs",
-      "anatomy/myApp/app.js.ejs",
-      "anatomy/myApp/api/api.ejs",
+      "anatomy/myApp/package.json.ejs",
       "anatomy/myApp/Gruntfile.js.ejs",
+      "anatomy/myApp/app.js.ejs",
+      "anatomy/myApp/gitignore.ejs",
       "anatomy/myApp/assets/assets.ejs",
+      "anatomy/myApp/api/api.ejs",
       "anatomy/myApp/config/config.ejs",
       "anatomy/myApp/tasks/tasks.ejs",
       "anatomy/myApp/views/views.ejs"

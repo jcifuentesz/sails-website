@@ -3,7 +3,6 @@
 <p>Sails exposes several low-level methods for realtime communication with the client via <code>sails.sockets</code>.  These methods are implemented using a <a href="http://socket.io" target="_blank">Socket.io</a> connection which is available as <code>sails.io</code>; however, using the <code>sails.sockets</code> methods instead will future-proof your app against possible changes in underlying implementation.  If your app is mainly sending messages to the client regarding changes in your models, you should try and use the <a href="https://github.com/balderdashy/sails-docs/blob/0.10/reference/ModelMethods.md#publishcreate-datasocket-" target="_blank">model PubSub methods</a> instead.</p>
 <h3 id="looking-for-sails-io-" permalink="looking-for-sailsio">Looking for <code>sails.io</code>?</h3>
 <p>For raw access to the underlying <a href="http://socket.io/" target="_blank">socket.io</a> singleton, you can still access <code>sails.io</code>.  But starting with Sails v0.10, you should use <code>sails.sockets</code> for most low-level use-cases involving sockets, since <code>sails.io</code> may be deprecated in an upcoming release to allow for more flexibility/extensibility in the underlying socket implementation.</p>
-<p><docmeta name="uniqueID" value="Sockets505826"></docmeta></p>
 <p><docmeta name="displayName" value="sails.sockets"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 </docmeta>

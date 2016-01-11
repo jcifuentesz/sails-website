@@ -14,7 +14,6 @@
 <p><code>instance methods</code> on the other hand, (also known as object, or model, methods) refer to methods available on the individual result models themselves, e.g. <code>User.findOne(7).done(function (err, user) { user.someInstanceMethod(); });</code>.  To add custom instance methods to your model (beyond what is provided in the adapters it implements), define them as key/function pairs in the <code>attributes</code> object of the model&apos;s definition.</p>
 <h5 id="ddl-and-auto-migrations" permalink="ddl-and-automigrations">DDL and auto-migrations</h5>
 <p><code>DDL</code> stands for data-definition language, and is a common fixture of schema-oriented databases.  In Sails, auto-migrations are supported out of the box.  Since adapters for the most common SQL databases support <code>alter()</code>, they also support automatic schema migration!  In your own adapter, if you write the <code>alter()</code> method, the same behavior will take effect.  The feature is configurable using the <code>migrate</code> property, which can be set to <code>safe</code> (don&apos;t touch the schema, period), <code>drop</code> (recreate the tables every time the app starts), or <code>alter</code> (the default-- merge the schema in the apps&apos; models with what is currently in the database).</p>
-<p><docmeta name="uniqueID" value="Adapters83669"></docmeta></p>
 <p><docmeta name="displayName" value="Adapters"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 </docmeta>
