@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "cheerio": "0.18.0",
-    "doc-templater": "0.2.6",
+    "doc-templater": "0.2.7",
     "lodash": "*",
     "machinepack-fs": "*",
     "semver": "4.3.6",
-    "path": "*",
     "fs-extra": "*"
   },
   "machinepack": {
