@@ -27,41 +27,67 @@ div.support {
       padding: 10px 20px 50px 0px;
       float: left;
       a {
-        .clearfix();
         cursor: pointer;
-        li {
-          .clearfix();
-          padding-bottom: 45px;
-          position: relative;
-          padding-left: 85px;
-          img.icon {
-            position: absolute;
-            width: 60px;
-            left: 0;
-            top: 2px;
+      }
+      li {
+        .clearfix();
+        padding-bottom: 45px;
+        position: relative;
+        padding-left: 85px;
+        img.icon {
+          position: absolute;
+          width: 60px;
+          left: 0;
+          top: 2px;
+        }
+        div.description {
+          .borderBox();
+          h2 {
+            .docs_h1();
+            font-size: 30px;
+            padding: 0px 0px 0px 0px;
           }
-          div.description {
-            .borderBox();
-            h2 {
-              .docs_h1();
-              font-size: 30px;
-              padding: 0px 0px 0px 0px;
+          p {
+            color: @dkerGray;
+            font-weight: @normal;
+            font-size: 14px;
+            margin-bottom: 5px;
+            >span {
+              font-weight: 700;
+              color: @originalTurquoise;
             }
-            p {
-              color: @dkerGray;
-              font-weight: @normal;
-              font-size: 14px;
-              >span {
-                font-weight: 700;
-                color: @originalTurquoise;
+            a {
+              color: @turquoise;
+            }
+            span.divider {
+              padding-left: 5px;
+              padding-right: 5px;
+              color: @ltGray;
+              font-weight: 300;
+            }
+            .open-chat-btn {
+              display: inline-block;
+              background-color: @seaGreen;
+              color: @turquoise;
+              padding-left: 7px;
+              padding-right: 7px;
+              padding-top: 3px;
+              padding-bottom: 3px;
+              border-radius: 4px;
+              .transition(background-color 250ms);
+              text-transform: uppercase;
+              font-size: 12px;
+              margin-left: 5px;
+              &:hover {
+                background-color: @bgLtBlue;
               }
             }
           }
-        }
-        &:hover {
-          li div.description h2 {
-            color: black;
-            .transition(all 300ms);
+          &:hover {
+            div.description h2 {
+              color: black;
+              .transition(all 300ms);
+            }
           }
         }
       }
