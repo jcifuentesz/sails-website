@@ -1,0 +1,47 @@
+<h1 id="application-sails-">Application (<code>sails</code>)</h1>
+<p>The <code>sails</code> application object contains all relevant runtime state for a Sails application.
+By default it is exposed globally, but this behavior <a href="">can be disabled</a>, e.g. for
+use cases where multiple Sails app instances need to exist at once, or where globals
+are not an option. The application object can also always be accessed on an incoming
+request (<code>req._sails</code>).</p>
+<h3 id="properties" permalink="properties">Properties</h3>
+<p>The application object has a number of methods and properties which are useful.
+The officially supported methods on the <code>sails</code> object are covered by the other
+pages in this section.  Here are a few of its most useful properties:</p>
+<h5 id="sails-models" permalink="sailsmodels">sails.models</h5>
+<blockquote>
+<p>(TODO: finish this section)</p>
+</blockquote>
+<h5 id="sails-config" permalink="sailsconfig">sails.config</h5>
+<blockquote>
+<p>(TODO: finish this section - mainly just link to &quot;Configuration&quot; section)</p>
+</blockquote>
+<h5 id="sails-sockets" permalink="sailssockets">sails.sockets</h5>
+<blockquote>
+<p>(TODO: finish this section - mainly just link to &quot;sails.sockets&quot; reference section)</p>
+</blockquote>
+<h5 id="sails-hooks" permalink="sailshooks">sails.hooks</h5>
+<blockquote>
+<p>(TODO: finish this section - mainly just link to &quot;Extending Sails/Hooks&quot; conceptual section)</p>
+</blockquote>
+<h3 id="how-does-it-work-" permalink="how-does-it-work">How does it work?</h3>
+<p>An application instance is automatically created the first time you <code>require(&apos;sails&apos;)</code>.
+This is what is happening in the generated <code>app.js</code> file:</p>
+<pre><code data-language="javascript">var sails = require(&apos;sails&apos;);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="creating-a-new-application-object-advanced-" permalink="creating-a-new-application-object-(advanced)">Creating a new application object (advanced)</h3>
+<p>Alternatively, if you are implementing something unconventional (e.g. writing tests for Sails core)
+where you need to create more than one Sails application instance in a process, you <em>should not</em> use
+the instance returned by <code>require(&apos;sails&apos;)</code>, as this can cause unexpected behavior.  Instead, you should
+obtain application instances by using the Sails constructor:</p>
+<pre><code data-language="javascript">var Sails = require(&apos;sails&apos;).constructor;
+var sails0 = new Sails();
+var sails1 = new Sails();
+var sails2 = new Sails();
+</code></pre><!-- __LANG=%%__ -->
+<p>Each app instance (<code>sails0</code>, <code>sails1</code>, <code>sails2</code>) can be loaded/lifted separately,
+using different configuration.</p>
+<!-- For more on using Sails programatically, see the
+conceptual overview on [programatic usage in Sails](). -->
+<docmeta name="displayName" value="Application">
+</docmeta>

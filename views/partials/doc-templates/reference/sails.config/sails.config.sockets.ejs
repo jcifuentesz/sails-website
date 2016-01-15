@@ -28,34 +28,15 @@
 <td> <code>adapter</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td><code>&apos;memory&apos;</code></td>
-<td>The database where socket.io will store its message queue and answer pubsub logic.  Can be set to either <code>&apos;memory&apos;</code> or <code>&apos;redis&apos;</code></td>
-</tr>
-<tr>
-<td> <code>host</code></td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td><code>&apos;127.0.0.1&apos;</code></td>
-<td>Hostname of your redis instance (only applicable if using the redis socket store adapter)</td>
-</tr>
-<tr>
-<td> <code>port</code></td>
-<td><bubble type="integer" colors="true"></bubble></td>
-<td><code>6379</code></td>
-<td>Port of your redis instance (only applicable if using the redis socket store adapter)</td>
-</tr>
-<tr>
-<td> <code>db</code></td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td><code>&apos;sails&apos;</code></td>
-<td>The name of the database to use within your redis instance (only applicable if using the redis socket store adapter)</td>
-</tr>
-<tr>
-<td> <code>pass</code></td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td><bubble type="undefined" colors="true"></bubble></td>
-<td>The password for your redis instance (only applicable if using the redis socket store adapter)</td>
+<td>The database where socket.io will store its message queue and answer pubsub logic.  Can be set to either <code>&apos;memory&apos;</code> or <code>&apos;redis&apos;</code>. In versions 0.11, <code>&apos;redis&apos;</code> is deprecated and <code>&apos;socket.io-redis&apos;</code> must be used. Install the appropiate dependency using <code>npm install socket.io-redis@0.1.4 --save</code></td>
 </tr>
 </tbody>
 </table>
+<!-- __LANG=%%__ -->
+<p> <code>host</code>         |<bubble type="string" colors="true"></bubble>  |<code>&apos;127.0.0.1&apos;</code> | Hostname of your redis instance (only applicable if using the redis socket store adapter)
+ <code>port</code>         |<bubble type="integer" colors="true"></bubble> |<code>6379</code>   | Port of your redis instance (only applicable if using the redis socket store adapter)
+ <code>db</code>           |<bubble type="string" colors="true"></bubble>  |<code>&apos;sails&apos;</code>   | The name of the database to use within your redis instance (only applicable if using the redis socket store adapter)
+ <code>pass</code>         | <bubble type="string" colors="true"></bubble> | <bubble type="undefined" colors="true"></bubble> | The password for your redis instance (only applicable if using the redis socket store adapter)</p>
 <h3 id="advanced-configuration" permalink="advanced-configuration">Advanced Configuration</h3>
 <p>These configuration options provide lower-level access to the underlying Socket.io server settings for complete customizability.</p>
 <table>
