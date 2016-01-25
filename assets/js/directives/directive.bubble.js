@@ -18,7 +18,7 @@ angular.module('SailsWebsite')
 
   // actual directive.
   return {
-    template: '<span class="{{type}}" ng-class="{colors: colors === true}">{{type}}</span>',
+    template: '<span class="{{type === \'object\' ? \'dictionary\' : type}}" ng-class="{colors: colors === true}">{{type === \'object\' ? \'dictionary\' : type}}</span>',
     restrict: 'E',
     require: 'ngModel',
     scope: {
