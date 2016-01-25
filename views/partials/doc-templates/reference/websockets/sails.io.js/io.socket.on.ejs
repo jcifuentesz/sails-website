@@ -92,13 +92,6 @@
   }
 });
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="notes" permalink="notes">Notes</h3>
-<blockquote>
-<ul>
-<li>When listening for resourceful pubsub calls, the <code>eventIdentity</code> is the same as the identity of the calling model (e.g. if you have a model &quot;UserComment&quot;, the identity is &quot;usercomment&quot;.)</li>
-<li>For context-- these types of server-sent events are sometimes referred to as <a href="http://en.wikipedia.org/wiki/Comet_(programming" target="_blank">&quot;comet&quot;</a>) messages.</li>
-</ul>
-</blockquote>
 <h3 id="handle-socket-connect-and-disconnect-events" permalink="handle-socket-connect-and-disconnect-events">Handle Socket &apos;Connect&apos; and &apos;Disconnect&apos; events</h3>
 <p>If connection to server was interrupted - server was restarted or some network issue - it is possible to handle these events and subscribe to sockets again.</p>
 <pre><code data-language="javascript">io.socket.on(&apos;connect&apos;, function(){
@@ -110,5 +103,12 @@
       console.log(&apos;Lost connection to server&apos;);
   });
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>When listening for resourceful pubsub calls, the <code>eventIdentity</code> is the same as the identity of the calling model (e.g. if you have a model &quot;UserComment&quot;, the identity is &quot;usercomment&quot;.)</li>
+<li>For context-- these types of server-sent events are sometimes referred to as <a href="http://en.wikipedia.org/wiki/Comet_(programming" target="_blank">&quot;comet&quot;</a>) messages.</li>
+</ul>
+</blockquote>
 <docmeta name="displayName" value="io.socket.on()">
 </docmeta>

@@ -1,60 +1,81 @@
-<h1 id="-publishadd-id-attribute-idadded-request-options-">.publishAdd( <code>{id}</code>,<code>attribute</code>, <code>idAdded</code>, [<code>request</code>], [<code>options</code>] )</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Publishes a notification when an associated record is added to a model&apos;s collection.  For example, if a <code>User</code> model has an association with the <code>Pet</code> model so that a user can have one or more pets available in its <code>pets</code> attribute, then any time a new pet is associated with a user <code>publishAdd</code> may be called.</p>
+<h1 id="-publishadd-">.publishAdd()</h1>
+<p>Broadcast a message to all client sockets who have subscribed to the specified record of this model.</p>
+<p>By convention, this message indicates that a new child record has been added to the specified collection association of this parent record (and that client-side sockets receiving the message should update their user interface to match).  In other words, if a <code>Tutorial</code> model has an associated collection of &quot;comments&quot; (referring to records of the <code>Comment</code> model), then you might call <code>Tutorial.publishAdd()</code> to notify connected clients that a new comment has been added to the tutorial.</p>
+<pre><code data-language="javascript">Something.publishAdd(id, association, added);
+</code></pre><!-- __LANG=%%__ -->
+<p><em>Or:</em></p>
+<ul>
+<li><code>Something.publishAdd(id, association, added, socketToOmit);</code></li>
+</ul>
+<h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>ID of Updated Record</td>
-<td><code>int</code>, <code>string</code></td>
-<td>Yes</td>
+<td>id</td>
+<td><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
+<td>The id (primary key) of the parent record.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Attribute of associated collection</td>
-<td><code>string</code></td>
-<td>Yes</td>
+<td>association</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td>The name of the association that the child record was added to (e.g. <code>&quot;comments&quot;</code>)</td>
 </tr>
 <tr>
 <td>3</td>
-<td>ID of associated record that was added</td>
-<td><code>int</code>, <code>string</code></td>
-<td>Yes</td>
+<td>added</td>
+<td><bubble type="json" colors="true"></bubble></td>
+<td>Either a number or string to represent the id (primary key) of the child record being added, or a dictionary of properties describing it (must contain an <code>id</code> key!).  Either way, this information will be bundled in the socket message which is broadcasted.</td>
 </tr>
 <tr>
 <td>4</td>
-<td>Request</td>
-<td><code>request object</code></td>
-<td>No</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Additional Options</td>
-<td><code>object</code></td>
-<td>No</td>
+<td>socketToOmit</td>
+<td><bubble type="req" colors="true"></bubble></td>
+<td>Optional. If provided, the client-side socket indicated by <code>req</code> will <strong>not</strong> receive the message blasted out to everyone else.  Useful when the broadcast-worthy event is triggered by a requesting user who doesn&apos;t need to hear about it again.</td>
 </tr>
 </tbody>
 </table>
-<p><code>publishAdd()</code> emits a socket message using the model identity as the event name.  The message is broadcast to all sockets subscribed to the model instance via the <code>.subscribe</code> model method.</p>
+<p>When your app calls <code>publishAdd()</code>, a socket message is broadcasted to all sockets subscribed to the record&apos;s room (i.e. via the <code>subscribe()</code> resourceful pubsub method) and the model identity is used as the event name.</p>
 <p>The socket message is an object with the following properties:</p>
 <ul>
-<li><strong>id</strong> - the <code>id</code> attribute of the model instance</li>
-<li><strong>verb</strong>  - <code>&quot;addedTo&quot;</code> (a string)</li>
-<li><strong>attribute</strong> - the name of the model attribute that was added to</li>
-<li><strong>addedId</strong> - the ID of the record that was added</li>
+<li><strong>id</strong> - the <code>id</code> attribute of the parent record</li>
+<li><strong>verb</strong>  - always provided as the string: <code>&quot;addedTo&quot;</code></li>
+<li><strong>attribute</strong> - the name of the model attribute (collection association) that was added to</li>
+<li><strong>addedId</strong> - the id of the newly added child record</li>
+<li><strong>added</strong> -  Not guaranteed.  Will only be present if a dictionary of properties for the newly added child record was provided, rather than just its id. </li>
 </ul>
-<h4 id="-request-" permalink="request"><code>request</code></h4>
-<p>If this argument is included then the socket attached to that request will <em>not</em> receive the notification.</p>
-<h4 id="-options-noreverse-" permalink="optionsnoreverse"><code>options.noReverse</code></h4>
-<p>See the documentation for <code>publishUpdate</code> for information about <code>options.noReverse</code>.  In general, you should not have to set this argument unless you are writing your own implementation of <code>publishAdd</code> for a model.</p>
+<h3 id="examples" permalink="examples">Examples</h3>
+<pre><code data-language="javascript">// Broadcast a message to all client-side sockets subscribed to the tutorial record w/ id=3
+// letting them know that a new child record with id=17 has been associated and is now one of the 
+// tutorial&apos;s &quot;comments&quot;.
+Tutorial.publishAdd(3, &apos;comments&apos;, 17);
+</code></pre><!-- __LANG=%%__ -->
+<pre><code data-language="javascript">// Broadcast a message to all client-side sockets subscribed to the tutorial record w/ id=3
+// letting them know that a new child record with the specified properties has been associated
+// and is now one of the tutorial&apos;s &quot;comments&quot;.
+// (Note that we also pass in `req` to prevent the requesting socket from receiving the broadcast.)
+Tutorial.publishAdd(3, &apos;comments&apos;, { 
+  id: 17,
+  message: &apos;I love this show!&apos;
+}, req);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>If you are using <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">Sails&apos; blueprint API</a>, this resourceful pubsub method is called automatically by built-in code within the blueprints hook in Sails core.  The cleanest way to customize this, or any other behavior bundled in a blueprint API, is to override it with a custom action.</li>
+<li>If you are looking for information about <code>noReverse</code>, see the documentation for <code>publishUpdate</code>.  In general, you should not have to set this argument unless you are writing your own implementation of <code>publishAdd</code> for a model.</li>
+<li>Under the covers, resourceful pubsub methods use <code>sails.sockets.*</code> methods.  When/if you encounter a need for customization beyond what is supported out of the box in a resourceful pubsub method, you should use the methods exposed in <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets" target="_blank"><code>sails.sockets.*</code></a> directly.</li>
+</ul>
+</blockquote>
 <p><docmeta name="methodType" value="pubsub"></docmeta></p>
 <p><docmeta name="importance" value="undefined"></docmeta></p>
 <docmeta name="displayName" value=".publishAdd()">

@@ -13,37 +13,38 @@
 <tbody>
 <tr>
 <td> <code>middleware</code></td>
-<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
 <td>See <a href="http://sailsjs.org/documentation/concepts/Middleware?q=conventional-defaults" target="_blank">conventional defaults for HTTP middleware</a></td>
-<td>A configuration object of all HTTP middleware functions your app will run on every incoming HTTP request.  All <a href="https://github.com/expressjs/" target="_blank">Express</a> or Connect middleware is supported.<br><a href="https://gist.github.com/mikermcneil/9cbd68c95839da480e97" target="_blank">Example</a></td>
+<td>A dictionary of all HTTP middleware functions your app will run on every incoming HTTP request.<br><a href="https://gist.github.com/mikermcneil/9cbd68c95839da480e97" target="_blank">Example</a></td>
 </tr>
 <tr>
 <td> <code>middleware.order</code></td>
 <td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
 <td>See <a href="https://github.com/balderdashy/sails/blob/master/lib/hooks/http/index.js#l51-66" target="_blank">conventional defaults for HTTP middleware order</a></td>
-<td>The order in which middleware should be run for HTTP request (the Sails router, which runs the appropriate explicit routes, policies, controllers, etc. from your app is invoked by the &quot;router&quot; middleware).</td>
+<td>An array of middleware names (strings) indicating the order in which middleware should be run for all incoming HTTP requests.</td>
 </tr>
 <tr>
 <td> <code>cache</code></td>
 <td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
-<td><code>cache: 31557600000</code></td>
-<td>The number of milliseconds to cache flat files on disk being served by Express static middleware (by default, these files are in <code>.tmp/public</code>)<br>The HTTP static cache is only active in a &apos;production&apos; environment (default 1 year), since that&apos;s the only time Express will cache flat-files.</td>
+<td><code>cache: 31557600000</code> <em>(1 year)</em></td>
+<td>The number of milliseconds to cache static assets when your app is running in a <a href="">&apos;production&apos; environment</a>.<br>These are any flat files like images, scripts, stylesheets, etc. that are served by Express&apos; static middleware (by default,  these files are served from <code>.tmp/public</code>, a hidden folder compiled by Grunt).</td>
 </tr>
 <tr>
 <td> <code>serverOptions</code></td>
-<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
 <td><code>{}</code></td>
 <td><em>SSL only</em>: options to send directly to the <a href="https://nodejs.org/dist/latest-v4.x/docs/api/https.html" target="_blank">Node <code>https</code> module</a> when creating the server.  These will be merged with your <a href="http://sailsjs.org/documentation/reference/configuration/sails-config#?sailsconfigssl" target="_blank">SSL settings</a>, if any.  See the <a href="https://nodejs.org/dist/latest-v4.x/docs/api/https.html#https_https_createserver_options_requestlistener" target="_blank">createServer docs</a> for more info.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="compatibility" permalink="compatibility">Compatibility</h3>
+<p>Most middleware compatible with <a href="https://github.com/expressjs/" target="_blank">Express</a>, <a href="https://github.com/senchalabs/connect" target="_blank">Connect</a>, <a href="http://krakenjs.com/" target="_blank">Kraken</a>, <a href="https://github.com/strongloop/loopback" target="_blank">Loopback</a>, or <a href="https://pillarjs.github.io/" target="_blank">Pillar</a> can also be used in a Sails app.</p>
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li><p>Note that this HTTP middleware stack configured in <code>sails.config.http.middleware</code> is only applied to true HTTP requests-- it is ignored when handling virtual requests (e.g. sockets)</p>
-</li>
-<li><p>You cannot define a custom middleware function with the key <code>order</code> (since <code>sails.config.http.middleware.order</code> has special meaning)</p>
-</li>
+<li>Note that this HTTP middleware stack configured in <code>sails.config.http.middleware</code> is only applied to true HTTP requests-- it is ignored when handling virtual requests (e.g. sockets)</li>
+<li>The middleware named <code>router</code> is what handles all of your app&apos;s explicit routes (i.e. <code>sails.config.routes</code>) as well as shadow routes that are injected for blueprints, policies, etc.</li>
+<li>You cannot define a custom middleware function with the key <code>order</code> (since <code>sails.config.http.middleware.order</code> has special meaning)</li>
 </ul>
 </blockquote>
 <docmeta name="displayName" value="sails.config.http">

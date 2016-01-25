@@ -22,16 +22,8 @@ In most cases, this data is _homogenous_, meaning each record has the same attri
 <li>binary</li>
 <li>array</li>
 <li>json</li>
+<li>email</li>
 </ul>
-<h6 id="email">email</h6>
-<p>Checks the incoming value for a valid email address.</p>
-<pre><code data-language="javascript">attributes: {
-  email: {
-    type: &apos;string&apos;,
-    email: true
-  }
-}
-</code></pre><!-- __LANG=%%__ -->
 <h6 id="defaultsto">defaultsTo</h6>
 <p>When a record is created, if no value was supplied, the record will be created with the specified <code>defaultsTo</code> value.</p>
 <pre><code data-language="javascript">attributes: {
@@ -59,6 +51,9 @@ In most cases, this data is _homogenous_, meaning each record has the same attri
   }
 }
 </code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>When using MySQL with the <code>utf8mb4</code> character set, you will need to add the <code>size</code> constraint to the appropriate column in your table directly via MySQL. Otherwise, since <code>type: &apos;string&apos;</code> is translated to <code>varchar(255)</code> in the MySQL adapter, the <code>unique: true</code> constraint will cause an &apos;index too long&apos; error: <code>ER_INDEX_COLUMN_TOO_LONG: Index column size too large. The maximum column size is 767 bytes.</code></p>
+</blockquote>
 <!--
 
 Omitting `index` from docs for now.

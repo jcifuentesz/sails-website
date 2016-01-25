@@ -18,6 +18,19 @@ If you use <code>npm init</code> to create your <code>package.json</code>, be su
 <li>Write your hook code in <code>index.js</code> in accordance with the <a href="http://sailsjs.org/documentation/concepts/extending-sails/hooks/hook-specification" target="_blank">hook specification</a>.</li>
 </ol>
 <p>Your new folder may contain other files as well, which can be loaded in your hook via <code>require</code>; only <code>index.js</code> will be read automatically by Sails.  Use the <code>dependencies</code> key of your <code>package.json</code> to refer to any dependencies that need to be installed in order for your hook to work (you may also use <code>npm install &lt;dependency&gt; --save</code> to easily save dependency information to <code>package.json</code>).</p>
+<h3 id="specifying-the-internal-name-sails-uses-for-your-hook-advanced-" permalink="specifying-the-internal-name-sails-uses-for-your-hook-(advanced)">Specifying the internal name Sails uses for your hook (advanced)</h3>
+<p>In certain cases, especially when using a <a href="https://docs.npmjs.com/misc/scope" target="_blank">scoped NPM package</a> to override a core Sails hook, you will want to change the name that Sails uses internally when it loads your hook.  You can use the <code>sails.hookName</code> configuration option in your <code>package.json</code> file for this.  The value should be the name you want to be loaded into the <code>sails.hooks</code> dictionary, so you generally will <em>not</em> want a <code>sails-hooks-</code> prefix.  For example, if you have a module <code>@mycoolhooks/sails-hook-sockets</code> that you wish to use to override the core <code>sails-hook-sockets</code> module, the <code>package.json</code> might look like:</p>
+<pre><code data-language="javascript">{
+    &quot;name&quot;: &quot;@mycoolhooks/sails-hook-sockets&quot;,
+    &quot;version&quot;: &quot;0.0.0&quot;,
+    &quot;description&quot;: &quot;my own sockets hook&quot;,
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;sails&quot;: {
+      &quot;isHook&quot;: true,
+      &quot;hookName&quot;: &quot;sockets&quot;
+    }
+}
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="testing-your-new-hook" permalink="testing-your-new-hook">Testing your new hook</h3>
 <p>Before you distribute your installable hook to others, you&#x2019;ll want to write some tests for it.  This will help ensure compatibility with future Sails versions and significantly reduce hair-pulling and destruction of nearby objects in fits of rage.  While a full guide to writing tests is outside the scope of this doc, the following steps should help get you started:</p>
 <ol>

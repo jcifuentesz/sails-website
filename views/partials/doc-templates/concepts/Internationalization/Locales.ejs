@@ -43,31 +43,5 @@ module.exports = function(req, res, next) {
   next();
 };
 </code></pre><!-- __LANG=%%__ -->
-<!--
-
-  Alternatively, here's another extended example:
-  (todo: at the very least pull this into a separate guide)
-
-```
-<!-- __LANG=%js%__ -->
-<p>// config/routes.js
-module.export.routes = {
-  &apos;/:lang/&apos;: &apos;MyController.index&apos;,
-  &apos;/:lang/help&apos;: &apos;MyController.help&apos;,
-  &apos;/:lang/contact&apos;: &apos;MyController.contact&apos;,
-  // ...etc...
-}</p>
-<p>// config/policies.js
-module.exports.policies = {
-  &apos;*&apos; : &apos;localize&apos;
-}</p>
-<p>// api/policies/localize.js
-module.exports = function(req, res, next) {
-   req.setLocale(req.param(&apos;lang&apos;));
-   next();
-};
-```
-<!-- __LANG=%%__ -->
---&gt;</p>
 <docmeta name="displayName" value="Locales">
 </docmeta>
