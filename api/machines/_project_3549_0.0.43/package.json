@@ -2,10 +2,10 @@
   "dependencies": {
     "cheerio": "0.18.0",
     "doc-templater": "0.2.7",
-    "lodash": "*",
-    "machinepack-fs": "*",
+    "lodash": "3.10.1",
+    "machinepack-fs": "7.0.0",
     "semver": "4.3.6",
-    "fs-extra": "*"
+    "fs-extra": "0.26.4"
   },
   "machinepack": {
     "machines": ["build-sitemap-xml", "get-pages-for-sitemap", "Compilemarkdowndocs", "Fniddocpagetoshow", "Formatversionnotetitles", "get-environment-variable", "is-it-an-old-link", "Findparent", "MarshaldocPageMetadata", "Removepermalinkfromslug", "Reversesortbysemver"],
