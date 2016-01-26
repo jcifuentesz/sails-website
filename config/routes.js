@@ -29,7 +29,7 @@ module.exports.routes = {
   "get /documentation/*": {
     "target": "DocumentationController.*"
   },
-  "get /refresh": {
+  "post /refresh": {
     "target": "RefreshController.find"
   },
   "get /documentation": {
