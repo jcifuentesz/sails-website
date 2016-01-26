@@ -48,10 +48,21 @@ angular.module('SailsWebsite')
       var rawType = scope.type.replace(/\?$/, '');
       rawType = rawType.toLowerCase();
 
-      // Also get the "display type" (used for displaying, of course)
+      // Also determine the "display type" (used for displaying, of course)
       var displayType = scope.type;
       // displayType = displayType.replace(/\?$/, '');
-      displayType = _.capitalize(displayType);
+      //
+      // Normally, types are capitalized.
+      // But there are a few special exceptions:
+      if (displayType.match(/json/i)) {
+        displayType = 'JSON';
+      }
+      else if (displayType.match(/req/i)) {
+        displayType = 'req';
+      }
+      else {
+        displayType = _.capitalize(displayType);
+      }
 
 
 
