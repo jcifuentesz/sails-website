@@ -36,26 +36,50 @@ module.exports = {
                             },
                             "success": function(getEnvironmentVariable) {
 
-                              // // Compare encrypted GitHub token
-                              // // see https://github.com/18F/github-webhook-validator/blob/master/index.js#L71
-                              // var algorithmAndHash = getRequestHeader.split('=');
-                              // if (algorithmAndHash.length !== 2) {
-                              //   return exits.error({
-                              //       data: new Error('Invalid X-Hub-Signature header from GitHub!'),
-                              //       status: 500
-                              //   });
-                              // }
+                                // Compare encrypted GitHub token
+                                // see https://github.com/18F/github-webhook-validator/blob/master/index.js#L71
+                                var algorithmAndHash = getRequestHeader.split('=');
+                                if (algorithmAndHash.length !== 2) {
+                                  return exits.error({
+                                      data: new Error('Invalid X-Hub-Signature header from GitHub!'),
+                                      status: 500
+                                  });
+                                }
 
-                              // try {
-                              //   // Replace bufferEq() once https://github.com/nodejs/node/issues/3043 is
-                              //   // resolved and the standard library implementation is available.
-                              //   var hmac = require('crypto').createHmac(algorithmAndHash[0], getEnvironmentVariable);
-                              //   var computed = new Buffer(hmac.update(rawBody, 'utf8').digest('hex'));
-                              //   var header = new Buffer(algorithmAndHash[1]);
-                              //   return bufferEq(computed, header);
-                              // } catch (err) {
-                              //   return false;
-                              // }
+                                // Below, we'll simulate the raw request body by re-encoding the JSON-encoded request body.
+                                var rawRequestBodyString;
+                                try {
+                                  rawRequestBodyString = JSON.stringify(req.body);
+                                }
+                                catch (e) {
+                                  return exits.error({
+                                      data: new Error('Invalid request from GitHub:'+e.stack),
+                                      status: 500
+                                  });
+                                }
+
+                                // Now use hmac to validate the x-hub-signature header
+                                try {
+                                  // Replace bufferEq() once https://github.com/nodejs/node/issues/3043 is
+                                  // resolved and the standard library implementation is available.
+                                  var hmac = require('crypto').createHmac(algorithmAndHash[0], getEnvironmentVariable);
+                                  var computed = new Buffer(hmac.update(rawRequestBodyString, 'utf8').digest('hex'));
+                                  var header = new Buffer(algorithmAndHash[1]);
+                                  var isMatch = bufferEq(computed, header);
+                                  if (!isMatch) {
+                                    return exits.respond({
+                                      data: "You seem to be up to no good!",
+                                      action: "respond_with_value_and_status",
+                                      status: "401"
+                                    });
+                                  }
+                                } catch (err) {
+                                  return exits.respond({
+                                    data: "You seem to be up to no good!",
+                                    action: "respond_with_value_and_status",
+                                    status: "401"
+                                  });
+                                }
 
 
                                 // // If equal (===)
@@ -605,7 +629,7 @@ module.exports = {
                                         });
 
                                 //     }
-                                // });   // See above
+                                // });// </ if equal -- the comparison for the tokens>
 
                             }
                         });
