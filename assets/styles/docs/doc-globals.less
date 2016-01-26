@@ -22,6 +22,33 @@
 }
 
 
+// A mixin for doc page sections that styles and positions the `.pencil` button within.
+// (the pencil button lets you edit the doc page you're looking at)
+.has-pencil-button() {
+
+  .pencil {
+    position:  absolute;
+    right: 18px;
+    top: 18px;
+
+    color: @ltGray;
+    text-decoration: none;
+    cursor: pointer;
+
+    // Pencil is hidden by default
+    display: none;
+  }
+
+  // Pencil is shown any time parent is hovered over.
+  &:hover {
+    .pencil {
+      display: block;
+    }
+  }
+}
+
+
+
 .docs_h1() {
   color: @turquoise;
   font-size: 2.2em;
@@ -245,6 +272,9 @@
 
 
 .doc-page() {
+  // Set up styles for pencil button.
+  .has-pencil-button();
+
   font-family: @mainFont;
 
   h1 {
@@ -333,7 +363,8 @@
   table {
     .docs_table();
   }
-}
+
+} //</.doc-page() mixin>
 
 // Contribution message.
 .contribution-message {

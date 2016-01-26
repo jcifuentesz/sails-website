@@ -11,6 +11,8 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
     <!-- Region with the information about the selected file -->
     <div class="anatomy-content">
       <div class="anatomy-section">
+        <% /* Inject "Edit page" button via partial */ %>
+        <%- partial('../partials/pencil-button', {templatePath: data.currentTemplate.path}) %>
         <%- partial('../partials/doc-templates/'+data.currentTemplate.path) %>
       </div>
 

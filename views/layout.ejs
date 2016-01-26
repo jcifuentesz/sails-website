@@ -75,7 +75,7 @@
           <a href="/">
             <img class="logo" src="/images/logo_sails.png" alt="Sails logo" />
           </a>
-          <span class="version">v0.11</span>
+          <span class="version"><%= typeof topbarVersionString !== 'undefined' ? topbarVersionString : '' %></span>
         </div>
         <div class="nav-overlay" ng-class="{'menu-open': menu.visible}">
           <div class="veil" ng-click="intent.hideMenu()"></div>

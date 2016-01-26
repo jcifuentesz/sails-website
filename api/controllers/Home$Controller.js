@@ -26,6 +26,8 @@ module.exports = {
 
                     },
                     "success": function(pickRandomItem) {
+
+
                         return exits.respond({
                             data: {
                                 data: {

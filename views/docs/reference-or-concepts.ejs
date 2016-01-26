@@ -12,6 +12,8 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
   <!-- Main content -->
   <div class="right-column">
     <div class="reference-item">
+      <% /* Inject "Edit page" button via partial */ %>
+      <%- partial('../partials/pencil-button', {templatePath: data.currentTemplate.path}) %>
       <% if(data.currentTemplate.path.indexOf('0home') < 0) { %>
       <%- partial('../partials/doc-templates/'+ data.currentTemplate.path) %>
       <% } else {
