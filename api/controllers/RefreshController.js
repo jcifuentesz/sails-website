@@ -67,6 +67,8 @@ module.exports = {
                                   var header = new Buffer(algorithmAndHash[1]);
                                   var isMatch = bufferEq(computed, header);
                                   if (!isMatch) {
+                                    console.error('DID NOT MATCH! Computed:',computed);
+                                    console.error('DID NOT MATCH! Header:',header);
                                     return exits.respond({
                                       data: "You seem to be up to no good!",
                                       action: "respond_with_value_and_status",
@@ -74,6 +76,7 @@ module.exports = {
                                     });
                                   }
                                 } catch (err) {
+                                  console.error('ERROR:',err);
                                   return exits.respond({
                                     data: "You seem to be up to no good!",
                                     action: "respond_with_value_and_status",
