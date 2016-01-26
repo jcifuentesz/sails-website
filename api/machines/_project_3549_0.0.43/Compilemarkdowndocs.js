@@ -33,6 +33,7 @@ module.exports = {
     var cheerio = require('cheerio');
     var DocTemplater = require('doc-templater');
     var Filesystem = require('machinepack-fs');
+    var _ = require('lodash');
 
 
     // This function is applied to each template before the markdown is converted to markup
@@ -149,6 +150,11 @@ module.exports = {
       return done(null, html);
     }
 
+    // This is just to make it easier to tell what is happening.
+    var BRANCH = _.isUndefined(sails.config.branch) ? '0.11' : sails.config.branch;
+    var REMOTE = 'git://github.com/balderdashy/sails-docs.git';
+    console.log('Compiling `%s` docs from the `%s` branch of `%s`...', inputs.path, BRANCH, REMOTE);
+
     // Delete current rendered partials if they exist
     Filesystem.rmrf({
       dir: path.resolve(env.sails.config.appPath, 'views/partials/doc-templates/', inputs.path),
@@ -162,8 +168,8 @@ module.exports = {
         // Compile the markdown into HTML templates
         DocTemplater()
           .build([{
-            remote: 'git://github.com/balderdashy/sails-docs.git',
-            branch: '0.11',
+            remote: REMOTE,
+            branch: BRANCH,
             remoteSubPath: inputs.path,
             htmlDirPath: path.join('views/partials/doc-templates/', inputs.path),
             jsMenuPath: path.join('views/partials/doc-menus', inputs.path + '.jsmenu'),

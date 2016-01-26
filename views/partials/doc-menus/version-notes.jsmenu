@@ -118,8 +118,8 @@
       "version": "0.10.0"
     },
     "children": [
-      "version-notes/0.10.x/Changelog0.10x.ejs",
-      "version-notes/0.10.x/Changelog0.10.0-rc9.ejs"
+      "version-notes/0.10.x/Changelog0.10.0-rc9.ejs",
+      "version-notes/0.10.x/Changelog0.10x.ejs"
     ],
     "isParent": true
   },

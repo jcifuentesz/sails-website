@@ -35,8 +35,8 @@
     },
     "children": [
       "irc/grabClient.ejs",
-      "irc/configuringClient.ejs",
-      "irc/sailsTroll.ejs"
+      "irc/sailsTroll.ejs",
+      "irc/configuringClient.ejs"
     ],
     "isParent": true
   }
