@@ -1,6 +1,6 @@
 <h1 id="-defaults-"><code>.defaults</code></h1>
 <p>The <code>defaults</code> feature can be implemented either as an object or a function which takes a single argument (see &#x201C;using <code>defaults</code> as a function&#x201D; below) and returns an object.  The object you specify will be used to provide default configuration values for Sails.  You should use this feature to specify default settings for your hook.  For example, if you were creating a hook that communicates with a remote service, you may want to provide a default domain and timeout length:</p>
-<pre><code data-language="javascript">{
+<pre><code data-language="text">{
    myapihook: {
       timeout: 5000,
       domain: &quot;www.myapi.com&quot;
@@ -10,7 +10,7 @@
 <p>If a <code>myapihook.timeout</code> value is provided via a Sails configuration file, that value will be used; otherwise it will default to <code>5000</code>.  </p>
 <h5 id="namespacing-your-hook-configuration" permalink="namespacing-your-hook-configuration">Namespacing your hook configuration</h5>
 <p>For <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks?q=types-of-hooks" target="_blank">project hooks</a>, you should namespace your hook&#x2019;s configuration under a key that uniquely identifies that hook (e.g. <code>myapihook</code> above).  For <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks?q=types-of-hooks" target="_blank">installable hooks</a>, you should use the special <code>__configKey__</code> key to allow end-users of your hook to <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/usinghooks.html?q=changing-the-way-sails-loads-an-installable-hook" target="_blank">change the configuration key</a> if necessary.  The default key for a hook using <code>__configKey__</code> is the hook name.  For example, if you create a hook called <code>sails-hooks-myawesomehook</code> which includes the following <code>defaults</code> object:</p>
-<pre><code data-language="javascript">{
+<pre><code data-language="text">{
    __configKey__: {
       name: &quot;Super Bob&quot;
    }

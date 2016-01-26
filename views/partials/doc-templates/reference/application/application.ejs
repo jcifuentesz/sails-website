@@ -34,7 +34,7 @@ This is what is happening in the generated <code>app.js</code> file:</p>
 where you need to create more than one Sails application instance in a process, you <em>should not</em> use
 the instance returned by <code>require(&apos;sails&apos;)</code>, as this can cause unexpected behavior.  Instead, you should
 obtain application instances by using the Sails constructor:</p>
-<pre><code data-language="javascript">var Sails = require(&apos;sails&apos;).constructor;
+<pre><code data-language="text">var Sails = require(&apos;sails&apos;).constructor;
 var sails0 = new Sails();
 var sails1 = new Sails();
 var sails2 = new Sails();

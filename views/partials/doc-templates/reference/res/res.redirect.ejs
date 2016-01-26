@@ -37,13 +37,13 @@ This next redirect is relative to the mount point of the application. For exampl
 ```
 <!-- __LANG=%javascript%__ -->
 <p>return res.redirect(&apos;admin/post/new&apos;);</p>
-<pre><code data-language="javascript">--&gt;
+<pre><code data-language="text">--&gt;
 
 
 Pathname relative redirects are also possible. If you were on http://example.com/admin/post/new, the following redirect would land you at http//example.com/admin/post:
 </code></pre><!-- __LANG=%javascript%__ -->
 <p>return res.redirect(&apos;..&apos;);</p>
-<pre><code data-language="javascript">The final special-case is a back redirect, which allows you to redirect a request back where it came from using the &quot;Referer&quot; (or &quot;Referrer&quot;) header (if omitted, redirects to `/` by default)
+<pre><code data-language="text">The final special-case is a back redirect, which allows you to redirect a request back where it came from using the &quot;Referer&quot; (or &quot;Referrer&quot;) header (if omitted, redirects to `/` by default)
 </code></pre><!-- __LANG=%javascript%__ -->
 <p>return res.redirect(&apos;back&apos;);
 ```

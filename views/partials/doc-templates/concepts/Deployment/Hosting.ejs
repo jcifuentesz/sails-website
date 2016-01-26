@@ -7,12 +7,12 @@
 <h5 id="deploying-to-openshift-" permalink="deploying-to-openshift">Deploying to OpenShift?</h5>
 <p>To deploy to OpenShift, you&apos;ll need to make some minor modifications to your configuration:
 Open up <code>config/local.js</code> in your app folder. In here, you&apos;ll need to add the following lines.</p>
-<pre><code data-language="javascript">port: process.env.OPENSHIFT_NODEJS_PORT,
+<pre><code data-language="text">port: process.env.OPENSHIFT_NODEJS_PORT,
     host: process.env.OPENSHIFT_NODEJS_IP,
 </code></pre><!-- __LANG=%%__ -->
 <p>You will also need to install <code>grunt-cli</code> with <code>npm i --save grunt-cli</code>.</p>
 <p>After doing that, create the file <code>.openshift/action_hooks/pre_start_nodejs</code> with the following contents. (<a href="https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6" target="_blank">source</a>)</p>
-<pre><code data-language="javascript">#!/bin/bash
+<pre><code data-language="text">#!/bin/bash
 export NODE_ENV=production
 
 if [ -f &quot;${OPENSHIFT_REPO_DIR}&quot;/Gruntfile.js ]; then
@@ -20,7 +20,7 @@ if [ -f &quot;${OPENSHIFT_REPO_DIR}&quot;/Gruntfile.js ]; then
 fi
 </code></pre><!-- __LANG=%%__ -->
 <p>Then create the file <code>/supervisor_opts</code> with the following contents. This tells OpenShift&apos;s supervisor to ignore Sails&apos; <code>.tmp</code> directory for the hot reload functionality. (<a href="https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6#comment-1318102" target="_blank">source</a>)</p>
-<pre><code data-language="javascript">-i .tmp
+<pre><code data-language="text">-i .tmp
 </code></pre><!-- __LANG=%%__ -->
 <p>You can now <code>git add . &amp;&amp; git commit -a -m &quot;your message&quot; &amp;&amp; git push</code> to deploy to OpenShift.</p>
 <h5 id="using-digitalocean-" permalink="using-digitalocean">Using DigitalOcean?</h5>

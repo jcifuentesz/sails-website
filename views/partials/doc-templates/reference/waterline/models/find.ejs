@@ -1,72 +1,63 @@
-<h1 id="-find-criteria-callback-">.find(<code>criteria</code> , [<code>callback</code>])</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Finds and returns all records that meet the criteria object(s) that you pass it.</p>
-<h3 id="overview" permalink="overview">Overview</h3>
-<h4 id="parameters" permalink="parameters">Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Find Criteria</td>
-<td><code>{}</code>,<code>[{}]</code>, <code>string</code>, <code>int</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Callback</td>
-<td><code>function</code></td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<h4 id="callback-parameters" permalink="callback-parameters">Callback Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Possible Data Types</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Error</td>
-<td><code>Error</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td>Found Records</td>
-<td><code>[{}]</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<pre><code data-language="javascript">User.find({}).exec(function findCB(err, found){
-  while (found.length)
-    console.log(&apos;Found User with name &apos; + found.pop().name)
+<h1 id="-find-">.find()</h1>
+<p>Find records in your database that match the given criteria.</p>
+<pre><code data-language="javascript">Something.find(criteria).exec(function (err, records) {
+
 });
-
-// Found User with name Flynn
-// Found User with name Jessie
-
-// Don&apos;t forget to handle your errors
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="notes" permalink="notes">Notes</h3>
-<blockquote>
-<p>Any string arguments passed must be the ID of the record.
-This method will ALWAYS return records in an array.
-If you are trying to find an attribute that is an array, you must wrap it in an additional set of brackets otherwise Waterline will think you want to perform an inQuery.</p>
-</blockquote>
-<p><docmeta name="methodType" value="mcm"></docmeta></p>
+<h3 id="usage" permalink="usage">Usage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:left">criteria</td>
+<td><bubble type="dictionary" colors="true"></bubble></td>
+<td style="text-align:left">The <a href="https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md" target="_blank">Waterline criteria</a> to use for matching records in the database.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="callback" permalink="callback">Callback</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:left">err</td>
+<td><bubble type="Error?" colors="true"></bubble></td>
+<td style="text-align:left">The error that occurred, or <code>undefined</code> if there were no errors.</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:left">records</td>
+<td><bubble type="array" colors="true"></bubble></td>
+<td style="text-align:left">The array of records from your database which match the given criteria.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example" permalink="example">Example</h3>
+<p>To find any users named Finn in the database:</p>
+<pre><code data-language="javascript">User.find({name:&apos;Finn&apos;}).exec(function (err, usersNamedFinn){
+  if (err) {
+    return res.negotiate(err);
+  }
+  sails.log(&apos;Wow, there are %d users named Finn.  Check it out:&apos;, usersNamedFinn.length, usersNamedFinn);
+  return res.json(usersNamedFinn);
+});
+</code></pre><!-- __LANG=%%__ -->
 <p><docmeta name="importance" value="10"></docmeta></p>
 <docmeta name="displayName" value=".find()">
 

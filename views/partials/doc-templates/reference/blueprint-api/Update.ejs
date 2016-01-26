@@ -1,7 +1,7 @@
-<h1 id="update-a-record">Update a Record</h1>
+<h1 id="update-blueprint-">Update (Blueprint)</h1>
 <p>Updates an existing record.
 Attributes to change should be sent in the HTTP body as form-encoded values or JSON.</p>
-<pre><code data-language="javascript">PUT /:model/:record
+<pre><code data-language="text">PUT /:model/:id
 </code></pre><!-- __LANG=%%__ -->
 <p>Updates the model instance which matches the <strong>id</strong> parameter. Responds with a JSON object representing the newly updated instance.  If a validation error occurred, a JSON response with the invalid attributes and a <code>400</code> status code will be returned instead.  If no model instance exists matching the specified <strong>id</strong>, a <code>404</code> is returned.</p>
 <h3 id="parameters" permalink="parameters">Parameters</h3>
@@ -25,97 +25,27 @@ Attributes to change should be sent in the HTTP body as form-encoded values or J
 <td style="text-align:left">For <code>POST</code> (RESTful) requests, pass in body parameters with the same name as the attributes defined on your model to set those values on the desired record. For <code>GET</code> (shortcut) requests, add the parameters to the query string.</td>
 </tr>
 <tr>
-<td> callback</td>
+<td> <em>callback</em></td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="examples" permalink="examples">Examples</h3>
-<h4 id="update-record-rest-" permalink="update-record-(rest)">Update Record (REST)</h4>
-<p>Change AppleJack&apos;s hobby to &quot;kickin&quot;.</p>
-<h5 id="route" permalink="route">Route</h5>
+<h3 id="example" permalink="example">Example</h3>
+<p>Change Applejack&apos;s hobby to &quot;kickin&quot;:</p>
 <p><code>PUT /pony/47</code></p>
-<h5 id="json-request-body" permalink="json-request-body">JSON Request Body</h5>
 <pre><code data-language="json">{
   &quot;hobby&quot;: &quot;kickin&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="expected-response" permalink="expected-response">Expected Response</h5>
 <pre><code data-language="json">{
-  &quot;name&quot;: &quot;AppleJack&quot;,
   &quot;hobby&quot;: &quot;kickin&quot;,
   &quot;id&quot;: 47,
+  &quot;name&quot;: &quot;AppleJack&quot;,
   &quot;createdAt&quot;: &quot;2013-10-18T01:23:56.000Z&quot;,
   &quot;updatedAt&quot;: &quot;2013-11-26T22:55:19.951Z&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
-<h4 id="update-record-shortcuts-" permalink="update-record-(shortcuts)">Update Record (Shortcuts)</h4>
-<p><code>GET /pony/update/47?hobby=kickin</code></p>
-<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
-<p>Same as above.</p>
-<h4 id="add-association-between-two-existing-records-rest-" permalink="add-association-between-two-existing-records-(rest)">Add association between two existing records (REST)</h4>
-<p>Give Pinkie Pie the pre-existing pet named &quot;Bubbles&quot; who has ID 15.</p>
-<h5 id="route" permalink="route">Route</h5>
-<p><code>POST /pony/4/pets</code></p>
-<h5 id="json-request-body" permalink="json-request-body">JSON Request Body</h5>
-<pre><code data-language="json">{
-  &quot;id&quot;: 15
-}
-</code></pre><!-- __LANG=%%__ -->
-<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;kickin&quot;,
-  &quot;id&quot;: 4,
-  &quot;pets&quot;: [{
-      &quot;name&quot;: &quot;Gummy&quot;,
-      &quot;species&quot;: &quot;crocodile&quot;,
-      &quot;id&quot;: 10,
-      &quot;createdAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;,
-      &quot;updatedAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;
-    },{
-      &quot;name&quot;: &quot;Bubbles&quot;,
-      &quot;species&quot;: &quot;manticore&quot;,
-      &quot;id&quot;: 15,
-      &quot;createdAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;,
-      &quot;updatedAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;
-    }],
-  &quot;createdAt&quot;: &quot;2013-10-18T01:23:56.000Z&quot;,
-  &quot;updatedAt&quot;: &quot;2013-11-26T22:55:19.951Z&quot;
-}
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="add-association-between-two-existing-records-shortcuts-" permalink="add-association-between-two-existing-records-(shortcuts)">Add association between two existing records (Shortcuts)</h4>
-<p><code>GET /pony/4/pets/add/15</code></p>
-<h4 id="remove-association-many-to-many-rest-" permalink="remove-association-(manytomany)-(rest)">Remove Association (Many-To-Many) (REST)</h4>
-<p>Remove Pinkie Pie&apos;s pet, &quot;Gummy&quot; (ID 12)</p>
-<h5 id="route" permalink="route">Route</h5>
-<p><code>DELETE /pony/4/pets</code></p>
-<h5 id="json-request-body" permalink="json-request-body">JSON Request Body</h5>
-<pre><code data-language="json">{
-  &quot;id&quot;: 12
-}
-</code></pre><!-- __LANG=%%__ -->
-<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;ice skating&quot;,
-  &quot;pets&quot;: [{
-      &quot;name&quot;: &quot;Bubbles&quot;,
-      &quot;species&quot;: &quot;manticore&quot;,
-      &quot;id&quot;: 15,
-      &quot;createdAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;,
-      &quot;updatedAt&quot;: &quot;2014-02-13T00:06:50.603Z&quot;
-    }],
-  &quot;id&quot;: 4,
-  &quot;createdAt&quot;: &quot;2013-10-18T01:22:56.000Z&quot;,
-  &quot;updatedAt&quot;: &quot;2013-11-26T22:54:19.951Z&quot;
-}
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="remove-association-many-to-many-shortcuts-" permalink="remove-association-(manytomany)-(shortcuts)">Remove Association (Many-To-Many) (Shortcuts)</h4>
-<h5 id="route" permalink="route">Route</h5>
-<p><code>GET /pony/4/pets/remove/12</code></p>
-<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
-<p>Same as above.</p>
 <docmeta name="displayName" value="update">
 </docmeta>

@@ -133,14 +133,14 @@ module.exports = {
         '$1 data-language="javascript"$2$3'
       );
 
-      // When unspecified, default to `javascript`
+      // When unspecified, default to `text`
       html = html.replace(
         // $1     $2     $3   $4
         /(<code)([^>]*)(>\s*)(\&lt;!-- __LANG=\%\%__ --\&gt;)\s*/gm,
-        '$1 data-language="javascript"$2$3'
+        '$1 data-language="text"$2$3'
       );
 
-      // Finally, nab the rest
+      // Finally, nab the rest, leaving the code language as-is.
       html = html.replace(
         // $1     $2     $3   $4               $5    $6
         /(<code)([^>]*)(>\s*)(\&lt;!-- __LANG=\%)([^%]+)(\%__ --\&gt;)\s*/gm,

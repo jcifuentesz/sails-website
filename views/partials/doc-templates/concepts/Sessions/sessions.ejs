@@ -47,7 +47,7 @@ When a <code>request</code> is sent to Sails, the request header is parsed by th
 <h3 id="using-redis-as-the-session-store" permalink="using-redis-as-the-session-store">Using <em>Redis</em> as the session store</h3>
 <p>Redis is a key-value database package that can be used as a session store that is separate from the Sails instance.  This configuration for sessions has two benefits.  The first is that the session store will remain viable between Sails restarts.  The second is that if you have multiple Sails instances behind a load balancer, all of the instances can point to a single consolidated session store.</p>
 <p>To enable Redis as a session store open <code>projectName/config/session.js</code> in your favorite text editor and uncomment the <code>adapter</code> property.  That&apos;s it.  During development as long as you have a Redis instance running on the same machine as your Sails instance your session store will use Redis.  You can point to a different Redis instance by configuring the following optional properties in <code>projectName/config/session.js</code>:</p>
-<pre><code data-language="javascript">// host: &apos;localhost&apos;,
+<pre><code data-language="text">// host: &apos;localhost&apos;,
   // port: 6379,
   // ttl: &lt;redis session TTL in seconds&gt;,
   // db: 0,

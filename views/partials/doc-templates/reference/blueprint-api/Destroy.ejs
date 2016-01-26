@@ -1,6 +1,6 @@
-<h1 id="destroy-a-record">Destroy a Record</h1>
+<h1 id="destroy-blueprint-">Destroy (Blueprint)</h1>
 <p>Deletes an existing record specified by <code>id</code> from the database forever and returns the values of the deleted record.</p>
-<pre><code data-language="javascript">DELETE /:model/:record
+<pre><code data-language="text">DELETE /:model/:record
 </code></pre><!-- __LANG=%%__ -->
 <p>Destroys the model instance which matches the <strong>id</strong> parameter. Responds with a JSON object representing the newly destroyed instance. If no model instance exists matching the specified <strong>id</strong>, a <code>404</code> is returned.</p>
 <p>Additionally, a <code>destroy</code> event will be published to all sockets subscribed to the instance room.</p>

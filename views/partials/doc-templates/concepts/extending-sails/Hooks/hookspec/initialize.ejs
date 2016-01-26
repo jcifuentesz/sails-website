@@ -17,7 +17,7 @@
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="hook-timeout-settings" permalink="hook-timeout-settings">Hook timeout settings</h5>
 <p>By default, hooks have ten seconds to complete their <code>initialize</code> function and call <code>cb</code> before Sails throws an error.  That timeout can be configured by setting the <code>_hookTimeout</code> key to the number of milliseconds that Sails should wait.  This can be done in the hook&#x2019;s <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/hookspec/defaults.html" target="_blank"><code>defaults</code></a>:</p>
-<pre><code data-language="javascript">defaults: {
+<pre><code data-language="text">defaults: {
    __configKey__: {
       _hookTimeout: 20000 // wait 20 seconds before timing out
    }

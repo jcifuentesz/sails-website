@@ -1,12 +1,12 @@
-<h1 id="create-a-record">Create a Record</h1>
-<p>Creates a new model instance in your database then returns it&apos;s values.</p>
-<pre><code data-language="javascript">POST /:model
+<h1 id="create-blueprint-">Create (Blueprint)</h1>
+<p>Create a new record in your database.</p>
+<pre><code data-language="text">POST /:model
 </code></pre><!-- __LANG=%%__ -->
-<p>Attributes can be sent in the HTTP body as form-encoded values or JSON.</p>
-<p>Responds with a JSON object representing the newly created instance.  If a validation error occurred, a JSON response with the invalid attributes and a <code>400</code> status code will be returned instead.</p>
+<p>Responds with a JSON dictionary representing the newly created instance.  If a validation error occurred, a JSON response with the invalid attributes and a <code>400</code> status code will be returned instead.</p>
 <p>Additionally, a <code>create</code> event will be published to all listening sockets (see the docs for <a href="https://github.com/balderdashy/sails-docs/blob/master/reference/websockets/resourceful-pubsub/watch.md" target="_blank">.watch()</a> for more info).</p>
 <p>If the action is triggered via a socket request, the requesting socket will ALSO be subscribed to the newly created model instance. If the record is subsequently updated or deleted, a message will be sent to that socket&apos;s client informing them of the change. See the docs for .subscribe() for more info.</p>
-<h2 id="parameters" permalink="parameters">Parameters</h2>
+<h3 id="parameters" permalink="parameters">Parameters</h3>
+<p>Parameters should be sent in the <a href="https://www.getpostman.com/docs/requests#body" target="_blank">request body</a>.  By default, Sails understands most common types of encodings for body parameters, including url-encoding, form-encoding, and JSON.</p>
 <table>
 <thead>
 <tr>
@@ -17,103 +17,33 @@
 </thead>
 <tbody>
 <tr>
-<td> *</td>
-<td><bubble type="string" colors="true"></bubble><br><bubble type="number" colors="true"></bubble><br><bubble type="object" colors="true"></bubble><br><bubble type="array" colors="true"></bubble></td>
-<td style="text-align:left">For <code>POST</code> (RESTful) requests, pass in body parameter with the same name as the attribute defined on your model to set those values on your new record.  For <code>GET</code> (shortcut) requests, add the parameters to the query string. <br> <br> Nested objects and arrays passed in as parameters are handled the same way as if they were passed into the model&apos;s <a>.create()</a> method.</td>
+<td> <em>*</em></td>
+<td><bubble type="json" colors="true"></bubble></td>
+<td style="text-align:left">Send <a href="https://www.getpostman.com/docs/requests#body" target="_blank">body parameters</a> with the same names as the attribute defined on your model to set those values on your new record.  <br> <br>These values are handled the same way as if they were passed into the model&apos;s <a href="http://sailsjs.org/documentation/reference/waterline-orm/models/create" target="_blank">.create()</a> method.</td>
 </tr>
 <tr>
-<td> callback</td>
+<td> <em>callback</em></td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON).  This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="examples" permalink="examples">Examples</h2>
-<h3 id="create-a-record-rest-" permalink="create-a-record-(rest)">Create a record (REST)</h3>
-<p>Create a new pony named &quot;AppleJack&quot; with a hobby of &quot;pickin&quot;.</p>
-<h4 id="route" permalink="route">Route</h4>
-<p><code>POST /pony</code></p>
-<h4 id="json-request-body" permalink="json-request-body">JSON Request Body</h4>
+<h3 id="example" permalink="example">Example</h3>
+<p>Create a new pony named &quot;AppleJack&quot; with a hobby of &quot;pickin&quot;:</p>
+<pre><code data-language="text">POST /pony
+</code></pre><!-- __LANG=%%__ -->
 <pre><code data-language="json">{
   &quot;name&quot;: &quot;AppleJack&quot;,
   &quot;hobby&quot;: &quot;pickin&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
-<h4 id="example-response" permalink="example-response">Example Response</h4>
+<h5 id="example-response" permalink="example-response">Example Response</h5>
 <pre><code data-language="json">{
   &quot;name&quot;: &quot;AppleJack&quot;,
   &quot;hobby&quot;: &quot;pickin&quot;,
   &quot;id&quot;: 47,
   &quot;createdAt&quot;: &quot;2013-10-18T01:23:56.000Z&quot;,
   &quot;updatedAt&quot;: &quot;2013-11-26T22:55:19.951Z&quot;
-}
-</code></pre><!-- __LANG=%%__ -->
-<h3 id="create-a-record-shortcuts-" permalink="create-a-record-(shortcuts)">Create a record (shortcuts)</h3>
-<h4 id="route" permalink="route">Route</h4>
-<p><code>GET /pony/create?name=Fluttershy&amp;best_pony=yep</code></p>
-<h4 id="expected-response" permalink="expected-response">Expected Response</h4>
-<pre><code data-language="javascript">{
- &quot;name&quot;: &quot;Fluttershy&quot;,
- &quot;best_pony&quot;: &quot;yep&quot;,
- &quot;createdAt&quot;: &quot;2014-02-24T21:02:16.068Z&quot;,
- &quot;updatedAt&quot;: &quot;2014-02-24T21:02:16.068Z&quot;,
- &quot;id&quot;: 5
-}
-</code></pre><!-- __LANG=%%__ -->
-<h2 id="examples-with-one-way-associations" permalink="examples-with-one-way-associations">Examples with One Way Associations</h2>
-<p>You can create associations between models in two different ways. You can either make the association with a record that already exists OR you can create both records simultaneously. Check out the examples to see how.</p>
-<p>These examples assume the existence of <code>Pet</code> and <code>Pony</code> APIs which can be created by hand or using the <a href="http://sailsjs.org/documentation/reference/CommandLine/CommandLine.html" target="_blank">Sails CLI Tool</a>. The <code>Pony</code> model must be configured with a <code>pet</code> attribute pointing to the <code>Pet</code> model.  See <a href="./ModelAssociations.md">Model Association Docs</a> for info on how to do this.</p>
-<h3 id="create-record-while-associating-w-existing-record-rest-" permalink="create-record-while-associating-w/-existing-record-(rest)">Create record while associating w/ existing record (REST)</h3>
-<p>Create a new pony named &quot;Pinkie Pie&quot; and associate it with an existing pet named &quot;Gummy&quot; which has an <code>id</code> of 10.</p>
-<h4 id="route" permalink="route">Route</h4>
-<p><code>POST /pony</code></p>
-<h4 id="json-request-body" permalink="json-request-body">JSON Request Body</h4>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;ice skating&quot;,
-  &quot;pet&quot;: 10
-}
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="example-response" permalink="example-response">Example Response</h4>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;ice skating&quot;,
-  &quot;pet&quot;: {
-    &quot;name&quot;: &quot;Gummy&quot;,
-    &quot;species&quot;: &quot;crocodile&quot;,
-    &quot;id&quot;: 10
-  },
-  &quot;id&quot;: 4,
-  &quot;createdAt&quot;: &quot;2013-10-18T01:22:56.000Z&quot;,
-  &quot;updatedAt&quot;: &quot;2013-11-26T22:54:19.951Z&quot;
-}
-</code></pre><!-- __LANG=%%__ -->
-<h3 id="create-new-record-while-associating-w-another-new-record-rest-" permalink="create-new-record-while-associating-w/-another-new-record-(rest)">Create new record while associating w/ another new record (REST)</h3>
-<p>Create a new pony named &quot;Pinkie Pie&quot;, an &quot;ice skating&quot; hobby, and a new pet named &quot;Gummy&quot;.</p>
-<h4 id="route" permalink="route">Route</h4>
-<p><code>POST /pony</code></p>
-<h4 id="json-request-body" permalink="json-request-body">JSON Request Body</h4>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;ice skating&quot;,
-  &quot;pet&quot;: {
-    &quot;name&quot;: &quot;Gummy&quot;,
-    &quot;species&quot;: &quot;crocodile&quot;
-  }
-}
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="expected-response" permalink="expected-response">Expected Response</h4>
-<pre><code data-language="json">{
-  &quot;name&quot;: &quot;Pinkie Pie&quot;,
-  &quot;hobby&quot;: &quot;ice skating&quot;,
-  &quot;pet&quot;: {
-    &quot;name&quot;: &quot;Gummy&quot;,
-    &quot;species&quot;: &quot;crocodile&quot;,
-    &quot;id&quot;: 10
-  },
-  &quot;id&quot;: 4,
-  &quot;createdAt&quot;: &quot;2013-10-18T01:22:56.000Z&quot;,
-  &quot;updatedAt&quot;: &quot;2013-11-26T22:54:19.951Z&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
 <docmeta name="displayName" value="create">

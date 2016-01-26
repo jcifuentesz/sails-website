@@ -4,7 +4,7 @@ you&apos;ll want to set up a scalable architecture that your app can scale as mo
 <h3 id="benchmarks" permalink="benchmarks">Benchmarks</h3>
 <p>For the most part, Sails benchmarks exactly like any Connect, Express or Socket.io app.  This has been validated on a few different occasions, most <a href="http://serdardogruyol.com/?p=111" target="_blank">recently here</a>.  If you have your own benchmark you&apos;d like to share, please send a pull request to this page on Github.</p>
 <h3 id="example-architecture" permalink="example-architecture">Example architecture</h3>
-<pre><code data-language="javascript">Sails.js server
+<pre><code data-language="text">Sails.js server
                              ....                 
                     /  Sails.js server  \      /  Database (e.g. Mongo, Postgres, etc)
 Load Balancer  &lt;--&gt;    Sails.js server    &lt;--&gt;    Socket store (Redis)

@@ -1,35 +1,8 @@
-<h1 id="find-one">Find One</h1>
+<h1 id="find-one-blueprint-">Find One (Blueprint)</h1>
 <p>Returns a single record from the model as a JSON Object.</p>
-<pre><code data-language="javascript">GET /:model/:id
+<pre><code data-language="text">GET /:model/:id
 </code></pre><!-- __LANG=%%__ -->
-<!--
-<table>
-  <thead>
-    <tr>
-      <th colspan="2">Blueprint Routes</th>
-    </tr>
-    <tr>
-      <th>Type</th>
-      <th>URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>REST</td>
-      <td>
-        <code>GET /:modelIdentity/:id</code>
-      </td>
-    </tr>
-    <tr>
-      <td>Shortcut</td>
-      <td>
-        <code>GET /:modelIdentity/findOne/:id</code>
-      </td>
-    </tr>
-  </tbody>
-</table>
--->
-<p>The <strong>findOne()</strong> blueprint action returns a single record from the model (given by <code>:modelIdentity</code>) as a JSON object. The specified <code>id</code> is the <a href="http://en.wikipedia.org/wiki/Unique_key" target="_blank">primary key</a> of the desired record.</p>
+<p>The <strong>findOne()</strong> blueprint action returns a single record from the model (given by <code>:model</code>) as a JSON object. The specified <code>id</code> is the <a href="http://en.wikipedia.org/wiki/Unique_key" target="_blank">primary key</a> of the desired record.</p>
 <p>If the action was triggered via a socket request, the requesting socket will be &quot;subscribed&quot; to the returned record. If the record is subsequently updated or deleted, a message will be sent to that socket&apos;s client informing them of the change. See the docs for <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/subscribe.html" target="_blank">.subscribe()</a> for more info.</p>
 <h3 id="parameters" permalink="parameters">Parameters</h3>
 <table>
@@ -42,22 +15,22 @@
 </thead>
 <tbody>
 <tr>
-<td> id<br><em>(required)</em></td>
+<td> id</td>
 <td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">The desired record&apos;s primary key value<br><br>e.g. <code>/product/7</code></td>
+<td style="text-align:left">The desired record&apos;s primary key value<br><br>e.g. this would be <code>7</code> if the URL path is <code>/product/7</code>.</td>
 </tr>
 <tr>
-<td> callback</td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
+<td> <em>callback</em></td>
+<td><bubble type="string?" colors="true"></bubble></td>
+<td style="text-align:left">Optional. If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="example" permalink="example">Example</h3>
-<p>Find the purchase with ID #1, E.g. <code>http://localhost:1337/purchase/1</code></p>
-<h4 id="route" permalink="route">Route</h4>
-<p><code>GET /purchase/1</code></p>
-<h4 id="expected-response" permalink="expected-response">Expected Response</h4>
+<p>Find the purchase with id #1:</p>
+<pre><code data-language="text">GET /purchase/1
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
 <pre><code data-language="json">{
    &quot;amount&quot;: 49.99,
    &quot;id&quot;: 1,

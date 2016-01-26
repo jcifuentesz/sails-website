@@ -96,7 +96,7 @@ socket.on(&apos;product&apos;, function (cometEvent) {
 <h2 id="legacy-data-stored-in-the-temporary-sails-disk-database" permalink="legacy-data-stored-in-the-temporary-sailsdisk-database">Legacy data stored in the temporary sails-disk database</h2>
 <p><code>sails-disk</code>, used by default in new Sails projects, now stores data a bit differently. If you have some temporary data stored in a 0.9.x project, you&apos;ll want to wipe it out and start fresh. To do this:</p>
 <p>From your project&apos;s root directory:</p>
-<pre><code data-language="javascript">$ rm .tmp/disk.db
+<pre><code data-language="text">$ rm .tmp/disk.db
 </code></pre><!-- __LANG=%%__ -->
 <h2 id="adapter-database-configuration" permalink="adapter/database-configuration">Adapter/Database Configuration</h2>
 <p><code>config.adapters</code> (in <code>myApp/config/adapters.js</code>) is now config.connections (in new projects, this is generated in <code>myApp/config/connections.js</code>). Also, <code>config.model</code> is now <code>config.models</code>.</p>
@@ -117,7 +117,7 @@ socket.on(&apos;product&apos;, function (cometEvent) {
 </code></pre><!-- __LANG=%%__ -->
 <h2 id="blueprints-controller-configuration" permalink="blueprints/controller-configuration">Blueprints/Controller configuration</h2>
 <p>The object literal describing controller configuration overrides for controller blueprints should change from:</p>
-<pre><code data-language="javascript">...
+<pre><code data-language="text">...
 _config: {
   blueprints: {
     rest: true,
@@ -126,7 +126,7 @@ _config: {
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>to:</p>
-<pre><code data-language="javascript">...
+<pre><code data-language="text">...
 _config: {
     rest: true,
     ...

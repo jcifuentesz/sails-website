@@ -4,7 +4,7 @@
 <ol>
 <li>Choose a name for your new hook.  It must not conflict with any of the <a href="https://github.com/balderdashy/sails/blob/master/lib/app/configuration/default-hooks.js" target="_blank">core hook names</a>.</li>
 <li>Create a new folder on your system with the name <code>sails-hook-&lt;your hook name&gt;</code>.  The <code>sails-hook-</code> prefix is optional but recommended for consistency; it is stripped off by Sails when the hook is loaded.</li>
-<li>Create a <code>package.json</code> file in the folder.  If you have <code>npm</code> installed on your system, you can do this easily by running <code>npm init</code> and following the prompts.  Otherwise, you can create the file manually, and ensure that it contains at a minimum the following:<pre><code data-language="javascript">{
+<li>Create a <code>package.json</code> file in the folder.  If you have <code>npm</code> installed on your system, you can do this easily by running <code>npm init</code> and following the prompts.  Otherwise, you can create the file manually, and ensure that it contains at a minimum the following:<pre><code data-language="text">{
  &quot;name&quot;: &quot;sails-hook-your-hook-name&quot;,
  &quot;version&quot;: &quot;0.0.0&quot;,
  &quot;description&quot;: &quot;a brief description of your hook&quot;,
@@ -20,7 +20,7 @@ If you use <code>npm init</code> to create your <code>package.json</code>, be su
 <p>Your new folder may contain other files as well, which can be loaded in your hook via <code>require</code>; only <code>index.js</code> will be read automatically by Sails.  Use the <code>dependencies</code> key of your <code>package.json</code> to refer to any dependencies that need to be installed in order for your hook to work (you may also use <code>npm install &lt;dependency&gt; --save</code> to easily save dependency information to <code>package.json</code>).</p>
 <h3 id="specifying-the-internal-name-sails-uses-for-your-hook-advanced-" permalink="specifying-the-internal-name-sails-uses-for-your-hook-(advanced)">Specifying the internal name Sails uses for your hook (advanced)</h3>
 <p>In certain cases, especially when using a <a href="https://docs.npmjs.com/misc/scope" target="_blank">scoped NPM package</a> to override a core Sails hook, you will want to change the name that Sails uses internally when it loads your hook.  You can use the <code>sails.hookName</code> configuration option in your <code>package.json</code> file for this.  The value should be the name you want to be loaded into the <code>sails.hooks</code> dictionary, so you generally will <em>not</em> want a <code>sails-hooks-</code> prefix.  For example, if you have a module <code>@mycoolhooks/sails-hook-sockets</code> that you wish to use to override the core <code>sails-hook-sockets</code> module, the <code>package.json</code> might look like:</p>
-<pre><code data-language="javascript">{
+<pre><code data-language="text">{
     &quot;name&quot;: &quot;@mycoolhooks/sails-hook-sockets&quot;,
     &quot;version&quot;: &quot;0.0.0&quot;,
     &quot;description&quot;: &quot;my own sockets hook&quot;,
@@ -34,7 +34,7 @@ If you use <code>npm init</code> to create your <code>package.json</code>, be su
 <h3 id="testing-your-new-hook" permalink="testing-your-new-hook">Testing your new hook</h3>
 <p>Before you distribute your installable hook to others, you&#x2019;ll want to write some tests for it.  This will help ensure compatibility with future Sails versions and significantly reduce hair-pulling and destruction of nearby objects in fits of rage.  While a full guide to writing tests is outside the scope of this doc, the following steps should help get you started:</p>
 <ol>
-<li>Add Sails as a <code>devDependency</code> in your hook&#x2019;s <code>package.json</code> file:<pre><code data-language="javascript">&quot;devDependencies&quot;: {
+<li>Add Sails as a <code>devDependency</code> in your hook&#x2019;s <code>package.json</code> file:<pre><code data-language="text">&quot;devDependencies&quot;: {
    &quot;sails&quot;: &quot;~0.11.0&quot;
 }
 </code></pre><!-- __LANG=%%__ --></li>
@@ -42,7 +42,7 @@ If you use <code>npm init</code> to create your <code>package.json</code>, be su
 <li>Install <a href="http://mochajs.org/" target="_blank">Mocha</a> on your system with <code>npm install -g mocha</code>, if you haven&#x2019;t already.</li>
 <li>Add a <code>test</code> folder inside your hook&#x2019;s main folder.</li>
 <li><p>Add a <code>basic.js</code> file with the following basic test:</p>
-<pre><code data-language="javascript">var Sails = require(&apos;sails&apos;).Sails;
+<pre><code data-language="text">var Sails = require(&apos;sails&apos;).Sails;
 
  describe(&apos;Basic tests ::&apos;, function() {
 

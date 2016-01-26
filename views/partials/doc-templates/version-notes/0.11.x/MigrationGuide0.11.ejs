@@ -20,7 +20,7 @@
 <blockquote>
 <p><strong>tldr;</strong>
 Rename your <code>onDisconnect</code> function in <code>config/sockets.js</code> with the following:</p>
-<pre><code data-language="javascript">afterDisconnect: function (session, socket, cb) {
+<pre><code data-language="text">afterDisconnect: function (session, socket, cb) {
   // Be sure to call the callback
   return cb();
 }

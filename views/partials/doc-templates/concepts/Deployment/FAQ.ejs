@@ -34,7 +34,7 @@ module.exports = {
 </ul>
 <p>Issues <a href="https://github.com/balderdashy/sails/issues/3099" target="_blank">#3099</a> and <a href="https://github.com/balderdashy/sails/issues/2779" target="_blank">#2779</a> are about a memory leak. It resides in the <code>express-session</code> module used by default, which stores sessions in-memory.
 To disable it, make sure that you disable sessions in the <code>.sailsrc</code>:</p>
-<pre><code data-language="javascript">&quot;hooks&quot;: {
+<pre><code data-language="text">&quot;hooks&quot;: {
   &quot;session&quot;: false
 }
 </code></pre><!-- __LANG=%%__ -->

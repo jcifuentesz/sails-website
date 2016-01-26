@@ -12,30 +12,26 @@
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th>Type</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1</td>
-<td>eventName</td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td>Optional. Defaults to <code>&apos;message&apos;</code>.</td>
+<td style="text-align:left"><em>eventName</em></td>
+<td><bubble type="string?" colors="true"></bubble></td>
+<td style="text-align:left">Optional. Defaults to <code>&apos;message&apos;</code>.</td>
 </tr>
 <tr>
-<td>2</td>
-<td>data</td>
-<td><bubble type="*" colors="true"></bubble></td>
-<td>The data to send in the message.</td>
+<td style="text-align:left">data</td>
+<td><bubble type="json" colors="true"></bubble></td>
+<td style="text-align:left">The data to send in the message.</td>
 </tr>
 <tr>
-<td>3</td>
-<td>socketToOmit</td>
-<td><bubble type="Socket" colors="true"></bubble></td>
-<td>Optional. If provided, that request socket will <strong>not</strong> receive the message blasted out to everyone else.  Useful when the broadcast-worthy event is triggered by a requesting user who doesn&apos;t need to hear about it again.</td>
+<td style="text-align:left"><em>socketToOmit</em></td>
+<td><bubble type="req?" colors="true"></bubble></td>
+<td style="text-align:left">Optional. If provided, that request socket will <strong>not</strong> receive the message blasted out to everyone else.  Useful when the broadcast-worthy event is triggered by a requesting user who doesn&apos;t need to hear about it again.</td>
 </tr>
 </tbody>
 </table>

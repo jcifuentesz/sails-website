@@ -1,36 +1,52 @@
-<h1 id="add-to-collection">Add to Collection</h1>
-<p>Adds an association between two records.</p>
-<pre><code data-language="javascript">POST /:model/:record/:association/:record_to_add?
+<h1 id="add-blueprint-">Add (Blueprint)</h1>
+<p>Add a foreign record (e.g. a comment) to one of this record&apos;s collection associations (e.g. &quot;comments&quot;).</p>
+<pre><code data-language="text">POST /:model/:id/:association/:fk
 </code></pre><!-- __LANG=%%__ -->
 <p>This action pushes a reference to some other record (the &quot;foreign&quot; record) onto a collection attribute of this record (the &quot;primary&quot; record).</p>
 <ul>
-<li>If <code>:record_to_add</code> of an existing record is supplied, it will be associated with the primary record.</li>
-<li>If no <code>:record_to_add</code> is supplied, and the body of the <strong>POST</strong> contains values for a new record, that record will be created and associated with the primary record.</li>
-<li>If the collection within the primary record already contains a reference to the foreign record, this action will be ignored.</li>
+<li>If <code>:fk</code> of an existing foreign record is supplied, it will be associated with the primary record.</li>
+<li>If no <code>:fk</code> is supplied, and the body of the <strong>POST</strong> contains values for a new record, that record will be created and associated with the primary record.</li>
+<li>If the collection association within the primary record already contains a reference to the foreign record, this action will be ignored.</li>
 <li>If the association is 2-way (i.e. reflexive, with &quot;via&quot; on both sides) the association on the foreign record will also be updated.</li>
 </ul>
+<h3 id="parameters" permalink="parameters">Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> id</td>
+<td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The parent record&apos;s primary key value<br><br>e.g. <code>7</code></td>
+</tr>
+<tr>
+<td> association</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The name of the collection association<br><br>e.g. <code>&apos;involvedInPurchases&apos;</code></td>
+</tr>
+<tr>
+<td> fk</td>
+<td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The id of the foreign record to add to the collection association.<br><br>e.g. <code>47</code></td>
+</tr>
+<tr>
+<td> <em>callback</em></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="example" permalink="example">Example</h3>
-<p>Add purchase 47 to the list of purchases that Dolly (employee #7) has been involved in.</p>
-<p><strong>Using <a href="http://jquery.com/" target="_blank">jQuery</a>:</strong></p>
-<pre><code data-language="javascript">$.post(&apos;/employee/7/involvedInPurchases/47&apos;, function (purchases) {
-  console.log(purchases);
-});
+<p>Add purchase #47 to the list of purchases that Dolly (employee #7) has been involved in:</p>
+<pre><code data-language="text">POST /employee/7/involvedInPurchases/47
 </code></pre><!-- __LANG=%%__ -->
-<p><strong>Using <a href="https://angularjs.org/" target="_blank">Angular</a>:</strong></p>
-<pre><code data-language="javascript">$http.post(&apos;/employee/7/involvedInPurchases/47&apos;)
-.then(function (purchases) {
-  console.log(purchases);
-});
-</code></pre><!-- __LANG=%%__ -->
-<p><strong>Using <a href="http://sailsjs.org/documentation/reference/websockets/sails.io.js" target="_blank">sails.io.js</a>:</strong></p>
-<pre><code data-language="javascript">io.socket.post(&apos;/employee/7/involvedInPurchases/47&apos;, function (purchases) {
-  console.log(purchases);
-});
-</code></pre><!-- __LANG=%%__ -->
-<p><strong>Using <a href="http://en.wikipedia.org/wiki/CURL" target="_blank">cURL</a>:</strong></p>
-<pre><code data-language="javascript">curl http://localhost:1337/employee/7/involvedInPurchases/47 -X &quot;POST&quot;
-</code></pre><!-- __LANG=%%__ -->
-<p>Should return &quot;Dolly&quot;, the primary record:</p>
+<h5 id="expected-response" permalink="expected-response">Expected response</h5>
+<p>This will return &quot;Dolly&quot;, the primary record:</p>
 <pre><code data-language="json">{
   &quot;involvedInPurchases&quot;: [
     {
@@ -47,9 +63,29 @@
   &quot;id&quot;: 7
 }
 </code></pre><!-- __LANG=%%__ -->
+<h5 id="using-jquery" permalink="using-jquery">Using jQuery</h5>
+<pre><code data-language="javascript">$.post(&apos;/employee/7/involvedInPurchases/47&apos;, function (purchases) {
+  console.log(purchases);
+});
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="using-angular" permalink="using-angular">Using Angular</h5>
+<pre><code data-language="javascript">$http.post(&apos;/employee/7/involvedInPurchases/47&apos;)
+.then(function (purchases) {
+  console.log(purchases);
+});
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="using-sails-io-js" permalink="using-sailsiojs">Using sails.io.js</h5>
+<pre><code data-language="javascript">io.socket.post(&apos;/employee/7/involvedInPurchases/47&apos;, function (purchases) {
+  console.log(purchases);
+});
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="using-curl-http-en-wikipedia-org-wiki-curl-" permalink="using-curl">Using <a href="http://en.wikipedia.org/wiki/CURL" target="_blank">cURL</a></h5>
+<pre><code data-language="javascript">curl http://localhost:1337/employee/7/involvedInPurchases/47 -X &quot;POST&quot;
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
+<li>If you&apos;d like to spend some more time with Dolly, a more detailed walkthrough related to the example above is available <a href="https://gist.github.com/mikermcneil/e5a20b03be5aa4e0459b" target="_blank">here</a>.</li>
 <li>This action is for dealing with <em>plural</em> (&quot;collection&quot;) associations.  If you want to set or unset a <em>singular</em> (&quot;model&quot;) association, just use <a href="http://sailsjs.org/documentation/reference/blueprint-api/Update.html" target="_blank">update</a>.</li>
 <li><p>The example above assumes &quot;rest&quot; blueprints are enabled, and that your project contains at least an &apos;Employee&apos; model with association: <code>involvedInPurchases: {collection: &apos;Purchase&apos;, via: &apos;cashier&apos;}</code> as well as a <code>Purchase</code> model with association: <code>cashier: {model: &apos;Employee&apos;}</code>.  You&apos;ll also need at least an empty <code>PurchaseController</code> and <code>EmployeeController</code>.  You can quickly achieve this by running:</p>
 <pre><code data-language="shell">$ sails new foo
