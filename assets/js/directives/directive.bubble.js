@@ -34,15 +34,26 @@ angular.module('SailsWebsite')
         isUncertain = true;
       }
 
-      // Also get the "raw type" (used for class name) by stripping off the `?` suffix
-      var rawType = scope.type.replace(/\?$/, '');
-      rawType = rawType.toLowerCase();
-
-
       // Interpret `object` as `dictionary`
       if ( scope.type.match(/object/i) ) {
         scope.type = 'dictionary';
       }
+
+      // Interpret `*` as `json`
+      if ( scope.type.match(/^\*$/i) ) {
+        scope.type = 'JSON';
+      }
+
+      // Also get the "raw type" (used for class name) by stripping off the `?` suffix
+      var rawType = scope.type.replace(/\?$/, '');
+      rawType = rawType.toLowerCase();
+
+      // Also get the "display type" (used for displaying, of course)
+      var displayType = scope.type;
+      // displayType = displayType.replace(/\?$/, '');
+      displayType = _.capitalize(displayType);
+
+
 
       // If colors are enabled, add the "colors" class to communicate that little tidbit to styletown.
       if (scope.colors) {
@@ -56,7 +67,7 @@ angular.module('SailsWebsite')
 
       // Now dip the bubble's heart into the dye and scratch some text onto it.
       $bubbleHeart.addClass(rawType);
-      $bubbleHeart.text(_.capitalize(scope.type));
+      $bubbleHeart.text(displayType);
     }
   };
 
