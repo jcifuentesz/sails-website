@@ -1,72 +1,87 @@
-<h1 id="-destroy-criteria-callback-">.destroy( <code>criteria</code> , [<code>callback</code>] )</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Destroys all records in your database that match the given criteria.</p>
-<h3 id="overview" permalink="overview">Overview</h3>
-<h4 id="parameters" permalink="parameters">Parameters</h4>
+<h1 id="-destroy-">.destroy()</h1>
+<p>Destroy records in your database that match the given criteria.</p>
+<pre><code data-language="javascript">Something.destroy(criteria).exec(function (err) {
+
+});
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="usage" permalink="usage">Usage</h4>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Find Criteria</td>
-<td><code>{}</code>,<code>[{}]</code>, <code>string</code>, <code>int</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Callback</td>
-<td><code>function</code></td>
-<td>No</td>
+<td>criteria</td>
+<td><bubble type="dictionary?" colors="true"></bubble></td>
+<td>Optional.  If specified, only records which match this <a href="https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md" target="_blank">Waterline criteria</a> will be destroyed.  Otherwise if omitted, <em>all records will be destroyed!</em></td>
 </tr>
 </tbody>
 </table>
-<h4 id="callback-parameters" permalink="callback-parameters">Callback Parameters</h4>
+<h5 id="callback" permalink="callback">Callback</h5>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Possible Data Types</th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Error</td>
-<td><code>Error</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td>Deleted Records</td>
-<td><code>[{}]</code></td>
+<td>err</td>
+<td><bubble type="Error?" colors="true"></bubble></td>
+<td>The error that occurred, or <code>undefined</code> if there were no errors.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<pre><code data-language="javascript">User.destroy({name:&apos;Flynn&apos;}).exec(function deleteCB(err){
-  console.log(&apos;The record has been deleted&apos;);
+<!-- 
+| 2 |    deletedRecords   | <bubble type="array" colors="true"></bubble>           | An array containing any records which were deleted.
+-->
+<h3 id="example" permalink="example">Example</h3>
+<p>To delete any users named Finn from the database:</p>
+<pre><code data-language="javascript">User.destroy({name:&apos;Finn&apos;}).exec(function (err){
+  if (err) {
+    return res.negotiate(err);
+  }
+  sails.log(&apos;Any users named Finn have now been deleted, if there were any.&apos;);
+  return res.ok();
 });
-
-// Or if there are multiple records to delete
-
-User.destroy({id:[&apos;id1&apos;, &apos;id2&apos;]}).exec(function deleteCB(err){
-  console.log(&apos;The record has been deleted&apos;);
+</code></pre><!-- __LANG=%%__ -->
+<p>To delete a particular book which is no longer available:</p>
+<pre><code data-language="javascript">Book.destroy({
+  id: 4
+}).exec(function (err){
+  if (err) {
+    return res.negotiate(err);
+  }
+  sails.log(&apos;Deleted book with `id: 4`, if it existed.&apos;);
+  return res.ok();
 });
-
-// If the record existed, then it has been deleted
-// Don&apos;t forget to handle your errors
+</code></pre><!-- __LANG=%%__ -->
+<p>To delete two particular users who have been causing trouble:</p>
+<pre><code data-language="javascript">User.destroy({
+  id: [ 3, 97 ]
+}).exec(function (err){
+  if (err) {
+    return res.negotiate(err);
+  }
+  sails.log(&apos;The records for troublesome users (3 and 97) have been deleted, if they still existed.&apos;);
+  return res.ok();
+});
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
-<p>If you want to confirm the record exists before you delete it, you must first perform a find()
-Any string arguments passed must be the ID of the record.</p>
+<ul>
+<li>If you want to confirm that one or more records exist before destroying them, you should first perform a <code>find()</code>.  However, keep in mind it is generally a good idea to <em>try to do things</em> rather than <em>checking first</em>, lest you end up in a <a href="http://people.cs.umass.edu/~emery/classes/cmpsci377/f07/scribe/scribe8-1.pdf" target="_blank">race condition</a>.</li>
+</ul>
 </blockquote>
 <p><docmeta name="methodType" value="instance"></docmeta></p>
 <p><docmeta name="importance" value="undefined"></docmeta></p>

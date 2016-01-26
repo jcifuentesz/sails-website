@@ -180,12 +180,12 @@
     "parent": "concepts/ORM/ORM.ejs",
     "isChild": true,
     "children": [
-      "concepts/ORM/Associations/OneWayAssociation.ejs",
       "concepts/ORM/Associations/Dominance.ejs",
-      "concepts/ORM/Associations/OnetoMany.ejs",
       "concepts/ORM/Associations/ManytoMany.ejs",
-      "concepts/ORM/Associations/ThroughAssociations.ejs",
-      "concepts/ORM/Associations/OnetoOne.ejs"
+      "concepts/ORM/Associations/OneWayAssociation.ejs",
+      "concepts/ORM/Associations/OnetoMany.ejs",
+      "concepts/ORM/Associations/OnetoOne.ejs",
+      "concepts/ORM/Associations/ThroughAssociations.ejs"
     ],
     "isParent": true
   },
@@ -489,8 +489,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Adapters/adapterList.ejs",
-      "concepts/extending-sails/Adapters/customAdapters.ejs"
+      "concepts/extending-sails/Adapters/customAdapters.ejs",
+      "concepts/extending-sails/Adapters/adapterList.ejs"
     ],
     "isParent": true
   },
@@ -523,8 +523,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Generators/generatorList.ejs",
-      "concepts/extending-sails/Generators/customGenerators.ejs"
+      "concepts/extending-sails/Generators/customGenerators.ejs",
+      "concepts/extending-sails/Generators/generatorList.ejs"
     ],
     "isParent": true
   },
@@ -557,9 +557,9 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Hooks/projecthooks.ejs",
       "concepts/extending-sails/Hooks/installablehooks.ejs",
       "concepts/extending-sails/Hooks/usinghooks.ejs",
+      "concepts/extending-sails/Hooks/projecthooks.ejs",
       "concepts/extending-sails/Hooks/hookspec/hookspec.ejs"
     ],
     "isParent": true
@@ -595,10 +595,10 @@
     "parent": "concepts/extending-sails/Hooks/Hooks.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
       "concepts/extending-sails/Hooks/hookspec/configure.ejs",
+      "concepts/extending-sails/Hooks/hookspec/routes.ejs",
       "concepts/extending-sails/Hooks/hookspec/initialize.ejs",
-      "concepts/extending-sails/Hooks/hookspec/routes.ejs"
+      "concepts/extending-sails/Hooks/hookspec/defaults.ejs"
     ],
     "isParent": true
   },
@@ -671,8 +671,8 @@
     },
     "children": [
       "concepts/Assets/DefaultTasks.ejs",
-      "concepts/Assets/DisablingGrunt.ejs",
-      "concepts/Assets/TaskAutomation.ejs"
+      "concepts/Assets/TaskAutomation.ejs",
+      "concepts/Assets/DisablingGrunt.ejs"
     ],
     "isParent": true
   },
@@ -737,8 +737,8 @@
       "displayName": "File Uploads"
     },
     "children": [
-      "concepts/File Uploads/uploading-to-amazon-s3.ejs",
-      "concepts/File Uploads/uploading-to-mongo-gridfs.ejs"
+      "concepts/File Uploads/uploading-to-mongo-gridfs.ejs",
+      "concepts/File Uploads/uploading-to-amazon-s3.ejs"
     ],
     "isParent": true
   },
@@ -799,11 +799,11 @@
       "displayName": "Models and ORM"
     },
     "children": [
+      "concepts/ORM/Attributes.ejs",
+      "concepts/ORM/Models.ejs",
+      "concepts/ORM/Querylanguage.ejs",
       "concepts/ORM/Lifecyclecallbacks.ejs",
       "concepts/ORM/model-settings.ejs",
-      "concepts/ORM/Models.ejs",
-      "concepts/ORM/Attributes.ejs",
-      "concepts/ORM/Querylanguage.ejs",
       "concepts/ORM/Validations.ejs",
       "concepts/ORM/Associations/Associations.ejs"
     ],
@@ -847,10 +847,10 @@
       "concepts/Security/Clickjacking.ejs",
       "concepts/Security/ContentSecurityPolicy.ejs",
       "concepts/Security/DDOS.ejs",
-      "concepts/Security/SocketHijacking.ejs",
-      "concepts/Security/XSS.ejs",
+      "concepts/Security/P3P.ejs",
       "concepts/Security/StrictTransportSecurity.ejs",
-      "concepts/Security/P3P.ejs"
+      "concepts/Security/XSS.ejs",
+      "concepts/Security/SocketHijacking.ejs"
     ],
     "isParent": true
   },
@@ -906,10 +906,10 @@
       "displayName": "Views"
     },
     "children": [
-      "concepts/Views/Locals.ejs",
       "concepts/Views/Layouts.ejs",
-      "concepts/Views/ViewEngines.ejs",
-      "concepts/Views/Partials.ejs"
+      "concepts/Views/Locals.ejs",
+      "concepts/Views/Partials.ejs",
+      "concepts/Views/ViewEngines.ejs"
     ],
     "isParent": true
   },

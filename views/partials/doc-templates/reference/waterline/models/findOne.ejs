@@ -1,70 +1,77 @@
-<h1 id="-findone-criteria-callback-">.findOne( <code>criteria</code> , [<code>callback</code>] )</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>This finds and returns a single record that meets the criteria.</p>
-<h3 id="overview" permalink="overview">Overview</h3>
-<h4 id="parameters" permalink="parameters">Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Find Criteria</td>
-<td><code>{}</code>, <code>string</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Callback</td>
-<td><code>function</code></td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<h4 id="callback-parameters" permalink="callback-parameters">Callback Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Possible Data Types</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Error</td>
-<td><code>Error</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td>Found Record</td>
-<td><code>{}</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<pre><code data-language="javascript">User.findOne({name:&apos;Jessie&apos;}).exec(function findOneCB(err, found){
-  console.log(&apos;We found &apos;+found.name);
-});
+<h1 id="-findone-">.findOne()</h1>
+<p>Attempt to find a particular record in your database that matches the given criteria.</p>
+<pre><code data-language="javascript">Something.findOne(criteria).exec(function (err, record) {
 
-// We found Jessie
-// Don&apos;t forget to handle your errors
+});
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="usage" permalink="usage">Usage</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>criteria</td>
+<td><bubble type="dictionary" colors="true"></bubble></td>
+<td>The first record which matches this <a href="https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md" target="_blank">Waterline criteria</a> will be returned.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="callback" permalink="callback">Callback</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>err</td>
+<td><bubble type="Error" colors="true"></bubble> or <code>undefined</code></td>
+<td>The error that occurred, or <code>undefined</code> if there were no errors.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>record</td>
+<td><bubble type="dictionary" colors="true"></bubble> or <code>undefined</code></td>
+<td>The record that was found, or <code>undefined</code> if no such record could be located.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example" permalink="example">Example</h3>
+<p>To locate the user whose username is &quot;finn&quot; in your database:</p>
+<pre><code data-language="javascript">User.findOne({
+  username:&apos;finn&apos;
+}).exec(function (err, finn){
+  if (err) {
+    return res.negotiate(err);
+  }
+  if (!finn) {
+    return res.notFound(&apos;Could not find Finn, sorry.&apos;);
+  }
+
+  sails.log(&apos;Found &quot;%s&quot;&apos;, finn.fullName);
+  return res.json(finn);
+});
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
-<p>Any string arguments passed must be the ID of the record.
-If you are trying to find an attribute that is an array, you must wrap it in an additional set of brackets otherwise Waterline will think you want to perform an inQuery.</p>
-<p>If no matching record is found, the value of <code>found</code> will be <code>undefined</code>.  Not finding a record does <em>not</em> constitute an error for <code>findOne</code>.</p>
+<ul>
+<li>Being unable to find a record with the given criteria does <strong>not</strong> constitute an error for <code>findOne()</code>.  If no matching record is found, the value of <code>record</code> in the callback will be <code>undefined</code>. </li>
+</ul>
 </blockquote>
-<p><docmeta name="methodType" value="mcm"></docmeta></p>
 <p><docmeta name="importance" value="10"></docmeta></p>
 <docmeta name="displayName" value=".findOne()">
+
 
 </docmeta>
