@@ -65,7 +65,7 @@ module.exports = {
                                   var hmac = require('crypto').createHmac(algorithmAndHash[0], getEnvironmentVariable);
                                   var computed = new Buffer(hmac.update(rawRequestBodyString, 'utf8').digest('hex'));
                                   var header = new Buffer(algorithmAndHash[1]);
-                                  var isMatch = bufferEq(computed, header);
+                                  var isMatch = require('buffer-equal-constant-time')(computed, header);
                                   if (!isMatch) {
                                     console.error('DID NOT MATCH! Computed:',computed);
                                     console.error('DID NOT MATCH! Header:',header);
