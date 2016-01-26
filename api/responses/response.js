@@ -43,7 +43,9 @@ module.exports = function sendResponse (options) {
       break;
 
     case 'display_view':
-      res.view(options.view, options.data);
+      res.view(options.view, _.extend({
+        cache: false // disable (via hard-coding) the view cache.
+      }, options.data));
       break;
 
     case 'not_implemented':
