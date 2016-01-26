@@ -35,27 +35,50 @@ module.exports = {
 
                             },
                             "success": function(getEnvironmentVariable) {
-                                // If equal (===)
-                                sails.machines['4bf9c923-efd3-4077-b3e1-6b8d84d740c0_1.2.0'].ifEqual({
-                                    "a": getEnvironmentVariable,
-                                    "b": getRequestHeader
-                                }).exec({
-                                    "error": function(ifEqual) {
-                                        return exits.error({
-                                            data: ifEqual,
-                                            status: 500
-                                        });
 
-                                    },
-                                    "otherwise": function(ifEqual) {
-                                        return exits.respond({
-                                            data: "You seem to be up to no good!",
-                                            action: "respond_with_value_and_status",
-                                            status: "401"
-                                        });
+                              // // Compare encrypted GitHub token
+                              // // see https://github.com/18F/github-webhook-validator/blob/master/index.js#L71
+                              // var algorithmAndHash = getRequestHeader.split('=');
+                              // if (algorithmAndHash.length !== 2) {
+                              //   return exits.error({
+                              //       data: new Error('Invalid X-Hub-Signature header from GitHub!'),
+                              //       status: 500
+                              //   });
+                              // }
 
-                                    },
-                                    "success": function(ifEqual) {
+                              // try {
+                              //   // Replace bufferEq() once https://github.com/nodejs/node/issues/3043 is
+                              //   // resolved and the standard library implementation is available.
+                              //   var hmac = require('crypto').createHmac(algorithmAndHash[0], getEnvironmentVariable);
+                              //   var computed = new Buffer(hmac.update(rawBody, 'utf8').digest('hex'));
+                              //   var header = new Buffer(algorithmAndHash[1]);
+                              //   return bufferEq(computed, header);
+                              // } catch (err) {
+                              //   return false;
+                              // }
+
+
+                                // // If equal (===)
+                                // sails.machines['4bf9c923-efd3-4077-b3e1-6b8d84d740c0_1.2.0'].ifEqual({
+                                //     "a": getEnvironmentVariable,
+                                //     "b": getRequestHeader
+                                // }).exec({
+                                //     "error": function(ifEqual) {
+                                //         return exits.error({
+                                //             data: ifEqual,
+                                //             status: 500
+                                //         });
+
+                                //     },
+                                //     "otherwise": function(ifEqual) {
+                                //         return exits.respond({
+                                //             data: "You seem to be up to no good!",
+                                //             action: "respond_with_value_and_status",
+                                //             status: "401"
+                                //         });
+
+                                //     },
+                                //     "success": function(ifEqual) {
                                         // Compile reference docs
                                         sails.machines['_project_3549_0.0.43'].Compilemarkdowndocs({
                                             "path": "reference"
@@ -581,8 +604,8 @@ module.exports = {
                                             }
                                         });
 
-                                    }
-                                });
+                                //     }
+                                // });   // See above
 
                             }
                         });
