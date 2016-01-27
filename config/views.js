@@ -39,7 +39,12 @@ module.exports.views = {
 
     // We default the version string in the header
     // to empty string (`''`), which hides it.
-    topbarVersionString: process.env.TOPBAR_VERSION_STRING ? process.env.TOPBAR_VERSION_STRING : ''
+    topbarVersionString: process.env.TOPBAR_VERSION_STRING ? process.env.TOPBAR_VERSION_STRING : '',
+
+    // We default the github branch slug for generating edit URLs to `master`
+    // if no relevant env var is supplied.
+    branchToEdit: process.env.BRANCH_TO_EDIT ? process.env.BRANCH_TO_EDIT : 'master',
+
   },
 
 
