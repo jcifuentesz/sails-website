@@ -43,6 +43,7 @@ module.exports = {
                                 // Otherwise, we have to do all this fancy hmac stuff.
                                 else {
 
+
                                   // Compare encrypted GitHub token
                                   // see https://github.com/18F/github-webhook-validator/blob/master/index.js#L71
                                   var algorithmAndHash = getRequestHeader.split('=');
@@ -67,8 +68,6 @@ module.exports = {
 
                                   // Now use hmac to validate the x-hub-signature header
                                   try {
-                                    // Replace bufferEq() once https://github.com/nodejs/node/issues/3043 is
-                                    // resolved and the standard library implementation is available.
                                     var hmac = require('crypto').createHmac(algorithmAndHash[0], getEnvironmentVariable);
                                     var computed = new Buffer(hmac.update(rawRequestBodyString, 'utf8').digest('hex'));
                                     var header = new Buffer(algorithmAndHash[1]);
@@ -92,6 +91,24 @@ module.exports = {
                                     });
                                   }
                                 } //</fancy hmac stuff>
+
+
+                                // Now before continuing on, we'll do one more check:
+                                // If "ref" is provided in incoming request body, check that it matches
+                                // our branch.  This is to make sure this update is even relevant for the
+                                // branch we're compiling from.
+                                // e.g. { "ref": "refs/heads/0.12" }
+                                if ( !_.isUndefined(req.body.ref) ) {
+                                  // If `ref` is specified, but it doesn't match our branch...
+                                  if ( !_.endsWith(req.body.ref, process.env.sails_branch||'master') ) {
+                                    // Then respond with success, but do nothing.
+                                    return exits.respond({
+                                      data: 'Looks like that is not relevant for the branch represented by this server.',
+                                      action: 'respond_with_value_and_status',
+                                      status: '200'
+                                    });
+                                  }
+                                }
 
 
                                 // // If equal (===)
