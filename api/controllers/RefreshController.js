@@ -94,13 +94,17 @@ module.exports = {
 
 
                                 // Now before continuing on, we'll do one more check:
-                                // If "ref" is provided in incoming request body, check that it matches
+                                // If a valid "ref" is provided in incoming request body, check that it matches
                                 // our branch.  This is to make sure this update is even relevant for the
                                 // branch we're compiling from.
                                 // e.g. { "ref": "refs/heads/0.12" }
-                                if ( !_.isUndefined(req.body.ref) ) {
+                                if ( !_.isUndefined(req.body.ref) && _.isString(req.body.ref) ) {
+
+                                  var pieces = req.body.ref.split('/');
+                                  var referencedBranch = pieces[pieces.length-1];
+
                                   // If `ref` is specified, but it doesn't match our branch...
-                                  if ( !_.endsWith(req.body.ref, process.env.sails_branch||'master') ) {
+                                  if ( referencedBranch !== (process.env.sails_branch||'master') ) {
                                     // Then respond with success, but do nothing.
                                     return exits.respond({
                                       data: 'Looks like that is not relevant for the branch represented by this server.',
