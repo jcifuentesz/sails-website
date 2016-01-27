@@ -13,6 +13,7 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
       <div class="anatomy-section">
         <% /* Inject "Edit page" button via partial */ %>
         <%- partial('../partials/pencil-button', {templatePath: data.currentTemplate.path, branchToEdit: branchToEdit}) %>
+        <% /* Inject main content via partial */ %>
         <%- partial('../partials/doc-templates/'+data.currentTemplate.path) %>
       </div>
 
