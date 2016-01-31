@@ -26,6 +26,14 @@ module.exports.routes = {
   "get /old-features": {
     "target": "Old-featuresController.find"
   },
+  //////////////////////////////////////////////////////////////////////////////////////////
+  // future-proof broken links to backwards-compatible socket methods:
+  "get /documentation/reference/web-sockets/sails-sockets/sails-sockets-id": '/documentation/reference/web-sockets/sails-sockets/getId',
+  "get /documentation/reference/web-sockets/sails-sockets/sails-sockets-broadcast": '/documentation/reference/web-sockets/sails-sockets/broadcast',
+  "get /documentation/reference/web-sockets/sails-sockets/sails-sockets-blast": '/documentation/reference/web-sockets/sails-sockets/blast',
+  "get /documentation/reference/web-sockets/sails-sockets/sails-sockets-join": '/documentation/reference/web-sockets/sails-sockets/join',
+  "get /documentation/reference/web-sockets/sails-sockets/sails-sockets-leave": '/documentation/reference/web-sockets/sails-sockets/leave',
+  //////////////////////////////////////////////////////////////////////////////////////////
   "get /documentation/*": {
     "target": "DocumentationController.*"
   },
