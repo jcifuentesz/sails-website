@@ -12,9 +12,33 @@ module.exports = {
                 }
             },
             exits: {
-                respond: {}
+                respond: {},
+                redirectToNewLocation: {
+                  description: 'Specified page has been moved.',
+                  example: '/documentation/reference/web-sockets/sails-sockets/get-id'
+                }
             },
             fn: function(inputs, exits) {
+
+              // If this is not 0.11.sailsjs.org, then automatically redirect links which are now broken:
+              //////////////////////////////////////////////////////////////////////////////////////////
+              if ( process.env.sails_branch !== '0.11' ) {
+                switch ( inputs['*'].toLowerCase() ) {
+                  case 'reference/web-sockets/sails-sockets/sails-sockets-blast':
+                    return exits.redirectToNewLocation('/documentation/reference/web-sockets/sails-sockets/blast');
+                  case 'reference/web-sockets/sails-sockets/sails-sockets-broadcast':
+                    return exits.redirectToNewLocation('/documentation/reference/web-sockets/sails-sockets/broadcast');
+                  case 'reference/web-sockets/sails-sockets/sails-sockets-id':
+                    return exits.redirectToNewLocation('/documentation/reference/web-sockets/sails-sockets/get-id');
+                  case 'reference/web-sockets/sails-sockets/sails-sockets-join':
+                    return exits.redirectToNewLocation('/documentation/reference/web-sockets/sails-sockets/join');
+                  case 'reference/web-sockets/sails-sockets/sails-sockets-leave':
+                    return exits.redirectToNewLocation('/documentation/reference/web-sockets/sails-sockets/leave');
+                }
+              }
+              //////////////////////////////////////////////////////////////////////////////////////////
+
+
                 // Split using regexp
                 sails.machines['03558d7e-53ad-4e20-b03f-ddd54c34ce3c_4.2.0'].split({
                     "string": inputs['*'],
@@ -362,6 +386,9 @@ module.exports = {
             '*': req.param('0')
         }), {
             respond: res.response,
+            redirectToNewLocation: function (url){
+              return res.redirect(url);
+            },
             error: res.negotiate
         }).exec();
     },
