@@ -1,11 +1,8 @@
 <h1 id="myapp-gruntfile-js">myApp/Gruntfile.js</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Sails uses <a href="http://gruntjs.com" target="_blank">Grunt</a> for asset management. This file contains configuration information for the GRUNT tasks that Sails uses for this purpose.</p>
-<p>Sails&apos; integration with Grunt is fully customizable but for most use cases, this file should remain unchanged.  Instead, put your custom logic in <code>myApp/tasks/</code>.</p>
-<h3 id="more-info" permalink="more-info">More Info</h3>
-<blockquote>
-<p>More information on using Grunt to work with static assets: <a href="http://gruntjs.com/configuring-tasks" target="_blank">http://gruntjs.com/configuring-tasks</a></p>
-</blockquote>
+<p>Sails uses <a href="http://gruntjs.com" target="_blank">Grunt</a> for asset management. This file contains the entry point for the default asset pipeline in Sails; that is, the code that does stuff like compiling LESS stylesheets, minifying scripts for production, and precompiling and injecting client-side templates.</p>
+<p>Sails&apos; integration with Grunt is fully customizable, but for most use cases, this file (<code>Gruntfile.js</code>) should remain unchanged.  Instead, install Grunt plugins or add your own custom logic as individual files in the <a href="./tasks"><code>tasks/</code></a> folder.</p>
+<p>To learn more about working with static assets in Sails, check out the <a href="http://sailsjs.org/documentation/concepts/assets" target="_blank">conceptual documentation on assets</a>.  For a broader introduction to Grunt tasks in general, see <a href="http://gruntjs.com/configuring-tasks" target="_blank">Grunt&apos;s docs on configuring tasks</a>.</p>
 <docmeta name="displayName" value="Gruntfile.js">
 
 <div www-sjs-anatomy-boilerplate="">

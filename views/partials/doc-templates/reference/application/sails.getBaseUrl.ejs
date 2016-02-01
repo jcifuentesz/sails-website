@@ -1,0 +1,22 @@
+<h1 id="sails-getbaseurl-">sails.getBaseUrl()</h1>
+<p>Return the base URL for this app, based on available configuration.</p>
+<pre><code data-language="javascript">sails.getBaseUrl();
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
+<p><em>This function does not accept any arguments.</em></p>
+<h4 id="returns" permalink="returns">Returns</h4>
+<p><strong>Type:</strong> <bubble type="string" colors="true"></bubble></p>
+<pre><code data-language="javascript">http://localhost:1337
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="example" permalink="example">Example</h3>
+<p>In a view template...</p>
+<pre><code data-language="html">&lt;a href=&quot;&lt;%=sails.getBaseUrl()%&gt;&quot;&gt;Return to home page&lt;/a&gt;
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>This method constructs a URL solely from configuration options such as <a href=""><code>sails.config.port</code></a> and <a href=""><code>sails.config.explicitHost</code></a> (defaulting to <code>localhost</code>).  It does <em>not</em> do any server introspection.</li>
+</ul>
+</blockquote>
+<docmeta name="displayName" value="sails.getBaseUrl()">
+</docmeta>

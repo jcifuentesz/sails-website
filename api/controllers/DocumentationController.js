@@ -109,10 +109,7 @@ module.exports = {
                                                     "schema": [{
                                                         templateTitle: "Foo-Bar.ejs",
                                                         fullPathAndFileName: "creating-a-machinepack/Getting-Started.ejs",
-                                                        data: {
-                                                            uniqueID: "idk1234",
-                                                            displayName: "Foo Bar"
-                                                        },
+                                                        data: {},
                                                         children: ["some/pat"],
                                                         isChild: true,
                                                         isParent: true,

@@ -9,21 +9,16 @@ request (<code>req._sails</code>).</p>
 The officially supported methods on the <code>sails</code> object are covered by the other
 pages in this section.  Here are a few of its most useful properties:</p>
 <h5 id="sails-models" permalink="sailsmodels">sails.models</h5>
-<blockquote>
-<p>(TODO: finish this section)</p>
-</blockquote>
+<p>A dictionary of all loaded <a href="">Sails models</a>, indexed by their <em>identity</em>.</p>
+<p>By default, a model&apos;s identity is the lowercased version of its filename, without the <strong>.js</strong> extension.  For example, the default identity for a model loaded from <code>api/models/PowerPuff.js</code> would be <code>powerpuff</code>, and the model would be accessible via <code>sails.models.powerpuff</code>.  A model&apos;s identity can be customized by setting an <code>identity</code> property in its module file.</p>
 <h5 id="sails-config" permalink="sailsconfig">sails.config</h5>
-<blockquote>
-<p>(TODO: finish this section - mainly just link to &quot;Configuration&quot; section)</p>
-</blockquote>
+<p>The full set of configuration options for the Sails instance, loaded from a combination of environment variables, <code>.sailsrc</code> files, user-configuration files and defaults.  See the <a href="">configuration concepts section</a> for a full overview of configuring Sails, and the <a href="">configuration reference</a> for details on individual options.</p>
 <h5 id="sails-sockets" permalink="sailssockets">sails.sockets</h5>
-<blockquote>
-<p>(TODO: finish this section - mainly just link to &quot;sails.sockets&quot; reference section)</p>
-</blockquote>
+<p>A set of convenience methods for low-level interaction with connected websockets.  See the <a href=""><code>sails.sockets.*</code> reference section</a> for details.</p>
 <h5 id="sails-hooks" permalink="sailshooks">sails.hooks</h5>
-<blockquote>
-<p>(TODO: finish this section - mainly just link to &quot;Extending Sails/Hooks&quot; conceptual section)</p>
-</blockquote>
+<p>A dictionary of all loaded <a href="">Sails hooks</a>, indexed by their <em>identity</em>.  Use <code>sails.hooks</code> to access properties and methods of hooks you&apos;ve installed to extend Sails; for example, by calling <code>sails.hooks.email.send()</code>.  You can also use this dictionary to access the Sails <a href="">core hooks</a>, for advanced usage.</p>
+<p>By default, a hook&apos;s identity is the lowercased version of its folder name, with any <code>sails-hook-</code> prefix removed.  For example, the default identity for a hook loaded from <code>node_modules/sails-hook-email</code> would be <code>email</code>, and the hook hook would be accessible via <code>sails.hooks.email</code>.  An installed hook&apos;s identity can be changed via the <a href="http://sailsjs-website.herokuapp.com/documentation/concepts/extending-sails/hooks/using-hooks#?changing-the-way-sails-loads-an-installable-hook" target="_blank"><code>installedHooks</code> config property</a>.</p>
+<p>See the <a href="">hooks concept documentation</a> for more info about hooks.</p>
 <h3 id="how-does-it-work-" permalink="how-does-it-work">How does it work?</h3>
 <p>An application instance is automatically created the first time you <code>require(&apos;sails&apos;)</code>.
 This is what is happening in the generated <code>app.js</code> file:</p>
@@ -41,7 +36,6 @@ var sails2 = new Sails();
 </code></pre><!-- __LANG=%%__ -->
 <p>Each app instance (<code>sails0</code>, <code>sails1</code>, <code>sails2</code>) can be loaded/lifted separately,
 using different configuration.</p>
-<!-- For more on using Sails programatically, see the
-conceptual overview on [programatic usage in Sails](). -->
+<p>For more on using Sails programatically, see the conceptual overview on <a href="">programatic usage in Sails</a>.</p>
 <docmeta name="displayName" value="Application">
 </docmeta>

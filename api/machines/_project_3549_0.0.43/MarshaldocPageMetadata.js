@@ -30,7 +30,8 @@ module.exports = {
         "isParent": false,
         "displayNameSlug": "foo-bar",
         "parentDisplayName": "idk",
-        "version": "0.3.6"
+        "version": "0.3.6",
+        "isDeprecated": false
       }]
     }
   },
@@ -61,7 +62,7 @@ module.exports = {
         childrenData = _.sortByOrder(childrenData, ['isParent', 'displayName'], [false, true]);
         // Grab out the deprecated pages
         var deprecatedChildPages = _.remove(childrenData, function(pageData) {
-          return pageData.isDeprecated;
+          return pageData.data.isDeprecated;
         });
         // Then re-add them at the end.
         childrenData = childrenData.concat(deprecatedChildPages);
@@ -152,6 +153,8 @@ module.exports = {
 
       docPage.displayNameSlug = docPage.displayName.replace(/ /g, '-').replace(/\./g, 'point').toLowerCase();
 
+      docPage.isDeprecated = docPage.data.isDeprecated;
+
       var pathSections = docPage.path.split('/');
       var parentPathIndex = pathSections.length - 2;
       docPage.parentDisplayName = pathSections[parentPathIndex];
@@ -175,7 +178,7 @@ module.exports = {
     inputs.docPageMetadatas = _.sortByOrder(inputs.docPageMetadatas, ['isParent', 'displayName'], [false, true]);
     // Grab out the deprecated pages
     var deprecatedPages = _.remove(inputs.docPageMetadatas, function(pageData) {
-      return pageData.isDeprecated;
+      return pageData.data.isDeprecated;
     });
     // Then re-add them at the end.
     inputs.docPageMetadatas = inputs.docPageMetadatas.concat(deprecatedPages);
