@@ -2,6 +2,7 @@
 // This partial has access to:
 //  • `navItems`      (an array of nav item dictionaries)
 //  • `navItem        (a nav item dictionary)
+console.log('DEPRECATED??',navItem.isDeprecated);
 %>
 <span>
   <% // Only have the 'folder' arrow in the template if this is the anatomy page
@@ -40,10 +41,11 @@
       if(_.contains(expandedItems, childNavItem.path)) {
         childNavItem.isInitiallyExpanded = true;
       }
-      else childNavItem.isInitiallyExpanded = false;
-      %>
+      else {
+        childNavItem.isInitiallyExpanded = false
+      };%>
 
-      <li class="<%= childNavItem.isInitiallyExpanded && !childNavItem.isParent ? 'expanded' : childNavItem.isInitiallyExpanded && childNavItem.isParent ? 'expanded current-parent' : ''%>" ng-class="{'current': getIsCurrent('<%= childNavItem.slug %>'), 'expanded': getIsExpanded('<%= childNavItem.path %>'), 'folder': <%= childNavItem.isParent %>}">
+      <li class="<%= childNavItem.isInitiallyExpanded && !childNavItem.isParent ? 'expanded' : childNavItem.isInitiallyExpanded && childNavItem.isParent ? 'expanded current-parent' : ''%>" ng-class="{'current': getIsCurrent('<%= childNavItem.slug %>'), 'expanded': getIsExpanded('<%= childNavItem.path %>'), 'folder': <%= childNavItem.isParent %>, 'deprecated': <%= childNavItem.isDeprecated ? true : false %>}">
       <% /* Take the recursive step, rendering this partial again. */ %>
       <%- partial('../partials/nav-item', {navItem: childNavItem, navItems: navItems, expandedItems: expandedItems}) %>
       </li>

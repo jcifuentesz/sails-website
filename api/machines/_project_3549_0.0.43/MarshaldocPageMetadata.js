@@ -41,6 +41,7 @@ module.exports = {
     var path = require('path');
     var _ = require('lodash');
 
+
     // Before formatting the metadata, sort each doc page's `children` array,
     // First by whether it has children (i.e. can be expanded), then alphabetically.
     inputs.docPageMetadatas = _.map(inputs.docPageMetadatas, function sortDocPageChildren(docPage) {
@@ -56,10 +57,17 @@ module.exports = {
           childrenData.push(childData);
         });
 
-        // Now sort it by 'isParent' and 'displayName'.
+        // Now sort it by'isParent' and 'displayName'.
         childrenData = _.sortByOrder(childrenData, ['isParent', 'displayName'], [false, true]);
+        // Grab out the deprecated pages
+        var deprecatedPages = _.remove(childrenData, function(pageData) {
+          return pageData.isDeprecated;
+        });
+        // Then re-add them at the end.
+        childrenData = childrenData.concat(deprecatedPages);
 
         // Now put it back the way it was.
+        // (As an array of `fullPathAndFileName`s)
         var sortedChildren = [];
         _.each(childrenData, function(child) {
           sortedChildren.push(child.fullPathAndFileName);
