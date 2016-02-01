@@ -60,11 +60,11 @@ module.exports = {
         // Now sort it by'isParent' and 'displayName'.
         childrenData = _.sortByOrder(childrenData, ['isParent', 'displayName'], [false, true]);
         // Grab out the deprecated pages
-        var deprecatedPages = _.remove(childrenData, function(pageData) {
+        var deprecatedChildPages = _.remove(childrenData, function(pageData) {
           return pageData.isDeprecated;
         });
         // Then re-add them at the end.
-        childrenData = childrenData.concat(deprecatedPages);
+        childrenData = childrenData.concat(deprecatedChildPages);
 
         // Now put it back the way it was.
         // (As an array of `fullPathAndFileName`s)
@@ -173,7 +173,12 @@ module.exports = {
 
     // Now sort the metadatas, first by 'isParent', then by 'displayName'.
     inputs.docPageMetadatas = _.sortByOrder(inputs.docPageMetadatas, ['isParent', 'displayName'], [false, true]);
-
+    // Grab out the deprecated pages
+    var deprecatedPages = _.remove(inputs.docPageMetadatas, function(pageData) {
+      return pageData.isDeprecated;
+    });
+    // Then re-add them at the end.
+    inputs.docPageMetadatas = inputs.docPageMetadatas.concat(deprecatedPages);
 
 
     return exits.success(inputs.docPageMetadatas);
