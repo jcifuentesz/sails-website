@@ -55,10 +55,10 @@ angular.module('SailsWebsite')
       // Normally, types are capitalized.
       // But there are a few special exceptions:
       if (displayType.match(/json/i)) {
-        displayType = 'JSON';
+        displayType = displayType.replace(/json/i, 'JSON');
       }
       else if (displayType.match(/req/i)) {
-        displayType = 'req';
+        displayType = displayType.replace(/req/i, 'req');
       }
       else {
         displayType = _.capitalize(displayType);
