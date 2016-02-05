@@ -53,7 +53,7 @@ that can be shared across multiple Sails.js servers:</p>
 <h3 id="using-other-connect-compatible-session-stores" permalink="using-other-connectcompatible-session-stores">Using Other Connect-Compatible Session Stores</h3>
 <p>Any session adapter written for Connect/Express works in Sails, as long as you use a compatible version.</p>
 <p>For example to use Mongo as your session store, you should use version 0.8.4 of <code>connect-mongo</code>.  First, run the following from your project&apos;s directory:</p>
-<pre><code data-language="text">npm install sails-mongo@0.8.4 --save
+<pre><code data-language="text">npm install connect-mongo@0.8.4 --save
 </code></pre><!-- __LANG=%%__ -->
 <p>Then add the following lines to your session configuration dictionary in <code>config/session.js</code>:</p>
 <pre><code data-language="javascript">adapter: &apos;mongo&apos;,

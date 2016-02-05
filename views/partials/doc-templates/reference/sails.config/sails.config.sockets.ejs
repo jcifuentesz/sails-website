@@ -65,7 +65,19 @@
 <td><code>beforeConnect</code></td>
 <td><bubble type="boolean" colors="true"></bubble>, <bubble type="function" colors="true"></bubble></td>
 <td><code>undefined</code></td>
-<td>A function to run every time a new client-side socket attempts to connect to the server which can be used to reject or allow the incoming connection.  Useful for tweaking your production environment to prevent <a href="(http://sailsjs.org/documentation/concepts/Security/DDOS.html">DoS</a> attacks, or reject socket.io connections based on business-specific heuristics (e.g. if stooges from a competing business create bots to post spam links about their commercial product in your public, open-source chat room)  (In Sails v0.9 and v0.10, this was called <code>authorization</code>-- it has changed due to the upgrade to socket.io v1)  To define your own custom logic, specify a function like: <code>beforeConnect: function (handshake, cb) { /* pass back true to allow, false to deny */ return cb(null, true); }</code>  As of Sails v0.11, Sails no longer blocks incoming socket connections without cookies-- instead, cookies (and by corollary- sessions) are granted automatically.  If a requesting socket.io client cannot receive a cookie (i.e. making a cross-origin socket.io connection) the <code>sails.io.js</code> socket client will automatically send a CORS+JSONP request to try and obtain one <strong>BEFORE CONNECTING</strong> (refer to the <code>grant3rdPartyCookie</code> option above for details).  In the antagonistic scenario where even this fails, Sails will still grant a new cookie upon connection, which allows for a one-time session.`</td>
+<td>A function to run every time a new client-side socket attempts to connect to the server which can be used to reject or allow the incoming connection.  Useful for tweaking your production environment to prevent <a href="(http://sailsjs.org/documentation/concepts/Security/DDOS.html">DoS</a> attacks, or reject socket.io connections based on business-specific heuristics (e.g. if stooges from a competing business create bots to post spam links about their commercial product in your public, open-source chat room)  (In Sails v0.9 and v0.10, this was called <code>authorization</code>-- it has changed due to the upgrade to socket.io v1)  To define your own custom logic, specify a function like: <code>beforeConnect: function (handshake, cb) { /* pass back true to allow, false to deny */ return cb(null, true); }</code>  As of Sails v0.11, Sails no longer blocks incoming socket connections without cookies-- instead, cookies (and by corollary- sessions) are granted automatically.  If a requesting socket.io client cannot receive a cookie (i.e. making a cross-origin socket.io connection) the <code>sails.io.js</code> socket client will automatically send a CORS+JSONP request to try and obtain one <strong>BEFORE CONNECTING</strong> (refer to the <code>grant3rdPartyCookie</code> option above for details).  In the antagonistic scenario where even this fails, Sails will still grant a new cookie upon connection, which allows for a one-time session.</td>
+</tr>
+<tr>
+<td><code>afterDisconnect</code></td>
+<td><bubble type="function" colors="true"></bubble></td>
+<td><code>undefined</code></td>
+<td>A function to run when a client-side socket disconnects from the server.  To define your own custom logic, specify a function like <code>afterDisconnect: function (session, socket, cb) {}</code>.</td>
+</tr>
+<tr>
+<td><code>path</code></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td><code>/socket.io</code></td>
+<td>Path that client-side sockets should connect to on the server.  See <a href="http://socket.io/docs/server-api/#server(opts:object" target="_blank">http://socket.io/docs/server-api/#server(opts:object</a>).</td>
 </tr>
 <tr>
 <td><code>pingTimeout</code></td>
