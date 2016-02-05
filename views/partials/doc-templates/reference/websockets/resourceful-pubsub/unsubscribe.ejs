@@ -1,47 +1,48 @@
-<h1 id="-unsubscribe-request-records-contexts-">.unsubscribe(<code>request</code>,<code>records</code>,[<code>contexts</code>])</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>This method will unsubscribe a socket from one or more model instances.</p>
+<h1 id="-unsubscribe-">.unsubscribe()</h1>
+<p>Unsubscribe the requesting client socket from one or more database records.</p>
+<pre><code data-language="javascript">Something.unsubscribe(req, ids);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
+<th style="text-align:left">Argument</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Request</td>
-<td><code>Request object</code></td>
-<td>Yes</td>
+<td style="text-align:left"><code>req</code></td>
+<td style="text-align:center"><bubble type="req" colors="true"></bubble></td>
+<td style="text-align:left">The incoming socket request (<code>req</code>) containing the socket to unsubscribe.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Records</td>
-<td><code>[]</code>, <code>object</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Contexts to unsubscribe from</td>
-<td><code>string</code>, <code>array</code></td>
-<td>No</td>
+<td style="text-align:left"><code>ids</code></td>
+<td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
+<td style="text-align:left">An array of record ids (primary key values).</td>
 </tr>
 </tbody>
 </table>
-<p><em>Note</em>: <code>unsubscribe</code> will only work when the request is made over a socket connection (e.g. using <code>socket.get</code>), <em>not</em> over an http connection (e.g. using <code>jquery.get</code>).</p>
-<h4 id="-context-" permalink="context"><code>context</code></h4>
-<p>See <code>.subscribe()</code> for a discussion of pubsub contexts.  Omit this argument to unsubscribe a socket from all contexts.</p>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<p>Controller Code</p>
-<pre><code data-language="javascript">User.findOne({id: 123}).exec(function(err, userInstance) {
-    User.unsubscribe(req.socket, userInstance);
+<h3 id="example" permalink="example">Example</h3>
+<pre><code data-language="javascript">User.find({name: &apos;Lenny&apos;}).exec(function(err, lennies) {
+  if (err) return res.serverError(err);
+  if (req.isSocket) {
+    User.unsubscribe( req, _.pluck(lennies, &apos;id&apos;) );
+  }
+  return res.ok();
 });
 </code></pre><!-- __LANG=%%__ -->
-<p><docmeta name="methodType" value="pubsub"></docmeta></p>
-<p><docmeta name="importance" value="undefined"></docmeta></p>
-<docmeta name="displayName" value=".unsubscribe()">
-
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to refer to the requesting socket.  The provided <code>req</code> must be from a socket request, not just any old HTTP request.</li>
+<li><code>unsubscribe</code> will only work when the request is made over a socket connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over HTTP (e.g. using <code>jQuery.get()</code>).</li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value=".unsubscribe()"></docmeta></p>
+<docmeta name="pageType" value="method">
 </docmeta>

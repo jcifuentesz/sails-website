@@ -1,5 +1,8 @@
 <h1 id="waterline-query-language">Waterline Query Language</h1>
 <p>The Waterline Query language is an object-based criteria used to retrieve the records from any of the supported database adapters. This means that you can use the same query on MySQL as you do on Redis or MongoDb. This allows you to change your database without changing your code.</p>
+<blockquote>
+<p>All queries inside of Waterline are case insensitive. This allows for easier querying but makes indexing strings tough. This is something to be aware of if you are indexing and searching on string fields.</p>
+</blockquote>
 <h3 id="query-language-basics" permalink="query-language-basics">Query Language Basics</h3>
 <p>The criteria objects are formed using one of four types of object keys. These are the top level
 keys used in a query object. It is loosely based on the criteria used in MongoDB with a few slight variations.</p>

@@ -1,10 +1,10 @@
-<h1 id="socket-delete-">socket.delete()</h1>
-<p>Sends a virtual DELETE request to a Sails server using Socket.io.</p>
-<h3 id="usage" permalink="usage">Usage</h3>
+<h1 id="io-socket-delete-">io.socket.delete()</h1>
+<p>Send a virtual DELETE request to a Sails server using Socket.io.</p>
 <pre><code data-language="javascript">io.socket.delete(url, data, function (data, jwres){
   // ...
 });
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
 <tr>
@@ -23,14 +23,14 @@
 </tr>
 <tr>
 <td>2</td>
-<td><code>data</code></td>
-<td style="text-align:center"><bubble type="*" colors="true"></bubble></td>
+<td><em><code>data</code></em></td>
+<td style="text-align:center"><bubble type="json?" colors="true"></bubble></td>
 <td>Optional request data- if provided, will be URL encoded and appended to <code>url</code> (existing query string params in url will be preserved)</td>
 </tr>
 <tr>
 <td>3</td>
-<td><code>callback</code></td>
-<td style="text-align:center"><bubble type="function" colors="true"></bubble></td>
+<td><em><code>callback</code></em></td>
+<td style="text-align:center"><bubble type="function?" colors="true"></bubble></td>
 <td>Optional callback- if provided, will be called when the server responds.</td>
 </tr>
 </tbody>
@@ -49,14 +49,14 @@
 <tr>
 <td>1</td>
 <td><code>resData</code></td>
-<td style="text-align:center"><bubble type="*" colors="true"></bubble></td>
+<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
 <td>Data received in the response from the Sails server (=== <code>jwres.body</code>, equivalent to the HTTP response body.)</td>
 </tr>
 <tr>
 <td>2</td>
 <td><code>jwres</code></td>
-<td style="text-align:center"><bubble type="JWR" colors="true"></bubble></td>
-<td>The <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">JSON WebSocket Response</a> object.  Has <code>headers</code>, a <code>body</code>, and a <code>statusCode</code>.</td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
+<td>A <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">JSON WebSocket Response</a> object.  Has <code>headers</code>, a <code>body</code>, and a <code>statusCode</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -67,6 +67,13 @@ io.socket.delete(&apos;/users/9&apos;, function (resData) {
 });
 &lt;/script&gt;
 </code></pre><!-- __LANG=%%__ -->
-<docmeta name="displayName" value="io.socket.delete()">
-
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>Remember that you can communicate with <em>any of your routes</em> using socket requests.</li>
+<li>Need to customize request headers?  Check out the slightly lower-level <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-request" target="_blank"><code>io.socket.request()</code></a> method, or to set custom headers for <em>all</em> outgoing requests, check out <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails" target="_blank"><code>io.sails.headers</code></a>.</li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value="io.socket.delete()"></docmeta></p>
+<docmeta name="pageType" value="method">
 </docmeta>

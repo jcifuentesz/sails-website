@@ -1,4 +1,5 @@
 <h1 id="many-to-many">Many-to-Many</h1>
+<p><strong>AKA &quot;Has and Belongs To Many&quot;</strong></p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>A many-to-many association states that a model can be associated with many other models and vice-versa.
 Because both models can have many related models a new join table will need to be created to keep track
@@ -10,289 +11,113 @@ is needed on the <code>collection</code> attribute. This states which <code>mode
 association is used to populate the records.</p>
 <p>Using the <code>User</code> and <code>Pet</code> example lets look at how to build a schema where a <code>User</code> may have many
 <code>Pet</code> records and a <code>Pet</code> may have multiple owners.</p>
-<h3 id="many-to-many-example" permalink="manytomany-example">Many-to-Many Example</h3>
-<p>In this example, we will start with an array of users and an array of pets.  We will create records for each element in each array then associate all of the <code>Pets</code> with all of the <code>Users</code>.  If everything worked properly, we should be able to query any <code>User</code> and see that they &apos;own&apos; all of the <code>Pets</code>.  Furthermore, we should be able to query any <code>Pet</code> and see that it is &apos;owned&apos; by every <code>User</code>.</p>
-<p><code>myApp/api/models/pet.js</code></p>
-<pre><code data-language="javascript">module.exports = {
+<pre><code data-language="javascript">// myApp/api/models/User.js
+// A user may have many pets
+module.exports = {
+  attributes: {
+    firstName: {
+      type: &apos;string&apos;
+    },
+    lastName: {
+      type: &apos;string&apos;
+    },
 
-    attributes: {
-        name:&apos;STRING&apos;,
-        color:&apos;STRING&apos;,
-
-        // Add a reference to User
-        owners: {
-            collection: &apos;user&apos;,
-            via: &apos;pets&apos;
-        }
+    // Add a reference to Pet
+    pets: {
+      collection: &apos;pet&apos;,
+      via: &apos;owners&apos;,
+      dominant: true
     }
-}
-</code></pre><!-- __LANG=%%__ -->
-<p><code>myApp/api/models/user.js</code></p>
-<pre><code data-language="javascript">module.exports = {
-
-    attributes: {
-        name:&apos;STRING&apos;,
-        age:&apos;INTEGER&apos;,
-
-        // Add a reference to Pet
-        pets:{
-            collection: &apos;pet&apos;,
-            via: &apos;owners&apos;
-        }
-    }
-
-}
-</code></pre><!-- __LANG=%%__ -->
-<p><code>myApp/config/bootstrap.js</code></p>
-<pre><code data-language="javascript">module.exports.bootstrap = function (cb) {
-
-// After we create our users, we will store them here to associate with our pets
-var storeUsers = []; 
-
-var users = [{name:&apos;Mike&apos;,age:&apos;16&apos;},{name:&apos;Cody&apos;,age:&apos;25&apos;},{name:&apos;Gabe&apos;,age:&apos;107&apos;}];
-var ponys = [{ name: &apos;Pinkie Pie&apos;, color: &apos;pink&apos;},{ name: &apos;Rainbow Dash&apos;,color: &apos;blue&apos;},{ name: &apos;Applejack&apos;, color: &apos;orange&apos;}]
-
-// This does the actual associating.
-// It takes one Pet then iterates through the array of newly created Users, adding each one to it&apos;s join table
-var associate = function(onePony,cb){
-  var thisPony = onePony;
-  var callback = cb;
-
-  storeUsers.forEach(function(thisUser,index){
-    console.log(&apos;Associating &apos;,thisPony.name,&apos;with&apos;,thisUser.name);
-    thisUser.pets.add(thisPony.id);
-    thisUser.save(console.log);
-
-    if (index === storeUsers.length-1)
-      return callback(thisPony.name);
-  })
-};
-
-
-// This callback is run after all of the Pets are created.
-// It sends each new pet to &apos;associate&apos; with our Users  
-var afterPony = function(err,newPonys){
-  while (newPonys.length){
-    var thisPony = newPonys.pop();
-    var callback = function(ponyID){
-      console.log(&apos;Done with pony &apos;,ponyID)
-    }
-    associate(thisPony,callback)
   }
-  console.log(&apos;Everyone belongs to everyone!! Exiting.&apos;);
-
-  // This callback lets us leave bootstrap.js and continue lifting our app!
-  return cb()
-};
-
-// This callback is run after all of our Users are created.
-// It takes the returned User and stores it in our storeUsers array for later.
-var afterUser = function(err,newUsers){
-  while (newUsers.length)
-    storeUsers.push(newUsers.pop())
-
-  Pet.create(ponys).exec(afterPony)
-};
-
-
-User.create(users).exec(afterUser)
-
 };
 </code></pre><!-- __LANG=%%__ -->
-<p>Lifting our app with <code>sails console</code></p>
-<pre><code data-language="javascript">dude@littleDude:~/node/myApp$ sails console
+<pre><code data-language="javascript">// myApp/api/models/Pet.js
+// A pet may have many owners
+module.exports = {
+  attributes: {
+    breed: {
+      type: &apos;string&apos;
+    },
+    type: {
+      type: &apos;string&apos;
+    },
+    name: {
+      type: &apos;string&apos;
+    },
 
-info: Starting app in interactive mode...
+    // Add a reference to User
+    owners: {
+      collection: &apos;user&apos;,
+      via: &apos;pets&apos;
+    }
+  }
+};
+</code></pre><!-- __LANG=%%__ -->
+<p>Now that the <code>User</code> and <code>Pet</code> models have been created and the join table has been setup
+automatically, we can start associating records and querying the join table. To do this lets add a
+<code>User</code> and <code>Pet</code> and then associate them together.</p>
+<p>There are two ways of creating associations when a many-to-many association is used. You can associate
+two existing records together or you can associate a new record to the existing record. To show how
+this is done we will introduce the special methods attached to a <code>collection</code> attribute: <code>add</code> and <code>remove</code>.</p>
+<p>Both these methods are sync methods that will queue up a set of operations to be run when an instance
+is saved. If a primary key is used for the value on an <code>add</code>, a new record in the join table will be
+created linking the current model to the record specified in the primary key. However if an object
+is used as the value in an <code>add</code>, a new model will be created and then the primary key of that model
+will be used in the new join table record. You can also use an array of previous values.</p>
+<blockquote>
+<p>When using <code>.save()</code> a populate call will be performed to return the newly saved data to you. If you would prefer this not to happen you can use an optional config flag in the <code>.save()</code> command. Example: <code>.save({ populate: false }, function(err) {})</code></p>
+</blockquote>
+<h2 id="when-both-records-exist" permalink="when-both-records-exist">When Both Records Exist</h2>
+<pre><code data-language="javascript">// Given a User with ID 2 and a Pet with ID 20
 
-Associating  Applejack with Gabe
-Associating  Applejack with Cody
-Associating  Applejack with Mike
-Done with pony  Applejack
-Associating  Rainbow Dash with Gabe
-Associating  Rainbow Dash with Cody
-Associating  Rainbow Dash with Mike
-Done with pony  Rainbow Dash
-Associating  Pinkie Pie with Gabe
-Associating  Pinkie Pie with Cody
-Associating  Pinkie Pie with Mike
-Done with pony  Pinkie Pie
-Everyone belongs to everyone!! Exiting.
-info: Welcome to the Sails console.
-info: ( to exit, type &lt;CTRL&gt;+&lt;C&gt; )
+User.findOne(2).exec(function(err, user) {
+  if(err) // handle error
 
-sails&gt; null { name: &apos;Gabe&apos;,
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: &apos;Cody&apos;,
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: &apos;Mike&apos;,
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-null { name: &apos;Gabe&apos;,
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: &apos;Cody&apos;,
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: &apos;Mike&apos;,
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-null { name: &apos;Gabe&apos;,
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-null { name: &apos;Cody&apos;,
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-null { name: &apos;Mike&apos;,
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-sails&gt; Pet.find().populate(&apos;owners&apos;).exec(function(e,r){while(r.length){var thisPet=r.pop();console.log(thisPet.toJSON())}});
-{ owners: 
-   [ { name: &apos;Mike&apos;,
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Cody&apos;,
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Gabe&apos;,
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Applejack&apos;,
-  color: &apos;orange&apos;,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-{ owners: 
-   [ { name: &apos;Mike&apos;,
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Cody&apos;,
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Gabe&apos;,
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Rainbow Dash&apos;,
-  color: &apos;blue&apos;,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-{ owners: 
-   [ { name: &apos;Mike&apos;,
-       age: 16,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Cody&apos;,
-       age: 25,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Gabe&apos;,
-       age: 107,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Pinkie Pie&apos;,
-  color: &apos;pink&apos;,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
-sails&gt; User.find().populate(&apos;pets&apos;).exec(function(e,r){while(r.length){var thisUser=r.pop();console.log(thisUser.toJSON())}});
-{ pets: 
-   [ { name: &apos;Pinkie Pie&apos;,
-       color: &apos;pink&apos;,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Rainbow Dash&apos;,
-       color: &apos;blue&apos;,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Applejack&apos;,
-       color: &apos;orange&apos;,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Gabe&apos;,
-  age: 107,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 9 }
-{ pets: 
-   [ { name: &apos;Pinkie Pie&apos;,
-       color: &apos;pink&apos;,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Rainbow Dash&apos;,
-       color: &apos;blue&apos;,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Applejack&apos;,
-       color: &apos;orange&apos;,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Cody&apos;,
-  age: 25,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 8 }
-{ pets: 
-   [ { name: &apos;Pinkie Pie&apos;,
-       color: &apos;pink&apos;,
-       id: 7,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Rainbow Dash&apos;,
-       color: &apos;blue&apos;,
-       id: 8,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) },
-     { name: &apos;Applejack&apos;,
-       color: &apos;orange&apos;,
-       id: 9,
-       createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-       updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  name: &apos;Mike&apos;,
-  age: 16,
-  createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
-  id: 7 }
+  // Queue up a record to be inserted into the join table
+  user.pets.add(20);
+
+  // Save the user, creating the new associations in the join table
+  user.save(function(err) {});
+});
+</code></pre><!-- __LANG=%%__ -->
+<h2 id="with-a-new-record" permalink="with-a-new-record">With A New Record</h2>
+<pre><code data-language="javascript">User.findOne(2).exec(function(err, user) {
+  if(err) // handle error
+
+  // Queue up a new pet to be added and a record to be created in the join table
+  user.pets.add({ breed: &apos;labrador&apos;, type: &apos;dog&apos;, name: &apos;fido&apos; });
+
+  // Save the user, creating the new pet and associations in the join table
+  user.save(function(err) {});
+});
+</code></pre><!-- __LANG=%%__ -->
+<h2 id="with-an-array-of-existing-records" permalink="with-an-array-of-existing-records">With An Array of Existing Records</h2>
+<pre><code data-language="javascript">// Given a User with ID 2 and a Pet with ID 20, 24, 31
+
+User.findOne(2).exec(function(err, user) {
+  if(err) // handle error
+
+  // Queue up a record to be inserted into the join table
+  user.pets.add([ 20, 24, 31 ]);
+
+  // Save the user, creating the new pet and associations in the join table
+  user.save(function(err) {});
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>Removing associations is just as easy using the <code>remove</code> method. It works the same as the <code>add</code>
+method except it only accepts primary keys as a value. The two methods can be used together as well.</p>
+<pre><code data-language="javascript">User.findOne(2).exec(function(err, user) {
+  if(err) // handle error
+
+  // Queue up a new pet to be added and a record to be created in the join table
+  user.pets.add({ breed: &apos;labrador&apos;, type: &apos;dog&apos;, name: &apos;fido&apos; });
+
+  // Queue up a join table record to remove
+  user.pets.remove(22);
+
+  // Save the user, creating the new pet and syncing the associations in the join table
+  user.save(function(err) {});
+});
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>

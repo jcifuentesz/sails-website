@@ -1,59 +1,56 @@
 <h1 id="one-way-association">One Way Association</h1>
+<p><strong>AKA &quot;Belongs To&quot;</strong></p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>A one way association is where a model is associated with another model.  You could query that model and populate to get the associated model.  You can&apos;t however query the associated model and populate to get the associating model.</p>
 <h3 id="one-way-example" permalink="one-way-example">One Way Example</h3>
 <p>In this example, we are associating a <code>User</code> with a <code>Pet</code> but not a <code>Pet</code> with a <code>User</code>.</p>
-<p><code>myApp/api/models/pet.js</code></p>
-<pre><code data-language="javascript">module.exports = {
-
-    attributes: {
-        name:&apos;STRING&apos;,
-        color:&apos;STRING&apos;
+<pre><code data-language="javascript">// myApp/api/models/Pet.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    color: {
+      type: &apos;string&apos;
     }
-
+  }
 }
 </code></pre><!-- __LANG=%%__ -->
-<p><code>myApp/api/models/user.js</code></p>
-<pre><code data-language="javascript">module.exports = {
-
-    attributes: {
-        name:&apos;STRING&apos;,
-        age:&apos;INTEGER&apos;,
-        pony:{
-            model: &apos;pet&apos;
-        }
+<pre><code data-language="javascript">// myApp/api/models/User.js
+module.exports = {
+  attributes: {
+    name: {
+      type: &apos;string&apos;
+    },
+    age: {
+      type: &apos;integer&apos;
+    },
+    pony:{
+      model: &apos;pet&apos;
     }
-
+  }
 }
 </code></pre><!-- __LANG=%%__ -->
-<p>Using <code>sails console</code></p>
-<pre><code data-language="javascript">sails&gt; Pet.create({name:&apos;Pinkie Pie&apos;,color:&apos;pink&apos;}).exec(console.log)
-null { name: &apos;Pinkie Pie&apos;,
-  color: &apos;pink&apos;,
-  createdAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST),
-  updatedAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST),
-  id: 5 }
+<p>Now that the association is setup, you can populate the pony association.</p>
+<pre><code data-language="javascript">User.find({ name:&apos;Mike&apos; })
+.populate(&apos;pony&apos;)
+.exec(function(err, users) {
 
-sails&gt; User.create({name:&apos;Mike&apos;,age:21,pony:5}).exec(console.log);
-null { name: &apos;Mike&apos;,
-  age: 21,
-  pony: 5,
-  createdAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
-  updatedAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
-  id: 1 }
-
-sails&gt; User.find({name:&apos;Mike&apos;}).populate(&apos;pony&apos;).exec(console.log);
-null [ { name: &apos;Mike&apos;,
-    age: 21,
-    pony: 
-     { name: &apos;Pinkie Pie&apos;,
-       color: &apos;pink&apos;,
-       id: 5,
-       createdAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST),
-       updatedAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST) },
-    createdAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
-    updatedAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
-    id: 1 } ]
+  // The users object would look something like:
+  // [{ 
+  //  name: &apos;Mike&apos;,
+  //  age: 21,
+  //  pony: { 
+  //    name: &apos;Pinkie Pie&apos;,
+  //    color: &apos;pink&apos;,
+  //    id: 5,
+  //    createdAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST),
+  //    updatedAt: Tue Feb 11 2014 15:45:33 GMT-0600 (CST) 
+  //  },
+  //  createdAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
+  //  updatedAt: Tue Feb 11 2014 15:48:53 GMT-0600 (CST),
+  //  id: 1 
+  // }]
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>

@@ -1,4 +1,7 @@
-<h1 id="sails-sockets-emit-socketids-event-data-">sails.sockets.emit( <code>socketIds</code>, [<code>event</code>], <code>data</code>)</h1>
+<h1 id="sails-sockets-emit-">sails.sockets.emit()</h1>
+<blockquote>
+<p><em><strong>This method is deprecated</strong>.  Use  <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/sails-sockets-broadcast" target="_blank"><code>.broadcast()</code></a> instead.</em></p>
+</blockquote>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
 <p>Send a message to one or more sockets by id.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
@@ -34,58 +37,24 @@
 </tbody>
 </table>
 <h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<h6 id="in-a-controller">In a controller</h6>
-<pre><code data-language="javascript">User.findOne({ id: req.session.userId }).exec(function (err, user) {
-  if (err) {
-    return res.negotiate(err);
-  }
+<pre><code data-language="javascript">// Controller action
 
-  try {
-    sails.sockets.emit(req.param(&apos;friendSocketId&apos;), &apos;privateMessage&apos;, {
-      from: req.session.userId,
-      msg: &apos;Hi!&apos;
+sayHiToFriend: function(req, res) {
+    var friendId = req.param(&apos;friendId&apos;);
+    sails.sockets.emit(friendId, &apos;privateMessage&apos;, {from: req.session.userId, msg: &apos;Hi!&apos;});
+    res.json({
+      message: &apos;Message sent!&apos;
     });
-    return res.ok();
-  }
-  // Notice that we use a `try/catch` here since we are inside an asynchronous
-  // callback (and not using promises).  This is because the provided socket id
-  // is coming in as a request parameter, and so cannot be trusted to necessarily exist.
-  // If the socket id is unrecognized, `sails.sockets.emit()` throws an error-- and so
-  // using a `catch` here allows us to handle that error.
-  catch (e) {
-    return res.negotiate(e);
-  }
-});
+}
 </code></pre><!-- __LANG=%%__ -->
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<h1 id="-warning-if-_any_-of-the-target-socket-ids-are-unknown-an-error-is-thrown-if-you-are-calling-sails-sockets-emit-in-an-asynchronous-callback-but-are-not-sure-that-the-socket-ids-you-are-using-still-exist-_be-sure_-to-wrap-the-call-in-a-try-catch-to-prevent-crashing-the-server-">&gt; <strong>Warning:</strong> If <em>any</em> of the target socket ids are unknown, an error is thrown.  If you are calling <code>sails.sockets.emit()</code> in an asynchronous callback, but are not sure that the socket ids you are using still exist, <em>be sure</em> to wrap the call in a try/catch to prevent crashing the server.</h1>
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
 <li>If the event name is not specified then the &quot;message&quot; event will be used by default. That means that target sockets listening for the <code>message</code> event in client-side code (e.g. <code>io.socket.on(&apos;message&apos;, function (data){ /* ... */ })</code>) will have that event handler triggered.</li>
-<li>If <em>any</em> of the target socket ids are unknown, an error is thrown (this error has a <code>code</code> property equal to <code>SAILS:HOOK:SOCKETS:NO_SUCH_SOCKET</code>).<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>origin/master</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
+<li>If <em>any</em> of the target socket ids are unknown, an error is thrown (this error has a <code>code</code> property equal to <code>SAILS:HOOK:SOCKETS:NO_SUCH_SOCKET</code>).</li>
 </ul>
 </blockquote>
-<h3 id="notes" permalink="notes">Notes</h3>
-<blockquote>
-<ul>
-<li>If the event name is not specified then the &quot;message&quot; event will be used by default. That means that target sockets listening for the <code>message</code> event in client-side code (e.g. <code>io.socket.on(&apos;message&apos;, function (data){ /* ... */ })</code>) will have that event handler triggered.</li>
-<li>If <em>any</em> of the target socket ids are unknown, an error is thrown.</li>
-</ul>
-</blockquote>
-<docmeta name="displayName" value="sails.sockets.emit()">
+<p><docmeta name="displayName" value="sails.sockets.emit()"></docmeta></p>
+<docmeta name="isDeprecated" value="true">
 
 </docmeta>

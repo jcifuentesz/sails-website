@@ -2,7 +2,7 @@
 <p>Configuration for Sails built-in session store.</p>
 <p>Sails session integration leans heavily on the great work already done by Express and Connect, but also adds
 a bit of its own special sauce to unify Socket.io with the Connect session store. It uses Connect&#x2019;s
-cookie parser to normalize configuration differences between Express and Socket.io and hooks into Sails&#x2019; 
+cookie parser to normalize configuration differences between Express and Socket.io and hooks into Sails&#x2019;
 request interpreter to allow Sails to automatically access and auto-save changes your code makes to <code>req.session</code>
 when handling a virtual request from Socket.io. That means that you can just write code that uses <code>req.session</code>
 in the way you might be used to from Express or Connect.</p>
@@ -72,9 +72,12 @@ that can be shared across multiple Sails.js servers:</p>
         ssl: false,
         stringify: true
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="notes" permalink="notes">Notes</h3>
-<h6 id="disabling-sessions">Disabling sessions</h6>
+<blockquote>
+<p><strong>Note:</strong>
+If you run into kerberos-related issues when using the MongoDB as your session store or the database for one or more of your app&apos;s models, be sure and have a look at the relevant <a href="http://mongodb.github.io/node-mongodb-native/2.0/getting-started/installation-guide/#troubleshooting" target="_blank">troubleshooting page</a> in the Mongo docs.  Also see <a href="https://github.com/balderdashy/sails/issues/3362" target="_blank">#3362</a> for more diagnostic information about using Kerberos with Mongo in your Sails app.</p>
+</blockquote>
+<h3 id="disabling-sessions" permalink="disabling-sessions">Disabling sessions</h3>
 <p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook.  Note that tthe process for disabling any hook is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">disabling the Grunt hook</a> (just type <code>grunt</code> instead of <code>session</code>).</p>
-<docmeta name="displayName" value="sails.config.session">
-
+<p><docmeta name="displayName" value="sails.config.session"></docmeta></p>
+<docmeta name="pageType" value="property">
 </docmeta>

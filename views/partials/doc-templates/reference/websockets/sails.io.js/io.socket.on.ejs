@@ -1,17 +1,17 @@
 <h1 id="io-socket-on-">io.socket.on()</h1>
-<p>Starts listening for server-sent events from Sails with the specified <code>eventIdentity</code>.  Will trigger the provided callback function when a matching event is received.</p>
-<h3 id="usage" permalink="usage">Usage</h3>
+<p>Start listening for server-sent events from Sails with the specified <code>eventIdentity</code>.  Will trigger the provided callback function when a matching event is received.</p>
 <pre><code data-language="javascript">io.socket.on(eventIdentity, function (msg) {
   // ...
 });
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>Argument</th>
 <th style="text-align:center">Type</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
@@ -19,42 +19,42 @@
 <td>1</td>
 <td><code>eventIdentity</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td>The unique identity of a server-sent event, e.g. &quot;recipe&quot;</td>
+<td style="text-align:left">The unique identity of a server-sent event, e.g. &quot;recipe&quot;</td>
 </tr>
 <tr>
 <td>2</td>
-<td><code>callback</code></td>
+<td><code>handlerFn</code></td>
 <td style="text-align:center"><bubble type="function" colors="true"></bubble></td>
-<td>Will be called when the server emits a message to this socket.</td>
+<td style="text-align:left">Will be called when the server emits a message to this socket.</td>
 </tr>
 </tbody>
 </table>
-<h5 id="callback" permalink="callback">Callback</h5>
+<h5 id="event-handler" permalink="event-handler">Event handler</h5>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>Argument</th>
 <th style="text-align:center">Type</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
 <td><code>msg</code></td>
-<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
-<td>Message sent from the Sails server</td>
+<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
+<td style="text-align:left">The message broadcasted from the Sails server.</td>
 </tr>
 </tbody>
 </table>
-<p>Note that the callback will NEVER trigger until one of your back-end controllers, models, services, etc. sends a message to this socket.  Typically that is achieved one of the following ways:</p>
+<p>Note that the event handler will NEVER be called until one of your back-end controllers, models, services, etc. sends a message to this socket.  Typically that is achieved one of the following ways:</p>
 <h6 id="resourceful-pubsub-methods">Resourceful Pubsub Methods</h6>
 <ul>
 <li>server publishes a message about a record to which this socket is subscribed (see <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/publishUpdate.html" target="_blank">Model.publishUpdate()</a>, <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/publishDestroy.html" target="_blank">Model.publishDestroy()</a>, and <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/subscribe.html" target="_blank">Model.subscribe()</a>)</li>
 <li>server publishes a message informing all permitted watcher sockets that a new record has been created in the model with the same identity as <code>eventIdentity</code> (see <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/publishCreate.html" target="_blank">Model.publishCreate(http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/publishCreate.html)</a> and <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/watch.html" target="_blank">Model.watch()</a>)</li>
 </ul>
-<h6 id="low-level-socket-methods">Low-Level Socket Methods</h6>
+<h6 id="low-level-socket-methods-sails-sockets-">Low-Level Socket Methods (<code>sails.sockets</code>)</h6>
 <ul>
 <li>server emits a message to all known sockets (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.blast.html" target="_blank">sails.sockets.blast()</a>)</li>
 <li>server emits a message directly to this socket (<code>io.socket</code>) using its unique id (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.emit.html" target="_blank">sails.sockets.emit()</a>)</li>
@@ -63,7 +63,7 @@
 <h3 id="example" permalink="example">Example</h3>
 <p>Listen for new orders and updates to existing orders:</p>
 <pre><code data-language="javascript">io.socket.on(&apos;order&apos;, function onServerSentEvent (msg) {
-  // msg =&gt; {...whatever the server published/emitted...}
+  // msg =&gt; {...whatever the server broadcasted...}
 });
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="another-example-this-time-using-angular-" permalink="another-example,-this-time-using-angular">Another example, this time using Angular:</h5>
@@ -93,7 +93,7 @@
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="handle-socket-connect-and-disconnect-events" permalink="handle-socket-connect-and-disconnect-events">Handle Socket &apos;Connect&apos; and &apos;Disconnect&apos; events</h3>
-<p>If connection to server was interrupted - server was restarted or some network issue - it is possible to handle these events and subscribe to sockets again.</p>
+<p>If a socket&apos;s connection to the server was interrupted-- perhaps because the server was restarted, or the client had some kind of network issue-- it is possible to handle <code>connect</code> and <code>disconnect</code> events and manually reconnect the socket again.  <code>sails.io.js</code> does this for you automatically, but you can also bind your own handlers.  While <strong>this is not recommended for 99% of apps</strong>, usage is documented below for completeness:</p>
 <pre><code data-language="javascript">io.socket.on(&apos;connect&apos;, function(){
       io.socket.get(&apos;/messages&apos;);
       io.socket.get(&apos;/notifications/subscribe/statusUpdates&apos;);
@@ -110,5 +110,7 @@
 <li>For context-- these types of server-sent events are sometimes referred to as <a href="http://en.wikipedia.org/wiki/Comet_(programming" target="_blank">&quot;comet&quot;</a>) messages.</li>
 </ul>
 </blockquote>
-<docmeta name="displayName" value="io.socket.on()">
+<p><docmeta name="displayName" value="io.socket.on()"></docmeta></p>
+<docmeta name="pageType" value="method">
+
 </docmeta>

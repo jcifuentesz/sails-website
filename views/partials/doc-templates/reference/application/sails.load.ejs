@@ -1,0 +1,83 @@
+<h1 id="sails-load-">sails.load()</h1>
+<p>Load a Sails app into memory.  This involves loading configuration and initializing hooks and the router.</p>
+<pre><code data-language="javascript">sails.load([options], [callback]);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Argument</th>
+<th>Type</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>options</td>
+<td><bubble type="dictionary" colors="true"></bubble></td>
+<td>(optional) A dictionary of configuration options that will override all options present on the command line or in config files</td>
+</tr>
+<tr>
+<td>2</td>
+<td>callback</td>
+<td><bubble type="function" colors="true"></bubble></td>
+<td>(optional) A function to call when loading is complete (or if an error occurs)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="callback" permalink="callback">Callback</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Argument</th>
+<th style="text-align:center">Type</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>err</code></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
+<td>An error object, if any errors occurred while loading</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>sails</code></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
+<td>A reference to the loaded Sails instance</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example" permalink="example">Example</h3>
+<pre><code data-language="javascript">var Sails = require(&apos;sails&apos;).constructor;
+var sailsApp = new Sails();
+sailsApp.load(
+  {
+    log: {
+      level: &apos;error&apos;
+    }
+  },
+  function (err, loadedApp) {
+    if (err) {
+      return console.log(&quot;Error occurred loading Sails app: &quot;, err);
+    }
+    // Note that loadedApp === sailsApp
+    console.log(&quot;Sails app loaded successfully!&quot;);
+  }
+)
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>The difference between <code>.lift()</code> and <a href="http://sailsjs.org/documentation/reference/application/sails-load" target="_blank"><code>.load()</code></a> is that <code>.lift()</code> takes the additional steps of (1) running the app&apos;s <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap" target="_blank">bootstrap</a> (if any), and (2) emitting the <code>ready</code> event.  The core <code>http</code> hook will typically respond to the <code>ready</code> event by starting an HTTP server on the port configured via <code>sails.config.port</code> (1337 by default).</li>
+<li>Even though a Sails app does not listen for requests on an HTTP port, you can make &quot;virtual&quot; requests to it using <a href="http://sailsjs.org/documentation/reference/application/sails-request" target="_blank"><code>sails.request</code></a></li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value="sails.load()"></docmeta></p>
+<docmeta name="pageType" value="method">
+
+</docmeta>

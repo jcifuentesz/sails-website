@@ -31,9 +31,9 @@
 </tr>
 <tr>
 <td><code>locals</code></td>
-<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
 <td><code>{}</code></td>
-<td>Default data to be included as <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html" target="_blank">view locals</a> every time a server-side view is compiled anywhere in this app.</td>
+<td>Default data to be included as <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html" target="_blank">view locals</a> every time a server-side view is compiled anywhere in this app.  If an optional <code>locals</code> argument was passed in directly via <code>res.view()</code>, its properties take precedence when both dictionaries are merged and provided to the view (more on that below)</td>
 </tr>
 </tbody>
 </table>
@@ -41,7 +41,11 @@
 <blockquote>
 <ul>
 <li>If your app is NOT using <code>ejs</code> (the default view engine) Sails will function as if the <code>layout</code> option was set to <code>false</code>.  To take advantage of layouts when using a custom view engine like Jade or Handlebars, check out <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html" target="_blank">that view engine&apos;s documentation</a> to find the appropriate syntax.</li>
+<li>As of Sails 0.12.0, app-wide locals from <code>sails.config.views.locals</code> are combined with any one-off locals you use with <code>res.view()</code> using a <strong>shallow merge strategy</strong>.  That is, if your app-wide locals configuration is <code>{foo: 3, bar: { baz: &apos;beep&apos; } }</code>, and then you use <code>res.view({bar: &apos;boop&apos;})</code>, your view will have access to <code>foo</code> (<code>3</code>) and <code>bar</code> (<code>&apos;boop&apos;</code>).</li>
 </ul>
 </blockquote>
-<docmeta name="displayName" value="sails.config.views">
+<p><docmeta name="displayName" value="sails.config.views"></docmeta></p>
+<docmeta name="pageType" value="property">
+
+
 </docmeta>

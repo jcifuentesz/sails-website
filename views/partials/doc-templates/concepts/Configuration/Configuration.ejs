@@ -19,6 +19,13 @@ module.exports.blueprints = {
 <li>Any files saved under the <code>/config/env/&lt;environment-name&gt;</code> folder will be loaded <em>only</em> when Sails is lifted in the <code>&lt;environment-name&gt;</code> environment.  For example, files saved under <code>config/env/production</code> will only be loaded when Sails is lifted in production mode.</li>
 <li>Any files saved as <code>config/env/&lt;environment-name&gt;.js</code> will be loaded <em>only</em> when Sails is lifted in the <code>&lt;environment-name&gt;</code> environment, and will be merged on top of any settings loaded from the environment-specific subfolder.  For example, settings in <code>config/env/production.js</code> will take precedence over those in the files in the  <code>config/env/production</code> folder.  </li>
 </ul>
+<p>By default, your app runs in the &quot;development&quot; environment.  The recommended approach for changing your app&apos;s environment is by using the <code>NODE_ENV</code> environment variable:</p>
+<pre><code data-language="text">NODE_ENV=production node app.js
+</code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>The <code>production</code> environment is special-- depending on your configuration, it enables compression, caching, minification, etc. </p>
+<p>Also note that if you are using <code>config/local.js</code>, the configuration exported in that file takes precedence over environment-specific configuration files.</p>
+</blockquote>
 <h3 id="the-config-local-js-file" permalink="the-config/localjs-file">The <code>config/local.js</code> file</h3>
 <p>You may use the <code>config/local.js</code> file to configure a Sails app for your local environment (your laptop, for example).  The settings in this file take precedence over all other config files except <a href="http://sailsjs.org/documentation/concepts/Configuration/usingsailsrcfiles.html" target="_blank">.sailsrc</a>.  Since they&apos;re intended only for local use, they should not be put under version control (and are included in the default <code>.gitignore</code> file for that reason).  Use <code>local.js</code> to store local database settings, change the port used when lifting an app on your computer, etc.</p>
 <p>See <a href="http://sailsjs.org/documentation/concepts/Configuration/localjsfile.html" target="_blank">http://sailsjs.org/documentation/concepts/Configuration/localjsfile.html</a> for more information.</p>

@@ -1,5 +1,5 @@
-<h1 id="sails-sockets-blast-">sails.sockets.blast()</h1>
-<p>Broadcast a message to all sockets connected to the server.</p>
+<h1 id="-blast-">.blast()</h1>
+<p>Broadcast a message to all sockets connected to the server (or any server in the cluster, if you have a multi-server deployment using Redis).</p>
 <pre><code data-language="javascript">sails.sockets.blast(data);
 </code></pre><!-- __LANG=%%__ -->
 <p><em>Or:</em></p>
@@ -12,6 +12,7 @@
 <table>
 <thead>
 <tr>
+<th></th>
 <th style="text-align:left">Argument</th>
 <th>Type</th>
 <th style="text-align:left">Details</th>
@@ -19,19 +20,22 @@
 </thead>
 <tbody>
 <tr>
+<td>1</td>
 <td style="text-align:left"><em>eventName</em></td>
 <td><bubble type="string?" colors="true"></bubble></td>
 <td style="text-align:left">Optional. Defaults to <code>&apos;message&apos;</code>.</td>
 </tr>
 <tr>
+<td>2</td>
 <td style="text-align:left">data</td>
 <td><bubble type="json" colors="true"></bubble></td>
 <td style="text-align:left">The data to send in the message.</td>
 </tr>
 <tr>
+<td>3</td>
 <td style="text-align:left"><em>socketToOmit</em></td>
 <td><bubble type="req?" colors="true"></bubble></td>
-<td style="text-align:left">Optional. If provided, that request socket will <strong>not</strong> receive the message blasted out to everyone else.  Useful when the broadcast-worthy event is triggered by a requesting user who doesn&apos;t need to hear about it again.</td>
+<td style="text-align:left">Optional. If provided, the socket associated with this socket request will <strong>not</strong> receive the message blasted out to everyone else.  Useful when the broadcast-worthy event is triggered by a requesting user who doesn&apos;t need to hear about it again.</td>
 </tr>
 </tbody>
 </table>
@@ -43,14 +47,14 @@
     id: req.session.userId,
     username: req.session.username
   }
-}, req.socket);
+}, req);
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>The phrase &quot;request socket&quot; here refers to an application-layer WebSocket/Socket.io connection.  <code>req.socket</code> also exists for HTTP requests, but it refers to the underlying TCP socket at the transport layer, which is different.  Be sure and ensure <code>req.isSocket == true</code> before using <code>req.socket</code> with this method.</li>
+<li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to this method. For the socket to be omitted, the current <code>req</code>  must be from a socket request, not just any HTTP request.</li>
 </ul>
 </blockquote>
-<docmeta name="displayName" value="sails.sockets.blast()">
-
+<p><docmeta name="displayName" value=".blast()"></docmeta></p>
+<docmeta name="pageType" value="method">
 </docmeta>

@@ -1,6 +1,6 @@
 <h1 id="-populate-foreignkey-query-">.populate( <code>foreignKey</code>, [<code>query</code>] )</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>This chainable method is used between .find()/.update() and .exec() in order to retrieve records associated with the model being queried.  You must supply the Foreign Key specified in your model config.  </p>
+<p>This chainable method is used between .find()/.update() and .exec() in order to retrieve records associated with the model being queried.  You must supply the Foreign Key specified in your model config.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <h4 id="parameters" permalink="parameters">Parameters</h4>
 <table>
@@ -32,7 +32,7 @@
   console.log(r[0].toJSON())
 })
 
-/* 
+/*
 { name: &apos;Mike&apos;,
   age: 16,
   createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
@@ -45,7 +45,7 @@ User.find({name:&apos;Mike&apos;}).populate(&apos;pets&apos;).exec(function(e,r)
 });
 
 /*
-{ pets: 
+{ pets:
    [ { name: &apos;Pinkie Pie&apos;,
        color: &apos;pink&apos;,
        id: 7,
@@ -73,7 +73,7 @@ User.find({name:&apos;Mike&apos;}).populate(&apos;pets&apos;,{color:&apos;pink&a
 });
 
 /*
-{ pets: 
+{ pets:
    [ { name: &apos;Pinkie Pie&apos;,
        color: &apos;pink&apos;,
        id: 7,
@@ -90,8 +90,7 @@ User.find({name:&apos;Mike&apos;}).populate(&apos;pets&apos;,{color:&apos;pink&a
 <blockquote>
 <p>Any string arguments passed must be the primary key of the record.</p>
 </blockquote>
-<p><docmeta name="methodType" value="association"></docmeta></p>
-<p><docmeta name="importance" value="undefined"></docmeta></p>
-<docmeta name="displayName" value=".populate()">
+<p><docmeta name="displayName" value=".populate()"></docmeta></p>
+<docmeta name="pageType" value="method">
 
 </docmeta>

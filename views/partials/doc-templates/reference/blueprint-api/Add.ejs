@@ -13,30 +13,35 @@
 <table>
 <thead>
 <tr>
-<th>Parameter</th>
+<th style="text-align:left">Parameter</th>
 <th>Type</th>
 <th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td> id</td>
-<td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">The parent record&apos;s primary key value<br><br>e.g. <code>7</code></td>
+<td style="text-align:left"> model</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity" target="_blank">identity</a> of the containing model for the parent record.<br><br>e.g. <code>&apos;employee&apos;</code> (in <code>/employee/7/involvedinPurchases/47</code>)</td>
 </tr>
 <tr>
-<td> association</td>
+<td style="text-align:left"> id</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The desired target record&apos;s primary key value<br><br>e.g. <code>&apos;7&apos;</code> (in <code>/employee/7/involvedInPurchases/47</code>)</td>
+</tr>
+<tr>
+<td style="text-align:left"> association</td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">The name of the collection association<br><br>e.g. <code>&apos;involvedInPurchases&apos;</code></td>
 </tr>
 <tr>
-<td> fk</td>
-<td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">The id of the foreign record to add to the collection association.<br><br>e.g. <code>47</code></td>
+<td style="text-align:left"> fk</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The primary key (e.g. <code>id</code>) of the foreign record to add to this collection association.<br><br>e.g. <code>47</code></td>
 </tr>
 <tr>
-<td> <em>callback</em></td>
-<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left"> <em>callback</em></td>
+<td><bubble type="string?" colors="true"></bubble></td>
 <td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
 </tr>
 </tbody>
@@ -45,9 +50,14 @@
 <p>Add purchase #47 to the list of purchases that Dolly (employee #7) has been involved in:</p>
 <pre><code data-language="text">POST /employee/7/involvedInPurchases/47
 </code></pre><!-- __LANG=%%__ -->
+<p><a href="https://www.getpostman.com/run-collection/96217d0d747e536e49a4" target="_blank"><img src="https://s3.amazonaws.com/postman-static/run-button.png" alt="Run in Postman"></a></p>
 <h5 id="expected-response" permalink="expected-response">Expected response</h5>
-<p>This will return &quot;Dolly&quot;, the primary record:</p>
+<p>This returns &quot;Dolly&quot;, the parent record.  Notice she is now involved in purchase #47:</p>
 <pre><code data-language="json">{
+  &quot;id&quot;: 7,
+  &quot;createdAt&quot;: &quot;2014-08-03T01:16:35.440Z&quot;,
+  &quot;name&quot;: &quot;Dolly&quot;,
+  &quot;updatedAt&quot;: &quot;2014-08-03T01:51:41.567Z&quot;,
   &quot;involvedInPurchases&quot;: [
     {
       &quot;amount&quot;: 10000,
@@ -56,11 +66,7 @@
       &quot;id&quot;: 47,
       &quot;cashier&quot;: 7
     }
-  ],
-  &quot;name&quot;: &quot;Dolly&quot;,
-  &quot;createdAt&quot;: &quot;2014-08-03T01:16:35.440Z&quot;,
-  &quot;updatedAt&quot;: &quot;2014-08-03T01:51:41.567Z&quot;,
-  &quot;id&quot;: 7
+  ]
 }
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="using-jquery" permalink="using-jquery">Using jQuery</h5>
@@ -86,7 +92,7 @@
 <blockquote>
 <ul>
 <li>If you&apos;d like to spend some more time with Dolly, a more detailed walkthrough related to the example above is available <a href="https://gist.github.com/mikermcneil/e5a20b03be5aa4e0459b" target="_blank">here</a>.</li>
-<li>This action is for dealing with <em>plural</em> (&quot;collection&quot;) associations.  If you want to set or unset a <em>singular</em> (&quot;model&quot;) association, just use <a href="http://sailsjs.org/documentation/reference/blueprint-api/Update.html" target="_blank">update</a>.</li>
+<li>This action is for dealing with <em>plural</em> (&quot;collection&quot;) associations.  If you want to set or unset a <em>singular</em> (&quot;model&quot;) association, just use <a href="http://sailsjs.org/documentation/reference/blueprint-api/Update.html" target="_blank">update</a> and set the model association to the id of the new foreign record (or <code>null</code> to clear the association).</li>
 <li><p>The example above assumes &quot;rest&quot; blueprints are enabled, and that your project contains at least an &apos;Employee&apos; model with association: <code>involvedInPurchases: {collection: &apos;Purchase&apos;, via: &apos;cashier&apos;}</code> as well as a <code>Purchase</code> model with association: <code>cashier: {model: &apos;Employee&apos;}</code>.  You&apos;ll also need at least an empty <code>PurchaseController</code> and <code>EmployeeController</code>.  You can quickly achieve this by running:</p>
 <pre><code data-language="shell">$ sails new foo
 $ cd foo
@@ -97,5 +103,6 @@ $ sails generate api employee
 </ul>
 <p>...then editing <code>api/models/Purchase.js</code> and <code>api/models/Employee.js</code>.</p>
 </blockquote>
-<docmeta name="displayName" value="add to">
+<p><docmeta name="displayName" value="add to"></docmeta></p>
+<docmeta name="pageType" value="endpoint">
 </docmeta>

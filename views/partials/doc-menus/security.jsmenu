@@ -1,5 +1,10 @@
 [
   {
+    "templateTitle": "README.ejs",
+    "fullPathAndFileName": "security/README.ejs",
+    "data": {}
+  },
+  {
     "templateTitle": "SAILS-SECURITY-POLICY.ejs",
     "fullPathAndFileName": "security/SAILS-SECURITY-POLICY.ejs",
     "data": {}

@@ -1,4 +1,7 @@
 <h1 id="sails-sockets-rooms-">sails.sockets.rooms()</h1>
+<blockquote>
+<p><em><strong>This method is deprecated</strong>.  Please keep track of your rooms in app-level code.</em></p>
+</blockquote>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
 <p>Get the list of all current socket rooms</p>
 <h3 id="overview" permalink="overview">Overview</h3>
@@ -14,7 +17,8 @@ getRoomsList: function(req, res) {
     });
 }
 </code></pre><!-- __LANG=%%__ -->
-<p><em>Note: In Socket.io, all sockets are automatically subscribed to a global room with an empty name (&apos;&apos;).  This room is not returned as part of the array in <code>sails.sockets.rooms</code></em> </p>
-<docmeta name="displayName" value="sails.sockets.rooms()">
+<p><em>Note: In Socket.io, all sockets are automatically subscribed to a global room with an empty name (&apos;&apos;).  This room is not returned as part of the array in <code>sails.sockets.rooms</code></em></p>
+<p><docmeta name="displayName" value="sails.sockets.rooms()"></docmeta></p>
+<docmeta name="isDeprecated" value="true">
 
 </docmeta>

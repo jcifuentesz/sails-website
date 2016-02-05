@@ -1,0 +1,70 @@
+<h1 id="application-events">Application Events</h1>
+<h3 id="overview" permalink="overview">Overview</h3>
+<p>Sails app instances inherit Node&apos;s <a href="https://nodejs.org/api/events.html#events_class_eventemitter" target="_blank"><code>EventEmitter</code> interface</a>, meaning that they can both emit and listen for custom events.  While it is not recommended that you utilize Sails events directly in app code (since your apps should strive to be as stateless as possible to facilitate scalability), events can be very useful when extending Sails (via <a href="http://sailsjs.org/documentation/concepts/extending-sails/hooks" target="_blank">hooks</a> or <a href="http://sailsjs.org/documentation/concepts/extending-sails/adapters" target="_blank">adapters</a>) and in a testing environment.</p>
+<h3 id="should-i-use-events-" permalink="should-i-use-events">Should I use events?</h3>
+<p>Most Sails developers never have a use case for working with application events. several apps before they even encounter application events.  Events emitted by the Sails app instance are designed to be used when building your own custom hooks, and while you <em>could</em> technically use them anywhere, in most cases you <em>should not</em>.  Never use events_ in your controllers, models, services, configuration, or anywhere else in the userland code in your Sails app (unless you are building a custom app-level hook in <code>api/hooks/</code>).</p>
+<h3 id="events-emitted-by-sails" permalink="events-emitted-by-sails">Events emitted by Sails</h3>
+<p>The following are the most commonly used built-in events emitted by Sails instances.  Like any EventEmitter in Node, you can listen for these events with <code>sails.on()</code>:</p>
+<pre><code data-language="javascript">sails.on(eventName, eventHandlerFn);
+</code></pre><!-- __LANG=%%__ -->
+<p>None of the events are emitted with extra information, so your <code>eventHandlerFn</code> should not have any arguments.</p>
+<table>
+<thead>
+<tr>
+<th>Event name</th>
+<th>Emitted when...</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ready</code></td>
+<td>The app has been loaded and the bootstrap has run, but it is not yet listening for requests</td>
+</tr>
+<tr>
+<td><code>lifted</code></td>
+<td>The app has been lifted and is listening for requests.</td>
+</tr>
+<tr>
+<td><code>lowered</code></td>
+<td>The app has been lowered and is no longer listening for requests.</td>
+</tr>
+<tr>
+<td><code>hook:&lt;hook identity&gt;:loaded</code></td>
+<td>The hook with the specified identity loaded and ran its <code>initialize()</code> method successfully.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>In addition to <code>.on()</code>, Sails also exposes a useful helper function called <code>sails.after()</code>.  See the <a href="https://github.com/balderdashy/sails/blob/master/lib/EVENTS.md#usage" target="_blank">inline documentation</a> in Sails core for more information.</p>
+</blockquote>
+<!--
+### Using `sails.emit` for virtual requests
+
+You may occasionally wish to simulate requests to a Sails app without starting an actual http server--this is often useful in testing environments.  You can do this by loading the app with [`sails.load()`](http://sailsjs.org/documentation/reference/application/sails-load) rather than [`sails.lift()`](http://sailsjs.org/documentation/reference/application/sails-lift) and then sending a `router:request` event to the app:
+
+```
+<!-- __LANG=%javascript%__ -->
+<p>sails.emit(&apos;router:request&apos;, requestObj, responseObj)</p>
+<pre><code data-language="text">When using this method to make requests, you are responsible for supplying appropriate values for the [request object]() (such as the URL, method and body) and the [response object]() (such as implementations for the `send` method).
+
+##### Example
+
+Send a virtual request to the `POST /user` route and log the response
+</code></pre><!-- __LANG=%javascript%__ -->
+<p>sails.emit(&apos;router:request&apos;, {
+  url: &apos;/user&apos;,
+  method: &apos;post&apos;,
+  body: {
+     name: &apos;joe&apos;,
+     age: 25
+  }
+}, {
+  send: function(data) {
+     console.log(&quot;Server responded with: &quot;, data);
+  }
+});
+```
+<!-- __LANG=%%__ -->
+--&gt;</p>
+<docmeta name="displayName" value="Events">
+</docmeta>

@@ -27,6 +27,24 @@
     "isChild": true
   },
   {
+    "templateTitle": "Blueprint Actions.ejs",
+    "fullPathAndFileName": "concepts/Blueprints/Blueprint Actions.ejs",
+    "data": {
+      "displayName": "Blueprint Actions"
+    },
+    "parent": "concepts/Blueprints/Blueprints.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "Blueprint Routes.ejs",
+    "fullPathAndFileName": "concepts/Blueprints/Blueprint Routes.ejs",
+    "data": {
+      "displayName": "Blueprint Routes"
+    },
+    "parent": "concepts/Blueprints/Blueprints.ejs",
+    "isChild": true
+  },
+  {
     "templateTitle": "localjsfile.ejs",
     "fullPathAndFileName": "concepts/Configuration/localjsfile.ejs",
     "data": {
@@ -180,12 +198,12 @@
     "parent": "concepts/ORM/ORM.ejs",
     "isChild": true,
     "children": [
-      "concepts/ORM/Associations/ManytoMany.ejs",
       "concepts/ORM/Associations/OneWayAssociation.ejs",
+      "concepts/ORM/Associations/ManytoMany.ejs",
       "concepts/ORM/Associations/OnetoMany.ejs",
-      "concepts/ORM/Associations/Dominance.ejs",
+      "concepts/ORM/Associations/OnetoOne.ejs",
       "concepts/ORM/Associations/ThroughAssociations.ejs",
-      "concepts/ORM/Associations/OnetoOne.ejs"
+      "concepts/ORM/Associations/Dominance.ejs"
     ],
     "isParent": true
   },
@@ -304,6 +322,42 @@
       "displayName": "Sails + Passport"
     },
     "parent": "concepts/Policies/Policies.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "Tips and Tricks.ejs",
+    "fullPathAndFileName": "concepts/Programmatic Usage/Tips and Tricks.ejs",
+    "data": {
+      "displayName": "Tips and Tricks"
+    },
+    "parent": "concepts/Programmatic Usage/Programmatic Usage.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "Multi-server environments.ejs",
+    "fullPathAndFileName": "concepts/Realtime/Multi-server environments.ejs",
+    "data": {
+      "displayName": "Multi-server environments"
+    },
+    "parent": "concepts/Realtime/Realtime.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "On the client.ejs",
+    "fullPathAndFileName": "concepts/Realtime/On the client.ejs",
+    "data": {
+      "displayName": "On the client"
+    },
+    "parent": "concepts/Realtime/Realtime.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "On the server.ejs",
+    "fullPathAndFileName": "concepts/Realtime/On the server.ejs",
+    "data": {
+      "displayName": "On the server"
+    },
+    "parent": "concepts/Realtime/Realtime.ejs",
     "isChild": true
   },
   {
@@ -443,6 +497,15 @@
     "isChild": true
   },
   {
+    "templateTitle": "To0.12.ejs",
+    "fullPathAndFileName": "concepts/Upgrading/To0.12.ejs",
+    "data": {
+      "displayName": "To v0.12"
+    },
+    "parent": "concepts/Upgrading/Upgrading.ejs",
+    "isChild": true
+  },
+  {
     "templateTitle": "Layouts.ejs",
     "fullPathAndFileName": "concepts/Views/Layouts.ejs",
     "data": {
@@ -489,8 +552,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Adapters/customAdapters.ejs",
-      "concepts/extending-sails/Adapters/adapterList.ejs"
+      "concepts/extending-sails/Adapters/adapterList.ejs",
+      "concepts/extending-sails/Adapters/customAdapters.ejs"
     ],
     "isParent": true
   },
@@ -596,8 +659,8 @@
     "isChild": true,
     "children": [
       "concepts/extending-sails/Hooks/hookspec/configure.ejs",
-      "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
       "concepts/extending-sails/Hooks/hookspec/initialize.ejs",
+      "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
       "concepts/extending-sails/Hooks/hookspec/routes.ejs"
     ],
     "isParent": true
@@ -670,9 +733,22 @@
       "displayName": "Assets"
     },
     "children": [
+      "concepts/Assets/DisablingGrunt.ejs",
       "concepts/Assets/DefaultTasks.ejs",
-      "concepts/Assets/TaskAutomation.ejs",
-      "concepts/Assets/DisablingGrunt.ejs"
+      "concepts/Assets/TaskAutomation.ejs"
+    ],
+    "isParent": true
+  },
+  {
+    "templateTitle": "Blueprints.ejs",
+    "fullPathAndFileName": "concepts/Blueprints/Blueprints.ejs",
+    "realPath": "concepts/Blueprints/",
+    "data": {
+      "displayName": "Blueprints"
+    },
+    "children": [
+      "concepts/Blueprints/Blueprint Actions.ejs",
+      "concepts/Blueprints/Blueprint Routes.ejs"
     ],
     "isParent": true
   },
@@ -684,8 +760,8 @@
       "displayName": "Configuration"
     },
     "children": [
-      "concepts/Configuration/usingsailsrcfiles.ejs",
-      "concepts/Configuration/localjsfile.ejs"
+      "concepts/Configuration/localjsfile.ejs",
+      "concepts/Configuration/usingsailsrcfiles.ejs"
     ],
     "isParent": true
   },
@@ -723,8 +799,8 @@
       "displayName": "Deployment"
     },
     "children": [
-      "concepts/Deployment/Hosting.ejs",
       "concepts/Deployment/FAQ.ejs",
+      "concepts/Deployment/Hosting.ejs",
       "concepts/Deployment/Scaling.ejs"
     ],
     "isParent": true
@@ -737,8 +813,8 @@
       "displayName": "File Uploads"
     },
     "children": [
-      "concepts/File Uploads/uploading-to-mongo-gridfs.ejs",
-      "concepts/File Uploads/uploading-to-amazon-s3.ejs"
+      "concepts/File Uploads/uploading-to-amazon-s3.ejs",
+      "concepts/File Uploads/uploading-to-mongo-gridfs.ejs"
     ],
     "isParent": true
   },
@@ -800,10 +876,10 @@
     },
     "children": [
       "concepts/ORM/Attributes.ejs",
-      "concepts/ORM/Lifecyclecallbacks.ejs",
       "concepts/ORM/Models.ejs",
-      "concepts/ORM/Validations.ejs",
       "concepts/ORM/Querylanguage.ejs",
+      "concepts/ORM/Lifecyclecallbacks.ejs",
+      "concepts/ORM/Validations.ejs",
       "concepts/ORM/model-settings.ejs",
       "concepts/ORM/Associations/Associations.ejs"
     ],
@@ -818,6 +894,37 @@
     },
     "children": [
       "concepts/Policies/SailsAndPassport.ejs"
+    ],
+    "isParent": true
+  },
+  {
+    "templateTitle": "Programmatic Usage.ejs",
+    "fullPathAndFileName": "concepts/Programmatic Usage/Programmatic Usage.ejs",
+    "realPath": "concepts/Programmatic Usage/",
+    "data": {
+      "displayName": "Programmatic Usage"
+    },
+    "children": [
+      "concepts/Programmatic Usage/Tips and Tricks.ejs"
+    ],
+    "isParent": true
+  },
+  {
+    "templateTitle": "README.ejs",
+    "fullPathAndFileName": "concepts/README.ejs",
+    "data": {}
+  },
+  {
+    "templateTitle": "Realtime.ejs",
+    "fullPathAndFileName": "concepts/Realtime/Realtime.ejs",
+    "realPath": "concepts/Realtime/",
+    "data": {
+      "displayName": "Realtime"
+    },
+    "children": [
+      "concepts/Realtime/Multi-server environments.ejs",
+      "concepts/Realtime/On the client.ejs",
+      "concepts/Realtime/On the server.ejs"
     ],
     "isParent": true
   },
@@ -843,13 +950,13 @@
     },
     "children": [
       "concepts/Security/CORS.ejs",
-      "concepts/Security/P3P.ejs",
-      "concepts/Security/CSRF.ejs",
-      "concepts/Security/Clickjacking.ejs",
       "concepts/Security/ContentSecurityPolicy.ejs",
       "concepts/Security/DDOS.ejs",
-      "concepts/Security/StrictTransportSecurity.ejs",
+      "concepts/Security/Clickjacking.ejs",
+      "concepts/Security/CSRF.ejs",
+      "concepts/Security/P3P.ejs",
       "concepts/Security/SocketHijacking.ejs",
+      "concepts/Security/StrictTransportSecurity.ejs",
       "concepts/Security/XSS.ejs"
     ],
     "isParent": true
@@ -893,8 +1000,9 @@
       "displayName": "Upgrading"
     },
     "children": [
+      "concepts/Upgrading/To0.11.ejs",
       "concepts/Upgrading/To0.10.ejs",
-      "concepts/Upgrading/To0.11.ejs"
+      "concepts/Upgrading/To0.12.ejs"
     ],
     "isParent": true
   },
@@ -907,9 +1015,9 @@
     },
     "children": [
       "concepts/Views/Layouts.ejs",
+      "concepts/Views/ViewEngines.ejs",
       "concepts/Views/Locals.ejs",
-      "concepts/Views/Partials.ejs",
-      "concepts/Views/ViewEngines.ejs"
+      "concepts/Views/Partials.ejs"
     ],
     "isParent": true
   },
@@ -921,9 +1029,9 @@
       "displayName": "Extending Sails"
     },
     "children": [
+      "concepts/extending-sails/Adapters/Adapters.ejs",
       "concepts/extending-sails/Generators/Generators.ejs",
-      "concepts/extending-sails/Hooks/Hooks.ejs",
-      "concepts/extending-sails/Adapters/Adapters.ejs"
+      "concepts/extending-sails/Hooks/Hooks.ejs"
     ],
     "isParent": true
   }

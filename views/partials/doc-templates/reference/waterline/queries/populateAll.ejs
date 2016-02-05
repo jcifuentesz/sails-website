@@ -1,6 +1,6 @@
 <h1 id="-populateall-query-">.populateAll( [<code>query</code>] )</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>This chainable method is used between .find()/.update() and .exec() in order to retrieve records associated with the model being queried.  All known associations of your model will be populated and the query will be applied to each of them.  </p>
+<p>This chainable method is used between .find()/.update() and .exec() in order to retrieve records associated with the model being queried.  All known associations of your model will be populated and the query will be applied to each of them.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <h4 id="parameters" permalink="parameters">Parameters</h4>
 <table>
@@ -26,7 +26,7 @@
   console.log(r[0].toJSON())
 })
 
-/* 
+/*
 { name: &apos;Mike&apos;,
   age: 16,
   createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
@@ -45,7 +45,7 @@ User.find({name:&apos;Mike&apos;}).populateAll().exec(function(e,r){
        id: 1,
        createdAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST),
        updatedAt: Wed Feb 12 2014 18:06:50 GMT-0600 (CST) } ],
-  pets: 
+  pets:
    [ { name: &apos;Pinkie Pie&apos;,
        color: &apos;pink&apos;,
        id: 7,
@@ -73,7 +73,7 @@ User.find({name:&apos;Mike&apos;}).populateAll({color:&apos;pink&apos;}).exec(fu
 });
 
 /*
-{ pets: 
+{ pets:
    [ { name: &apos;Pinkie Pie&apos;,
        color: &apos;pink&apos;,
        id: 7,
@@ -90,8 +90,6 @@ User.find({name:&apos;Mike&apos;}).populateAll({color:&apos;pink&apos;}).exec(fu
 <blockquote>
 <p>Any string arguments passed must be the primary key of the record.</p>
 </blockquote>
-<p><docmeta name="methodType" value="association"></docmeta></p>
-<p><docmeta name="importance" value="undefined"></docmeta></p>
-<docmeta name="displayName" value=".populateAll()">
-
+<p><docmeta name="displayName" value=".populateAll()"></docmeta></p>
+<docmeta name="pageType" value="method">
 </docmeta>

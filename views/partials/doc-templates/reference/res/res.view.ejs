@@ -31,7 +31,7 @@
 <tr>
 <td>2</td>
 <td><code>locals</code></td>
-<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
 <td>Data to pass to the view template.  These explicitly specified locals will be merged in to Sails&apos; <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html" target="_blank">built-in locals</a> and your <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">configured app-wide locals</a>.<br>Defaults to <code>{}</code>.</td>
 </tr>
 </tbody>
@@ -73,5 +73,7 @@ Oven.find().sort(&apos;heat ASC&apos;).exec(function (err, ovens){
 <li><code>res.view()</code> always looks for the <em>lowercased</em> version of a view filename.  For example, if your controller is <code>FooBarController</code> and your action is <code>Baz</code>, <code>res.view()</code> will attempt to find <code>views/foobar/baz.ejs</code>.  On <em>case-sensitive</em> filesystems (e.g. Ubuntu Linux), this can lead to unexpected errors locating views if they are saved with capital letters.  For this reason, it is recommended that you always save your views and view folders in lowercase.</li>
 </ul>
 </blockquote>
-<docmeta name="displayName" value="res.view()">
+<p><docmeta name="displayName" value="res.view()"></docmeta></p>
+<docmeta name="pageType" value="method">
+
 </docmeta>

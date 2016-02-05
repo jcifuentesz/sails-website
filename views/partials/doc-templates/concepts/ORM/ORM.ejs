@@ -1,7 +1,7 @@
 <h1 id="waterline-sql-nosql-data-mapper-orm-odm-">Waterline: SQL/noSQL Data Mapper (ORM/ODM)</h1>
 <p>Sails comes installed with a powerful <a href="http://stackoverflow.com/questions/12261866/what-is-the-difference-between-an-orm-and-an-odm" target="_blank">ORM/ODM</a> called <a href="https://github.com/balderdashy/waterline" target="_blank">Waterline</a>, a datastore-agnostic tool that dramatically simplifies interaction with one or more <a href="http://www.cs.umb.edu/cs630/hd1.pdf" target="_blank">databases</a>.  It provides an abstraction layer on top of the underlying database, allowing you to easily query and manipulate your data <em>without</em> writing vendor-specific integration code.</p>
 <h3 id="database-agnosticism" permalink="database-agnosticism">Database Agnosticism</h3>
-<p>In schemaful databases like <a href="">Postgres</a>, <a href="">Oracle</a>, and <a href="">MySQL</a>, models are represented by tables.  In <a href="">MongoDB</a>, they&apos;re represented by Mongo &quot;collections&quot;.  In <a href="">Redis</a>, they&apos;re represented using key/value pairs.  Each database has its own distinct query dialect, and in some cases even requires installing and compiling a specific native module to connect to the server.  This involves a fair amount of overhead, and garners an unsettling level of <a href="https://en.wikipedia.org/wiki/Vendor_lock-in" target="_blank">vendor lock-in</a> to a specific database; e.g. if your app uses a bunch of SQL queries, it will be very hard to switch to Mongo later, or Redis, and vice versa.</p>
+<p>In schemaful databases like <a href="http://www.postgresql.org/" target="_blank">Postgres</a>, <a href="https://www.oracle.com/database" target="_blank">Oracle</a>, and <a href="http://www.mysql.com" target="_blank">MySQL</a>, models are represented by tables.  In <a href="http://www.mongodb.org" target="_blank">MongoDB</a>, they&apos;re represented by Mongo &quot;collections&quot;.  In <a href="http://redis.io" target="_blank">Redis</a>, they&apos;re represented using key/value pairs.  Each database has its own distinct query dialect, and in some cases even requires installing and compiling a specific native module to connect to the server.  This involves a fair amount of overhead, and garners an unsettling level of <a href="https://en.wikipedia.org/wiki/Vendor_lock-in" target="_blank">vendor lock-in</a> to a specific database; e.g. if your app uses a bunch of SQL queries, it will be very hard to switch to Mongo later, or Redis, and vice versa.</p>
 <p>Waterline query syntax floats above all that, focusing on business logic like creating new records, fetching/searching existing records, updating records, or destroying records.  No matter what database you&apos;re contacting, the usage is <em>exactly the same</em>.  Furthermore, Waterline allows you to <a href="http://sailsjs.org/documentation/reference/waterline/queries/populate.html" target="_blank"><code>.populate()</code></a> associations between models, <em>even if</em> the data for each model lives in a different database.  That means you can switch your app&apos;s models from Mongo, to Postgres, to MySQL, to Redis, and back again - without changing any code.  For the times when you need low-level, database-specific functionality, Waterline provides a query interface that allows you to talk directly to your models&apos; underlying database driver (see <a href="http://sailsjs.org/documentation/reference/waterline/models/query.html" target="_blank">.query()</a> and <a href="http://sailsjs.org/documentation/reference/waterline/models/native.html" target="_blank">.native()</a>.)</p>
 <h3 id="scenario" permalink="scenario">Scenario</h3>
 <p>Let&apos;s imagine you&apos;re building an e-commerce website, with an accompanying mobile app.  Users browse products by category or search for products by keyword, then they buy them.  That&apos;s it!  Some parts of your app are quite ordinary; you have an API-driven flow for logging in, signing up, order/payment processing, resetting passwords, etc. However, you know there are a few mundane features lurking in your roadmap that will likely become more involved.  Sure enough:</p>
@@ -17,7 +17,7 @@
 <blockquote>
 <p>&quot;Oh hey by the way, the products actually already live in our point of sale system. It&apos;s some ERP thing I guess, something like &quot;DB2&quot;?  Anyways, I&apos;m sure you&apos;ll figure it out- sounds easy right?&quot;</p>
 </blockquote>
-<p>Many enterprise applications must integrate with an existing database.  If you&apos;re lucky, a one-time data migration may be all that&apos;s necessary, but more commonly, the existing dataset is still being modified by other applications.  In order to build your app, you might need to marry data from multiple legacy systems, or with a separate dataset stored elsewhere.  These datasets could live on 5 different servers scattered across the world! One colocated database server might house a SQL database with relational data, while another cloud server might hold a handful of Mongo or Redis collections.  </p>
+<p>Many enterprise applications must integrate with an existing database.  If you&apos;re lucky, a one-time data migration may be all that&apos;s necessary, but more commonly, the existing dataset is still being modified by other applications.  In order to build your app, you might need to marry data from multiple legacy systems, or with a separate dataset stored elsewhere.  These datasets could live on 5 different servers scattered across the world! One colocated database server might house a SQL database with relational data, while another cloud server might hold a handful of Mongo or Redis collections.</p>
 <p>Sails/Waterline lets you hook up different models to different datastores; locally or anywhere on the internet.  You can build a User model that maps to a custom MySQL table in a legacy database (with weird crazy column names).  Same thing for a Product model that maps to a table in DB2, or an Order model that maps to a MongoDB collection.  Best of all, you can <code>.populate()</code> across these different datastores and adapters, so if you configure a model to live in a different database, your controller/model code doesn&apos;t need to change (note that you <em>will</em> need to migrate any important production data manually)</p>
 <h5 id="performance" permalink="performance">Performance</h5>
 <p><em>You&apos;re sitting in front of your laptop late at night, and you realize:</em></p>
@@ -44,7 +44,7 @@
 }
 // ...
 </code></pre><!-- __LANG=%%__ -->
-<p>Depending on the adapter in use, it&apos;s also possible to use unix sockets, without port and host. Here&apos;s an example using an existing MAMP mysql server and sails-mysql adapter:</p>
+<p>Depending on the adapter in use, it&apos;s also possible to use unix sockets, without port and host or a URL. Here&apos;s an example using an existing MAMP mysql server and sails-mysql adapter:</p>
 <pre><code data-language="javascript">// in config/local.js
 // ...
 connections:{
@@ -54,6 +54,17 @@ connections:{
     password: &apos;root&apos;,
     database: &apos;sailstest1&apos;,
     socketPath: &apos;/Applications/MAMP/tmp/mysql/mysql.sock&apos;
+  }
+}
+// ...
+</code></pre><!-- __LANG=%%__ -->
+<p>And another showing an example of configuring the adapter using a url:</p>
+<pre><code data-language="javascript">// in config/local.js
+// ...
+connections:{
+  local_mysql:{ //arbitrary name
+    module: &apos;sails-mysql&apos;,
+    url: &apos;mysql://root:root@localhost:3306/sailstest1&apos;
   }
 }
 // ...

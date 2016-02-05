@@ -66,11 +66,10 @@ User.find().exec(
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <p>The real power of toJSON relies on the fact every model instance sent out via res.json is first passed through toJSON.
-Instead of writing custom code for every controller action that uses a particular model (including the &quot;out of the box&quot; blueprints), you can manipulate outgoing records by simply overriding the default toJSON function in your model.<br>You would use this to keep private data like email addresses and passwords from being sent back to every client.</p>
-<p>This is an instance method.  Currently, instance methods ARE NOT TRANSACTIONAL.  Because of this, it is recommended that you use the equivalent model method instead.  </p>
+Instead of writing custom code for every controller action that uses a particular model (including the &quot;out of the box&quot; blueprints), you can manipulate outgoing records by simply overriding the default toJSON function in your model.
+You would use this to keep private data like email addresses and passwords from being sent back to every client.</p>
+<p>This is an instance method.  Currently, instance methods ARE NOT TRANSACTIONAL.  Because of this, it is recommended that you use the equivalent model method instead.</p>
 </blockquote>
-<p><docmeta name="methodType" value="instance"></docmeta></p>
-<p><docmeta name="importance" value="undefined"></docmeta></p>
-<docmeta name="displayName" value=".toJSON()">
-
+<p><docmeta name="displayName" value=".toJSON()"></docmeta></p>
+<docmeta name="pageType" value="method">
 </docmeta>

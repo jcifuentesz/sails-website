@@ -1,12 +1,53 @@
 <h1 id="sockets-sails-sockets-">Sockets (sails.sockets)</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
-<p>Sails exposes several methods (<code>sails.sockets.*</code>) which provide a simple interface for realtime communication with connected socket clients.  This is useful for pushing events and data to connected clients in realtime, rather than waiting for them to actively request it using HTTP.  This is true regardless of whether a client sockets was connected from a browser tab, from an iOS app, or even from your favorite household IoT appliance.</p>
-<p>These methods are implemented using a built-in instance of <a href="http://socket.io" target="_blank">Socket.io</a>, which is available directly as <code>sails.io</code> (see below).  However, in almost every case, you should call the <code>sails.sockets.*</code> methods (either directly, or via a higher level abstraction such as resourceful pubsub methods).</p>
-<h3 id="-sails-io-" permalink="sailsio"><code>sails.io</code></h3>
-<p>The API exposed by the <code>sails.sockets.*</code> methods is flexible enough out of the box to cover the requirements of most applications, and using them will future-proof your app against possible changes in the underlying implementation.  However, if you are working on bringing some legacy code from a vanilla Socket.io app into your Sails app, it can be useful to talk to Socket.io directly.  To accomplish this, Sails provides raw access to the underlying <a href="http://socket.io/" target="_blank">socket.io</a> singleton (<code>io</code>) as <code>sails.io</code>. See the <a href="http://socket.io/docs/" target="_blank">Socket.io docs</a> for more information, and if you go this route, please proceed with care.</p>
+<p>Sails exposes several methods (<code>sails.sockets.*</code>) which provide a simple interface for <a href="http://sailsjs.org/documentation/concepts/realtime" target="_blank">realtime communication</a> with connected socket clients.  This is useful for pushing events and data to connected clients in realtime, rather than waiting for them to actively request it using HTTP.  This is true regardless of whether a client sockets was connected from a browser tab, from an iOS app, or even from your favorite household IoT appliance.</p>
+<p>These methods are implemented using a built-in instance of <a href="http://socket.io" target="_blank">Socket.io</a>, which is available directly as <a href="http://sailsjs.org/documentationreference/application/application.md#sailsio" target="_blank"><code>sails.io</code></a>.  However, you should <em>almost never</em> use <code>sails.io</code> directly.  Instead, you should call the methods available on <code>sails.sockets.*</code>.  In addition, for certain use cases, you might also want to take advantage of <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub" target="_blank">resourceful pubsub methods</a>, a higher level abstraction which are used by Sails built-in <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprint API</a>.</p>
+<h3 id="methods" permalink="methods">Methods</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Method</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/add-room-members-to-rooms" target="_blank"><code>.addRoomMembersToRooms()</code></a></td>
+<td style="text-align:left">Subscribe all members of a room to one or more additional rooms.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/blast" target="_blank"><code>.blast()</code></a></td>
+<td style="text-align:left">Broadcast a message to all sockets connected to the server.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/broadcast" target="_blank"><code>.broadcast()</code></a></td>
+<td style="text-align:left">Broadcast a message to all sockets in a room.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/get-id" target="_blank"><code>.getId()</code></a></td>
+<td style="text-align:left">Parse the socket ID from an incoming socket request (<code>req</code>).</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/join" target="_blank"><code>.join()</code></a></td>
+<td style="text-align:left">Subscribe a socket to a room.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/leave" target="_blank"><code>.leave()</code></a></td>
+<td style="text-align:left">Unsubscribe a socket from a room.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/broadcast" target="_blank"><code>.leaveAll()</code></a></td>
+<td style="text-align:left">Unsubscribe all members of one room from that room <em>and</em> from every other room they are currently subscribed to; except the automatic room with the same name as each socket ID.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/remove-room-members-from-rooms" target="_blank"><code>.removeRoomMembersFromRooms()</code></a></td>
+<td style="text-align:left">Unsubscribe all members of a room from one or more other rooms.</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>As of v0.11.4, Sails bundles <code>socket.io@v1.4.3</code> as a dependency of <a href="github.com/balderdashy/sails-hook-sockets">sails-hook-sockets</a>, a core hook.</p>
+<p>Don&apos;t see a method you&apos;re looking for above?  A number of <code>sails.sockets</code> methods were deprecated in Sails v0.12, either because a more performant alias was already available, or for performance and scalability reasons.  Please see the <a href="http://sailsjs.org/documentation/concepts/upgrading/to-v-0-12" target="_blank">v0.12 migration guide</a> for more information.</p>
 </blockquote>
 <p><docmeta name="displayName" value="sails.sockets"></docmeta></p>
-<docmeta name="stabilityIndex" value="3">
+<docmeta name="pageType" value="property">
 </docmeta>

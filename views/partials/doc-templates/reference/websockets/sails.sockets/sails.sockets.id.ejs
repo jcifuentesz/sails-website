@@ -1,44 +1,5 @@
 <h1 id="sails-sockets-id-">sails.sockets.id()</h1>
-<p>Gets the ID of a request socket object.</p>
-<pre><code data-language="javascript">sails.sockets.id(socket);
-</code></pre><!-- __LANG=%%__ -->
-<h3 id="usage" permalink="usage">Usage</h3>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Argument</th>
-<th>Type</th>
-<th>Details</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>socket</td>
-<td><bubble type="Socket" colors="true"></bubble></td>
-<td>A request socket (WebSocket/Socket.io) object <br> e.g. <code>req.socket</code>.</td>
-</tr>
-</tbody>
-</table>
-<p>Once acquired, the socket object&apos;s ID can be used to send direct messages to that socket (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.emit.html" target="_blank">sails.sockets.emit</a>) or get information about the rooms that the socket is subscribed to (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.rooms.html" target="_blank">sails.sockets.socketRooms</a>).</p>
-<h3 id="example" permalink="example">Example</h3>
-<pre><code data-language="javascript">// Controller action
-
-getSocketID: function(req, res) {
-  if (!req.isSocket) return res.badRequest();
-
-  var socketId = sails.sockets.id(req.socket);
-  // =&gt; &quot;BetX2G-2889Bg22xi-jy&quot;
-
-  return res.ok(&apos;My socket ID is: &apos; + socketId);
-}
-</code></pre><!-- __LANG=%%__ -->
-<h3 id="notes" permalink="notes">Notes</h3>
-<blockquote>
-<ul>
-<li>The phrase &quot;request socket&quot; here refers to an application-layer WebSocket/Socket.io connection.  <code>req.socket</code> also exists for HTTP requests, but it refers to the underlying TCP socket at the transport layer, which is different.  Be sure and ensure <code>req.isSocket == true</code> before using <code>req.socket</code> with this method.</li>
-</ul>
-</blockquote>
-<docmeta name="displayName" value="sails.sockets.id()">
+<p>This method is an alias for <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.rooms.html" target="_blank">sails.sockets.getId()</a> deprecated in Sails v0.12.  Please see the <a href="http://sailsjs.org/documentation/concepts/upgrading/to-v-0-12" target="_blank">v0.12 migration guide</a> for more information.</p>
+<p><docmeta name="displayName" value="sails.sockets.id()"></docmeta></p>
+<docmeta name="isDeprecated" value="true">
 </docmeta>

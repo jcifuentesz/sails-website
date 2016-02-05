@@ -1,5 +1,5 @@
 <h1 id="sails-config-policies">sails.config.policies</h1>
-<!-- 
+<!--
 > TODO:
 >
 > Merge most of the contents of this file into the main reference section on policies.
@@ -82,12 +82,12 @@
 }
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="multiple-policies" permalink="multiple-policies">Multiple Policies</h5>
-<p>To apply two or more policies to a given action, (order matters!) you can specify an array, each referring to a specific policy. </p>
+<p>To apply two or more policies to a given action, (order matters!) you can specify an array, each referring to a specific policy.</p>
 <pre><code data-language="javascript">UserController: {
     lock: [&apos;isLoggedIn&apos;, &apos;isAdmin&apos;]
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>In each of the policies, the next policy in the chain will only be run if <code>next()</code>, the third argument, is called.  When and if the last policy calls <code>next()</code>, the requested controller action is run.</p>
-<docmeta name="displayName" value="sails.config.policies">
-
+<p><docmeta name="displayName" value="sails.config.policies"></docmeta></p>
+<docmeta name="pageType" value="property">
 </docmeta>

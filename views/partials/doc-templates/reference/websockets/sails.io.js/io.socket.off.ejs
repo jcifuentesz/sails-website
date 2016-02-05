@@ -1,0 +1,38 @@
+<h1 id="io-socket-off-">io.socket.off()</h1>
+<p>Unbind the specified <code>eventIdentity</code> from the given handler (opposite of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-on" target="_blank"><code>.on()</code></a>)</p>
+<pre><code data-language="javascript">io.socket.off(eventIdentity, handlerFn);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Argument</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>eventIdentity</code></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The unique identity of a server-sent event, e.g. &quot;recipe&quot;</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>handlerFn</code></td>
+<td style="text-align:center"><bubble type="function" colors="true"></bubble></td>
+<td style="text-align:left">The event handler function to unbind from the specified event.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>In order to use <code>.off()</code>, you will need to store the handlerFn argument sent to <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-on" target="_blank"><code>.on()</code></a> in a variable.</li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value="io.socket.off()"></docmeta></p>
+<docmeta name="pageType" value="method">
+</docmeta>

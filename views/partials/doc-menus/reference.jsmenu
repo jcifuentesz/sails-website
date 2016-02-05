@@ -1,9 +1,68 @@
 [
   {
+    "templateTitle": "events.ejs",
+    "fullPathAndFileName": "reference/application/events.ejs",
+    "data": {
+      "displayName": "Events"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "lifecycle.ejs",
+    "fullPathAndFileName": "reference/application/lifecycle.ejs",
+    "data": {
+      "displayName": "Lifecycle"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
     "templateTitle": "sails.getBaseUrl.ejs",
     "fullPathAndFileName": "reference/application/sails.getBaseUrl.ejs",
     "data": {
-      "displayName": "sails.getBaseUrl()"
+      "displayName": "sails.getBaseUrl()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.getRouteFor.ejs",
+    "fullPathAndFileName": "reference/application/sails.getRouteFor.ejs",
+    "data": {
+      "displayName": "sails.getRouteFor()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.getUrlFor.ejs",
+    "fullPathAndFileName": "reference/application/sails.getUrlFor.ejs",
+    "data": {
+      "displayName": "sails.getUrlFor()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.lift.ejs",
+    "fullPathAndFileName": "reference/application/sails.lift.ejs",
+    "data": {
+      "displayName": "sails.lift()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.load.ejs",
+    "fullPathAndFileName": "reference/application/sails.load.ejs",
+    "data": {
+      "displayName": "sails.load()",
+      "pageType": "method"
     },
     "parent": "reference/application/application.ejs",
     "isChild": true
@@ -12,7 +71,28 @@
     "templateTitle": "sails.log.ejs",
     "fullPathAndFileName": "reference/application/sails.log.ejs",
     "data": {
-      "displayName": "sails.getRouteFor()"
+      "displayName": "sails.log()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.lower.ejs",
+    "fullPathAndFileName": "reference/application/sails.lower.ejs",
+    "data": {
+      "displayName": "sails.lower()",
+      "pageType": "method"
+    },
+    "parent": "reference/application/application.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.request.ejs",
+    "fullPathAndFileName": "reference/application/sails.request.ejs",
+    "data": {
+      "displayName": "sails.request()",
+      "pageType": "method"
     },
     "parent": "reference/application/application.ejs",
     "isChild": true
@@ -21,7 +101,8 @@
     "templateTitle": "Add.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Add.ejs",
     "data": {
-      "displayName": "add to"
+      "displayName": "add to",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -30,7 +111,8 @@
     "templateTitle": "Create.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Create.ejs",
     "data": {
-      "displayName": "create"
+      "displayName": "create",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -39,7 +121,8 @@
     "templateTitle": "Destroy.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Destroy.ejs",
     "data": {
-      "displayName": "destroy"
+      "displayName": "destroy",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -48,7 +131,8 @@
     "templateTitle": "Find.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Find.ejs",
     "data": {
-      "displayName": "find where"
+      "displayName": "find where",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -57,7 +141,8 @@
     "templateTitle": "FindOne.ejs",
     "fullPathAndFileName": "reference/blueprint-api/FindOne.ejs",
     "data": {
-      "displayName": "find one"
+      "displayName": "find one",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -66,7 +151,8 @@
     "templateTitle": "Populate.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Populate.ejs",
     "data": {
-      "displayName": "populate where"
+      "displayName": "populate where",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -75,7 +161,8 @@
     "templateTitle": "Remove.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Remove.ejs",
     "data": {
-      "displayName": "remove from"
+      "displayName": "remove from",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -84,7 +171,8 @@
     "templateTitle": "Update.ejs",
     "fullPathAndFileName": "reference/blueprint-api/Update.ejs",
     "data": {
-      "displayName": "update"
+      "displayName": "update",
+      "pageType": "endpoint"
     },
     "parent": "reference/blueprint-api/blueprint-api.ejs",
     "isChild": true
@@ -93,7 +181,8 @@
     "templateTitle": "sailsconsole.ejs",
     "fullPathAndFileName": "reference/cli/sailsconsole.ejs",
     "data": {
-      "displayName": "sails console"
+      "displayName": "sails console",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -102,7 +191,8 @@
     "templateTitle": "sailsdebug.ejs",
     "fullPathAndFileName": "reference/cli/sailsdebug.ejs",
     "data": {
-      "displayName": "sails debug"
+      "displayName": "sails debug",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -111,7 +201,8 @@
     "templateTitle": "sailsgenerate.ejs",
     "fullPathAndFileName": "reference/cli/sailsgenerate.ejs",
     "data": {
-      "displayName": "sails generate"
+      "displayName": "sails generate",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -120,7 +211,8 @@
     "templateTitle": "sailslift.ejs",
     "fullPathAndFileName": "reference/cli/sailslift.ejs",
     "data": {
-      "displayName": "sails lift"
+      "displayName": "sails lift",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -129,7 +221,8 @@
     "templateTitle": "sailsnew.ejs",
     "fullPathAndFileName": "reference/cli/sailsnew.ejs",
     "data": {
-      "displayName": "sails new"
+      "displayName": "sails new",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -138,7 +231,8 @@
     "templateTitle": "sailsversion.ejs",
     "fullPathAndFileName": "reference/cli/sailsversion.ejs",
     "data": {
-      "displayName": "sails version"
+      "displayName": "sails version",
+      "pageType": "command"
     },
     "parent": "reference/cli/cli.ejs",
     "isChild": true
@@ -147,7 +241,8 @@
     "templateTitle": "req.accepted.ejs",
     "fullPathAndFileName": "reference/req/req.accepted.ejs",
     "data": {
-      "displayName": "req.accepted"
+      "displayName": "req.accepted",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -156,7 +251,8 @@
     "templateTitle": "req.acceptedCharsets.ejs",
     "fullPathAndFileName": "reference/req/req.acceptedCharsets.ejs",
     "data": {
-      "displayName": "req.acceptedCharsets"
+      "displayName": "req.acceptedCharsets",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -165,7 +261,8 @@
     "templateTitle": "req.acceptedLanguages.ejs",
     "fullPathAndFileName": "reference/req/req.acceptedLanguages.ejs",
     "data": {
-      "displayName": "req.acceptedLanguages"
+      "displayName": "req.acceptedLanguages",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -174,7 +271,8 @@
     "templateTitle": "req.accepts.ejs",
     "fullPathAndFileName": "reference/req/req.accepts.ejs",
     "data": {
-      "displayName": "req.accepts()"
+      "displayName": "req.accepts()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -183,7 +281,8 @@
     "templateTitle": "req.acceptsCharset.ejs",
     "fullPathAndFileName": "reference/req/req.acceptsCharset.ejs",
     "data": {
-      "displayName": "req.acceptsCharset()"
+      "displayName": "req.acceptsCharset()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -192,7 +291,8 @@
     "templateTitle": "req.acceptsLanguage.ejs",
     "fullPathAndFileName": "reference/req/req.acceptsLanguage.ejs",
     "data": {
-      "displayName": "req.acceptsLanguage()"
+      "displayName": "req.acceptsLanguage()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -201,7 +301,8 @@
     "templateTitle": "req.allParams.ejs",
     "fullPathAndFileName": "reference/req/req.allParams.ejs",
     "data": {
-      "displayName": "req.allParams()"
+      "displayName": "req.allParams()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -210,7 +311,8 @@
     "templateTitle": "req.body.ejs",
     "fullPathAndFileName": "reference/req/req.body.ejs",
     "data": {
-      "displayName": "req.body"
+      "displayName": "req.body",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -219,7 +321,8 @@
     "templateTitle": "req.cookies.ejs",
     "fullPathAndFileName": "reference/req/req.cookies.ejs",
     "data": {
-      "displayName": "req.cookies"
+      "displayName": "req.cookies",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -228,7 +331,8 @@
     "templateTitle": "req.file.ejs",
     "fullPathAndFileName": "reference/req/req.file.ejs",
     "data": {
-      "displayName": "req.file()"
+      "displayName": "req.file()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -237,7 +341,8 @@
     "templateTitle": "req.fresh.ejs",
     "fullPathAndFileName": "reference/req/req.fresh.ejs",
     "data": {
-      "displayName": "req.fresh"
+      "displayName": "req.fresh",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -246,7 +351,8 @@
     "templateTitle": "req.get.ejs",
     "fullPathAndFileName": "reference/req/req.get.ejs",
     "data": {
-      "displayName": "req.get()"
+      "displayName": "req.get()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -255,7 +361,8 @@
     "templateTitle": "req.headers.ejs",
     "fullPathAndFileName": "reference/req/req.headers.ejs",
     "data": {
-      "displayName": "req.headers"
+      "displayName": "req.headers",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -264,7 +371,8 @@
     "templateTitle": "req.host.ejs",
     "fullPathAndFileName": "reference/req/req.host.ejs",
     "data": {
-      "displayName": "req.host"
+      "displayName": "req.host",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -273,7 +381,8 @@
     "templateTitle": "req.ip.ejs",
     "fullPathAndFileName": "reference/req/req.ip.ejs",
     "data": {
-      "displayName": "req.ip"
+      "displayName": "req.ip",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -282,7 +391,8 @@
     "templateTitle": "req.ips.ejs",
     "fullPathAndFileName": "reference/req/req.ips.ejs",
     "data": {
-      "displayName": "req.ips"
+      "displayName": "req.ips",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -291,7 +401,8 @@
     "templateTitle": "req.is.ejs",
     "fullPathAndFileName": "reference/req/req.is.ejs",
     "data": {
-      "displayName": "req.is()"
+      "displayName": "req.is()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -300,7 +411,8 @@
     "templateTitle": "req.isSocket.ejs",
     "fullPathAndFileName": "reference/req/req.isSocket.ejs",
     "data": {
-      "displayName": "req.isSocket"
+      "displayName": "req.isSocket",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -309,7 +421,8 @@
     "templateTitle": "req.method.ejs",
     "fullPathAndFileName": "reference/req/req.method.ejs",
     "data": {
-      "displayName": "req.method"
+      "displayName": "req.method",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -324,8 +437,8 @@
     "parent": "reference/req/req.ejs",
     "isChild": true,
     "children": [
-      "reference/req/req.options/req.options.where.ejs",
-      "reference/req/req.options/req.options.values.ejs"
+      "reference/req/req.options/req.options.values.ejs",
+      "reference/req/req.options/req.options.where.ejs"
     ],
     "isParent": true
   },
@@ -351,7 +464,8 @@
     "templateTitle": "req.param.ejs",
     "fullPathAndFileName": "reference/req/req.param.ejs",
     "data": {
-      "displayName": "req.param()"
+      "displayName": "req.param()",
+      "pageType": "method"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -360,7 +474,8 @@
     "templateTitle": "req.params.ejs",
     "fullPathAndFileName": "reference/req/req.params.ejs",
     "data": {
-      "displayName": "req.params"
+      "displayName": "req.params",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -369,7 +484,8 @@
     "templateTitle": "req.path.ejs",
     "fullPathAndFileName": "reference/req/req.path.ejs",
     "data": {
-      "displayName": "req.path"
+      "displayName": "req.path",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -378,7 +494,8 @@
     "templateTitle": "req.protocol.ejs",
     "fullPathAndFileName": "reference/req/req.protocol.ejs",
     "data": {
-      "displayName": "req.protocol"
+      "displayName": "req.protocol",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -387,7 +504,8 @@
     "templateTitle": "req.query.ejs",
     "fullPathAndFileName": "reference/req/req.query.ejs",
     "data": {
-      "displayName": "req.query"
+      "displayName": "req.query",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -396,7 +514,8 @@
     "templateTitle": "req.secure.ejs",
     "fullPathAndFileName": "reference/req/req.secure.ejs",
     "data": {
-      "displayName": "req.secure"
+      "displayName": "req.secure",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -405,7 +524,8 @@
     "templateTitle": "req.signedCookies.ejs",
     "fullPathAndFileName": "reference/req/req.signedCookies.ejs",
     "data": {
-      "displayName": "req.signedCookies"
+      "displayName": "req.signedCookies",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -414,7 +534,8 @@
     "templateTitle": "req.socket.ejs",
     "fullPathAndFileName": "reference/req/req.socket.ejs",
     "data": {
-      "displayName": "req.socket"
+      "displayName": "req.socket",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -423,7 +544,8 @@
     "templateTitle": "req.subdomains.ejs",
     "fullPathAndFileName": "reference/req/req.subdomains.ejs",
     "data": {
-      "displayName": "req.subdomains"
+      "displayName": "req.subdomains",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -432,7 +554,8 @@
     "templateTitle": "req.url.ejs",
     "fullPathAndFileName": "reference/req/req.url.ejs",
     "data": {
-      "displayName": "req.url"
+      "displayName": "req.url",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -441,7 +564,8 @@
     "templateTitle": "req.wantsJSON.ejs",
     "fullPathAndFileName": "reference/req/req.wantsJSON.ejs",
     "data": {
-      "displayName": "req.wantsJSON"
+      "displayName": "req.wantsJSON",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -450,7 +574,8 @@
     "templateTitle": "req.xhr.ejs",
     "fullPathAndFileName": "reference/req/req.xhr.ejs",
     "data": {
-      "displayName": "req.xhr"
+      "displayName": "req.xhr",
+      "pageType": "property"
     },
     "parent": "reference/req/req.ejs",
     "isChild": true
@@ -459,7 +584,8 @@
     "templateTitle": "res.attachment.ejs",
     "fullPathAndFileName": "reference/res/res.attachment.ejs",
     "data": {
-      "displayName": "res.attachment()"
+      "displayName": "res.attachment()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -468,7 +594,8 @@
     "templateTitle": "res.badRequest.ejs",
     "fullPathAndFileName": "reference/res/res.badRequest.ejs",
     "data": {
-      "displayName": "res.badRequest()"
+      "displayName": "res.badRequest()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -477,7 +604,8 @@
     "templateTitle": "res.clearCookie.ejs",
     "fullPathAndFileName": "reference/res/res.clearCookie.ejs",
     "data": {
-      "displayName": "res.clearCookie()"
+      "displayName": "res.clearCookie()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -486,7 +614,8 @@
     "templateTitle": "res.cookie.ejs",
     "fullPathAndFileName": "reference/res/res.cookie.ejs",
     "data": {
-      "displayName": "res.cookie()"
+      "displayName": "res.cookie()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -495,7 +624,8 @@
     "templateTitle": "res.forbidden.ejs",
     "fullPathAndFileName": "reference/res/res.forbidden.ejs",
     "data": {
-      "displayName": "res.forbidden()"
+      "displayName": "res.forbidden()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -504,7 +634,8 @@
     "templateTitle": "res.get.ejs",
     "fullPathAndFileName": "reference/res/res.get.ejs",
     "data": {
-      "displayName": "res.get()"
+      "displayName": "res.get()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -513,7 +644,8 @@
     "templateTitle": "res.json.ejs",
     "fullPathAndFileName": "reference/res/res.json.ejs",
     "data": {
-      "displayName": "res.json()"
+      "displayName": "res.json()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -522,7 +654,8 @@
     "templateTitle": "res.jsonp.ejs",
     "fullPathAndFileName": "reference/res/res.jsonp.ejs",
     "data": {
-      "displayName": "res.jsonp()"
+      "displayName": "res.jsonp()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -531,7 +664,8 @@
     "templateTitle": "res.location.ejs",
     "fullPathAndFileName": "reference/res/res.location.ejs",
     "data": {
-      "displayName": "res.location()"
+      "displayName": "res.location()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -540,7 +674,8 @@
     "templateTitle": "res.negotiate.ejs",
     "fullPathAndFileName": "reference/res/res.negotiate.ejs",
     "data": {
-      "displayName": "res.negotiate()"
+      "displayName": "res.negotiate()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -549,7 +684,8 @@
     "templateTitle": "res.notFound.ejs",
     "fullPathAndFileName": "reference/res/res.notFound.ejs",
     "data": {
-      "displayName": "res.notFound()"
+      "displayName": "res.notFound()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -558,7 +694,8 @@
     "templateTitle": "res.ok.ejs",
     "fullPathAndFileName": "reference/res/res.ok.ejs",
     "data": {
-      "displayName": "res.ok()"
+      "displayName": "res.ok()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -567,7 +704,8 @@
     "templateTitle": "res.redirect.ejs",
     "fullPathAndFileName": "reference/res/res.redirect.ejs",
     "data": {
-      "displayName": "res.redirect()"
+      "displayName": "res.redirect()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -576,7 +714,8 @@
     "templateTitle": "res.send.ejs",
     "fullPathAndFileName": "reference/res/res.send.ejs",
     "data": {
-      "displayName": "res.send()"
+      "displayName": "res.send()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -585,7 +724,8 @@
     "templateTitle": "res.serverError.ejs",
     "fullPathAndFileName": "reference/res/res.serverError.ejs",
     "data": {
-      "displayName": "res.serverError()"
+      "displayName": "res.serverError()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -594,7 +734,8 @@
     "templateTitle": "res.set.ejs",
     "fullPathAndFileName": "reference/res/res.set.ejs",
     "data": {
-      "displayName": "res.set()"
+      "displayName": "res.set()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -603,7 +744,8 @@
     "templateTitle": "res.status.ejs",
     "fullPathAndFileName": "reference/res/res.status.ejs",
     "data": {
-      "displayName": "res.status()"
+      "displayName": "res.status()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -612,7 +754,8 @@
     "templateTitle": "res.type.ejs",
     "fullPathAndFileName": "reference/res/res.type.ejs",
     "data": {
-      "displayName": "res.type()"
+      "displayName": "res.type()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -621,7 +764,8 @@
     "templateTitle": "res.view.ejs",
     "fullPathAndFileName": "reference/res/res.view.ejs",
     "data": {
-      "displayName": "res.view()"
+      "displayName": "res.view()",
+      "pageType": "method"
     },
     "parent": "reference/res/res.ejs",
     "isChild": true
@@ -639,7 +783,8 @@
     "templateTitle": "sails.config.blueprints.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.blueprints.ejs",
     "data": {
-      "displayName": "sails.config.blueprints"
+      "displayName": "sails.config.blueprints",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -648,7 +793,8 @@
     "templateTitle": "sails.config.bootstrap.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.bootstrap.ejs",
     "data": {
-      "displayName": "sails.config.bootstrap"
+      "displayName": "sails.config.bootstrap()",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -657,7 +803,8 @@
     "templateTitle": "sails.config.connections.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.connections.ejs",
     "data": {
-      "displayName": "sails.config.connections"
+      "displayName": "sails.config.connections",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -666,7 +813,8 @@
     "templateTitle": "sails.config.cors.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.cors.ejs",
     "data": {
-      "displayName": "sails.config.cors"
+      "displayName": "sails.config.cors",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -675,7 +823,8 @@
     "templateTitle": "sails.config.csrf.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.csrf.ejs",
     "data": {
-      "displayName": "sails.config.csrf"
+      "displayName": "sails.config.csrf",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -684,7 +833,8 @@
     "templateTitle": "sails.config.globals.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.globals.ejs",
     "data": {
-      "displayName": "sails.config.globals"
+      "displayName": "sails.config.globals",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -693,7 +843,8 @@
     "templateTitle": "sails.config.http.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.http.ejs",
     "data": {
-      "displayName": "sails.config.http"
+      "displayName": "sails.config.http",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -702,7 +853,8 @@
     "templateTitle": "sails.config.i18n.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.i18n.ejs",
     "data": {
-      "displayName": "sails.config.i18n"
+      "displayName": "sails.config.i18n",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -711,7 +863,8 @@
     "templateTitle": "sails.config.log.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.log.ejs",
     "data": {
-      "displayName": "sails.config.log"
+      "displayName": "sails.config.log",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -721,7 +874,7 @@
     "fullPathAndFileName": "reference/sails.config/sails.config.models.ejs",
     "data": {
       "displayName": "sails.config.models",
-      "stabilityIndex": "3"
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -730,7 +883,8 @@
     "templateTitle": "sails.config.policies.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.policies.ejs",
     "data": {
-      "displayName": "sails.config.policies"
+      "displayName": "sails.config.policies",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -739,7 +893,8 @@
     "templateTitle": "sails.config.routes.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.routes.ejs",
     "data": {
-      "displayName": "sails.config.routes"
+      "displayName": "sails.config.routes",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -748,7 +903,8 @@
     "templateTitle": "sails.config.session.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.session.ejs",
     "data": {
-      "displayName": "sails.config.session"
+      "displayName": "sails.config.session",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -757,7 +913,8 @@
     "templateTitle": "sails.config.sockets.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.sockets.ejs",
     "data": {
-      "displayName": "sails.config.sockets"
+      "displayName": "sails.config.sockets",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -766,7 +923,8 @@
     "templateTitle": "sails.config.views.ejs",
     "fullPathAndFileName": "reference/sails.config/sails.config.views.ejs",
     "data": {
-      "displayName": "sails.config.views"
+      "displayName": "sails.config.views",
+      "pageType": "property"
     },
     "parent": "reference/sails.config/sails.config.ejs",
     "isChild": true
@@ -775,9 +933,8 @@
     "templateTitle": "count.ejs",
     "fullPathAndFileName": "reference/waterline/models/count.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".count()"
+      "displayName": ".count()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -786,9 +943,8 @@
     "templateTitle": "create.ejs",
     "fullPathAndFileName": "reference/waterline/models/create.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".create()"
+      "displayName": ".create()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -797,9 +953,8 @@
     "templateTitle": "destroy.ejs",
     "fullPathAndFileName": "reference/waterline/models/destroy.ejs",
     "data": {
-      "methodType": "instance",
-      "importance": "undefined",
-      "displayName": ".destroy()"
+      "displayName": ".destroy()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -809,7 +964,8 @@
     "fullPathAndFileName": "reference/waterline/models/find.ejs",
     "data": {
       "importance": "10",
-      "displayName": ".find()"
+      "displayName": ".find()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -819,7 +975,8 @@
     "fullPathAndFileName": "reference/waterline/models/findOne.ejs",
     "data": {
       "importance": "10",
-      "displayName": ".findOne()"
+      "displayName": ".findOne()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -828,9 +985,8 @@
     "templateTitle": "findOrCreate.ejs",
     "fullPathAndFileName": "reference/waterline/models/findOrCreate.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".findOrCreate()"
+      "displayName": ".findOrCreate()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -845,16 +1001,16 @@
     "parent": "reference/waterline/waterline.ejs",
     "isChild": true,
     "children": [
-      "reference/waterline/models/count.ejs",
-      "reference/waterline/models/destroy.ejs",
       "reference/waterline/models/create.ejs",
+      "reference/waterline/models/count.ejs",
       "reference/waterline/models/findOne.ejs",
       "reference/waterline/models/find.ejs",
+      "reference/waterline/models/destroy.ejs",
       "reference/waterline/models/findOrCreate.ejs",
-      "reference/waterline/models/query.ejs",
+      "reference/waterline/models/native.ejs",
       "reference/waterline/models/stream.ejs",
-      "reference/waterline/models/update.ejs",
-      "reference/waterline/models/native.ejs"
+      "reference/waterline/models/query.ejs",
+      "reference/waterline/models/update.ejs"
     ],
     "isParent": true
   },
@@ -862,9 +1018,8 @@
     "templateTitle": "native.ejs",
     "fullPathAndFileName": "reference/waterline/models/native.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".native()"
+      "displayName": ".native()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -873,9 +1028,8 @@
     "templateTitle": "query.ejs",
     "fullPathAndFileName": "reference/waterline/models/query.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".query()"
+      "displayName": ".query()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -884,9 +1038,8 @@
     "templateTitle": "stream.ejs",
     "fullPathAndFileName": "reference/waterline/models/stream.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".stream()"
+      "displayName": ".stream()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -895,9 +1048,8 @@
     "templateTitle": "update.ejs",
     "fullPathAndFileName": "reference/waterline/models/update.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".update()"
+      "displayName": ".update()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/models/models.ejs",
     "isChild": true
@@ -906,9 +1058,8 @@
     "templateTitle": "add.ejs",
     "fullPathAndFileName": "reference/waterline/populated-values/add.ejs",
     "data": {
-      "methodType": "instance",
-      "importance": "undefined",
-      "displayName": ".add()"
+      "displayName": ".add()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/populated-values/populated-values.ejs",
     "isChild": true
@@ -923,8 +1074,8 @@
     "parent": "reference/waterline/waterline.ejs",
     "isChild": true,
     "children": [
-      "reference/waterline/populated-values/remove.ejs",
-      "reference/waterline/populated-values/add.ejs"
+      "reference/waterline/populated-values/add.ejs",
+      "reference/waterline/populated-values/remove.ejs"
     ],
     "isParent": true
   },
@@ -932,9 +1083,8 @@
     "templateTitle": "remove.ejs",
     "fullPathAndFileName": "reference/waterline/populated-values/remove.ejs",
     "data": {
-      "methodType": "association",
-      "importance": "undefined",
-      "displayName": ".remove()"
+      "displayName": ".remove()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/populated-values/populated-values.ejs",
     "isChild": true
@@ -943,9 +1093,8 @@
     "templateTitle": "exec.ejs",
     "fullPathAndFileName": "reference/waterline/queries/exec.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".exec()"
+      "displayName": ".exec()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -954,9 +1103,8 @@
     "templateTitle": "limit.ejs",
     "fullPathAndFileName": "reference/waterline/queries/limit.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".limit()"
+      "displayName": ".limit()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -965,9 +1113,8 @@
     "templateTitle": "populate.ejs",
     "fullPathAndFileName": "reference/waterline/queries/populate.ejs",
     "data": {
-      "methodType": "association",
-      "importance": "undefined",
-      "displayName": ".populate()"
+      "displayName": ".populate()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -976,9 +1123,8 @@
     "templateTitle": "populateAll.ejs",
     "fullPathAndFileName": "reference/waterline/queries/populateAll.ejs",
     "data": {
-      "methodType": "association",
-      "importance": "undefined",
-      "displayName": ".populateAll()"
+      "displayName": ".populateAll()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -993,13 +1139,13 @@
     "parent": "reference/waterline/waterline.ejs",
     "isChild": true,
     "children": [
-      "reference/waterline/queries/limit.ejs",
-      "reference/waterline/queries/where.ejs",
-      "reference/waterline/queries/sort.ejs",
       "reference/waterline/queries/exec.ejs",
+      "reference/waterline/queries/limit.ejs",
+      "reference/waterline/queries/populate.ejs",
       "reference/waterline/queries/populateAll.ejs",
       "reference/waterline/queries/skip.ejs",
-      "reference/waterline/queries/populate.ejs"
+      "reference/waterline/queries/sort.ejs",
+      "reference/waterline/queries/where.ejs"
     ],
     "isParent": true
   },
@@ -1007,9 +1153,8 @@
     "templateTitle": "skip.ejs",
     "fullPathAndFileName": "reference/waterline/queries/skip.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".skip()"
+      "displayName": ".skip()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -1018,9 +1163,8 @@
     "templateTitle": "sort.ejs",
     "fullPathAndFileName": "reference/waterline/queries/sort.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".sort()"
+      "displayName": ".sort()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -1029,9 +1173,8 @@
     "templateTitle": "where.ejs",
     "fullPathAndFileName": "reference/waterline/queries/where.ejs",
     "data": {
-      "methodType": "mcm",
-      "importance": "undefined",
-      "displayName": ".where()"
+      "displayName": ".where()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/queries/queries.ejs",
     "isChild": true
@@ -1046,9 +1189,9 @@
     "parent": "reference/waterline/waterline.ejs",
     "isChild": true,
     "children": [
-      "reference/waterline/records/toJSON.ejs",
       "reference/waterline/records/save.ejs",
-      "reference/waterline/records/toObject.ejs"
+      "reference/waterline/records/toObject.ejs",
+      "reference/waterline/records/toJSON.ejs"
     ],
     "isParent": true
   },
@@ -1056,9 +1199,8 @@
     "templateTitle": "save.ejs",
     "fullPathAndFileName": "reference/waterline/records/save.ejs",
     "data": {
-      "methodType": "association",
-      "importance": "undefined",
-      "displayName": ".save()"
+      "displayName": ".save()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/records/records.ejs",
     "isChild": true
@@ -1067,9 +1209,8 @@
     "templateTitle": "toJSON.ejs",
     "fullPathAndFileName": "reference/waterline/records/toJSON.ejs",
     "data": {
-      "methodType": "instance",
-      "importance": "undefined",
-      "displayName": ".toJSON()"
+      "displayName": ".toJSON()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/records/records.ejs",
     "isChild": true
@@ -1078,9 +1219,8 @@
     "templateTitle": "toObject.ejs",
     "fullPathAndFileName": "reference/waterline/records/toObject.ejs",
     "data": {
-      "methodType": "instance",
-      "importance": "undefined",
-      "displayName": ".toObject()"
+      "displayName": ".toObject()",
+      "pageType": "method"
     },
     "parent": "reference/waterline/records/records.ejs",
     "isChild": true
@@ -1089,9 +1229,8 @@
     "templateTitle": "message.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/message.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".message()"
+      "displayName": ".message()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1100,9 +1239,8 @@
     "templateTitle": "publishAdd.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/publishAdd.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".publishAdd()"
+      "displayName": ".publishAdd()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1111,9 +1249,8 @@
     "templateTitle": "publishCreate.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/publishCreate.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".publishCreate()"
+      "displayName": ".publishCreate()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1122,9 +1259,8 @@
     "templateTitle": "publishDestroy.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/publishDestroy.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".publishDestroy()"
+      "displayName": ".publishDestroy()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1133,9 +1269,8 @@
     "templateTitle": "publishRemove.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/publishRemove.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".publishRemove()"
+      "displayName": ".publishRemove()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1144,9 +1279,8 @@
     "templateTitle": "publishUpdate.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/publishUpdate.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".publishUpdate()"
+      "displayName": ".publishUpdate()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1161,17 +1295,17 @@
     "parent": "reference/websockets/websockets.ejs",
     "isChild": true,
     "children": [
-      "reference/websockets/resourceful-pubsub/publishAdd.ejs",
       "reference/websockets/resourceful-pubsub/message.ejs",
+      "reference/websockets/resourceful-pubsub/publishAdd.ejs",
       "reference/websockets/resourceful-pubsub/publishDestroy.ejs",
       "reference/websockets/resourceful-pubsub/publishCreate.ejs",
-      "reference/websockets/resourceful-pubsub/publishUpdate.ejs",
       "reference/websockets/resourceful-pubsub/publishRemove.ejs",
+      "reference/websockets/resourceful-pubsub/publishUpdate.ejs",
       "reference/websockets/resourceful-pubsub/subscribe.ejs",
-      "reference/websockets/resourceful-pubsub/unsubscribe.ejs",
       "reference/websockets/resourceful-pubsub/subscribers.ejs",
-      "reference/websockets/resourceful-pubsub/unwatch.ejs",
-      "reference/websockets/resourceful-pubsub/watch.ejs"
+      "reference/websockets/resourceful-pubsub/unsubscribe.ejs",
+      "reference/websockets/resourceful-pubsub/watch.ejs",
+      "reference/websockets/resourceful-pubsub/unwatch.ejs"
     ],
     "isParent": true
   },
@@ -1179,8 +1313,8 @@
     "templateTitle": "subscribe.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/subscribe.ejs",
     "data": {
-      "methodType": "pubsub",
-      "displayName": ".subscribe()"
+      "displayName": ".subscribe()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1189,9 +1323,9 @@
     "templateTitle": "subscribers.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/subscribers.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".subscribers()"
+      "displayName": ".subscribers()",
+      "pageType": "method",
+      "isDeprecated": "true"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1200,9 +1334,8 @@
     "templateTitle": "unsubscribe.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/unsubscribe.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".unsubscribe()"
+      "displayName": ".unsubscribe()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1211,9 +1344,8 @@
     "templateTitle": "unwatch.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/unwatch.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".unwatch()"
+      "displayName": ".unwatch()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
     "isChild": true
@@ -1222,18 +1354,82 @@
     "templateTitle": "watch.ejs",
     "fullPathAndFileName": "reference/websockets/resourceful-pubsub/watch.ejs",
     "data": {
-      "methodType": "pubsub",
-      "importance": "undefined",
-      "displayName": ".watch()"
+      "displayName": ".watch()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/resourceful-pubsub/resourceful-pubsub.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "SailsSocket.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/SailsSocket/SailsSocket.ejs",
+    "realPath": "reference/websockets/sails.io.js/SailsSocket/",
+    "data": {
+      "displayName": "SailsSocket",
+      "pageType": "class"
+    },
+    "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
+    "isChild": true,
+    "children": [
+      "reference/websockets/sails.io.js/SailsSocket/methods.ejs",
+      "reference/websockets/sails.io.js/SailsSocket/properties.ejs"
+    ],
+    "isParent": true
+  },
+  {
+    "templateTitle": "methods.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/SailsSocket/methods.ejs",
+    "data": {
+      "displayName": "Methods"
+    },
+    "parent": "reference/websockets/sails.io.js/SailsSocket/SailsSocket.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "properties.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/SailsSocket/properties.ejs",
+    "data": {
+      "displayName": "Properties"
+    },
+    "parent": "reference/websockets/sails.io.js/SailsSocket/SailsSocket.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "io.sails.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/io.sails.ejs",
+    "data": {
+      "displayName": "io.sails",
+      "pageType": "property"
+    },
+    "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "io.socket.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/io.socket.ejs",
+    "data": {
+      "displayName": "io.socket",
+      "pageType": "property"
+    },
+    "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "io.socket.off.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.io.js/io.socket.off.ejs",
+    "data": {
+      "displayName": "io.socket.off()",
+      "pageType": "method"
+    },
+    "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
   },
   {
     "templateTitle": "io.socket.on.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/io.socket.on.ejs",
     "data": {
-      "displayName": "io.socket.on()"
+      "displayName": "io.socket.on()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
@@ -1249,12 +1445,16 @@
     "parent": "reference/websockets/websockets.ejs",
     "isChild": true,
     "children": [
+      "reference/websockets/sails.io.js/io.sails.ejs",
+      "reference/websockets/sails.io.js/io.socket.off.ejs",
+      "reference/websockets/sails.io.js/io.socket.ejs",
       "reference/websockets/sails.io.js/io.socket.on.ejs",
-      "reference/websockets/sails.io.js/socket.get.ejs",
       "reference/websockets/sails.io.js/socket.delete.ejs",
-      "reference/websockets/sails.io.js/socket.post.ejs",
       "reference/websockets/sails.io.js/socket.put.ejs",
-      "reference/websockets/sails.io.js/socket.request.ejs"
+      "reference/websockets/sails.io.js/socket.get.ejs",
+      "reference/websockets/sails.io.js/socket.post.ejs",
+      "reference/websockets/sails.io.js/socket.request.ejs",
+      "reference/websockets/sails.io.js/SailsSocket/SailsSocket.ejs"
     ],
     "isParent": true
   },
@@ -1262,7 +1462,8 @@
     "templateTitle": "socket.delete.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/socket.delete.ejs",
     "data": {
-      "displayName": "io.socket.delete()"
+      "displayName": "io.socket.delete()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
@@ -1271,7 +1472,8 @@
     "templateTitle": "socket.get.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/socket.get.ejs",
     "data": {
-      "displayName": "io.socket.get()"
+      "displayName": "io.socket.get()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
@@ -1280,7 +1482,8 @@
     "templateTitle": "socket.post.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/socket.post.ejs",
     "data": {
-      "displayName": "io.socket.post()"
+      "displayName": "io.socket.post()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
@@ -1289,7 +1492,8 @@
     "templateTitle": "socket.put.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/socket.put.ejs",
     "data": {
-      "displayName": "io.socket.put()"
+      "displayName": "io.socket.put()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true
@@ -1298,16 +1502,28 @@
     "templateTitle": "socket.request.ejs",
     "fullPathAndFileName": "reference/websockets/sails.io.js/socket.request.ejs",
     "data": {
-      "displayName": "io.socket.request()"
+      "displayName": "io.socket.request()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.sockets.addRoomMembersToRooms.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.addRoomMembersToRooms.ejs",
+    "data": {
+      "displayName": ".addRoomMembersToRooms()",
+      "pageType": "method"
+    },
+    "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
   },
   {
     "templateTitle": "sails.sockets.blast.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.blast.ejs",
     "data": {
-      "displayName": "sails.sockets.blast()"
+      "displayName": ".blast()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1316,7 +1532,8 @@
     "templateTitle": "sails.sockets.broadcast.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.broadcast.ejs",
     "data": {
-      "displayName": "sails.sockets.broadcast()"
+      "displayName": ".broadcast()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1327,20 +1544,24 @@
     "realPath": "reference/websockets/sails.sockets/",
     "data": {
       "displayName": "sails.sockets",
-      "stabilityIndex": "3"
+      "pageType": "property"
     },
     "parent": "reference/websockets/websockets.ejs",
     "isChild": true,
     "children": [
+      "reference/websockets/sails.sockets/sails.sockets.addRoomMembersToRooms.ejs",
       "reference/websockets/sails.sockets/sails.sockets.blast.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.emit.ejs",
       "reference/websockets/sails.sockets/sails.sockets.broadcast.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.emit.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.getid.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.id.ejs",
       "reference/websockets/sails.sockets/sails.sockets.join.ejs",
       "reference/websockets/sails.sockets/sails.sockets.leave.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.id.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.leaveAll.ejs",
       "reference/websockets/sails.sockets/sails.sockets.rooms.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.socketRooms.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.subscribers.ejs"
+      "reference/websockets/sails.sockets/sails.sockets.removeRoomMembersFromRoom.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.subscribers.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.socketRooms.ejs"
     ],
     "isParent": true
   },
@@ -1348,7 +1569,18 @@
     "templateTitle": "sails.sockets.emit.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.emit.ejs",
     "data": {
-      "displayName": "sails.sockets.emit()"
+      "displayName": "sails.sockets.emit()",
+      "isDeprecated": "true"
+    },
+    "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.sockets.getid.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.getid.ejs",
+    "data": {
+      "displayName": ".getId()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1357,7 +1589,8 @@
     "templateTitle": "sails.sockets.id.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.id.ejs",
     "data": {
-      "displayName": "sails.sockets.id()"
+      "displayName": "sails.sockets.id()",
+      "isDeprecated": "true"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1366,7 +1599,8 @@
     "templateTitle": "sails.sockets.join.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.join.ejs",
     "data": {
-      "displayName": "sails.sockets.join()"
+      "displayName": ".join()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1375,7 +1609,28 @@
     "templateTitle": "sails.sockets.leave.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.leave.ejs",
     "data": {
-      "displayName": "sails.sockets.leave()"
+      "displayName": ".leave()",
+      "pageType": "method"
+    },
+    "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.sockets.leaveAll.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.leaveAll.ejs",
+    "data": {
+      "displayName": ".leaveAll()",
+      "pageType": "method"
+    },
+    "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
+    "isChild": true
+  },
+  {
+    "templateTitle": "sails.sockets.removeRoomMembersFromRoom.ejs",
+    "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.removeRoomMembersFromRoom.ejs",
+    "data": {
+      "displayName": ".removeRoomMembersFromRooms()",
+      "pageType": "method"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1384,7 +1639,8 @@
     "templateTitle": "sails.sockets.rooms.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.rooms.ejs",
     "data": {
-      "displayName": "sails.sockets.rooms()"
+      "displayName": "sails.sockets.rooms()",
+      "isDeprecated": "true"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1393,7 +1649,8 @@
     "templateTitle": "sails.sockets.socketRooms.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.socketRooms.ejs",
     "data": {
-      "displayName": "sails.sockets.socketRooms()"
+      "displayName": "sails.sockets.socketRooms()",
+      "isDeprecated": "true"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1402,7 +1659,8 @@
     "templateTitle": "sails.sockets.subscribers.ejs",
     "fullPathAndFileName": "reference/websockets/sails.sockets/sails.sockets.subscribers.ejs",
     "data": {
-      "displayName": "sails.sockets.subscribers()"
+      "displayName": "sails.sockets.subscribers()",
+      "isDeprecated": "true"
     },
     "parent": "reference/websockets/sails.sockets/sails.sockets.ejs",
     "isChild": true
@@ -1420,9 +1678,7 @@
   {
     "templateTitle": "README.ejs",
     "fullPathAndFileName": "reference/README.ejs",
-    "data": {
-      "displayName": "error"
-    }
+    "data": {}
   },
   {
     "templateTitle": "application.ejs",
@@ -1433,7 +1689,15 @@
     },
     "children": [
       "reference/application/sails.getBaseUrl.ejs",
-      "reference/application/sails.log.ejs"
+      "reference/application/events.ejs",
+      "reference/application/lifecycle.ejs",
+      "reference/application/sails.getRouteFor.ejs",
+      "reference/application/sails.getUrlFor.ejs",
+      "reference/application/sails.load.ejs",
+      "reference/application/sails.log.ejs",
+      "reference/application/sails.lift.ejs",
+      "reference/application/sails.lower.ejs",
+      "reference/application/sails.request.ejs"
     ],
     "isParent": true
   },
@@ -1448,11 +1712,11 @@
     "children": [
       "reference/blueprint-api/Add.ejs",
       "reference/blueprint-api/Create.ejs",
+      "reference/blueprint-api/Find.ejs",
       "reference/blueprint-api/Destroy.ejs",
       "reference/blueprint-api/FindOne.ejs",
       "reference/blueprint-api/Populate.ejs",
       "reference/blueprint-api/Remove.ejs",
-      "reference/blueprint-api/Find.ejs",
       "reference/blueprint-api/Update.ejs"
     ],
     "isParent": true
@@ -1466,11 +1730,11 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/cli/sailsconsole.ejs",
       "reference/cli/sailsdebug.ejs",
-      "reference/cli/sailsnew.ejs",
+      "reference/cli/sailsconsole.ejs",
       "reference/cli/sailsgenerate.ejs",
       "reference/cli/sailslift.ejs",
+      "reference/cli/sailsnew.ejs",
       "reference/cli/sailsversion.ejs"
     ],
     "isParent": true
@@ -1485,36 +1749,36 @@
     },
     "children": [
       "reference/req/req.accepted.ejs",
-      "reference/req/req.accepts.ejs",
-      "reference/req/req.acceptedLanguages.ejs",
-      "reference/req/req.acceptsCharset.ejs",
       "reference/req/req.acceptsLanguage.ejs",
+      "reference/req/req.acceptedLanguages.ejs",
       "reference/req/req.acceptedCharsets.ejs",
-      "reference/req/req.allParams.ejs",
+      "reference/req/req.accepts.ejs",
+      "reference/req/req.acceptsCharset.ejs",
       "reference/req/req.body.ejs",
+      "reference/req/req.allParams.ejs",
       "reference/req/req.cookies.ejs",
       "reference/req/req.file.ejs",
       "reference/req/req.fresh.ejs",
+      "reference/req/req.get.ejs",
       "reference/req/req.headers.ejs",
+      "reference/req/req.ip.ejs",
       "reference/req/req.host.ejs",
       "reference/req/req.ips.ejs",
-      "reference/req/req.ip.ejs",
       "reference/req/req.is.ejs",
-      "reference/req/req.get.ejs",
-      "reference/req/req.method.ejs",
       "reference/req/req.isSocket.ejs",
+      "reference/req/req.method.ejs",
       "reference/req/req.param.ejs",
-      "reference/req/req.protocol.ejs",
-      "reference/req/req.path.ejs",
       "reference/req/req.params.ejs",
+      "reference/req/req.path.ejs",
+      "reference/req/req.protocol.ejs",
+      "reference/req/req.query.ejs",
       "reference/req/req.secure.ejs",
       "reference/req/req.socket.ejs",
-      "reference/req/req.query.ejs",
       "reference/req/req.subdomains.ejs",
-      "reference/req/req.url.ejs",
       "reference/req/req.signedCookies.ejs",
-      "reference/req/req.wantsJSON.ejs",
       "reference/req/req.xhr.ejs",
+      "reference/req/req.url.ejs",
+      "reference/req/req.wantsJSON.ejs",
       "reference/req/req.options/req.options.ejs"
     ],
     "isParent": true
@@ -1529,24 +1793,24 @@
     },
     "children": [
       "reference/res/res.attachment.ejs",
+      "reference/res/res.clearCookie.ejs",
       "reference/res/res.badRequest.ejs",
       "reference/res/res.cookie.ejs",
       "reference/res/res.forbidden.ejs",
-      "reference/res/res.clearCookie.ejs",
       "reference/res/res.get.ejs",
       "reference/res/res.json.ejs",
       "reference/res/res.jsonp.ejs",
       "reference/res/res.location.ejs",
       "reference/res/res.negotiate.ejs",
       "reference/res/res.notFound.ejs",
+      "reference/res/res.ok.ejs",
+      "reference/res/res.redirect.ejs",
       "reference/res/res.send.ejs",
       "reference/res/res.serverError.ejs",
-      "reference/res/res.redirect.ejs",
-      "reference/res/res.ok.ejs",
       "reference/res/res.set.ejs",
-      "reference/res/res.view.ejs",
       "reference/res/res.status.ejs",
-      "reference/res/res.type.ejs"
+      "reference/res/res.type.ejs",
+      "reference/res/res.view.ejs"
     ],
     "isParent": true
   },
@@ -1559,22 +1823,22 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/sails.config/miscellaneous.ejs",
-      "reference/sails.config/sails.config.blueprints.ejs",
       "reference/sails.config/sails.config.bootstrap.ejs",
+      "reference/sails.config/sails.config.blueprints.ejs",
+      "reference/sails.config/miscellaneous.ejs",
       "reference/sails.config/sails.config.connections.ejs",
       "reference/sails.config/sails.config.cors.ejs",
       "reference/sails.config/sails.config.csrf.ejs",
-      "reference/sails.config/sails.config.i18n.ejs",
       "reference/sails.config/sails.config.globals.ejs",
-      "reference/sails.config/sails.config.log.ejs",
+      "reference/sails.config/sails.config.http.ejs",
+      "reference/sails.config/sails.config.i18n.ejs",
       "reference/sails.config/sails.config.models.ejs",
+      "reference/sails.config/sails.config.log.ejs",
       "reference/sails.config/sails.config.policies.ejs",
       "reference/sails.config/sails.config.routes.ejs",
+      "reference/sails.config/sails.config.session.ejs",
       "reference/sails.config/sails.config.sockets.ejs",
-      "reference/sails.config/sails.config.http.ejs",
-      "reference/sails.config/sails.config.views.ejs",
-      "reference/sails.config/sails.config.session.ejs"
+      "reference/sails.config/sails.config.views.ejs"
     ],
     "isParent": true
   },
