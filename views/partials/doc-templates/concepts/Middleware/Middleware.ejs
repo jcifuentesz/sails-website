@@ -10,7 +10,7 @@
 <li><code>*</code> - The middleware with an asterisk (*) above should <em>almost never</em> need to be modified or removed. Please only do so if you really understand what you&apos;re doing.</li>
 </ul>
 <h4 id="adding-or-overriding-http-middleware" permalink="adding-or-overriding-http-middleware">Adding or Overriding HTTP Middleware</h4>
-<p>To configure a custom HTTP middleware function, define a new HTTP key <code>sails.config.http.middleware.FOO</code> and set it to the configured middleware function, then add the string name (&quot;FOO&quot;) to your <code>sails.config.http.middleware.order</code> array wherever you&apos;d like it to run in the middleware chain (a good place to put it might be right before &quot;cookieParser&quot;):</p>
+<p>To configure a custom HTTP middleware function, define a new HTTP key <code>sails.config.http.middleware.foobar</code> and set it to the configured middleware function, then add the string name (&quot;foobar&quot;) to your <code>sails.config.http.middleware.order</code> array wherever you&apos;d like it to run in the middleware chain (a good place to put it might be right before &quot;cookieParser&quot;):</p>
 <p>E.g. in <code>config/http.js</code>:</p>
 <pre><code data-language="javascript">// ...
   middleware: {
@@ -99,6 +99,5 @@ If you want a middleware function
 
 If you want a middleware function to run for all you should include it at the top of your `config/routes.js` as a wildcard route.  for your controller (both HTTP and virtual) requests
 -->
-<p><docmeta name="uniqueID" value="middleware198259"></docmeta></p>
 <docmeta name="displayName" value="Middleware">
 </docmeta>

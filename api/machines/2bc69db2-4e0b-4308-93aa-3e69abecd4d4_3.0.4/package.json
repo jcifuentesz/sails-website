@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "machinepack-github": "3.0.4"
-  },
-  "machinepack": {
-    "machines": []
-  }
-}

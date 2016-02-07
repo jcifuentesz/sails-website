@@ -9,15 +9,29 @@
 <h3 id="can-i-use-this-with-" permalink="can-i-use-this-with">Can I use this with...</h3>
 <p>Yes.  The Sails socket client can be used to great effect with any front-end framework-- no matter whether it&apos;s angular, backbone, ember, knockout, etc.</p>
 <h3 id="do-i-have-to-use-this-" permalink="do-i-have-to-use-this">Do I have to use this?</h3>
-<p>No. The Sails socket client is extremely helpful when building realtime/chat features in a browser-based UI, but like the rest of the <code>assets/</code> directory, it is probably not particularly useful if you are building a native Android app, or an API with no user interface.</p>
-<p>Fortunately, like every other boilerplate file and folder in Sails, the socket client is completely optional. To remove it, just delete <code>assets/js/depencencies/sails.io.js</code>.</p>
+<p>No. The Sails socket client is extremely helpful when building realtime/chat features in a browser-based UI, but like the rest of the <code>assets/</code> directory, it is probably not particularly useful if you are building a <a href="http://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server/25081189#25081189" target="_blank">native Android app</a>, or an API with no user interface at all.</p>
+<p>Fortunately, like every other boilerplate file and folder in Sails, the socket client is completely optional. To remove it, just delete <code>assets/js/dependencies/sails.io.js</code>.</p>
+<h3 id="basic-usage-browser-" permalink="basic-usage-(browser)">Basic usage (browser)</h3>
+<p>In the browser, all that is required to use <code>sails.io.js</code> is to include the library in a <code>&lt;SCRIPT&gt;</code> tag.  Sails adds the library to the <code>assets/js/dependencies</code> folder of all new apps, so you can do:</p>
+<pre><code data-language="html">&lt;script type&quot;text/javascript&quot; src=&quot;/js/dependencies/sails.io.js&quot;&gt;&lt;/script&gt;
+</code></pre><!-- __LANG=%%__ -->
+<p>and then use the global <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket" target="_blank"><code>io.socket</code> instance</a> and all of in subsequent inline or external scripts.</p>
+<h3 id="basic-usage-node-js-" permalink="basic-usage-(nodejs)">Basic usage (Node.js)</h3>
+<p>In a Node.js script, you will need to include both the <code>sails.io.js</code> and <code>socket.io-client</code> libraries:</p>
+<pre><code data-language="javascript">var sailsIo = require(&apos;sails.io.js&apos;);
+var socketIo = require(&apos;socket.io-client&apos;);
+// Initialize the sails.io.js library with the socket.io-client module,
+// which will automatically create and connect a new socket as io.socket
+var io = sailsIo(socketIo);
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="configuration-and-advanced-usage" permalink="configuration-and-advanced-usage">Configuration and advanced usage</h3>
+<p>The <code>sails.io.js</code> library can be configured in various ways, including turning off the auto-creation of sockets.  Global configuration for new sockets (including <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket" target="_blank"><code>io.socket</code></a>) lives in the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails" target="_blank"><code>io.sails</code> object</a>.  You can also create multiple socket connections at once using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails#?the-connect-method" target="_blank"><code>io.sails.connect</code></a>, each of which will be an instance (like <code>io.socket</code>) of the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket" target="_blank">SailsSocket class</a>.</p>
 <!--
 
   TODO: add a bit more of a technical description in here at some point
 
 Under the covers, sails.io.js emits Socket.io messages with reserved names that, when interpreted by Sails, are routed to the appropriate policies/controllers/etc. according to your app's routes and blueprint configuration.
 -->
-<p><docmeta name="uniqueID" value="BrowserSDK293544"></docmeta></p>
 <p><docmeta name="displayName" value="Socket Client"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 

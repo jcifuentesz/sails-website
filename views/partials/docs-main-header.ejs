@@ -1,4 +1,4 @@
-<div class="docs-main-header" ng-controller="DocsCtrl">
+<div class="docs-main-header" ng-controller="HeaderCtrl">
   <div class="nav-container">
     <div class="nav-content">
       <span class="header-title"><%= sectionTitle %></span>
@@ -12,29 +12,6 @@
         <a href="/documentation/concepts/">
           <li ng-class="{current: getIsCurrentDocSection('concepts')}">Concepts</li>
         </a>
-      </ul>
-    </div>
-  </div>
-  <div class="mobile-sub-nav-wrapper">
-    <div class="mobile-sub-nav-veil"></div>
-    <div class="mobile-sub-nav">
-      <ul>
-      <% _.each( templateList, function(navItem) {
-        if( _.contains(data.expandedItems, navItem.path) ) {
-            navItem.isInitiallyExpanded = true;
-          }
-          else navItem.isInitiallyExpanded = false;
-
-          // Only show top-level nav items initially
-          // (Except for the ones that don't have children, because those are
-          // the wierd ones that aren't really part of the docs.
-          if(!navItem.isChild &&  navItem.children && navItem.children.length) { %>
-
-          <li class="mobile-nav-item <%= navItem.isInitiallyExpanded && !navItem.isParent ? 'expanded' : navItem.isInitiallyExpanded && navItem.isParent ? 'expanded current-parent' : '' %>" ng-class="{'current': getIsCurrent('<%= navItem.slug %>'), 'folder': <%= navItem.isParent %>, 'expanded': getIsExpanded('<%= navItem.path %>')}">
-            <%- partial('../partials/mobile-nav-item', {navItem: navItem, navItems: data.templateList, section: data.section, expandedItems: data.expandedItems}) %>
-          </li>
-       <% }
-      }) %>
       </ul>
     </div>
   </div>

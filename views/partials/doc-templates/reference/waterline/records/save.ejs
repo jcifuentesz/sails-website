@@ -1,6 +1,6 @@
 <h1 id="-save-callback-">* .save(<code>callback</code>)</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>The <code>save()</code> method updates your record in the database using the current attributes.  It then returns the newly saved object in the callback. </p>
+<p>The <code>save()</code> method updates your record in the database using the current attributes.  It then returns the newly saved object in the callback.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <h4 id="parameters" permalink="parameters">Parameters</h4>
 <table>
@@ -63,11 +63,12 @@
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
-<p>This is an instance method.  Currently, instance methods ARE NOT TRANSACTIONAL.  Because of this, it is recommended that you use the equivalent model method instead.  </p>
+<ul>
+<li>This is an instance method.  Currently, instance methods ARE NOT TRANSACTIONAL.  Because of this, it is recommended that you use the equivalent model method instead.</li>
+<li>If you have any associations on the model they will currently be populated when you call <code>.save()</code>. This could cause issues with memory so to prevent this, you can take advantage of an experimental feature: passing in an options argument with <code>populate: false</code> set. Example: <code>.save({ populate: false }, function() {})</code>.</li>
+</ul>
 </blockquote>
-<p><docmeta name="uniqueID" value="save581656"></docmeta></p>
-<p><docmeta name="methodType" value="association"></docmeta></p>
-<p><docmeta name="importance" value="undefined"></docmeta></p>
-<docmeta name="displayName" value=".save()">
+<p><docmeta name="displayName" value=".save()"></docmeta></p>
+<docmeta name="pageType" value="method">
 
 </docmeta>

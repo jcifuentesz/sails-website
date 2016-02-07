@@ -182,6 +182,7 @@ module.exports = {
 </code></pre><!-- __LANG=%%__ -->
 <blockquote>
 <p>Note that with the notable exception of the built-in <code>.save()</code> and <code>.destroy()</code> attribute methods, attribute methods are almost always <em>synchronous</em> by convention.</p>
+<p>Also note that custom attributes methods are not serialized to JSON by default.  To serialize them, you can override <a href="http://sailsjs.org/documentation/reference/waterline-orm/records/to-json" target="_blank">toJSON</a>.</p>
 </blockquote>
 <h6 id="when-to-write-a-custom-attribute-method">When to write a custom attribute method</h6>
 <p>Custom attribute methods are particularly useful for extracting some information out of a record.  I.e. you might want to reduce some information from one or more attributes (i.e. &quot;is this person married?&quot;&quot;)</p>
@@ -222,6 +223,5 @@ If your app involves multigenerational hair-styling, you might think it would ma
 
 Promises are most effective when used to handle asynchronous, but referentially transparent ("nullipotent") operations; i.e. logic without any side-effects.
 -->
-<p><docmeta name="uniqueID" value="Models413907"></docmeta></p>
 <docmeta name="displayName" value="Models">
 </docmeta>

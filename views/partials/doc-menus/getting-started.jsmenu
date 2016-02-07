@@ -12,7 +12,6 @@
     "templateTitle": "WhatIsSails.ejs",
     "fullPathAndFileName": "getting-started/WhatIsSails.ejs",
     "data": {
-      "uniqueID": "WhatIsSails126387",
       "displayName": "What Is Sails"
     },
     "parent": "getting-started/getting-started.ejs",
@@ -26,8 +25,8 @@
       "displayName": "Installation"
     },
     "children": [
-      "getting-started/NewToNode.ejs",
-      "getting-started/WhatIsSails.ejs"
+      "getting-started/WhatIsSails.ejs",
+      "getting-started/NewToNode.ejs"
     ],
     "isParent": true
   }

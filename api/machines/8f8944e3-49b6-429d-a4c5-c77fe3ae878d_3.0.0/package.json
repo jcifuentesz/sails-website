@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "machinepack-fs": "4.1.0"
-  },
-  "machinepack": {
-    "machines": []
-  }
-}

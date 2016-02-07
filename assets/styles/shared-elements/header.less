@@ -21,7 +21,7 @@
   }
 
   .branding {
-    width: 165px;
+    width: 265px;
     float: left;
     cursor: pointer;
     .logo {
@@ -82,6 +82,21 @@
         &:hover {
           color: @turquoise;
           .transition(all 0.25s);
+        }
+        &.open-chat-btn {
+          position: relative;
+          top: -6px;
+          margin-left: 9px;
+          margin-right: 9px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          padding-left: 11px;
+          padding-right: 11px;
+          background-color: @turquoise;
+          &:hover {
+            color: @white;
+            background-color: @darkTurquoise;
+          }
         }
       }
       &.mobile-only {
@@ -163,7 +178,7 @@
         &.no-mobile {
           display: none;
         }
-        a {
+        a, a.open-chat-btn {
           .borderBox();
           height: 60px;
           padding-left: 25px;

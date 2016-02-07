@@ -5,7 +5,7 @@
 <thead>
 <tr>
 <th>Property</th>
-<th style="text-align:center">Type</th>
+<th>Type</th>
 <th>Default</th>
 <th>Details</th>
 </tr>
@@ -13,43 +13,52 @@
 <tbody>
 <tr>
 <td><code>level</code></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+<td><bubble type="string" colors="true"></bubble></td>
 <td><code>&apos;info&apos;</code></td>
 <td>Set the level of detail to be shown in your app&apos;s log</td>
 </tr>
+<tr>
+<td><code>inspect</code></td>
+<td><bubble type="boolean" colors="true"></bubble></td>
+<td><code>true</code></td>
+<td>Set to false to disable captain&apos;s log&apos;s handling of logging, logs will instead be passed to the configured custom logger</td>
+</tr>
+<tr>
+<td><code>custom</code></td>
+<td><bubble type="dictionary" colors="true"></bubble></td>
+<td><code>undefined</code></td>
+<td>Set to the instance of a custom logger (such as <a href="https://github.com/winstonjs/winston" target="_blank">winston</a>) logs will be passed through to the custom logger</td>
+</tr>
 </tbody>
 </table>
-<!--
-### Notes
+<h3 id="using-a-custom-logger" permalink="using-a-custom-logger">Using a Custom Logger</h3>
+<p>You can use a custom logger by disabling captain&apos;s log and providing a logger with similar methods that logs can be passed to. An example using <a href="https://github.com/winstonjs/winston" target="_blank">winston</a> defining both a console transport and file transport is below.</p>
+<pre><code data-language="javascript">var winston = require(&apos;winston&apos;);
+var customLogger = new winston.Logger();
 
-> +. ...
+// A console transport logging debug and above.
+customLogger.add(winston.transports.Console, {
+  level: &apos;debug&apos;,
+  colorize: true
+});
 
--->
-<!--
-### What is this?
-The logger file configures the log level for your app, as well as the transport.
+// A file based transport logging only errors formatted as json.
+customLogger.add(winston.transports.File, {
+  level: &apos;error&apos;,
+  filename: &apos;filename.log&apos;,
+  json: true
+});
 
-### Description
+module.exports.log = {
+  // Pass in our custom logger, and pass all log levels through.
+  custom: customLogger,
+  level: &apos;silly&apos;,
 
-The logger file configures the log level for your app, as well as the transport.
+  // Disable captain&apos;s log so it doesn&apos;t prefix or stringify our meta data.
+  inspect: false
+};
+</code></pre><!-- __LANG=%%__ -->
+<p><docmeta name="displayName" value="sails.config.log"></docmeta></p>
+<docmeta name="pageType" value="property">
 
-*(Underneath the covers, Sails uses Winston for logging, which allows for some pretty neat custom transports/adapters for log messages)*
-
-#### There are 5 different levels to the log:
-
-+ **'error'** : Display calls to `.error()`
-+ **'warn'**    : Display calls from `.error()` to `.warn()`
-+ **'debug'** : Display calls from `.error()`, `.warn()` to `.debug()`
-+ **'info'**  : Display calls from `.error()`, `.warn()`, `.debug()` to `.info()`
-+ **'verbose'**: Display calls from `.error()`, `.warn()`, `.debug()`, `.info()` to `.verbose()`
-
-
-By default, the level is set to `info`.
-
-
-
-
--->
-<p><docmeta name="uniqueID" value="sailsconfiglog812909"></docmeta></p>
-<docmeta name="displayName" value="sails.config.log">
 </docmeta>

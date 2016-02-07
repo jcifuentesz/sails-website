@@ -1,0 +1,31 @@
+<h1 id="reporting-security-issues-in-sails">Reporting Security Issues in Sails</h1>
+<p>If you believe you&apos;ve found a security vulnerability in Sails, Waterline, or one of the other modules maintained by the Sails core team, please send an email to <strong>critical at treeline dot io</strong>.  <em>Please don&apos;t file a public issue</em>.</p>
+<h3 id="what-is-a-security-vulnerability-" permalink="what-is-a-security-vulnerability">What is a security vulnerability?</h3>
+<p>A security vulnerability is any major bug or unintended consequence that could compromise a Sails.js app in production.</p>
+<p>For example, an issue where Sails crashes in a development environment when using non-standard Grunt tasks is <em>not a security vulnerability</em>.  On the other hand, if it was possible to perform a trivial DoS attack on a Sails cluster running in a production environment and using documented best-practices (a la the <a href="http://expressjs-book.com/index.html%3Fp=140.html" target="_blank">Express/Connect body parser issue</a>), that <em>is a security vulnerability</em> and we want to know about it.</p>
+<blockquote>
+<p>Note that this definition includes any such vulnerability that exists due to one of our dependencies.  In this case, an upgrade to a different version of the dependency is not always necessary: for example, when Express 3 deprecated multipart upload support in core, Sails.js dealt with the feature mismatch by implementing a wrapper around the <code>multiparty</code> module called <a href="https://github.com/balderdashy/skipper#history" target="_blank">Skipper</a>.</p>
+</blockquote>
+<h3 id="what-should-be-included-in-the-email-" permalink="what-should-be-included-in-the-email">What should be included in the email?</h3>
+<ul>
+<li>Identify the module where you found the security vulnerability (e.g. Sails, Waterline, other core module).</li>
+<li>A summary of the vulnerability</li>
+<li>The code you used when you discovered the vulnerability or a code example of the vulnerability (whichever is shorter).</li>
+<li>Whether you want us to make your involvement public.  If you want such a reference the name and link you wish to be referred (e.g. Jane Doe&apos;s link to her GitHub account)</li>
+</ul>
+<blockquote>
+<p>Please respect the core team&apos;s privacy and do not send bugs resulting from undocumented usage, questions, or feature requests to this email address.</p>
+</blockquote>
+<h3 id="the-process" permalink="the-process">The process</h3>
+<p>When you report a vulnerability, one of the project members will respond to you within a maximum of 14 days.  This response will most likely be an acknowledgement that we&apos;ve received the report and will be investigating it immediately.  Our target patching timeframe for serious security vulnerabilities is 14 days - however, we cannot guarantee that this is possible in all cases (more on that below).</p>
+<p>Based upon the nature of the vulnerability, and the amount of time it would take to fix, we&apos;ll either send out a patch that disables the broken feature, provide an estimate of the time it will take to fix, and/or document best practices to follow to avoid production issues.</p>
+<p>You can expect follow-up emails outlining the progression of a solution to the vulnerability along with any other questions we may have regarding your experience.</p>
+<h5 id="when-a-solution-is-achieved-we-do-the-following-" permalink="when-a-solution-is-achieved-we-do-the-following">When a solution is achieved we do the following:</h5>
+<ul>
+<li>notify you</li>
+<li>release a patch on the module&apos;s main repo</li>
+<li>provide a link to the patch here along with an explanation of it&apos;s origin and crediting you (if you have chosen to be identified)</li>
+<li>publicize the release via our various mailing lists.</li>
+</ul>
+<h3 id="is-this-an-sla-" permalink="is-this-an-sla">Is this an SLA?</h3>
+<p>No. Like any open-source project, we&apos;re run by volunteers, and we can&apos;t legally guarantee any kind of service level agreement (see the MIT license for details).  However, the core team cares deeply about Sails, and all of us have at least a few different websites and APIs running on Sails in production.  We will always publish a fix for any serious security vulnerability as soon as possible-- not just out of the kindness of our hearts, but because it could affect our apps (and our customer&apos;s apps) too.</p>

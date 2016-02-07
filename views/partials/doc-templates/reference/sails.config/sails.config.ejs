@@ -6,10 +6,18 @@
 <li>a local <code>.sailsrc</code> file in your app&apos;s directory, or the first found looking in <code>../</code>, <code>../../</code> etc.</li>
 <li>a global <code>.sailsrc</code> file in your home folder (e.g. <code>~/.sailsrc</code>)</li>
 <li>command-line arguments (parsed by minimist)</li>
-<li>environment variables (prefixed with <code>SAILS_</code>, e.g. <code>SAILS_PORT=1492</code>)</li>
-<li>files in your app&apos;s <code>config/</code> directory (if one exists)</li>
+<li>environment variables (prefixed with <code>sails_</code>, using double underlines to indicate dots: e.g. <code>sails_port=1492</code>, <code>sails_models__connection=somePostgresqlServer</code>, and/or <code>sails_connections__somePostgresqlServer__password=l0lguyz</code>)</li>
+<li>files in your app&apos;s <code>config/</code> directory (if one exists), with <code>config/local.js</code> taking priority.  Remember that, other than <code>local.js</code> (which takes priority), the file names are just for convention: the configuration you export from each file gets deep-merged together with everything else into one big dictionary (<code>sails.config</code>).</li>
 </ul>
-<p><docmeta name="uniqueID" value="sailsconfig238825"></docmeta></p>
+<blockquote>
+<h4 id="the-recommended-solution-for-production" permalink="the-recommended-solution-for-production">The recommended solution for production</h4>
+<p>Environment variables are one of the most powerful ways to configure your Sails app.  Since you can customize just about any setting (as long as it&apos;s JSON-serializable), this approach solves a number of problems, and is our core team&apos;s recommended strategy for production deployments.  Here are a few:</p>
+<ul>
+<li>Using environment variables means you don&apos;t have to worry about checking in your production database credentials, API tokens, etc.</li>
+<li>This makes changing Postgresql hosts, Mailgun accounts, S3 credentials, and other maintenance straightforward, fast, and easy; plus you don&apos;t need to change any code or worry about merging in downstream commits from other people on your team</li>
+<li>Depending on your hosting situation, you may be able to manage your production configuration through a UI (most PaaS providers like <a href="http://heroku.com" target="_blank">Heroku</a> or <a href="https://modulus.io" target="_blank">Modulus</a> support this, as does <a href="https://azure.microsoft.com/en-us/" target="_blank">Azure Cloud</a>.)</li>
+</ul>
+</blockquote>
 <p><docmeta name="displayName" value="Configuration"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 </docmeta>

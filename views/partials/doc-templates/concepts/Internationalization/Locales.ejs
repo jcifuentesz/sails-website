@@ -29,6 +29,7 @@
 </code></pre>
 <!-- __LANG=%%__ -->
 <h3 id="detecting-and-or-overriding-the-desired-locale-for-a-request" permalink="detecting-and/or-overriding-the-desired-locale-for-a-request">Detecting and/or overriding the desired locale for a request</h3>
+<p>To determine the current locale used by the request, use <a href="https://github.com/mashpie/i18n-node#getlocale" target="_blank"><code>req.getLocale()</code></a>.</p>
 <p>To override the auto-detected language/localization preference for a request, use <a href="https://github.com/mashpie/i18n-node#setlocale" target="_blank"><code>req.setLocale()</code></a>, calling it with the unique code for the new locale, e.g.:</p>
 <pre><code data-language="javascript">// Force the language to German for the remainder of the request:
 req.setLocale(&apos;de&apos;);
@@ -42,31 +43,5 @@ module.exports = function(req, res, next) {
   next();
 };
 </code></pre><!-- __LANG=%%__ -->
-<!--
-
-  Alternatively, here's another extended example:
-  (todo: at the very least pull this into a separate guide)
-
-```
-<!-- __LANG=%js%__ -->
-<p>// config/routes.js
-module.export.routes = {
-  &apos;/:lang/&apos;: &apos;MyController.index&apos;,
-  &apos;/:lang/help&apos;: &apos;MyController.help&apos;,
-  &apos;/:lang/contact&apos;: &apos;MyController.contact&apos;,
-  // ...etc...
-}</p>
-<p>// config/policies.js
-module.exports.policies = {
-  &apos;*&apos; : &apos;localize&apos;
-}</p>
-<p>// api/policies/localize.js
-module.exports = function(req, res, next) {
-   req.setLocale(req.param(&apos;lang&apos;));
-   next();
-};
-```
-<!-- __LANG=%%__ -->
---&gt;</p>
 <docmeta name="displayName" value="Locales">
 </docmeta>

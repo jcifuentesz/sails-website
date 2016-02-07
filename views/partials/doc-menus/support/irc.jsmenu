@@ -3,7 +3,6 @@
     "templateTitle": "configuringClient.ejs",
     "fullPathAndFileName": "irc/configuringClient.ejs",
     "data": {
-      "uniqueID": "ircClientConfig271113",
       "displayName": "Setting Up Your Client"
     },
     "parent": "irc/irc.ejs",
@@ -13,7 +12,6 @@
     "templateTitle": "grabClient.ejs",
     "fullPathAndFileName": "irc/grabClient.ejs",
     "data": {
-      "uniqueID": "ircClient82219",
       "displayName": "Grab A Client"
     },
     "parent": "irc/irc.ejs",
@@ -33,13 +31,12 @@
     "fullPathAndFileName": "irc/irc.ejs",
     "realPath": "irc/",
     "data": {
-      "uniqueID": "irc77272",
       "displayName": "#sailsjs on IRC"
     },
     "children": [
-      "irc/configuringClient.ejs",
+      "irc/grabClient.ejs",
       "irc/sailsTroll.ejs",
-      "irc/grabClient.ejs"
+      "irc/configuringClient.ejs"
     ],
     "isParent": true
   }

@@ -13,7 +13,7 @@ module.exports = {
             },
             fn: function(inputs, exits) {
                 // Resolve path
-                sails.machines['2806adc7-0289-473a-8843-020526771565_1.1.0'].resolve({
+                sails.machines['2806adc7-0289-473a-8843-020526771565_1.2.0'].resolve({
                     "paths": ["views/partials/doc-menus/version-notes.jsmenu"]
                 }).exec({
                     "error": function(resolvePath) {
@@ -26,7 +26,7 @@ module.exports = {
                     },
                     "success": function(resolvePath) {
                         // Read JSON file
-                        sails.machines['8f8944e3-49b6-429d-a4c5-c77fe3ae878d_3.0.0'].readJson({
+                        sails.machines['8f8944e3-49b6-429d-a4c5-c77fe3ae878d_5.3.0'].readJson({
                             "source": resolvePath,
                             "schema": [{
                                 templateTitle: "Foo-bar.ejs",
@@ -66,7 +66,7 @@ module.exports = {
                             },
                             "success": function(readJSONFile) {
                                 // Marshal menu metadata
-                                sails.machines['_project_3549_0.0.27'].MarshaldocPageMetadata({
+                                sails.machines['_project_3549_0.0.43'].MarshaldocPageMetadata({
                                     "docPageMetadatas": readJSONFile
                                 }).exec({
                                     "error": function(marshalMenuMetadata) {
@@ -79,7 +79,7 @@ module.exports = {
                                     },
                                     "success": function(marshalMenuMetadata) {
                                         // Find dictionary by...
-                                        sails.machines['c646f5e7-9c6f-49a5-91f6-7e1eabfd1186_3.0.2'].findOne({
+                                        sails.machines['c646f5e7-9c6f-49a5-91f6-7e1eabfd1186_5.2.0'].findOne({
                                             "array": marshalMenuMetadata,
                                             "criteria": {
                                                 displayNameSlug: inputs.versionnote

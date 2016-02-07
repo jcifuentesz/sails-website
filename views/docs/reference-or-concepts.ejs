@@ -5,13 +5,16 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
 
 
 
-<%- partial('../partials/docs-main-header.ejs', {templateList: data.templateList, section: data.section, expandedItems: data.expandedItems}) %>
+<%- partial('../partials/docs-main-header.ejs', {templateList: data.templateList}) %>
+
 
 <div class="main-container reference-page" ng-controller="DocsCtrl" scrollng>
 
   <!-- Main content -->
   <div class="right-column">
     <div class="reference-item">
+      <% /* Inject "Edit page" button via partial */ %>
+      <%- partial('../partials/pencil-button', {templatePath: data.currentTemplate.path, branchToEdit: branchToEdit }) %>
       <% if(data.currentTemplate.path.indexOf('0home') < 0) { %>
       <%- partial('../partials/doc-templates/'+ data.currentTemplate.path) %>
       <% } else {
@@ -36,7 +39,7 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
     </div>
     <div class="contribution-message">
         <h2>Is something missing?</h2>
-        <p>If you notice something we've missed or could be improved on, please follow <a href="https://github.com/balderdashy/sails-docs/blob/master/<%= data.currentTemplate.path.replace(/\.ejs/, '') %>.md" target="_blank">this link</a> and submit a pull request to the sails-docs repo.  Once we merge it, the changes will be immediately reflected on the website.</p>
+        <p>If you notice something we've missed or could be improved on, please follow <a href="https://github.com/balderdashy/sails-docs/blob/<%= branchToEdit %>/<%= data.currentTemplate.path.replace(/\.ejs/, '') %>.md" target="_blank">this link</a> and submit a pull request to the sails-docs repo.  Once we merge it, the changes will be reflected on the website the next time it is deployed.</p>
     </div>
   </div>
 

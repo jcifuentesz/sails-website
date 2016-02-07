@@ -43,12 +43,11 @@
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>For most developers and organizations, CSRF attacks need only be a concern if you allow users to log into/securely access your Sails backend from the browser. If you <em>don&apos;t</em> (e.g. users only access the secured sections from your native iOS or Android app), it is possible you don&apos;t need to enable CSRF protection.  Why?  Because technically, the common CSRF attack discussed on this page is only <em>possible</em> in scenarios where users use the <em>same client application</em> (e.g. Chrome) to access different web services (e.g. Chase.com, Horrible-Hacker-Site.com.)</li>
+<li>You can choose to send the CSRF token as the <code>X-CSRF-Token</code> header instead of the <code>_csrf</code> parameter.</li>
+<li>For most developers and organizations, CSRF attacks need only be a concern if you allow users to log into/securely access your Sails backend <em>from the browser</em> (i.e. from your HTML/CSS/JavaScript front-end code). If you <em>don&apos;t</em> (e.g. users only access the secured sections from your native iOS or Android app), it is possible you don&apos;t need to enable CSRF protection.  Why?  Because technically, the common CSRF attack discussed on this page is only <em>possible</em> in scenarios where users use the <em>same client application</em> (e.g. Chrome) to access different web services (e.g. Chase.com, Horrible-Hacker-Site.com.)</li>
 <li>For more information on CSRF, check out <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">Wikipedia</a></li>
 <li>For &quot;spending&quot; CSRF tokens in a traditional form submission, refer to the example above (under &quot;Using View Locals&quot;.)</li>
-<li>You can choose to send the CSRF token as a header instead of a parameter- refer to the <a href="http://www.senchalabs.org/connect/csrf.html" target="_blank">Connect documentation</a> for the most up-to-date information.  The next (post v0.10) minor release of Sails will likely upgrade to Express 4, at which point the new Express csrf middleware will be included instead, but backwards compatibility will be maintained.</li>
 </ul>
 </blockquote>
-<p><docmeta name="uniqueID" value="CSRF300312"></docmeta></p>
 <docmeta name="displayName" value="CSRF">
 </docmeta>

@@ -1,6 +1,9 @@
-<h1 id="sails-sockets-emit-socketids-event-data-">sails.sockets.emit( <code>socketIds</code>, [<code>event</code>], <code>data</code>)</h1>
+<h1 id="sails-sockets-emit-">sails.sockets.emit()</h1>
+<blockquote>
+<p><em><strong>This method is deprecated</strong>.  Use  <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/sails-sockets-broadcast" target="_blank"><code>.broadcast()</code></a> instead.</em></p>
+</blockquote>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Send a message to one or more sockets by ID.</p>
+<p>Send a message to one or more sockets by id.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <h4 id="parameters" permalink="parameters">Parameters</h4>
 <table>
@@ -47,10 +50,11 @@ sayHiToFriend: function(req, res) {
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>If the event name is not specified then the &quot;message&quot; event will be used by default. This would allow the target sockets to listen on the &quot;message&quot; event in order to react to the emit.</li>
+<li>If the event name is not specified then the &quot;message&quot; event will be used by default. That means that target sockets listening for the <code>message</code> event in client-side code (e.g. <code>io.socket.on(&apos;message&apos;, function (data){ /* ... */ })</code>) will have that event handler triggered.</li>
+<li>If <em>any</em> of the target socket ids are unknown, an error is thrown (this error has a <code>code</code> property equal to <code>SAILS:HOOK:SOCKETS:NO_SUCH_SOCKET</code>).</li>
 </ul>
 </blockquote>
-<p><docmeta name="uniqueID" value="sailssocketsemit963182"></docmeta></p>
-<docmeta name="displayName" value="sails.sockets.emit()">
+<p><docmeta name="displayName" value="sails.sockets.emit()"></docmeta></p>
+<docmeta name="isDeprecated" value="true">
 
 </docmeta>

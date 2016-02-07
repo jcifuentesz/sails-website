@@ -1,21 +1,13 @@
 <h1 id="-subscribe-">.subscribe()</h1>
-<p>Subscribes the requesting client socket to one or more database records (i.e. model instances).  </p>
+<p>Subscribe the requesting client socket to changes/deletions of one or more database records.</p>
+<pre><code data-language="javascript">Something.subscribe(req, ids);
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="usage" permalink="usage">Usage</h3>
-<pre><code data-language="javascript">SomeModel.subscribe(req, ids);
-</code></pre><!-- __LANG=%%__ -->
-<p><em>-or-</em></p>
-<pre><code data-language="javascript">SomeModel.subscribe(req, ids, contexts);
-</code></pre><!-- __LANG=%%__ -->
-<p>By default (if no &quot;contexts&quot; are provided), the client socket will receive relevant messages emitted by <code>.publishUpdate()</code>, <code>.publishDestroy()</code>, <code>.publishAdd()</code> and <code>.publishRemove()</code>.</p>
-<blockquote>
-<p><strong>Important</strong>:</p>
-<p>This function does <em>not actually talk to the database</em>!  In fact, none of the resourceful pubsub methods do.  These are just a simplified abstraction layer built on top of the lower-level <code>sails.sockets</code> methods, designed to make your app cleaner and easier to debug by using conventional names for events/rooms/namespaces etc.</p>
-</blockquote>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
 <th>Details</th>
 </tr>
@@ -23,29 +15,23 @@
 <tbody>
 <tr>
 <td>1</td>
-<td><code>req</code></td>
+<td style="text-align:left"><code>req</code></td>
 <td style="text-align:center"><bubble type="req" colors="true"></bubble></td>
-<td>The request object (<code>req</code>).  You should only use this method from an action.</td>
+<td>The incoming socket request (<code>req</code>) containing the socket to subscribe.</td>
 </tr>
 <tr>
 <td>2</td>
-<td><code>ids</code></td>
+<td style="text-align:left"><code>ids</code></td>
 <td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
-<td>An array of record ids (primary keys).</td>
-</tr>
-<tr>
-<td>3</td>
-<td><code>contexts</code></td>
-<td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
-<td>An optional array of change-type strings (&quot;contexts&quot;).  If provided, the subscribing client socket will only receive messages involving the specified types of changes (e.g. if a &quot;destroy&quot; context is specified, the socket will receive notifications from <code>publishDestroy()</code> calls involving this record).  Otherwise, if left unspecified, the socket will hear about any published events involving this record.</td>
+<td>An array of record ids (primary key values).</td>
 </tr>
 </tbody>
 </table>
-<p><em>Note</em>: <code>subscribe</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client" target="_blank">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</p>
+<p>When a client socket is subscribed to a record, it is a member of its &quot;record room&quot; aka &quot;instance room&quot;.  That means it will receive all messages about that record which are broadcasted by <code>.publishUpdate()</code>, <code>.publishDestroy()</code>, <code>.publishAdd()</code>, <code>.publishRemove()</code>, and <code>.message()</code>.</p>
 <h3 id="example" permalink="example">Example</h3>
 <pre><code data-language="javascript">subscribeToLouies: function (req, res) {
     if (!req.isSocket) {
-      return res.badRequest(&apos;Only a client socket can subscribe to Louies.  You, sir, appear to be something... _else_.&apos;);
+      return res.badRequest(&apos;Only a client socket can subscribe to Louies.  You, sir or madame, appear to be an HTTP request.&apos;);
     }
 
     // Let&apos;s say our client socket has a problem with people named &quot;louie&quot;.
@@ -53,29 +39,32 @@
     // First we&apos;ll find all users named &quot;louie&quot; (or &quot;louis&quot; even-- we should be thorough)
     User.find({ or: [{name: &apos;louie&apos;},{name: &apos;louis&apos;}] }).exec(function(err, usersNamedLouie){
       if (err) {
-        return res.negotiate(err);
+        return res.serverError(err);
       }
 
-      // Now we&apos;ll use the ids we found to subscribe our client socket to each of these records&apos;
-      // &quot;destroy&quot; context.
-      User.subscribe(req, _.pluck(usersNamedLouie, &apos;id&apos;), [&apos;destroy&apos;]);
+      // Now we&apos;ll use the ids we found to subscribe our client socket to each of these records.
+      User.subscribe(req, _.pluck(usersNamedLouie, &apos;id&apos;));
 
-      // Now any time a user named &quot;louie&quot; or &quot;louis&quot; is destroyed, our client socket will receive
-      // a notification (as long as it stays connected anyways).
+      // Now any time a user named &quot;louie&quot; or &quot;louis&quot; is modified or destroyed, our client socket
+      // will receive a notification (as long as it stays connected anyways).
 
       // All done!  We could send down some data, but instead we send an empty response.
       // (although we&apos;re ok telling this vengeful client socket when our users get
       //  destroyed, it seems ill-advised to send him our Louies&apos; sensitive user data.
-      //  We don&apos;t want to help this guy to hunt them down irl.)
+      //  We don&apos;t want to help this guy to hunt them down in real life.)
       return res.ok();
     });
   }
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="blueprints-and-subscribe-" permalink="blueprints-and-subscribe()">Blueprints and .subscribe()</h3>
-<p>By default, the blueprint <code>find</code> and <code>findOne</code> actions will call <code>.subscribe()</code> to subscribe a requesting socket to all returned records.  However, the blueprint <code>update</code> and <code>delete</code> actions will <em>not</em> cause a message to be sent to the requesting socket by default--only to the <em>other</em> connected sockets.  This is intended to allow the caller of <code>io.socket.update()</code> (for example) to use the client-side SDK&apos;s callback to handle the server response separately.  To force the blueprint actions to send messages to all sockets, <em>including the requesting socket</em>, set <code>sails.config.blueprints.mirror</code> to <code>true</code>.</p>
-<h3 id="what-is-context-" permalink="what-is-context">What is <code>context</code>?</h3>
-<p>If you specify a specific <em>context</em> (or array of contexts) to subscribe to, you will only get messages sent in that context.  For example, <code>User.subscribe(socket, user, &apos;update&apos;)</code> will cause the socket to receive messages only when <code>publishUpdate</code> is called for <code>user</code>.  Subsequent calls to <code>subscribe</code> are cumulative, so if you called <code>User.subscribe(socket, user, &apos;destroy&apos;)</code> later with the same socket, that socket would then be subscribed to messages from both <code>publishUpdate</code> and <code>publishDestroy</code>.  </p>
-<p>You can omit <code>context</code> to subscribe a socket to the default contexts for that model class.  The default contexts are defined by the <code>autosubscribe</code> property of the model class.  If <code>autosubscribe</code> is not present, then the default contexts are <code>update</code>, <code>destroy</code>, <code>message</code> (for custom messages), <code>add:*</code> and <code>remove:*</code> (publishAdd and publishRemove messages for associated models).</p>
-<p><docmeta name="methodType" value="pubsub"></docmeta></p>
-<docmeta name="displayName" value=".subscribe()">
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to refer to the requesting socket.  The provided <code>req</code> must be from a socket request, not just any old HTTP request.</li>
+<li><code>.subscribe()</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client" target="_blank">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</li>
+<li>This function does <em>not actually talk to the database</em>!  In fact, none of the resourceful pubsub methods do.  Remember: these are just a simplified abstraction layer built on top of the lower-level <code>sails.sockets</code> methods, designed to make your app cleaner and easier to debug by using conventional names for events/rooms/namespaces etc.</li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value=".subscribe()"></docmeta></p>
+<docmeta name="pageType" value="method">
+
 </docmeta>

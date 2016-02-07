@@ -4,19 +4,22 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
 </script>
 
 
-<%- partial('../partials/docs-main-header.ejs', {templateList: data.templateList, section: data.section, expandedItems: data.expandedItems}) %>
+<%- partial('../partials/docs-main-header.ejs', {templateList: data.templateList}) %>
 
 <div class="main-container anatomy-page" ng-controller="DocsCtrl" scrollng>
   <div class="anatomy-container">
     <!-- Region with the information about the selected file -->
     <div class="anatomy-content">
       <div class="anatomy-section">
+        <% /* Inject "Edit page" button via partial */ %>
+        <%- partial('../partials/pencil-button', {templatePath: data.currentTemplate.path, branchToEdit: branchToEdit}) %>
+        <% /* Inject main content via partial */ %>
         <%- partial('../partials/doc-templates/'+data.currentTemplate.path) %>
       </div>
 
       <div class="contribution-message">
         <h2>Is something missing?</h2>
-        <p>If you notice something we've missed or could be improved on, please follow <a href="https://github.com/balderdashy/sails-docs/blob/master/<%= data.currentTemplate.path.replace(/\.ejs/, '') %>.md" target="_blank">this link</a> and submit a pull request to the sails-docs repo.  Once we merge it, the changes will be immediately reflected on the website.</p>
+        <p>If you notice something we've missed or could be improved on, please follow <a href="https://github.com/balderdashy/sails-docs/blob/<%= branchToEdit %>/<%= data.currentTemplate.path.replace(/\.ejs/, '') %>.md" target="_blank">this link</a> and submit a pull request to the sails-docs repo.  Once we merge it, the changes will be immediately reflected on the website.</p>
       </div>
     </div>
 

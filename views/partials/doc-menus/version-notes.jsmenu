@@ -30,6 +30,16 @@
     "isChild": true
   },
   {
+    "templateTitle": "migration-guide-0.12.ejs",
+    "fullPathAndFileName": "version-notes/0.12.x/migration-guide-0.12.ejs",
+    "data": {
+      "displayName": "0.12 Migration Guide",
+      "version": "0.12.0"
+    },
+    "parent": "version-notes/0.12.x/0.12.x.ejs",
+    "isChild": true
+  },
+  {
     "templateTitle": "Changelog0.8.7x.ejs",
     "fullPathAndFileName": "version-notes/0.8.x/Changelog0.8.7x.ejs",
     "data": {
@@ -137,6 +147,19 @@
     "isParent": true
   },
   {
+    "templateTitle": "0.12.x.ejs",
+    "fullPathAndFileName": "version-notes/0.12.x/0.12.x.ejs",
+    "realPath": "version-notes/0.12.x/",
+    "data": {
+      "displayName": "0.12.x",
+      "version": "0.12.0"
+    },
+    "children": [
+      "version-notes/0.12.x/migration-guide-0.12.ejs"
+    ],
+    "isParent": true
+  },
+  {
     "templateTitle": "0.8.x.ejs",
     "fullPathAndFileName": "version-notes/0.8.x/0.8.x.ejs",
     "realPath": "version-notes/0.8.x/",
@@ -145,9 +168,9 @@
       "version": "0.8.0"
     },
     "children": [
+      "version-notes/0.8.x/Changelog0.8.7x.ejs",
       "version-notes/0.8.x/Changelog0.8.8x.ejs",
       "version-notes/0.8.x/ChangelogPre-0.8.77.ejs",
-      "version-notes/0.8.x/Changelog0.8.7x.ejs",
       "version-notes/0.8.x/Changelog0.8.9.ejs"
     ],
     "isParent": true

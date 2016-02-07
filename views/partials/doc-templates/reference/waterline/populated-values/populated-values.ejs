@@ -2,7 +2,7 @@
 <p>In addition to basic attribute data like email addresses, phone numbers, and birthdates, Waterline can dynamically store and retrieve linked sets of records using associations.  When <a href="http://sailsjs.org/documentation/reference/waterline/queries/populate.html" target="_blank"><code>.populate()</code></a> is called on a query, each of the resulting records will contain one or more <strong>populated values</strong>.  Each one of those <strong>populated values</strong> is a snapshot of the record(s) linked to that particular association at the time of the query.</p>
 <p>The type of a populated value is either:</p>
 <ul>
-<li><code>null</code>, or a plain old JavaScript object (POJO), or  <em>(if it corresponds to a &quot;model&quot; association)</em></li>
+<li><code>null</code>, or a plain old JavaScript object (POJO),  <em>(if it corresponds to a &quot;model&quot; association)</em> or</li>
 <li>an empty array, or an array of plain old JavaScript objects <em>(if it corresponds to a &quot;collection&quot; association)</em></li>
 </ul>
 <p>For example, assuming we&apos;re dealing with orders of adorable wolf puppies:</p>
@@ -57,6 +57,5 @@ orders[1].save(function (err) { ... });
 
 });
 </code></pre><!-- __LANG=%%__ -->
-<p><docmeta name="uniqueID" value="populatedvalues790682"></docmeta></p>
 <docmeta name="displayName" value="Populated Values">
 </docmeta>

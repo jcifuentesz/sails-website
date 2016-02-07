@@ -20,7 +20,7 @@
 <h2 id="policies" permalink="policies">Policies</h2>
 <p>Policies work exactly as they did in v0.9- however there is a new consideration you should take into account: Due to the introduction of the more specific <code>findOne()</code> blueprint action mentioned above, you will want to make sure you&apos;re handling it explicitly in your policy mapping configuration.</p>
 <p>For example, let&apos;s say you have a v0.9 app whose <code>policies.js</code> configuration prevents access to the <code>find</code> action in your <code>DoveController</code>:</p>
-<pre><code data-language="javascript">module.exports.policies = {
+<pre><code data-language="text">module.exports.policies = {
   &apos;*&apos;: true,
   DoveController: {
     find: false
@@ -28,7 +28,7 @@
 };
 </code></pre><!-- __LANG=%%__ -->
 <p>Assuming rest blueprint routes are enabled, this would prevent access to requests like both <code>/dove</code> and <code>/dove/14</code>. But now in v0.10, since <code>/dove/14</code> will actually run the <code>findOne</code> action, we must handle it explicitly:</p>
-<pre><code data-language="javascript">module.exports.policies = {
+<pre><code data-language="text">module.exports.policies = {
   &apos;*&apos;: true,
   DoveController: {
     find: false,
@@ -45,7 +45,7 @@
 </ul>
 <h3 id="details" permalink="details">Details</h3>
 <p>The biggest change to pubsub is that Socket.io events are emitted under the name of the model emitting them. Previously, your client listened for the <code>message</code> event and then had to determine which model it came from based on the included data:</p>
-<pre><code data-language="javascript">socket.on(&apos;message&apos;, function(cometEvent) {
+<pre><code data-language="text">socket.on(&apos;message&apos;, function(cometEvent) {
    if (cometEvent.model == &apos;user&apos;) {
      // Handle inbound messages related to a user record
    }
@@ -56,7 +56,7 @@
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>Now, you subscribe to the identity of the model:</p>
-<pre><code data-language="javascript">socket.on(&apos;user&apos;, function(cometEvent) {
+<pre><code data-language="text">socket.on(&apos;user&apos;, function(cometEvent) {
   // Handle inbound messages related to a user record
 });
 
@@ -96,14 +96,14 @@ socket.on(&apos;product&apos;, function (cometEvent) {
 <h2 id="legacy-data-stored-in-the-temporary-sails-disk-database" permalink="legacy-data-stored-in-the-temporary-sailsdisk-database">Legacy data stored in the temporary sails-disk database</h2>
 <p><code>sails-disk</code>, used by default in new Sails projects, now stores data a bit differently. If you have some temporary data stored in a 0.9.x project, you&apos;ll want to wipe it out and start fresh. To do this:</p>
 <p>From your project&apos;s root directory:</p>
-<pre><code data-language="javascript">$ rm .tmp/disk.db
+<pre><code data-language="text">$ rm .tmp/disk.db
 </code></pre><!-- __LANG=%%__ -->
 <h2 id="adapter-database-configuration" permalink="adapter/database-configuration">Adapter/Database Configuration</h2>
 <p><code>config.adapters</code> (in <code>myApp/config/adapters.js</code>) is now config.connections (in new projects, this is generated in <code>myApp/config/connections.js</code>). Also, <code>config.model</code> is now <code>config.models</code>.</p>
 <p>Your app&apos;s default <code>connection</code> (i.e. database) should now be configured as a string <code>config.models.connection</code> used by default for model. New projects are generated with a <code>/config/models.js</code> file that includes the default connection.</p>
 <p>To configure a model to use specific adapters, you must now specify them in the <code>connection</code> key instead of <code>adapters</code>.</p>
 <p>For example:</p>
-<pre><code data-language="javascript">module.exports = {
+<pre><code data-language="text">module.exports = {
 
     connection: [&apos;someMongoDatabase&apos;],
 
@@ -117,7 +117,7 @@ socket.on(&apos;product&apos;, function (cometEvent) {
 </code></pre><!-- __LANG=%%__ -->
 <h2 id="blueprints-controller-configuration" permalink="blueprints/controller-configuration">Blueprints/Controller configuration</h2>
 <p>The object literal describing controller configuration overrides for controller blueprints should change from:</p>
-<pre><code data-language="javascript">...
+<pre><code data-language="text">...
 _config: {
   blueprints: {
     rest: true,
@@ -126,7 +126,7 @@ _config: {
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>to:</p>
-<pre><code data-language="javascript">...
+<pre><code data-language="text">...
 _config: {
     rest: true,
     ...
@@ -134,12 +134,12 @@ _config: {
 </code></pre><!-- __LANG=%%__ -->
 <h2 id="layout-paths-" permalink="layout-paths">Layout paths:</h2>
 <p>In Sails v0.9, you could use the following syntax to specify <code>auth/someLayout.ejs</code> as a custom layout when rendering a view:</p>
-<pre><code data-language="javascript">return res.view(&apos;auth/login&apos;,{
+<pre><code data-language="text">return res.view(&apos;auth/login&apos;,{
   layout: &apos;someLayout&apos;
 });
 </code></pre><!-- __LANG=%%__ -->
 <p>However in Sails v0.10, all layout paths are relative to your app&apos;s views path. In other words, the relative path of the layout is no longer resolved from the view&apos;s own path-- it is now always resolved from the views path. This makes it easier to understand which file is being used, particularly when layout files have similar names:</p>
-<pre><code data-language="javascript">return res.view(&apos;auth/login&apos;, {
+<pre><code data-language="text">return res.view(&apos;auth/login&apos;, {
   layout: &apos;auth/someLayout&apos;
 });
 </code></pre><!-- __LANG=%%__ -->

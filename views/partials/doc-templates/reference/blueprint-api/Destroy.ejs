@@ -1,10 +1,9 @@
-<h1 id="destroy-a-record">Destroy a Record</h1>
-<p>Deletes an existing record specified by <code>id</code> from the database forever and returns the values of the deleted record.</p>
-<pre><code data-language="javascript">DELETE /:model/:record
+<h1 id="destroy-blueprint-">Destroy (Blueprint)</h1>
+<p>Delete the record specified by <code>id</code> from the database forever and notify subscribed sockets.</p>
+<pre><code data-language="text">DELETE /:model/:id
 </code></pre><!-- __LANG=%%__ -->
-<p>Destroys the model instance which matches the <strong>id</strong> parameter. Responds with a JSON object representing the newly destroyed instance. If no model instance exists matching the specified <strong>id</strong>, a <code>404</code> is returned.</p>
-<p>Additionally, a <code>destroy</code> event will be published to all sockets subscribed to the instance room.</p>
-<p>Consequently, all sockets currently subscribed to the instance will be unsubscribed from it.</p>
+<p>This destroys the record which matches the <strong>id</strong> parameter and responds with a JSON dictionary representing the destroyed instance. If no model instance exists matching the specified <strong>id</strong>, a <code>404</code> is returned.</p>
+<p>Additionally, a <code>destroy</code> event will be published to all sockets subscribed to the record room.  And all sockets currently subscribed to the record will be unsubscribed from it.</p>
 <h3 id="parameters" permalink="parameters">Parameters</h3>
 <table>
 <thead>
@@ -16,27 +15,31 @@
 </thead>
 <tbody>
 <tr>
-<td> id<br><em>(required)</em></td>
-<td><bubble type="number" colors="true"></bubble><br><em>-or-</em><br><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">The primary key value of the record to destroy. For <code>POST</code> (RESTful) requests, this can be supplied in the JSON body or as part of the route path. For <code>GET</code> (shortcut) requests, it must be supplied in the route path.</td>
+<td> model</td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity" target="_blank">identity</a> of the containing model.<br><br>e.g. <code>&apos;purchase&apos;</code> (in <code>/purchase/7</code>)</td>
 </tr>
 <tr>
-<td> callback</td>
+<td> id</td>
 <td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The desired target record&apos;s primary key value<br><br>e.g. <code>&apos;7&apos;</code> (in <code>/purchase/7</code>).</td>
+</tr>
+<tr>
+<td> id<br><em>(required)</em></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left">The primary key value of the record to destroy, specified in the path.  <br>e.g. <code>&apos;7&apos;</code> (in <code>/purchase/7</code>) .</td>
+</tr>
+<tr>
+<td> <em>callback</em></td>
+<td><bubble type="string?" colors="true"></bubble></td>
 <td style="text-align:left">If specified, a JSONP response will be sent (instead of JSON). This is the name of the client-side javascript function to call, passing results as the first (and only) argument<br> <br> e.g. <code>?callback=myJSONPHandlerFn</code></td>
 </tr>
 </tbody>
 </table>
-<h3 id="examples" permalink="examples">Examples</h3>
-<h4 id="destroy-rest-" permalink="destroy-(rest)">Destroy (REST)</h4>
-<p>Delete Pinkie Pie.</p>
-<h5 id="route" permalink="route">Route</h5>
-<p><code>DELETE /pony</code></p>
-<h5 id="json-request-body" permalink="json-request-body">JSON Request Body</h5>
-<pre><code data-language="json">{
-  &quot;id&quot;: 4
-}
-</code></pre><!-- __LANG=%%__ -->
+<h3 id="example" permalink="example">Example</h3>
+<p>Delete Pinkie Pie:</p>
+<p><code>DELETE /pony/4</code></p>
+<p><a href="https://www.getpostman.com/run-collection/96217d0d747e536e49a4" target="_blank"><img src="https://s3.amazonaws.com/postman-static/run-button.png" alt="Run in Postman"></a></p>
 <h5 id="expected-response" permalink="expected-response">Expected Response</h5>
 <pre><code data-language="json">{
   &quot;name&quot;: &quot;Pinkie Pie&quot;,
@@ -46,11 +49,7 @@
   &quot;updatedAt&quot;: &quot;2013-11-26T22:55:19.951Z&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
-<h4 id="destroy-shortcuts-" permalink="destroy-(shortcuts)">Destroy (Shortcuts)</h4>
-<h5 id="route" permalink="route">Route</h5>
-<p><code>GET /pony/destroy/4</code></p>
-<h5 id="expected-response" permalink="expected-response">Expected Response</h5>
-<p>Same as above.</p>
-<p><docmeta name="uniqueID" value="DestroyARecord867513"></docmeta></p>
-<docmeta name="displayName" value="destroy">
+<p><docmeta name="displayName" value="destroy"></docmeta></p>
+<docmeta name="pageType" value="endpoint">
+
 </docmeta>

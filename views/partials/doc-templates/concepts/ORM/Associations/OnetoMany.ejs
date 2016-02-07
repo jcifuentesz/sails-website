@@ -1,4 +1,5 @@
 <h1 id="one-to-many">One-to-Many</h1>
+<p><strong>AKA &quot;Has Many&quot;</strong></p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>A one-to-many association states that a model can be associated with many other models. To build this
 association a virtual attribute is added to a model using the <code>collection</code> property. In a one-to-many
@@ -7,98 +8,84 @@ attribute. This allows the many side to know which records it needs to get when 
 <p>Because you may want a model to have multiple one-to-many associations on another model a <code>via</code> key
 is needed on the <code>collection</code> attribute. This states which <code>model</code> attribute on the one side of the
 association is used to populate the records.</p>
-<h3 id="one-to-many-example" permalink="onetomany-example">One-to-Many Example</h3>
-<p><code>myApp/api/models/pet.js</code></p>
-<pre><code data-language="javascript">module.exports = {
+<pre><code data-language="javascript">// myApp/api/models/User.js
+// A user may have many pets
+module.exports = {
+  attributes: {
+    firstName: {
+      type: &apos;string&apos;
+    },
+    lastName: {
+      type: &apos;string&apos;
+    },
 
-    attributes: {
-        name:&apos;STRING&apos;,
-        color:&apos;STRING&apos;,
-        owner:{
-            model:&apos;user&apos;
-        }
+    // Add a reference to Pets
+    pets: {
+      collection: &apos;pet&apos;,
+      via: &apos;owner&apos;
     }
-
-}
+  }
+};
 </code></pre><!-- __LANG=%%__ -->
-<p><code>myApp/api/models/user.js</code></p>
-<pre><code data-language="javascript">module.exports = {
+<pre><code data-language="javascript">// myApp/api/models/Pet.js
+// A pet may only belong to a single user
+module.exports = {
+  attributes: {
+    breed: {
+      type: &apos;string&apos;
+    },
+    type: {
+      type: &apos;string&apos;
+    },
+    name: {
+      type: &apos;string&apos;
+    },
 
-    attributes: {
-        name:&apos;STRING&apos;,
-        age:&apos;INTEGER&apos;,
-        pets:{
-            collection: &apos;pet&apos;,
-            via: &apos;owner&apos;
-        }
+    // Add a reference to User
+    owner: {
+      model: &apos;user&apos;
     }
-
-}
+  }
+};
 </code></pre><!-- __LANG=%%__ -->
-<p>Using <code>sails console</code></p>
-<pre><code data-language="javascript">sails&gt; User.create({name:&apos;Mike&apos;,age:&apos;21&apos;}).exec(console.log)
-null { pets: [Getter/Setter],
-  name: &apos;Mike&apos;,
-  age: 21,
-  createdAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST),
-  updatedAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST),
-  id: 1 }
+<p>Now that the pets and users know about each other, they can be associated. To do this we can create
+or update a pet with the user&apos;s primary key for the <code>owner</code> value.</p>
+<pre><code data-language="javascript">Pet.create({
+  breed: &apos;labrador&apos;,
+  type: &apos;dog&apos;,
+  name: &apos;fido&apos;,
 
-sails&gt; Pet.create({name:&apos;Pinkie Pie&apos;,color:&apos;pink&apos;,owner:1}).exec(console.log)
-null { name: &apos;Pinkie Pie&apos;,
-    color: &apos;pink&apos;,
-    owner: 1,
-    createdAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-    updatedAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-    id: 2 }
+  // Set the User&apos;s Primary Key to associate the Pet with the User.
+  owner: 123
+})
+.exec(function(err, pet) {});
+</code></pre><!-- __LANG=%%__ -->
+<p>Now that the <code>Pet</code> is associated with the <code>User</code>, all the pets belonging to a specific user can
+be populated by using the <code>populate</code> method.</p>
+<pre><code data-language="javascript">User.find()
+.populate(&apos;pets&apos;)
+.exec(function(err, users) {
+  if(err) // handle error
 
-sails&gt; Pet.create({name:&apos;Applejack&apos;,color:&apos;orange&apos;,owner:1}).exec(console.log)
-null { name: &apos;Applejack&apos;,
-    color: &apos;orange&apos;,
-    owner: 1,
-    createdAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-    updatedAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-    id: 4 }
-
-sails&gt; User.find().populate(&apos;pets&apos;).exec(function(err,r){console.log(r[0].toJSON())});
-{ pets: 
-   [ { name: &apos;Pinkie Pie&apos;,
-       color: &apos;pink&apos;,
-       id: 2,
-       createdAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-       updatedAt: Tue Feb 11 2014 17:58:04 GMT-0600 (CST),
-       owner: 1 },
-     { name: &apos;Applejack&apos;,
-       color: &apos;orange&apos;,
-       id: 4,
-       createdAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-       updatedAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-       owner: 1 } ],
-  name: &apos;Mike&apos;,
-  age: 21,
-  createdAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST),
-  updatedAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST),
-  id: 1 }
-
-sails&gt; Pet.find(4).populate(&apos;owner&apos;).exec(console.log)
-null [ { name: &apos;Applejack&apos;,
-    color: &apos;orange&apos;,
-    owner: 
-     { pets: [Getter/Setter],
-       name: &apos;Mike&apos;,
-       age: 21,
-       id: 1,
-       createdAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST),
-       updatedAt: Tue Feb 11 2014 17:49:04 GMT-0600 (CST) },
-    createdAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-    updatedAt: Tue Feb 11 2014 18:02:58 GMT-0600 (CST),
-    id: 4 } ]
+  // The users object would look something like the following
+  // [{
+  //   id: 123,
+  //   firstName: &apos;Foo&apos;,
+  //   lastName: &apos;Bar&apos;,
+  //   pets: [{
+  //     id: 1,
+  //     breed: &apos;labrador&apos;,
+  //     type: &apos;dog&apos;,
+  //     name: &apos;fido&apos;,
+  //     user: 123
+  //   }]
+  // }]
+});
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <p>For a more detailed description of this type of association, see the <a href="https://github.com/balderdashy/waterline-docs/blob/master/models/associations/associations.md" target="_blank">Waterline Docs</a></p>
 </blockquote>
-<p><docmeta name="uniqueID" value="OnetoMany478093"></docmeta></p>
 <docmeta name="displayName" value="One-to-Many">
 
 </docmeta>

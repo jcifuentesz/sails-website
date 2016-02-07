@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "machinepack-dictionaries": "2.1.1"
-  },
-  "machinepack": {
-    "machines": []
-  }
-}

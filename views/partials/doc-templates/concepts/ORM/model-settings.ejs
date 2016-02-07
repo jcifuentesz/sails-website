@@ -69,25 +69,11 @@
 <h3 id="-autocreatedat-" permalink="autocreatedat"><code>autoCreatedAt</code></h3>
 <pre><code data-language="javascript">autoCreatedAt: true
 </code></pre><!-- __LANG=%%__ -->
-<p>A flag to toggle the automatic definition of a <code>createdAt</code> attribute in your model.  By default, <code>createdAt</code> is an attribute which will be automatically set when a record is created with the current timestamp, e.g.:</p>
-<pre><code data-language="javascript">attributes: {
-  createdAt: {
-    type: &apos;datetime&apos;,
-    defaultsTo: function (){ return new Date(); }
-  }
-}
-</code></pre><!-- __LANG=%%__ -->
+<p>If set to <code>false</code>, this disables the automatic definition of a <code>createdAt</code> attribute in your model.  By default, <code>createdAt</code> is an attribute which will be automatically set when a record is created with the current (timezone-agnostic) timestamp.   If set to a string, that string will be used as the custom field/column name for the <code>createdAt</code> attribute.</p>
 <h3 id="-autoupdatedat-" permalink="autoupdatedat"><code>autoUpdatedAt</code></h3>
 <pre><code data-language="javascript">autoUpdatedAt: true
 </code></pre><!-- __LANG=%%__ -->
-<p>A flag to toggle the automatic definition of a <code>updatedAt</code> attribute in your model.  By default, <code>updatedAt</code> is an attribute which will be automatically set with the current timestamp every time a record is updated, e.g.:</p>
-<pre><code data-language="javascript">attributes: {
-  updatedAt: {
-    type: &apos;datetime&apos;,
-    defaultsTo: function (){ return new Date(); }
-  }
-}
-</code></pre><!-- __LANG=%%__ -->
+<p>If set to <code>false</code>, this disables the automatic definition of a <code>updatedAt</code> attribute in your model.  By default, <code>updatedAt</code> is an attribute which will be automatically set with the current (timezone-agnostic) timestamp every time a record is updated.  If set to a string, that string will be used as the custom field/column name for the <code>updatedAt</code> attribute.</p>
 <h3 id="tablename" permalink="tablename">tableName</h3>
 <pre><code data-language="javascript">tableName: &apos;some_preexisting_table&apos;
 </code></pre><!-- __LANG=%%__ -->
@@ -102,6 +88,5 @@
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>See <a href="http://sailsjs.org/documentation/concepts/ORM/Attributes.html" target="_blank">Attributes</a>.</p>
-<p><docmeta name="uniqueID" value="Modelconfiguration960213"></docmeta></p>
 <docmeta name="displayName" value="Model Settings">
 </docmeta>

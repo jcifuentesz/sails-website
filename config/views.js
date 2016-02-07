@@ -33,6 +33,21 @@ module.exports.views = {
   engine: 'ejs',
 
 
+
+  // Default locals for all res.view() calls.
+  locals: {
+
+    // We default the version string in the header
+    // to empty string (`''`), which hides it.
+    topbarVersionString: process.env.TOPBAR_VERSION_STRING ? process.env.TOPBAR_VERSION_STRING : '',
+
+    // We default the github branch slug for generating edit URLs to `master`
+    // if no relevant env var is supplied.
+    branchToEdit: process.env.BRANCH_TO_EDIT ? process.env.BRANCH_TO_EDIT : 'master',
+
+  },
+
+
   /****************************************************************************
   *                                                                           *
   * Layouts are simply top-level HTML templates you can use as wrappers for   *

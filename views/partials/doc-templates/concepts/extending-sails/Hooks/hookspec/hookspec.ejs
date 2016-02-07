@@ -1,7 +1,7 @@
 <h1 id="the-hook-specification">The Hook Specification</h1>
 <h2 id="overview" permalink="overview">Overview</h2>
 <p>Each Sails hook is implemeted as a Javascript function that takes a single argument&#x2014;a reference to the running <code>sails</code> instance&#x2014;and returns an object with one or more of the keys described later in this document.  So, the most basic hook would look like this:</p>
-<pre><code data-language="javascript">module.exports = function myBasicHook(sails) {
+<pre><code data-language="text">module.exports = function myBasicHook(sails) {
    return {};
 }
 </code></pre><!-- __LANG=%%__ -->
@@ -18,7 +18,7 @@
 </ul>
 <h2 id="custom-hook-data-and-functions" permalink="custom-hook-data-and-functions">Custom hook data and functions</h2>
 <p>Any other keys added to the object returned from the main hook function will be provided in the <code>sails.hooks[&lt;hook name&gt;]</code> object.  This is how custom hook functionality is provided to end-users.  Any data and functions that you wish to remain private to the hook can be added <em>outside</em> the returned object:</p>
-<pre><code data-language="javascript">// File api/hooks/myhook/index.js
+<pre><code data-language="text">// File api/hooks/myhook/index.js
 module.exports = function myHook(sails) {
 
    // This var will be private
@@ -44,7 +44,6 @@ module.exports = function myHook(sails) {
 };
 </code></pre><!-- __LANG=%%__ -->
 <p>The public var and function above would be available as <code>sails.hooks.myhook.abc</code> and <code>sails.hooks.myhook.sayHi</code>, respectively.</p>
-<p><docmeta name="uniqueID" value="Hooks75002"></docmeta></p>
 <p><docmeta name="displayName" value="Hook Specification"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">
 </docmeta>

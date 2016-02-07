@@ -28,16 +28,21 @@ angular.module('SailsWebsite').controller('GetStartedCtrl', [
 
     });
 
-
+    // Get the id of the permalink, if there is one.
     var permalink = $window.location.hash.split('#?')[1];
-    // If there is a permalink to a section in the route, scroll to that section
-    if(permalink) {
-      var permalinkElement = '#'+permalink;
-      $scope.intent.scrollToElement(permalinkElement);
-    }
-    // Otherwise, scroll to the to when the page loads
-    else {
-      $scope.intent.scrollToElement('#the-top', 500);
-    }
+
+    // Now scroll to that spot on the page
+    $(function onceDOMIsReadyOrNowIfItsAlreadyReady(){
+      if(permalink) {
+        $('html, body').animate({
+          scrollTop: $('#'+permalink).offset().top - 100
+        }, 500);
+        // Otherwise, scroll to the to when the page loads
+      }
+      else {
+        $scope.intent.scrollToElement('#the-top', 500);
+      }
+    });
+
   }
 ]);

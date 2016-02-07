@@ -17,6 +17,7 @@
 
     .reference-item {
       .fadeAnimation();
+      .doc-page();
       padding-bottom: 50px;
     }
   }
@@ -56,6 +57,7 @@
           display: block;
           position: relative;
           padding-right: 15px;
+          .truncate();
           >a {
             .borderBox();
             padding-right: 5px;
@@ -74,6 +76,8 @@
           }
           &:hover {
            color: @turquoise;
+           // overflow: visible;
+           // background-color: @white;
            .transition(all 250ms);
           }
         }
@@ -85,7 +89,7 @@
           >li {
             font-weight: @normal;
             color: @headerGray;
-            font-size: 14px;
+            font-size: 13px;
           }
         }
         &.current {
@@ -112,6 +116,10 @@
           >ul {
             display: block;
           }
+        }
+        &.deprecated {
+          opacity: 0.55;
+          font-style: italic;
         }
       }
     }

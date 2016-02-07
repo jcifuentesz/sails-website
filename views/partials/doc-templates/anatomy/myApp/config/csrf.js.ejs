@@ -6,7 +6,7 @@
 <p>This option protects your Sails app against cross-site request forgery (or CSRF) attacks. A would-be attacker needs not only a user&apos;s session cookie, but also this timestamped, secret CSRF token, which is refreshed/granted when the user visits a URL on your app&apos;s domain.</p>
 <p>This allows us to have certainty that our users&apos; requests haven&apos;t been hijacked, and that the requests they&apos;re making are intentional and legitimate.</p>
 <p>This token has a short-lived expiration timeline, and must be acquired by either:</p>
-<h5 id="a-for-traditional-view-driven-web-apps-" permalink="a)-for-traditional-viewdriven-web-apps">A) For traditional view-driven web apps:</h5>
+<p>#####A) For traditional view-driven web apps:</p>
 <ul>
 <li>Fetching it from one of your views, where it may be accessed as a local variable, e.g.<pre><code data-language="html">&lt;form&gt;
  &lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
@@ -14,7 +14,7 @@
 </code></pre><!-- __LANG=%%__ -->
 </li>
 </ul>
-<h5 id="b-for-ajax-socket-heavy-and-or-single-page-apps-" permalink="b)----for-ajax/socketheavy-and/or-singlepage-apps">B)    For AJAX/Socket-heavy and/or single-page apps:</h5>
+<p>#####B)    For AJAX/Socket-heavy and/or single-page apps: </p>
 <ul>
 <li>Sending a GET request to the <code>/csrfToken</code> route, where it will be returned as JSON, e.g.<pre><code data-language="javascript">{ _csrf: &apos;ajg4JD(JGdajhLJALHDa&apos; }
 </code></pre><!-- __LANG=%%__ -->
@@ -26,10 +26,9 @@
 <blockquote>
 <p>For more information on CSRF, check out <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">this hyperlink</a>.</p>
 </blockquote>
-<p><docmeta name="uniqueID" value="csrfjs233850"></docmeta></p>
 <docmeta name="displayName" value="csrf.js">
 
-<pre><code data-language="javascript">/**
+<pre><code data-language="text">/**
  * Cross-Site Request Forgery Protection Settings
  * (sails.config.csrf)
  *

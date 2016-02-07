@@ -41,6 +41,9 @@ angular.module('SailsWebsite').controller('HeaderCtrl', [
       if(currentPath.indexOf('support') > 0) {
         return true;
       }
+      else if(currentPath.indexOf('security-policy') > 0) {
+        return true;
+      }
       else return false;
     };
 

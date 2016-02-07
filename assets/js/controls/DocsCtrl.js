@@ -18,12 +18,18 @@ angular.module('SailsWebsite').controller('DocsCtrl', [
     $scope.expandedMenuItems = [];
     $scope.parentMenuItems = [];
 
+    // Get the id of the permalink, if there is one.
     var permalink = $window.location.hash.split('#?')[1];
+
     if(permalink) {
-      $('html, body').animate({
-        scrollTop: $('#'+permalink).offset().top - 50
-      }, 500);
+      // Now scroll to that spot on the page
+      $(function onceDOMIsReadyOrNowIfItsAlreadyReady(){
+        $('html, body').animate({
+          scrollTop: $('#'+permalink).offset().top - 50
+        }, 500);
+      });
     }
+
     // TODO: update this when we aren't using '?page='
     // Find the slug for the page we're on:
     var currentSlug = $window.location.pathname.replace(/\/documentation\//, '');

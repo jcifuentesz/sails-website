@@ -30,11 +30,9 @@ Install on Linux
 <h3 id="ubuntu-mint" permalink="ubuntu,-mint">Ubuntu, Mint</h3>
 <p>Example install:</p>
 <pre><code>sudo apt-get install python-software-properties python g++ make
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+sudo apt-get install -y nodejs
 </code></pre><p>It installs current stable Node on the current stable Ubuntu. Quantal (12.10) users may need to install the <em>software-properties-common</em> package for the <code>add-apt-repository</code> command to work: <code>sudo apt-get install software-properties-common</code></p>
-<p>As of Node.js v0.10.0, the nodejs package from <a href="https://chrislea.com/2013/03/15/upgrading-from-node-js-0-8-x-to-0-10-0-from-my-ppa/" target="_blank">Chris Lea</a>&apos;s repo includes both npm and nodejs-dev.</p>
 <p>There is a naming conflict with the node package (Amateur Packet Radio Node Program), and the nodejs binary has been renamed from <code>node</code> to <code>nodejs</code>. You&apos;ll need to symlink <code>/usr/bin/node</code> to <code>/usr/bin/nodejs</code> or you could uninstall the Amateur Packet Radio Node Program to avoid that conflict.</p>
 <h3 id="fedora" permalink="fedora">Fedora</h3>
 <p><a href="https://apps.fedoraproject.org/packages/nodejs" target="_blank">Node.js</a> and <a href="https://apps.fedoraproject.org/packages/npm" target="_blank">npm</a> are available in Fedora 18 and later.  Just use your favorite graphical package manager or run this on a terminal to install both npm and node:</p>
@@ -93,7 +91,7 @@ Install on Windows
 </code></pre><p>or for <a href="http://chocolatey.org/packages/nodejs.install" target="_blank">full install with NPM</a>:</p>
 <pre><code>cinst nodejs.install
 </code></pre><h2 id="on-to-sails-js-" permalink="on-to-sailsjs">On to Sails.js!</h2>
-<p>Once Node.js is installed on your system, you can go ahead and install Sails.</p>
+<p>Once Node.js is installed on your system, you can go ahead and <a href="http://sailsjs.org/get-started#?getting-started-installation" target="_blank">install Sails</a>.</p>
 <h2 id="further-help-" permalink="further-help">Further help!</h2>
 <p>We know that sometimes things don&apos;t go as planned. If you still have any issue with this, please feel free to visit Node.js&apos;s <a href="irc://irc.freenode.net/node.js">IRC Channel</a> or our own <a href="irc://irc.freenode.net/sailsjs">IRC Channel</a>.</p>
 <docmeta name="displayName" value="New To Node?">

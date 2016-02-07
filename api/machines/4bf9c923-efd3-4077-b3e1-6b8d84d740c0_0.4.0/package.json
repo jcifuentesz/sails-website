@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "machinepack-ifthen": "0.4.1"
-  },
-  "machinepack": {
-    "machines": []
-  }
-}

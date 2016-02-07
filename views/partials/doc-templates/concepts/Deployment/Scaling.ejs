@@ -1,10 +1,10 @@
 <h1 id="scaling">Scaling</h1>
-<p>If you have the immediate expectation of lots of traffic to your application (or better yet, you already have it!), 
+<p>If you have the immediate expectation of lots of traffic to your application (or better yet, you already have it!),
 you&apos;ll want to set up a scalable architecture that your app can scale as more and more people use it.</p>
 <h3 id="benchmarks" permalink="benchmarks">Benchmarks</h3>
 <p>For the most part, Sails benchmarks exactly like any Connect, Express or Socket.io app.  This has been validated on a few different occasions, most <a href="http://serdardogruyol.com/?p=111" target="_blank">recently here</a>.  If you have your own benchmark you&apos;d like to share, please send a pull request to this page on Github.</p>
 <h3 id="example-architecture" permalink="example-architecture">Example architecture</h3>
-<pre><code data-language="javascript">Sails.js server
+<pre><code data-language="text">Sails.js server
                              ....                 
                     /  Sails.js server  \      /  Database (e.g. Mongo, Postgres, etc)
 Load Balancer  &lt;--&gt;    Sails.js server    &lt;--&gt;    Socket store (Redis)
@@ -14,15 +14,17 @@ Load Balancer  &lt;--&gt;    Sails.js server    &lt;--&gt;    Socket store (Redi
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="configuring-your-app-for-a-clustered-deployment" permalink="configuring-your-app-for-a-clustered-deployment">Configuring your app for a clustered deployment</h3>
 <ul>
-<li>Make sure the database(s) for your models (e.g. MySQL, Postgres, Mongo) is scalable (e.g. sharding/cluster) </li>
+<li>Make sure the database(s) for your models (e.g. MySQL, Postgres, Mongo) is scalable (e.g. sharding/cluster)</li>
 <li>Configure your app to use a shared session store<ul>
 <li>Support for redis is built in (see the <code>adapter</code> options in <code>config/session.js</code>)</li>
 </ul>
 </li>
-<li>IF YOU&apos;RE USING SOCKETS: <ul>
+<li>IF YOU&apos;RE USING SOCKETS:<ul>
 <li>Configure your app to use a shared socket store<ul>
 <li>Support for redis is built in (see the <code>adapter</code> options in <code>config/sockets.js</code>)</li>
-<li>The default Socket.io configuration initially attempts to connect to the server using <a href="http://en.wikipedia.org/wiki/Push_technology#Long_polling" target="_blank">long-polling</a>.  In order for this to work, your server environment <a href="http://socket.io/blog/introducing-socket-io-1-0/#scalability" target="_blank">must support</a> sticky load-balancing (aka sticky sessions), otherwise the handshake will fail until the connection is upgraded to use Websockets (and only if Websockets are available).  Some environments, <strong>notably Heroku</strong>, do <em>not</em> support sticky load-balancing.  On these environments, you will need to set the <code>transports</code> setting in <a href="https://github.com/balderdashy/sails-docs/blob/v0.11/reference/sails.config/sails.config.sockets.md" target="_blank">config/sockets.js</a> to <code>[&apos;websocket&apos;]</code>, forcing it to use websockets only and avoid long-polling.  You&apos;ll also need to set the transports in your socket client--if you&apos;re using <code>sails.io.js</code>, this is as easy as adding a <code>&lt;script&gt;io.sails.transports=[&apos;websocket&apos;]&lt;/script&gt;</code> immediately after the <code>sails.io.js</code> script include.  For a rather dramatic read on the issue, see <a href="https://github.com/Automattic/engine.io/issues/261" target="_blank">this thread</a>.</li>
+<li>The default Socket.io configuration initially attempts to connect to the server using <a href="http://en.wikipedia.org/wiki/Push_technology#Long_polling" target="_blank">long-polling</a>.  In order for this to work, your server environment <a href="http://socket.io/blog/introducing-socket-io-1-0/#scalability" target="_blank">must support</a> sticky load-balancing (aka sticky sessions), otherwise the handshake will fail until the connection is upgraded to use Websockets (and only if Websockets are available).
+On <strong>Heroku</strong>, you must have the sticky load-balancing beta feature <a href="https://devcenter.heroku.com/articles/session-affinity" target="_blank">explicitly enabled</a>.
+In an environment without stickky load balancing, you will need to set the <code>transports</code> setting in <a href="https://github.com/balderdashy/sails-docs/blob/v0.11/reference/sails.config/sails.config.sockets.md" target="_blank">config/sockets.js</a> to <code>[&apos;websocket&apos;]</code>, forcing it to use websockets only and avoid long-polling.  You&apos;ll also need to set the transports in your socket client--if you&apos;re using <code>sails.io.js</code>, this is as easy as adding a <code>&lt;script&gt;io.sails.transports=[&apos;websocket&apos;]&lt;/script&gt;</code> immediately after the <code>sails.io.js</code> script include.  For a rather dramatic read on the issue, see <a href="https://github.com/Automattic/engine.io/issues/261" target="_blank">this thread</a>.</li>
 </ul>
 </li>
 </ul>
@@ -41,7 +43,5 @@ Load Balancer  &lt;--&gt;    Sails.js server    &lt;--&gt;    Socket store (Redi
 </ul>
 </li>
 </ul>
-<p><docmeta name="uniqueID" value="Scaling291270"></docmeta></p>
 <docmeta name="displayName" value="Scaling">
-
 </docmeta>
