@@ -88,26 +88,37 @@
 
 
 div.docs-github-message {
+  font-family: @mainFont;
   .container();
   .clearfix();
   display: none;
   padding: 125px 0 50px;
+  font-family: 'Open Sans', sans-serif;
   img {
     width: 60%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
   }
   a {
     display: block;
     width: 70%;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
     padding: 15px;
-    font-size: 1.3em;
+    font-size: 18px;
     background-color: @ltestGray;
     text-align: center;
-    margin-bottom: 25px;
+    font-family: @headerFont;
+    color: @darkTurquoise;
   }
   p {
     text-align: center;
+    span {
+      color: @turquoise;
+      font-weight: 700;
+    }
   }
 }
 
@@ -127,6 +138,10 @@ div.docs-github-message {
   }
   div.docs-github-message {
     display: block;
+  }
+  div.docs-main-header {
+    min-width: 0px;
+    display: none;
   }
 }
 
