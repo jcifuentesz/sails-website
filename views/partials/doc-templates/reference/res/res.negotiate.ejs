@@ -1,5 +1,6 @@
 <h1 id="res-negotiate-">res.negotiate()</h1>
-<p>Given an error (<code>err</code>), send an appropriate error response back down to the client.  Especially handy for handling potential validation errors from <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html" target="_blank">Model.create()</a> or <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html" target="_blank">Model.update()</a>.</p>
+<p>Given an error (<code>err</code>), attempt to guess which error response should be called (<code>badRequest</code>, <code>forbidden</code>, <code>notFound</code>, or <code>serverError</code>) by inspecting the <code>status</code> property.  If <code>err</code> is not a dictionary, or the <code>status</code> property does not match a known HTTP status code, then defualt to <code>serverError</code>.</p>
+<p>Especially handy for handling potential validation errors from <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html" target="_blank">Model.create()</a> or <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html" target="_blank">Model.update()</a>.</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <pre><code data-language="javascript">return res.negotiate(err);
 </code></pre><!-- __LANG=%%__ -->

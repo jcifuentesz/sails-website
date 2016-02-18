@@ -1,64 +1,64 @@
 <h1 id="conventional-defaults">Conventional Defaults</h1>
-<p>Sails comes bundled with a suite of conventional HTTP middleware, ready to use.  You can, of course, disable, override, rearrange, or append to it, but the pre-installed stack is perfectly acceptable for most apps in development or production.  Below is a list of the standard HTTP middleware functions that comes bundled in Sails in the order they execute every time the server receives an incoming HTTP request:</p>
+<p>Sails comes bundled with a suite of conventional HTTP middleware, ready to use.  You can, of course, disable, override, rearrange, or append to it, but the pre-installed stack is perfectly acceptable for most apps in development or production.  Below is a list of the standard HTTP middleware functions that come bundled in Sails, in the order they execute every time the server receives an incoming HTTP request:</p>
 <table>
 <thead>
 <tr>
-<th>HTTP Middleware Key</th>
-<th>Purpose</th>
+<th style="text-align:left">HTTP Middleware Key</th>
+<th style="text-align:left">Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td> <strong>startRequestTimer</strong></td>
-<td>Allocates a variable in memory to hold the timestamp when the request began.  This can be accessed and used by your app to provide diagnostic information about slow requests.</td>
+<td style="text-align:left"> <strong>startRequestTimer</strong></td>
+<td style="text-align:left">Allocates a variable in memory to hold the timestamp when the request began.  This can be accessed and used by your app to provide diagnostic information about slow requests.</td>
 </tr>
 <tr>
-<td> <em>cookieParser</em> *</td>
-<td>Parses the cookie header into a clean object for use in subsequent middleware and your application code.</td>
+<td style="text-align:left"> <em>cookieParser</em> *</td>
+<td style="text-align:left">Parses the cookie header into a clean object for use in subsequent middleware and your application code.</td>
 </tr>
 <tr>
-<td> <em>session</em> *</td>
-<td>Sets up a unique session object using your <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.session.html" target="_blank">session configuration</a>.</td>
+<td style="text-align:left"> <em>session</em> *</td>
+<td style="text-align:left">Sets up a unique session object using your <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.session.html" target="_blank">session configuration</a>.</td>
 </tr>
 <tr>
-<td> <strong>bodyParser</strong></td>
-<td>Parses parameters and binary upstreams (for streaming file uploads) from the HTTP request body using <a href="https://github.com/balderdashy/skipper" target="_blank">Skipper</a>.</td>
+<td style="text-align:left"> <strong>bodyParser</strong></td>
+<td style="text-align:left">Parses parameters and binary upstreams (for streaming file uploads) from the HTTP request body using <a href="https://github.com/balderdashy/skipper" target="_blank">Skipper</a>.</td>
 </tr>
 <tr>
-<td> <strong>compress</strong></td>
-<td>Compresses response data using gzip/deflate.</td>
+<td style="text-align:left"> <strong>compress</strong></td>
+<td style="text-align:left">Compresses response data using gzip/deflate. See <a href="https://github.com/expressjs/compression" target="_blank"><code>compression</code></a> for details.</td>
 </tr>
 <tr>
-<td> <strong>methodOverride</strong></td>
-<td>Provides faux HTTP method support, letting you use HTTP verbs such as PUT or DELETE in places where the client doesn&apos;t support it (e.g. legacy versions of Internet Explorer.)  If a request has a <code>_method</code> parameter set to <code>&quot;PUT&quot;</code>, the request will be routed as if it was a proper PUT request.  See <a href="http://www.senchalabs.org/connect/methodOverride.html" target="_blank">Connect&apos;s methodOverride docs</a> for more information if you need it.</td>
+<td style="text-align:left"> <strong>methodOverride</strong></td>
+<td style="text-align:left">Provides faux HTTP method support, letting you use HTTP verbs such as PUT or DELETE in places where the client doesn&apos;t support it (e.g. legacy versions of Internet Explorer.)  If a request has a <code>_method</code> parameter set to <code>&quot;PUT&quot;</code>, the request will be routed as if it was a proper PUT request.  See <a href="http://www.senchalabs.org/connect/methodOverride.html" target="_blank">Connect&apos;s methodOverride docs</a> for more information if you need it.</td>
 </tr>
 <tr>
-<td> <strong>poweredBy</strong></td>
-<td>Attaches an <code>X-Powered-By</code> header to outgoing responses.</td>
+<td style="text-align:left"> <strong>poweredBy</strong></td>
+<td style="text-align:left">Attaches an <code>X-Powered-By</code> header to outgoing responses.</td>
 </tr>
 <tr>
-<td> <strong>$custom</strong></td>
-<td>Provides backwards compatibility for a configuration option from Sails v0.9.x.  Since Sails v0.10 offers much more configuration flexibility for HTTP middleware, as long as you are not using <code>sails.config.express.customMiddleware</code>, you can confidently remove this item from the list.</td>
+<td style="text-align:left"> <strong>$custom</strong></td>
+<td style="text-align:left">Provides backwards compatibility for a configuration option from Sails v0.9.x.  Since Sails v0.10 offers much more configuration flexibility for HTTP middleware, as long as you are not using <code>sails.config.express.customMiddleware</code>, you can confidently remove this item from the list.</td>
 </tr>
 <tr>
-<td> <em>router</em> *</td>
-<td>This is where the bulk of your app logic gets applied to any given request.  In addition to running <code>&quot;before&quot;</code> handlers in hooks (e.g. csrf token enforcement) and some internal Sails logic, this routes requests using your app&apos;s explicit routes (in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html" target="_blank"><code>sails.config.routes</code></a>) and/or route blueprints.</td>
+<td style="text-align:left"> <em>router</em> *</td>
+<td style="text-align:left">This is where the bulk of your app logic gets applied to any given request.  In addition to running <code>&quot;before&quot;</code> handlers in hooks (e.g. csrf token enforcement) and some internal Sails logic, this routes requests using your app&apos;s explicit routes (in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html" target="_blank"><code>sails.config.routes</code></a>) and/or route blueprints.</td>
 </tr>
 <tr>
-<td> <em>www</em> *</td>
-<td>Serves static files- usually images, stylesheets, scripts- in your app&apos;s &quot;public&quot; folder (configured in <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>sails.config.paths</code></a>, conventionally <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>.tmp/public/</code></a>) using Connect&apos;s <a href="http://www.senchalabs.org/connect/static.html" target="_blank">static middleware</a>.</td>
+<td style="text-align:left"> <em>www</em> *</td>
+<td style="text-align:left">Serves static files- usually images, stylesheets, scripts- in your app&apos;s &quot;public&quot; folder (configured in <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>sails.config.paths</code></a>, conventionally <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>.tmp/public/</code></a>) using Connect&apos;s <a href="http://www.senchalabs.org/connect/static.html" target="_blank">static middleware</a>.</td>
 </tr>
 <tr>
-<td> <strong>favicon</strong></td>
-<td>Serves the <a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">browser favicon</a> for your app if one is provided as <code>/assets/favicon.ico</code>.</td>
+<td style="text-align:left"> <strong>favicon</strong></td>
+<td style="text-align:left">Serves the <a href="http://en.wikipedia.org/wiki/Favicon" target="_blank">browser favicon</a> for your app if one is provided as <code>/assets/favicon.ico</code>.</td>
 </tr>
 <tr>
-<td> <em>404</em> *</td>
-<td>Handles requests which do not match any routes - triggers <code>res.notFound()</code>  <!-- technically, this emits the `router:request:404` event)  --></td>
+<td style="text-align:left"> <em>404</em> *</td>
+<td style="text-align:left">Handles requests which do not match any routes - triggers <code>res.notFound()</code>  <!-- technically, this emits the `router:request:404` event)  --></td>
 </tr>
 <tr>
-<td> <em>500</em> *</td>
-<td>Handles requests which trigger an internal error (i.e. call Express&apos;s <code>next(err)</code>)  - triggers <code>res.serverError()</code> <!-- technically, this emits the `router:request:500` event)  --></td>
+<td style="text-align:left"> <em>500</em> *</td>
+<td style="text-align:left">Handles requests which trigger an internal error (i.e. call Express&apos;s <code>next(err)</code>)  - triggers <code>res.serverError()</code> <!-- technically, this emits the `router:request:500` event)  --></td>
 </tr>
 </tbody>
 </table>

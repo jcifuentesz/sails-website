@@ -1,6 +1,8 @@
 <h1 id="-populate-foreignkey-query-">.populate( <code>foreignKey</code>, [<code>query</code>] )</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
 <p>This chainable method is used between .find()/.update() and .exec() in order to retrieve records associated with the model being queried.  You must supply the Foreign Key specified in your model config.</p>
+<p>If a collection attribute is defined in a many-to-many, one-to-many or many-to-many-through association the populate option also accepts a full criteria object. This allows you to filter associations and run limit and skip on the results.</p>
+<p>Note that this means the query parameter does not work for one-to-one associations.</p>
 <h3 id="overview" permalink="overview">Overview</h3>
 <h4 id="parameters" permalink="parameters">Parameters</h4>
 <table>
@@ -16,7 +18,7 @@
 <tr>
 <td>1</td>
 <td>Foreign Key</td>
-<td><code>string</code></td>
+<td><code>string</code>, <code>array</code></td>
 <td>Yes</td>
 </tr>
 <tr>

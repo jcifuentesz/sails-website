@@ -57,7 +57,7 @@
 </table>
 <h3 id="example-usage" permalink="example-usage">Example Usage</h3>
 <pre><code data-language="javascript">User.findOrCreate({name:&apos;Walter&apos;}, {name:&apos;Jessie&apos;}).exec(function createFindCB(error, createdOrFoundRecords){
-  console.log(&apos;What\&apos;s cookin\&apos; &apos;+record.name+&apos;?&apos;);
+  console.log(&apos;What\&apos;s cookin\&apos; &apos;+createdOrFoundRecords.name+&apos;?&apos;);
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>

@@ -1,60 +1,65 @@
 <h1 id="logging">Logging</h1>
-<h3 id="overview" permalink="overview">Overview</h3>
-<p>Sails comes with a simple, built-in logger called <a href="https://github.com/balderdashy/captains-log" target="_blank"><code>captains-log</code></a>.  Its usage is purposely very similar to Node&apos;s <a href="https://nodejs.org/api/console.html#console_console_log_data" target="_blank"><code>console.log</code></a>, but with a handful of extra features; namely support for multiple log levels with colorized, prefixed console output.</p>
+<p>Sails comes with a simple, built-in logger called <a href="https://github.com/balderdashy/captains-log" target="_blank"><code>captains-log</code></a>.  Its usage is purposely very similar to Node&apos;s <a href="https://nodejs.org/api/console.html#console_console_log_data" target="_blank"><code>console.log</code></a>, but with a handful of extra features; namely support for multiple log levels with colorized, prefixed console output. The logger serves two purposes:</p>
+<ul>
+<li>it emits warnings, errors, and other console output from inside the Sails framework</li>
+<li>it can be used to emit <a href="http://sailsjs.org/documentation/concepts/logging/custom-log-messages" target="_blank">custom events/messages</a> from within your application code</li>
+</ul>
 <h3 id="configuration" permalink="configuration">Configuration</h3>
-<p>The Sails logger&apos;s configuration is located in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.log.html" target="_blank"><code>sails.config.log</code></a>, for which a conventional configuration file (<a href="http://sailsjs.org/documentation/anatomy/myApp/config/log.js.html" target="_blank"><code>config/log.js</code></a>) is bundled in new Sails projects out of the box.</p>
-<p>When configured at a given log level, Sails will output log messages that are output at a level at or above the currently configured level. This log level is normalized and also applied to the generated output from socket.io, Waterline, and other dependencies. The hierarchy of log levels and their relative priorities is summarized by the chart below:</p>
+<p>Sails&apos; log configuration is determined by <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-log" target="_blank"><code>sails.config.log</code></a>, which is conventionally set by a generated configuration file (<a href="http://sailsjs.org/documentation/anatomy/my-app/config/log-js" target="_blank"><code>config/log.js</code></a>) in new Sails projects out of the box.</p>
+<h3 id="log-levels" permalink="log-levels">Log levels</h3>
+<p>Using the built-in logger, Sails will write output (to stdout/stderr) for log function calls that are <em>at</em> or <em>above</em> the priority of the currently-configurd log level.  This log level is normalized and also applied to generated output from Grunt, Socket.io, Waterline, Express, and other dependencies. The hierarchy of log levels and their relative priorities is summarized by the chart below:</p>
 <table>
 <thead>
 <tr>
 <th>Priority</th>
-<th>level</th>
-<th>Log fns visible</th>
+<th>Level</th>
+<th style="text-align:left">Log fns that produce visible output</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>0</td>
 <td>silent</td>
-<td>N/A</td>
+<td style="text-align:left"><em>N/A</em></td>
 </tr>
 <tr>
 <td>1</td>
 <td>error</td>
-<td><code>.error()</code></td>
+<td style="text-align:left"><code>.error()</code></td>
 </tr>
 <tr>
 <td>2</td>
 <td>warn</td>
-<td><code>.warn()</code>, <code>.error()</code></td>
+<td style="text-align:left"><code>.warn()</code>, <code>.error()</code></td>
 </tr>
 <tr>
 <td>3</td>
 <td>debug</td>
-<td><code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
+<td style="text-align:left"><code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
 </tr>
 <tr>
 <td>4</td>
 <td>info</td>
-<td><code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
+<td style="text-align:left"><code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
 </tr>
 <tr>
 <td>5</td>
 <td>verbose</td>
-<td><code>.verbose()</code>, <code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
+<td style="text-align:left"><code>.verbose()</code>, <code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
 </tr>
 <tr>
 <td>6</td>
 <td>silly</td>
-<td><code>.silly()</code>, <code>.verbose()</code>, <code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
+<td style="text-align:left"><code>.silly()</code>, <code>.verbose()</code>, <code>.info()</code>, <code>.debug()</code>, <code>.warn()</code>, <code>.error()</code></td>
 </tr>
 </tbody>
 </table>
 <h4 id="notes" permalink="notes">Notes</h4>
 <ul>
-<li>The default log level is &quot;info&quot;.  When your app&apos;s log level is set to &quot;info&quot;, Sails logs limited information about the server/app&apos;s status.</li>
-<li>When the log level is set to &quot;silly&quot;, Sails outputs internal information on which routes are being bound and other detailed framework lifecycle information, diagnostics, and implementation details.</li>
-<li>When the log level is set to &quot;verbose&quot;, Sails logs Grunt output, as well as much more detailed information on the routes, models, hooks, etc. that were loaded.</li>
+<li>The <a href="(http://sailsjs.org/documentation/reference/configuration/sails-config-log">default log level</a>) is <strong>info</strong>.  When your app&apos;s log level is set to &quot;info&quot;, Sails logs limited information about the server/app&apos;s status.</li>
+<li>When running automated tests for your app, it is often helpful to set the log level to <strong>error</strong>.</li>
+<li>When the log level is set to <strong>verbose</strong>, Sails logs Grunt output, as well as much more detailed information on the routes, models, hooks, etc. that were loaded.</li>
+<li>When the log level is set to <strong>silly</strong>, Sails outputs everything from <strong>verbose</strong> as well as internal information on which routes are being bound and other detailed framework lifecycle information, diagnostics, and implementation details.</li>
 </ul>
 <docmeta name="displayName" value="Logging">
 </docmeta>

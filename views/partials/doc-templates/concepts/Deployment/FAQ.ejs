@@ -1,10 +1,11 @@
 <h1 id="faq">FAQ</h1>
-<h5 id="can-i-use-environment-variables-" permalink="can-i-use-environment-variables">Can I use environment variables?</h5>
-<p>Yes! You can also configure the <code>port</code> and <code>environment</code> settings in Sails using environment variables.
-<code>NODE_ENV=production sails lift</code>
-<code>PORT=443 sails lift</code></p>
-<h5 id="where-do-i-put-my-production-database-credentials-other-settings-" permalink="where-do-i-put-my-production-database-credentials--other-settings">Where do I put my production database credentials?  Other settings?</h5>
-<p>For your other deployment/machine-specific settings, namely any kind of credentials, you should use <code>config/local.js</code>.<br>It&apos;s included in your <code>.gitignore</code> file by default so you don&apos;t inadvertently commit your credentials to your code repository.</p>
+<h3 id="can-i-use-environment-variables-" permalink="can-i-use-environment-variables">Can I use environment variables?</h3>
+<p>Yes! Like any Node app, your environment variables are available as <code>process.env</code>.</p>
+<p>Sails also comes with built-in support for creating your own custom configuration settings that will be exposed directly on <code>sails.config</code>.  And whether custom or built-in, any of the configuration properties in <code>sails.config</code> can be overridden using environment variables.  See the conceptual documentation on <a href="http://sailsjs.org/documentation/concepts/configuration" target="_blank">Configuration</a> for details.</p>
+<h3 id="where-do-i-put-my-production-database-credentials-other-settings-" permalink="where-do-i-put-my-production-database-credentials--other-settings">Where do I put my production database credentials?  Other settings?</h3>
+<p>The easiest way to add configuration to your Sails app is by modifying the files in <code>config/</code> or adding new ones. Sails supports environment-specific configuration loading out of the box, so you can use <code>config/env/production.js</code>.  Again, see the conceptual documentation on <a href="http://sailsjs.org/documentation/concepts/configuration" target="_blank">Configuration</a> for details.</p>
+<p>For development, using environment variables is awkward</p>
+<p>For your other deployment/machine-specific settings, namely any kind of credentials you want to keep private, you should use either environment variables or your <code>config/local.js</code> file.  This file is included in your <code>.gitignore</code> file by default so you don&apos;t inadvertently commit your credentials to your code repository.</p>
 <p><strong>config/local.js</strong></p>
 <pre><code data-language="javascript">// Local configuration
 // 
@@ -24,21 +25,19 @@ module.exports = {
     }
 }
 </code></pre><!-- __LANG=%%__ -->
-<h5 id="how-do-i-get-my-sails-app-on-the-server-" permalink="how-do-i-get-my-sails-app-on-the-server">How do I get my Sails app on the server?</h5>
-<p>Is your Node.js instance already spun up?  When you have the ip address, you can go ahead and ssh onto it, then <code>sudo npm install -g forever</code> to install Sails and forever for the first time.  </p>
-<p>Then <code>git clone</code> your project (or <code>scp</code> it onto the server if it&apos;s not in a git repo) into a new folder on the server and cd into it, and <code>forever start app.js</code></p>
-<h3 id="performance-benchmarks" permalink="performance-benchmarks">Performance Benchmarks</h3>
-<p>Performance in Sails is comparable to what you&apos;d expect from a standard Node.js/Express application.  In other words, fast!  We&apos;ve done some optimizations ourselves in Sails and Waterline, but primarily, our focus has been on not messing up what was already really fast.  Above all, we have @ry, @visionmedia, @isaacs, #v8, @joyent and the rest of the Node.js core team to thank.</p>
-<ul>
-<li><a href="http://serdardogruyol.com/?p=111" target="_blank">http://serdardogruyol.com/?p=111</a></li>
-</ul>
-<p>Issues <a href="https://github.com/balderdashy/sails/issues/3099" target="_blank">#3099</a> and <a href="https://github.com/balderdashy/sails/issues/2779" target="_blank">#2779</a> are about a memory leak. It resides in the <code>express-session</code> module used by default, which stores sessions in-memory.
-To disable it, make sure that you disable sessions in the <code>.sailsrc</code>:</p>
-<pre><code data-language="text">&quot;hooks&quot;: {
+<h3 id="how-do-i-get-my-sails-app-on-the-server-" permalink="how-do-i-get-my-sails-app-on-the-server">How do I get my Sails app on the server?</h3>
+<p>If you are using a Paas like Heroku or Modulus, this is easy:  just follow their instructions.</p>
+<p>Otherwise get the IP address of your server and <code>ssh</code> onto it.  Then <code>npm install -g sails</code> and <code>npm install -g forever</code> to install Sails and <code>forever</code> globally from NPM for the first time on the server. Finally <code>git clone</code> your project (or <code>scp</code> it onto the server if it&apos;s not in a git repo) into a new folder on the server, <code>cd</code> into it, and then run <code>forever start app.js</code>.</p>
+<h3 id="what-should-i-expect-as-far-as-performance-" permalink="what-should-i-expect-as-far-as-performance">What should I expect as far as performance?</h3>
+<p>Baseline performance in Sails is comparable to what you&apos;d expect from a standard Node.js/Express application.  In other words, fast!  We&apos;ve done some optimizations ourselves in Sails core, but primarily our focus is not messing up what we get for free from our dependencies.  For a quick and dirty benchmark, see <a href="http://serdardogruyol.com/?p=111" target="_blank">http://serdardogruyol.com/?p=111</a>.</p>
+<p>The most common performance bottleneck in production Sails applications is the database.  Over the lifetime of an application with a growing user base, it becomes increasingly important to set up good indexes on your tables/collections, and to use queries which return paginated results.  Eventually as your production database grows to contain tens of millions of records, you will start to locate and optimize slow queries by hand (either by calling <a href="http://sailsjs.org/documentation/reference/waterline-orm/models/query" target="_blank"><code>.query()</code></a> or <a href="http://sailsjs.org/documentation/reference/waterline-orm/models/native" target="_blank"><code>.native()</code></a>, or by using the underlying database driver from NPM).  </p>
+<h3 id="what-s-this-warning-about-the-connect-session-memory-store-" permalink="whats-this-warning-about-the-connect-session-memory-store">What&apos;s this warning about the connect session memory store?</h3>
+<p>If you are using sessions in your Sails app, you should not use the built-in memory store in production.  The memory session store is a development-only tool that does not scale to multiple servers; and even if you only have one server it is not particularly performant (see <a href="https://github.com/balderdashy/sails/issues/3099" target="_blank">#3099</a> and <a href="https://github.com/balderdashy/sails/issues/2779" target="_blank">#2779</a>).</p>
+<p>For instructions on configuring a production session store, see <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-session" target="_blank">sails.config.session</a>.  If you want to disable session support altogether, turn off the <code>session</code> hook in your app&apos;s <code>.sailsrc</code> file:</p>
+<pre><code data-language="javascript">&quot;hooks&quot;: {
   &quot;session&quot;: false
 }
 </code></pre><!-- __LANG=%%__ -->
-<p>You may also use an alternative (redis/mongo/cookies) to store sessions.</p>
 <docmeta name="displayName" value="FAQ">
 
 </docmeta>

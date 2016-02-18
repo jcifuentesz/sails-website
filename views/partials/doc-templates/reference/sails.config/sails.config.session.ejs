@@ -18,10 +18,10 @@ in the way you might be used to from Express or Connect.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>secret</code></td>
+<td><code>adapter</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><em>n/a</em></td>
-<td>This session secret is automatically generated when your new app is created. Care should be taken any time this secret is changed in production-- doing so will invalidate the cookies of your users, forcing them to log in again.</td>
+<td><code>undefined</code></td>
+<td>If left unspecified, Sails will use the default memory store bundled in the underlying session middleware.   In production, you should specify the package name of a scalable session store instead (e.g. <code>connect-redis</code>).  See below for details. </td>
 </tr>
 <tr>
 <td><code>key</code></td>
@@ -30,19 +30,24 @@ in the way you might be used to from Express or Connect.</p>
 <td>Session key is set as <code>sails.sid</code> by default. This is the name of the key which is added to the cookie of visitors to your site when sessions are enabled (which is the case by default for Sails apps). If you are running multiple different Sails apps from the same shared cookie namespace (i.e. the top-level DNS domain, like <code>frog-enthusiasts.net</code>), you must be especially careful to configure separate unique keys for each separate app, otherwise the wrong cookie could be used (like crossing streams)</td>
 </tr>
 <tr>
-<td><code>adapter</code></td>
+<td><code>secret</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td></td>
-<td>If specified, the name of a Connect session adapter to use.  More details below.</td>
+<td><em>n/a</em></td>
+<td>This session secret is automatically generated when your new app is created. Care should be taken any time this secret is changed in production-- doing so will invalidate the sesssion cookies of your users, forcing them to log in again.  Note that this is also used as the &quot;cookie secret&quot; for signed cookies.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="configuring-redis-as-your-session-store" permalink="configuring-redis-as-your-session-store">Configuring Redis as Your Session Store</h3>
-<p>In production, uncomment the following line to set up a shared redis session store
-that can be shared across multiple Sails.js servers:</p>
-<pre><code data-language="javascript">adapter: &apos;redis&apos;,
+<h3 id="production-config" permalink="production-config">Production Config</h3>
+<p>In production, you should configure a session store that can be <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">shared across multiple servers</a>.  To do so, you will need to set <code>sails.config.session.adapter</code>, set up your session database, and then add any other configuration specific to the Connect session adapter you are using.</p>
+<h5 id="configuring-redis-as-your-session-store" permalink="configuring-redis-as-your-session-store">Configuring Redis as Your Session Store</h5>
+<p>The most popular session store for production Sails applications is Redis.  It works great as a session database since it is inherently good at ephemeral storage, but Redis&apos; popularity probably has more to do with the fact that, if you are using sockets and plan to scale your app to multiple servers, you will <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">need a Redis instance</a> anyway.</p>
+<p>The easiest way to set up Redis as your app&apos;s shared session store is to uncomment the following line in <code>config/session.js</code>:</p>
+<pre><code data-language="javascript">adapter: &apos;connect-redis&apos;,
 </code></pre><!-- __LANG=%%__ -->
-<p>The following values are optional, if no options are set a redis instance running on <code>localhost</code> is expected.  Read more about these options at: <a href="https://github.com/visionmedia/connect-redis" target="_blank">https://github.com/visionmedia/connect-redis</a></p>
+<p>Then install the <a href="https://github.com/tj/connect-redis" target="_blank">connect-redis</a> session adapter as a dependency of your app:</p>
+<pre><code data-language="javascript">npm install connect-redis@~3.0.2 --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
+<p>The following settings are optional, since if no redis configuration other than <code>adapter</code> is provided, Sails assumes you want it to use a redis instance running on <code>localhost</code>.</p>
 <pre><code data-language="javascript">host: &apos;localhost&apos;,
   port: 6379,
   ttl: &lt;redis session TTL in seconds&gt;,
@@ -50,34 +55,71 @@ that can be shared across multiple Sails.js servers:</p>
   pass: &lt;redis auth password&gt;
   prefix: &apos;sess:&apos;
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="using-other-connect-compatible-session-stores" permalink="using-other-connectcompatible-session-stores">Using Other Connect-Compatible Session Stores</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th>Type</th>
+<th>Default</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>db</code></td>
+<td><bubble type="number" colors="true"></bubble></td>
+<td><code>undefined</code></td>
+<td style="text-align:left">The index of the database to use within your redis instance.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>host</code></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td><code>&apos;127.0.0.1&apos;</code></td>
+<td style="text-align:left">Hostname of your redis instance.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pass</code></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td><code>undefined</code></td>
+<td style="text-align:left">The password for your redis instance. Leave blank if you are not using a password.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>port</code></td>
+<td><bubble type="number" colors="true"></bubble></td>
+<td><code>6379</code></td>
+<td style="text-align:left">Port of your redis instance.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="using-other-connect-compatible-session-stores" permalink="using-other-connectcompatible-session-stores">Using Other Connect-Compatible Session Stores</h5>
 <p>Any session adapter written for Connect/Express works in Sails, as long as you use a compatible version.</p>
-<p>For example to use Mongo as your session store, you should use version 0.8.4 of <code>connect-mongo</code>.  First, run the following from your project&apos;s directory:</p>
-<pre><code data-language="text">npm install connect-mongo@0.8.4 --save
+<p>For example, to use Mongo as your session store, install <a href="https://github.com/kcbanner/connect-mongo" target="_blank">connect-mongo</a>:</p>
+<pre><code data-language="javascript">npm install connect-mongo@0.8.2 --save --save-exact
 </code></pre><!-- __LANG=%%__ -->
-<p>Then add the following lines to your session configuration dictionary in <code>config/session.js</code>:</p>
-<pre><code data-language="javascript">adapter: &apos;mongo&apos;,
-  host: &apos;localhost&apos;,
-  port: 27017,
-  db: &apos;sails&apos;,
+<p>Then set the your <code>adapter</code> in <code>config/session.js</code>:</p>
+<pre><code data-language="javascript">adapter: &apos;connect-mongo&apos;,
+</code></pre><!-- __LANG=%%__ -->
+<p>The following values are optional, and should only be used if relevant for your Mongo configuration. You can read more about these, and other available options, at <a href="https://github.com/kcbanner/connect-mongo" target="_blank">https://github.com/kcbanner/connect-mongo</a>:</p>
+<pre><code data-language="text">// Note: user, pass and port are optional
+  url: &apos;mongodb://user:pass@host:port/database&apos;,
   collection: &apos;sessions&apos;,
-</code></pre><!-- __LANG=%%__ -->
-<p>The following values are optional, and should only be used if relevant for your Mongo configuration. You can read more about these, and other available options, at <a href="https://github.com/kcbanner/connect-mongo" target="_blank">https://github.com/kcbanner/connect-mongo</a>.</p>
-<pre><code data-language="javascript">// Note: url will override other connection settings
-        // url: &apos;mongodb://user:pass@host:port/database/collection&apos;,
-
-        username: &apos;&apos;,
-        password: &apos;&apos;,
-        auto_reconnect: false,
-        ssl: false,
-        stringify: true
+  auto_reconnect: false,
+  ssl: false,
+  stringify: true
 </code></pre><!-- __LANG=%%__ -->
 <blockquote>
-<p><strong>Note:</strong>
-If you run into kerberos-related issues when using the MongoDB as your session store or the database for one or more of your app&apos;s models, be sure and have a look at the relevant <a href="http://mongodb.github.io/node-mongodb-native/2.0/getting-started/installation-guide/#troubleshooting" target="_blank">troubleshooting page</a> in the Mongo docs.  Also see <a href="https://github.com/balderdashy/sails/issues/3362" target="_blank">#3362</a> for more diagnostic information about using Kerberos with Mongo in your Sails app.</p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>When using Node version &lt;= 0.12.x, install <code>connect-mongo</code> version 0.8.2.  For Node version &gt;= 4.0, install <code>connect-mongo</code> &gt;= 1.0</li>
+<li>If you run into kerberos-related issues when using the MongoDB as your session store or the database for one or more of your app&apos;s models, be sure and have a look at the relevant <a href="http://mongodb.github.io/node-mongodb-native/2.0/getting-started/installation-guide/#troubleshooting" target="_blank">troubleshooting page</a> in the Mongo docs.  Also see <a href="https://github.com/balderdashy/sails/issues/3362" target="_blank">#3362</a> for more diagnostic information about using Kerberos with Mongo in your Sails app.</li>
+</ul>
 </blockquote>
 <h3 id="disabling-sessions" permalink="disabling-sessions">Disabling sessions</h3>
-<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook.  Note that tthe process for disabling any hook is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">disabling the Grunt hook</a> (just type <code>grunt</code> instead of <code>session</code>).</p>
+<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook by changing your <code>.sailsrc</code> file.  The process for disabling <code>session</code> is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">disabling the Grunt hook</a> (just type <code>session: false</code> instead of <code>grunt: false</code>).</p>
+<blockquote>
+<p><strong>Note:</strong>
+If the session hook is disabled, the session secret configured as <code>sails.config.session.secret</code> will still be used to support signed cookies, if relevant.  If the session hook is disabled <em>AND</em> no session secret configuration exists for your app (e.g. because you deleted <code>config/session.js</code>), then signed cookies will not be usable in your application.  To make more advanced changes to this behavior, you can customize any of your app&apos;s HTTP middleware manually using <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-http" target="_blank"><code>sails.config.http</code></a>.</p>
+</blockquote>
 <p><docmeta name="displayName" value="sails.config.session"></docmeta></p>
 <docmeta name="pageType" value="property">
 </docmeta>
