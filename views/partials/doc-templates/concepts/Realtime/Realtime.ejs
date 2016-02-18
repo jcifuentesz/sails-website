@@ -1,9 +1,9 @@
 <h1 id="realtime-communication-aka-sockets-">Realtime communication (aka Sockets)</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
-<p>Sails apps support full-duplex realtime communication between the client and server.  This means that a client (e.g. a web browser page or tab) can maintain a persistent connection to a Sails app, and messages can be sent from client to server or from server to client at any time.  Two common uses of realtime communication are live chat implementations and multiplayer games.  Sails implements realtime on the server using the <a href="http://socket.io" target="_blank">socket.io</a> library, and on the client using the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-on" target="_blank">sails.io.js</a> library.  Throughout the Sails documentation, the terms <strong>socket</strong> and <strong>websocket</strong> are commonly used to refer to a two-way, persistent communication channel between a Sails app and a client.</p>
+<p>Sails apps are capable of full-duplex realtime communication between the client and server.  This means that a client (e.g. browser tab, Raspberry Pi, etc) can maintain a persistent connection to a Sails backend, and messages can be sent from client to server (e.g. AJAX) or from server to client (e.g. &quot;comet&quot;) at any time.  Two common uses of realtime communication are live chat implementations and multiplayer games.  Sails implements realtime on the server using the <a href="http://socket.io" target="_blank">socket.io</a> library, and on the client using the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-on" target="_blank">sails.io.js</a> library.  Throughout the Sails documentation, the terms <strong>socket</strong> and <strong>websocket</strong> are commonly used to refer to a two-way, persistent communication channel between a Sails app and a client.</p>
 <p>Communicating with a Sails app via sockets is similar to using AJAX, in that both methods allow a web page to interact with the server without refreshing.  However, sockets differ from AJAX in two important ways: first, a socket can stay connected to the server for as long as the web page is open, allowing it to maintain <em>state</em> (AJAX requests, like all HTTP requests, are <em>stateless</em>).  Second, because of the always-on nature of the connection, a Sails app can send data down to a socket at any time (hence the &quot;realtime&quot; moniker), whereas AJAX only allows the server to respond when a request is made.</p>
 <h3 id="realtime-model-updates-with-resourceful-pub-sub" permalink="realtime-model-updates-with-resourceful-pubsub">Realtime model updates with resourceful pub-sub</h3>
-<p>Sockets making requests to Sails <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprints</a> are automatically subscribed to realtime messages about the models they retrieve via the <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub" target="_blank">resourceful pub-sub API</a>.  You can also use this API in your custom controller actions to send out messages to clients interested in certain models.</p>
+<p>Sockets making requests to Sails&apos; <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprint actions</a> are automatically subscribed to realtime messages about the models they retrieve via the <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub" target="_blank">resourceful pub-sub API</a>.  You can also use this API in your custom controller actions to send out messages to clients interested in certain models.</p>
 <h5 id="example" permalink="example">Example</h5>
 <p>Connect a client-side socket to the server, subscribe to the <code>user</code> event, and request <code>/user</code> to subscribe to current and future User model instances.</p>
 <pre><code data-language="html">&lt;!-- Simply include the sails.io.js script, and a client socket will be created for you --&gt;
@@ -15,17 +15,17 @@
 // &quot;delete&quot;, &quot;add&quot; and &quot;remove&quot; blueprints to any socket that
 // is subscribed to one or more User model instances.
 io.socket.on(&apos;user&apos;, function gotHelloMessage (data) {
-  console.log(&quot;User alert!&quot;, data);
+  console.log(&apos;User alert!&apos;, data);
 });
 // Using .get(&apos;/user&apos;) will retrieve a list of current User models,
 // subscribe this socket to those models, AND subscribe this socket
 // to notifications about new User models when they are created.
 io.socket.get(&apos;/user&apos;, function gotResponse(body, response) {
-  console.log(&quot;Current users: &quot;, body);
+  console.log(&apos;Current users: &apos;, body);
 })
 &lt;/script&gt;
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="realtime-communication-using-low-level-methods" permalink="realtime-communication-using-lowlevel-methods">Realtime communication using low-level methods</h3>
+<h3 id="custom-realtime-communication-with-sails-sockets-" permalink="custom-realtime-communication-with-sailssockets">Custom realtime communication with <code>sails.sockets</code></h3>
 <p>Sails exposes a rich API on both the client and the server for sending custom realtime messages.</p>
 <h5 id="example" permalink="example">Example</h5>
 <p>Connect a client-side socket to the server, subscribe to the <code>hello</code> event, and contact the server.</p>
@@ -35,11 +35,11 @@ io.socket.get(&apos;/user&apos;, function gotResponse(body, response) {
 // The automatically-created socket is exposed as io.socket.
 // Use .on() to subscribe to the &apos;hello&apos; event on the client
 io.socket.on(&apos;hello&apos;, function gotHelloMessage (data) {
-  console.log(&quot;Socket &quot; + data.id + &quot;joined the party!&quot;);
+  console.log(&apos;Socket `&apos; + data.id + &apos;` joined the party!&apos;);
 });
 // Use .get() to contact the server
 io.socket.get(&apos;/say/hello&apos;, function gotResponse(body, response) {
-  console.log(&quot;Server responded with status code &quot; + response.statusCode + &quot; and data: &quot;, body);
+  console.log(&apos;Server responded with status code &apos; + response.statusCode + &apos; and data: &apos;, body);
 })
 &lt;/script&gt;
 </code></pre><!-- __LANG=%%__ -->
@@ -47,16 +47,16 @@ io.socket.get(&apos;/say/hello&apos;, function gotResponse(body, response) {
 <pre><code data-language="javascript">// In /api/controllers/SayController.js
 module.exports = {
   hello: function(req, res) {
-    // Make sure this is a socket request
+    // Make sure this is a socket request (not traditional HTTP)
     if (!req.isSocket) {return res.badRequest();}
-    // Have the socket join the &quot;funSockets&quot; room
-    sails.sockets.join(req.socket, &quot;funSockets&quot;);
+    // Have the socket which made the request join the &quot;funSockets&quot; room
+    sails.sockets.join(req, &apos;funSockets&apos;);
     // Broadcast a &quot;hello&quot; message to all the fun sockets.
     // This message will be sent to all sockets in the &quot;funSockets&quot; room,
-    // but will be ignored by any clients that have not done `.on(&apos;hello&apos;, ...)`
-    sails.sockets.broadcast(&quot;funSockets&quot;, &quot;hello&quot;, {id: req.socket.id});
+    // but will be ignored by any client sockets that are not listening-- i.e. that didn&apos;t call `io.socket.on(&apos;hello&apos;, ...)`
+    sails.sockets.broadcast(&apos;funSockets&apos;, &apos;hello&apos;, req);
     // Respond to the request with an a-ok message
-    res.send(&quot;a-ok!&quot;);
+    return res.ok();
   }
 }
 </code></pre><!-- __LANG=%%__ -->

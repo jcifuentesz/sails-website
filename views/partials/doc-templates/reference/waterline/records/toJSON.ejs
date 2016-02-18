@@ -63,6 +63,33 @@ User.find().exec(
   }
 }
 </code></pre><!-- __LANG=%%__ -->
+<p>Usage with custom attribute methods</p>
+<pre><code data-language="javascript">module.exports = {
+  attributes: {
+    // Primitive attributes
+    firstName: {
+      type: &apos;string&apos;,
+      defaultsTo: &apos;&apos;
+    },
+    lastName: {
+      type: &apos;string&apos;,
+      defaultsTo: &apos;&apos;
+    },
+
+    // Attribute methods
+    getFullName: function (){
+      return this.firstName + &apos; &apos; + this.lastName;
+    },
+
+    // Override the default toJSON method
+    toJSON: function() {
+      var obj = this.toObject();
+      obj.fullName = this.getFullName();
+      return obj;
+    }
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <p>The real power of toJSON relies on the fact every model instance sent out via res.json is first passed through toJSON.

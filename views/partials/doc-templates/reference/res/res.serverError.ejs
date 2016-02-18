@@ -1,5 +1,5 @@
 <h1 id="res-servererror-">res.serverError()</h1>
-<p>This method is used to send a <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error" target="_blank">500</a> (&quot;Server Error&quot;) response back down to the client indicating that some kind of server error occurred.</p>
+<p>Send a <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_Error" target="_blank">500</a> (&quot;Server Error&quot;) response back down to the client indicating that some kind of server error occurred (i.e. the error is not the requesting user agent&apos;s fault).</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <pre><code data-language="javascript">return res.serverError();
 </code></pre><!-- __LANG=%%__ -->
@@ -36,7 +36,7 @@
 <li>This method is <strong>terminal</strong>, meaning it is generally the last line of code your app should run for a given request (hence the advisory usage of <code>return</code> throughout these docs).</li>
 <li><code>res.serverError()</code> (like other userland response methods) can be overridden or modified.  It runs the response method defined in <code>/responses/serverError.js</code>, which is bundled automatically in newly generated Sails apps.  If a <code>serverError.js</code> response method does not exist in your app, Sails will implicitly use the default behavior.</li>
 <li>If <code>pathToView</code> refers to a missing view, this method will respond as if the request &quot;wants JSON&quot;.
-+By default, the specified error (<code>err</code>) will be excluded if the app is running in the &quot;production&quot; environment (i.e. <code>process.env.NODE_ENV === &apos;production&apos;</code>).</li>
++By default, the specified error (<code>err</code>) <strong>will be excluded from the JSON response and view locals</strong> if the app is running in the &quot;production&quot; environment (i.e. <code>process.env.NODE_ENV === &apos;production&apos;</code>).</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="res.serverError()"></docmeta></p>

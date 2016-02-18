@@ -5,42 +5,62 @@
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th style="text-align:left">Property</th>
 <th>Type</th>
 <th>Default</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td> <code>adapter</code></td>
+<td style="text-align:left"><code>adapter</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td><code>&apos;memory&apos;</code></td>
-<td>The database where socket.io will store its message queue and answer pubsub logic.  Can be set to either <code>&apos;memory&apos;</code> or <code>&apos;redis&apos;</code>. In versions 0.11, <code>&apos;redis&apos;</code> is deprecated and <code>&apos;socket.io-redis&apos;</code> must be used. Install the appropiate dependency using <code>npm install socket.io-redis@0.1.4 --save</code></td>
+<td style="text-align:left">The queue socket.io will use to deliver messages.  Can be set to either <code>&apos;memory&apos;</code> or <code>&apos;socket.io-redis&apos;</code>. If <code>&apos;socket.io-redis&apos;</code> is specified, you should run <code>npm install socket.io-redis@~1.0.0 --save --save-exact</code>.</td>
 </tr>
 <tr>
-<td> <code>host</code></td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td><code>&apos;127.0.0.1&apos;</code></td>
-<td>Hostname of your redis instance (only applicable if using the redis socket store adapter)</td>
+<td style="text-align:left"><code>transports</code></td>
+<td><bubble type="array" colors="true"></bubble></td>
+<td><code>[&apos;polling&apos;, &apos;websocket&apos;]</code></td>
+<td style="text-align:left">An array of allowed transport strategies.  This should <em>always</em> match your configuration in your socket client (i.e. <code>sails.io.js</code>). For help, see <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client#?configuring-the-sailsiojs-library" target="_blank">Configuring the <code>sails.io.js</code> Library</a>.</td>
 </tr>
+</tbody>
+</table>
+<h3 id="redis-configuration" permalink="redis-configuration">Redis Configuration</h3>
+<p> If you are configuring your Sails app for production and plan to <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">scale to more than one server</a>, then you should set <code>sails.config.sockets.adapter</code> to <code>&apos;socket.io-redis&apos;</code>, set up your redis instance, and then use the following config to point at it from your app:</p>
+<table>
+<thead>
 <tr>
-<td> <code>port</code></td>
-<td><bubble type="integer" colors="true"></bubble></td>
-<td><code>6379</code></td>
-<td>Port of your redis instance (only applicable if using the redis socket store adapter)</td>
+<th style="text-align:left">Property</th>
+<th>Type</th>
+<th>Default</th>
+<th style="text-align:left">Details</th>
 </tr>
+</thead>
+<tbody>
 <tr>
-<td> <code>db</code></td>
+<td style="text-align:left"><code>db</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
 <td><code>&apos;sails&apos;</code></td>
-<td>The name of the database to use within your redis instance (only applicable if using the redis socket store adapter)</td>
+<td style="text-align:left">The name of the database to use within your redis instance.</td>
 </tr>
 <tr>
-<td> <code>pass</code></td>
+<td style="text-align:left"><code>host</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
-<td><bubble type="undefined" colors="true"></bubble></td>
-<td>The password for your redis instance (only applicable if using the redis socket store adapter)</td>
+<td><code>&apos;127.0.0.1&apos;</code></td>
+<td style="text-align:left">Hostname of your redis instance.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>pass</code></td>
+<td><bubble type="string" colors="true"></bubble></td>
+<td><code>undefined</code></td>
+<td style="text-align:left">The password for your redis instance.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>port</code></td>
+<td><bubble type="number" colors="true"></bubble></td>
+<td><code>6379</code></td>
+<td style="text-align:left">Port of your redis instance.</td>
 </tr>
 </tbody>
 </table>
@@ -49,93 +69,93 @@
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th>Details</th>
+<th style="text-align:left">Property</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:center">Default</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>afterDisconnect</code></td>
-<td><bubble type="function" colors="true"></bubble></td>
-<td><code>undefined</code></td>
-<td>A function to run when a client-side socket disconnects from the server.  To define your own custom logic, specify a function like <code>afterDisconnect: function (session, socket, cb) {}</code>.</td>
+<td style="text-align:left"><code>afterDisconnect</code></td>
+<td style="text-align:center"><bubble type="function" colors="true"></bubble></td>
+<td style="text-align:center"><code>undefined</code></td>
+<td style="text-align:left">A function to run when a client-side socket disconnects from the server.  To define your own custom logic, specify a function like <code>afterDisconnect: function (session, socket, cb) {}</code>.</td>
 </tr>
 <tr>
-<td><code>allowUpgrades</code></td>
-<td><bubble type="boolean" colors="true"></bubble></td>
-<td><code>true</code></td>
-<td>This is a raw configuration option exposed from Engine.io.  It indicates whether to allow Socket.io clients to upgrade the transport that they are using (e.g. start with polling, then upgrade to a true WebSocket connection).</td>
+<td style="text-align:left"><code>allowUpgrades</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:center"><code>true</code></td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It indicates whether to allow Socket.io clients to upgrade the transport that they are using (e.g. start with polling, then upgrade to a true WebSocket connection).</td>
 </tr>
 <tr>
-<td><code>beforeConnect</code></td>
-<td><bubble type="boolean" colors="true"></bubble>, <bubble type="function" colors="true"></bubble></td>
-<td><code>undefined</code></td>
-<td>A function to run every time a new client-side socket attempts to connect to the server which can be used to reject or allow the incoming connection.  Useful for tweaking your production environment to prevent <a href="(http://sailsjs.org/documentation/concepts/Security/DDOS.html">DoS</a> attacks, or reject socket.io connections based on business-specific heuristics (e.g. if stooges from a competing business create bots to post spam links about their commercial product in your public, open-source chat room)  (In Sails v0.9 and v0.10, this was called <code>authorization</code>-- it has changed due to the upgrade to socket.io v1)  To define your own custom logic, specify a function like: <code>beforeConnect: function (handshake, cb) { /* pass back true to allow, false to deny */ return cb(null, true); }</code>  As of Sails v0.11, Sails no longer blocks incoming socket connections without cookies-- instead, cookies (and by corollary- sessions) are granted automatically.  If a requesting socket.io client cannot receive a cookie (i.e. making a cross-origin socket.io connection) the <code>sails.io.js</code> socket client will automatically send a CORS+JSONP request to try and obtain one <strong>BEFORE CONNECTING</strong> (refer to the <code>grant3rdPartyCookie</code> option above for details).  In the antagonistic scenario where even this fails, Sails will still grant a new cookie upon connection, which allows for a one-time session.</td>
+<td style="text-align:left"><code>beforeConnect</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble>, <bubble type="function" colors="true"></bubble></td>
+<td style="text-align:center"><code>undefined</code></td>
+<td style="text-align:left">A function to run every time a new client-side socket attempts to connect to the server which can be used to reject or allow the incoming connection.  Useful for tweaking your production environment to prevent <a href="(http://sailsjs.org/documentation/concepts/Security/DDOS.html">DoS</a> attacks, or reject socket.io connections based on business-specific heuristics (e.g. if stooges from a competing business create bots to post spam links about their commercial product in your chat room).  To define your own custom logic, specify a function like: <code>beforeConnect: function (handshake, cb) { /* pass back true to allow, false to deny */ return cb(null, true); }</code>  As of Sails v0.11, Sails no longer blocks incoming socket connections without cookies-- instead, cookies (and by corollary- sessions) are granted automatically.  If a requesting socket.io client cannot receive a cookie (i.e. making a cross-origin socket.io connection) the <code>sails.io.js</code> socket client will automatically send a CORS+JSONP request to try and obtain one <strong>BEFORE CONNECTING</strong> (refer to the <code>grant3rdPartyCookie</code> option above for details).  In the antagonistic scenario where even this fails, Sails will still grant a new cookie upon connection, which allows for a one-time session.</td>
 </tr>
 <tr>
-<td><code>cookie</code></td>
-<td><bubble type="string" colors="true"></bubble>, <bubble type="boolean" colors="true"></bubble></td>
-<td><code>false</code></td>
-<td>This is a raw configuration option exposed from Engine.io.  It indicates the name of the HTTP cookie that contains the connecting socket.io client&apos;s socket id.  The cookie will be set when responding to the initial Socket.io &quot;handshake&quot;.  Alternatively, may be set to <code>false</code> to disable the cookie altogether.  Note that the <code>sails.io.js</code> client does not rely on this cookie, so it is disabled (set to <code>false</code>) by default for enhanced security.  If you are using socket.io directly and need to re-enable this cookie, keep in mind that the conventional setting is <code>&quot;io&quot;</code>.</td>
+<td style="text-align:left"><code>cookie</code></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble>, <bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:center"><code>false</code></td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It indicates the name of the HTTP cookie that contains the connecting socket.io client&apos;s socket id.  The cookie will be set when responding to the initial Socket.io &quot;handshake&quot;.  Alternatively, may be set to <code>false</code> to disable the cookie altogether.  Note that the <code>sails.io.js</code> client does not rely on this cookie, so it is disabled (set to <code>false</code>) by default for enhanced security.  If you are using socket.io directly and need to re-enable this cookie, keep in mind that the conventional setting is <code>&quot;io&quot;</code>.</td>
 </tr>
 <tr>
-<td><code>maxBufferSize</code></td>
-<td><bubble type="number" colors="true"></bubble></td>
-<td><code>10E7</code></td>
-<td>This is a raw configuration option exposed from Engine.io.  It reflects the maximum number of bytes or characters in a message when polling before automatically closing the socket (to avoid <a href="http://sailsjs.org/documentation/concepts/Security/DDOS.html" target="_blank">DoS</a>).</td>
+<td style="text-align:left"><code>maxBufferSize</code></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
+<td style="text-align:center"><code>10E7</code></td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It reflects the maximum number of bytes or characters in a message when polling before automatically closing the socket (to avoid <a href="http://sailsjs.org/documentation/concepts/Security/DDOS.html" target="_blank">DoS</a>).</td>
 </tr>
 <tr>
-<td><code>path</code></td>
-<td><bubble type="string" colors="true"></bubble></td>
-<td><code>/socket.io</code></td>
-<td>Path that client-side sockets should connect to on the server.  See <a href="http://socket.io/docs/server-api/#server(opts:object" target="_blank">http://socket.io/docs/server-api/#server(opts:object</a>).</td>
+<td style="text-align:left"><code>path</code></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:center"><code>/socket.io</code></td>
+<td style="text-align:left">Path that client-side sockets should connect to on the server.  See <a href="http://socket.io/docs/server-api/#server(opts:object" target="_blank">http://socket.io/docs/server-api/#server(opts:object</a>).</td>
 </tr>
 <tr>
-<td><code>pingInterval</code></td>
-<td><bubble type="number" colors="true"></bubble></td>
-<td><code>25000</code></td>
-<td>This is a raw configuration option exposed from Engine.io.  It reflects the number of miliseconds to wait between &quot;ping packets&quot; (i.e. this is what &quot;heartbeats&quot; has become, more or less)</td>
+<td style="text-align:left"><code>pingInterval</code></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
+<td style="text-align:center"><code>25000</code></td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It reflects the number of miliseconds to wait between &quot;ping packets&quot; (i.e. this is what &quot;heartbeats&quot; has become, more or less)</td>
 </tr>
 <tr>
-<td><code>pingTimeout</code></td>
-<td><bubble type="number" colors="true"></bubble></td>
-<td><code>60000</code></td>
-<td>This is a raw configuration option exposed from Engine.io.  It reflects how many ms without a pong packet to wait before considering a socket.io connection closed</td>
+<td style="text-align:left"><code>pingTimeout</code></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
+<td style="text-align:center"><code>60000</code></td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It reflects how many ms without a pong packet to wait before considering a socket.io connection closed</td>
 </tr>
 <tr>
-<td><code>pubClient</code></td>
-<td><bubble type="object" colors="true"></bubble></td>
-<td><code>undefined</code></td>
-<td>When using the socket.io-redis adapter, this option allows you to specify a custom Redis client (typically created with <code>Redis.createClient</code>) used for <em>publishing</em> on channels used by Socket.io.  If unspecified, Sails will create a client for you.</td>
+<td style="text-align:left"><code>pubClient</code></td>
+<td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
+<td style="text-align:center"><code>undefined</code></td>
+<td style="text-align:left">When using the socket.io-redis adapter, this option allows you to specify a custom Redis client (typically created with <code>Redis.createClient</code>) used for <em>publishing</em> on channels used by Socket.io.  If unspecified, Sails will create a client for you.</td>
 </tr>
 <tr>
-<td><code>sendResponseHeaders</code></td>
-<td><bubble type="boolean" colors="true"></bubble></td>
-<td><code>true</code></td>
-<td>Whether to include response headers in the JWR (JSON WebSocket Response) originated for each socket request (e.g. <code>io.socket.get()</code> in the browser) This doesn&apos;t affect direct socket.io usage-- only if you&apos;re communicating with Sails via the request interpreter (e.g. making normal calls with the sails.io.js browser SDK).  This can be useful for squeezing out more performance when tuning high-traffic apps, since it reduces total bandwidth usage.  However, since Sails v0.10, response headers are trimmed whenever possible, so this option should almost never need to be used, even in extremely high-scale applications.</td>
+<td style="text-align:left"><code>sendResponseHeaders</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:center"><code>true</code></td>
+<td style="text-align:left">Whether to include response headers in the JWR (JSON WebSocket Response) originated for each socket request (e.g. <code>io.socket.get()</code> in the browser) This doesn&apos;t affect direct socket.io usage-- only if you&apos;re communicating with Sails via the request interpreter (e.g. making normal calls with the sails.io.js browser SDK).  This can be useful for squeezing out more performance when tuning high-traffic apps, since it reduces total bandwidth usage.  However, since Sails v0.10, response headers are trimmed whenever possible, so this option should almost never need to be used, even in extremely high-scale applications.</td>
 </tr>
 <tr>
-<td><code>serveClient</code></td>
-<td><bubble type="boolean" colors="true"></bubble></td>
-<td><code>false</code></td>
-<td>Whether to serve the default Socket.io client at <code>/socket.io/socket.io.js</code>.  Occasionally useful for advanced debugging.</td>
+<td style="text-align:left"><code>serveClient</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:center"><code>false</code></td>
+<td style="text-align:left">Whether to serve the default Socket.io client at <code>/socket.io/socket.io.js</code>.  Occasionally useful for advanced debugging.</td>
 </tr>
 <tr>
-<td><code>subClient</code></td>
-<td><bubble type="object" colors="true"></bubble></td>
-<td><code>undefined</code></td>
-<td>When using the socket.io-redis adapter, this option allows you to specify a custom Redis client (typically created with <code>Redis.createClient</code>) used for <em>subscribing</em> to channels used by Socket.io.  If unspecified, Sails will create a client for you.</td>
-</tr>
-<tr>
-<td><code>transports</code></td>
-<td><bubble type="array" colors="true"></bubble></td>
-<td><code>[&apos;polling&apos;, &apos;websocket&apos;]</code></td>
-<td>An array of allowed transport methods which the clients will try to use.</td>
+<td style="text-align:left"><code>subClient</code></td>
+<td style="text-align:center"><bubble type="ref" colors="true"></bubble></td>
+<td style="text-align:center"><code>undefined</code></td>
+<td style="text-align:left">When using the socket.io-redis adapter, this option allows you to specify a custom Redis client (typically created with <code>Redis.createClient</code>) used for <em>subscribing</em> to channels used by Socket.io.  If unspecified, Sails will create a client for you.</td>
 </tr>
 </tbody>
 </table>
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>In older versions of Sails (&lt;v0.11) and Socket.io (&lt;v1.0), the <code>beforeConnect</code> setting was called <code>authorization</code>.</li>
+</ul>
+</blockquote>
 <p><docmeta name="displayName" value="sails.config.sockets"></docmeta></p>
 <docmeta name="pageType" value="property">
 

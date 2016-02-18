@@ -3,7 +3,7 @@
 <p>While Sails dutifully adheres to the philosophy of <a href="http://en.wikipedia.org/wiki/Convention_over_configuration" target="_blank">convention-over-configuration</a>, it is important to understand how to customize those handy defaults from time to time.  For almost every convention in Sails, there is an accompanying set of configuration options that allow you to adjust or override things to fit your needs.  This section of the docs includes a complete reference of the configuration options available in Sails.</p>
 <p>Sails apps can be <a href="https://github.com/mikermcneil/sails-generate-new-but-like-express/blob/master/templates/app.js#L15" target="_blank">configured programmatically</a>, by specifying <a href="http://en.wikipedia.org/wiki/Environment_variable" target="_blank">environment variables</a> or command-line arguments, by changing the local or global <a href="http://sailsjs.org/documentation/anatomy/myApp/sailsrc.html" target="_blank"><code>.sailsrc</code> files</a>, or (most commonly) using the boilerplate configuration files conventionally located in the <a href="http://sailsjs.org/documentation/anatomy/myApp/config" target="_blank"><code>config/</code></a> folder of new projects. The authoritative, merged-together configuration used in your app is available at runtime on the <code>sails</code> global as <code>sails.config</code>.</p>
 <h3 id="standard-configuration-files-config-" permalink="standard-configuration-files-(config/*)">Standard configuration files (<code>config/*</code>)</h3>
-<p>A number of configuration files are included in new Sails apps by default.  These boilerplate files include a number of inline comments, which are designed to provide a quick, on-the-fly reference without having to jump back and forth between the docs and your text editor.</p>
+<p>A number of configuration files are generated in new Sails apps by default.  These boilerplate files include a number of inline comments, which are designed to provide a quick, on-the-fly reference without having to jump back and forth between the docs and your text editor.</p>
 <p>In most cases, the top-level keys on the <code>sails.config</code> object (e.g. <code>sails.config.views</code>) correspond to a particular configuration file (e.g. <code>config/views.js</code>) in your app; however configuration settings may be arranged however you like across the files in your <code>config/</code> directory.  The important part is the name (i.e. key) of the setting- not the file it came from.</p>
 <p>For instance, let&apos;s say you add a new file, <code>config/foo.js</code>:</p>
 <pre><code data-language="javascript">// config/foo.js
@@ -43,6 +43,16 @@ if (sails.config.environment === &apos;production&apos; &amp;&amp; !sails.config
 <pre><code data-language="javascript">sails_cors__origin=&quot;http://somedomain.com&quot; sails lift
 </code></pre><!-- __LANG=%%__ -->
 <p>This value will be in effect <em>only</em> for the lifetime of this particular Sails instance, and will override any values in the configuration files.</p>
+<blockquote>
+<p>There are a couple of special exceptions to the rule: <code>NODE_ENV</code> and <code>PORT</code>.</p>
+<ul>
+<li><code>NODE_ENV</code> is a convention for any Node.js app.  When set to <code>&apos;production&apos;</code>, it sets <a href="http://sailsjs.org/documentation/reference/configuration/sails-config#?sailsconfigenvironment" target="_blank"><code>sails.config.environment</code></a>. </li>
+<li>Similarly, <code>PORT</code> is just another way to set <a href="http://sailsjs.org/documentation/reference/configuration/sails-config#?sailsconfigport" target="_blank"><code>sails.config.port</code></a>.  This is strictly for convenience and backwards compatibility.</li>
+</ul>
+<p>Here&apos;s a relatively common example where you might use both of these environment variables at the same time:</p>
+<pre><code data-language="javascript">PORT=443 NODE_ENV=production sails lift
+</code></pre><!-- __LANG=%%__ -->
+</blockquote>
 <h3 id="custom-configuration" permalink="custom-configuration">Custom Configuration</h3>
 <p>Sails recognizes many different settings, namespaced under different top level keys (e.g. <code>sails.config.sockets</code> and <code>sails.config.blueprints</code>).  However you can also use <code>sails.config</code> for your own custom configuration (e.g. <code>sails.config.someProprietaryAPI.secret</code>).</p>
 <h5 id="example" permalink="example">Example</h5>

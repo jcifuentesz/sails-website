@@ -1,20 +1,14 @@
 <h1 id="default-responses">Default responses</h1>
 <p>The following responses are bundled with all new Sails apps inside the <code>/api/responses</code> folder.  Each one sends a normalized JSON object if the client is expecting JSON, containing a <code>status</code> key with the HTTP status code, and additional keys with relevant information about any errors.</p>
-<h4 id="res-servererror-errors-" permalink="resservererror(errors)">res.serverError(errors)</h4>
-<p>This response normalizes the error/errors of <code>errors</code> into an array of proper, readable <code>Error</code> objects. <code>errors</code> can be one or more strings or <code>Error</code> objects.  It then logs all Errors to the Sails logger (usually the console), and responds with the <code>views/500.*</code> view file if the client is expecting HTML, or a JSON object if the client is expecting JSON.  In development mode, the list of errors is included in the response.  In production mode, the actual errors are suppressed.</p>
-<h4 id="res-badrequest-validationerrors-redirectto-" permalink="resbadrequest(validationerrors,-redirectto)">res.badRequest(validationErrors, redirectTo)</h4>
-<p>For requesters expecting JSON, this response includes the 400 status code and any relevant data sent as <code>validationErrors</code>.</p>
-<p>For traditional (not-AJAX) web forms, this middleware follows best-practices for when a user submits invalid form data:</p>
-<ul>
-<li>First, a one-time-use flash variable is populated, probably a string message or an array of semantic validation error objects.</li>
-<li>Then the  user is redirected back to <code>redirectTo</code>, i.e. the URL where the bad request originated.</li>
-<li>There, the controller and/or view might use the flash <code>errors</code> to either display a message or highlight the invalid HTML form fields.</li>
-</ul>
+<h4 id="res-ok-" permalink="resok()">res.ok()</h4>
+<p>This method is used to send a 200 (&quot;Ok&quot;) response back down to the client indicating that everything worked out a-okay. &#x1F44D; See the <a href="http://sailsjs.org/documentation/reference/response-res/res-ok" target="_blank"><code>res.ok()</code> reference page</a> for usage info.</p>
+<h4 id="res-servererror-" permalink="resservererror()">res.serverError()</h4>
+<p>This method is used to send a 500 (&quot;Server Error&quot;) response back down to the client indicating that some kind of server error occurred. &#x1F4A3; See the <a href="http://sailsjs.org/documentation/reference/response-res/res-server-error" target="_blank"><code>res.serverError()</code> reference page</a> for usage info.</p>
+<h4 id="res-badrequest-" permalink="resbadrequest()">res.badRequest()</h4>
+<p>This method is used to send a 400 (&quot;Bad Request&quot;) response back down to the client indicating that the request is invalid. &#x1F44E; See the <a href="http://sailsjs.org/documentation/reference/response-res/res-bad-request" target="_blank"><code>res.badRequest()</code> reference page</a> for usage info.</p>
 <h4 id="res-notfound-" permalink="resnotfound()">res.notFound()</h4>
-<p>If the requester is expecting JSON, this response simply sends a 404 status code and a <code>{status: 404}</code> object. </p>
-<p>Otherwise the view located in <code>myApp/views/404.*</code> will be served.  If that view can&apos;t be found, then the client is just sent the JSON response.</p>
-<h4 id="res-forbidden-message-" permalink="resforbidden(message)">res.forbidden(message)</h4>
-<p>If the requester is expecting JSON, this response sends the 403 status code along with the contents of <code>message</code>.</p>
-<p>Otherwise the view located in <code>myApp/views/403.*</code> will be served.  If that view can&apos;t be found, then the client is just sent the JSON response.</p>
+<p>This method is used to send a 404 (&quot;Not Found&quot;) response back down to the client indicating that the requested URL doesn&#x2019;t match any routes in the app. &#x1F494; See the <a href="http://sailsjs.org/documentation/reference/response-res/res-not-found" target="_blank"><code>res.notFound()</code> reference page</a> for usage info.</p>
+<h4 id="res-forbidden-" permalink="resforbidden()">res.forbidden()</h4>
+<p>This method is used to send a 403 (&quot;Forbidden&quot;) response back down to the client indicating that the request is not allowed. &#x1F6AB; See the <a href="http://sailsjs.org/documentation/reference/response-res/res-forbidden" target="_blank"><code>res.forbidden()</code> reference page</a> for usage info.</p>
 <docmeta name="displayName" value="Default Responses">
 </docmeta>

@@ -171,10 +171,10 @@
     "isChild": true
   },
   {
-    "templateTitle": "sails.log.ejs",
-    "fullPathAndFileName": "concepts/Logging/sails.log.ejs",
+    "templateTitle": "Custom log messages.ejs",
+    "fullPathAndFileName": "concepts/Logging/Custom log messages.ejs",
     "data": {
-      "displayName": "sails.log()"
+      "displayName": "Custom log messages"
     },
     "parent": "concepts/Logging/Logging.ejs",
     "isChild": true
@@ -198,9 +198,9 @@
     "parent": "concepts/ORM/ORM.ejs",
     "isChild": true,
     "children": [
-      "concepts/ORM/Associations/OneWayAssociation.ejs",
-      "concepts/ORM/Associations/Dominance.ejs",
       "concepts/ORM/Associations/ManytoMany.ejs",
+      "concepts/ORM/Associations/Dominance.ejs",
+      "concepts/ORM/Associations/OneWayAssociation.ejs",
       "concepts/ORM/Associations/OnetoMany.ejs",
       "concepts/ORM/Associations/OnetoOne.ejs",
       "concepts/ORM/Associations/ThroughAssociations.ejs"
@@ -552,8 +552,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Adapters/adapterList.ejs",
-      "concepts/extending-sails/Adapters/customAdapters.ejs"
+      "concepts/extending-sails/Adapters/customAdapters.ejs",
+      "concepts/extending-sails/Adapters/adapterList.ejs"
     ],
     "isParent": true
   },
@@ -658,10 +658,10 @@
     "parent": "concepts/extending-sails/Hooks/Hooks.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Hooks/hookspec/configure.ejs",
+      "concepts/extending-sails/Hooks/hookspec/defaults.ejs",
       "concepts/extending-sails/Hooks/hookspec/initialize.ejs",
-      "concepts/extending-sails/Hooks/hookspec/routes.ejs",
-      "concepts/extending-sails/Hooks/hookspec/defaults.ejs"
+      "concepts/extending-sails/Hooks/hookspec/configure.ejs",
+      "concepts/extending-sails/Hooks/hookspec/routes.ejs"
     ],
     "isParent": true
   },
@@ -733,8 +733,8 @@
       "displayName": "Assets"
     },
     "children": [
-      "concepts/Assets/DefaultTasks.ejs",
       "concepts/Assets/DisablingGrunt.ejs",
+      "concepts/Assets/DefaultTasks.ejs",
       "concepts/Assets/TaskAutomation.ejs"
     ],
     "isParent": true
@@ -747,8 +747,8 @@
       "displayName": "Blueprints"
     },
     "children": [
-      "concepts/Blueprints/Blueprint Actions.ejs",
-      "concepts/Blueprints/Blueprint Routes.ejs"
+      "concepts/Blueprints/Blueprint Routes.ejs",
+      "concepts/Blueprints/Blueprint Actions.ejs"
     ],
     "isParent": true
   },
@@ -760,8 +760,8 @@
       "displayName": "Configuration"
     },
     "children": [
-      "concepts/Configuration/localjsfile.ejs",
-      "concepts/Configuration/usingsailsrcfiles.ejs"
+      "concepts/Configuration/usingsailsrcfiles.ejs",
+      "concepts/Configuration/localjsfile.ejs"
     ],
     "isParent": true
   },
@@ -786,8 +786,8 @@
       "displayName": "Custom Responses"
     },
     "children": [
-      "concepts/Custom Responses/AddingCustomResponse.ejs",
-      "concepts/Custom Responses/DefaultResponses.ejs"
+      "concepts/Custom Responses/DefaultResponses.ejs",
+      "concepts/Custom Responses/AddingCustomResponse.ejs"
     ],
     "isParent": true
   },
@@ -799,9 +799,9 @@
       "displayName": "Deployment"
     },
     "children": [
-      "concepts/Deployment/Hosting.ejs",
       "concepts/Deployment/FAQ.ejs",
-      "concepts/Deployment/Scaling.ejs"
+      "concepts/Deployment/Scaling.ejs",
+      "concepts/Deployment/Hosting.ejs"
     ],
     "isParent": true
   },
@@ -838,8 +838,8 @@
       "displayName": "Internationalization"
     },
     "children": [
-      "concepts/Internationalization/TranslatingDynamicContent.ejs",
-      "concepts/Internationalization/Locales.ejs"
+      "concepts/Internationalization/Locales.ejs",
+      "concepts/Internationalization/TranslatingDynamicContent.ejs"
     ],
     "isParent": true
   },
@@ -851,7 +851,7 @@
       "displayName": "Logging"
     },
     "children": [
-      "concepts/Logging/sails.log.ejs"
+      "concepts/Logging/Custom log messages.ejs"
     ],
     "isParent": true
   },
@@ -878,9 +878,9 @@
       "concepts/ORM/Attributes.ejs",
       "concepts/ORM/Lifecyclecallbacks.ejs",
       "concepts/ORM/Models.ejs",
-      "concepts/ORM/Validations.ejs",
       "concepts/ORM/Querylanguage.ejs",
       "concepts/ORM/model-settings.ejs",
+      "concepts/ORM/Validations.ejs",
       "concepts/ORM/Associations/Associations.ejs"
     ],
     "isParent": true
@@ -922,8 +922,8 @@
       "displayName": "Realtime"
     },
     "children": [
-      "concepts/Realtime/Multi-server environments.ejs",
       "concepts/Realtime/On the client.ejs",
+      "concepts/Realtime/Multi-server environments.ejs",
       "concepts/Realtime/On the server.ejs"
     ],
     "isParent": true
@@ -955,8 +955,8 @@
       "concepts/Security/ContentSecurityPolicy.ejs",
       "concepts/Security/DDOS.ejs",
       "concepts/Security/P3P.ejs",
-      "concepts/Security/StrictTransportSecurity.ejs",
       "concepts/Security/SocketHijacking.ejs",
+      "concepts/Security/StrictTransportSecurity.ejs",
       "concepts/Security/XSS.ejs"
     ],
     "isParent": true
@@ -1001,8 +1001,8 @@
     },
     "children": [
       "concepts/Upgrading/To0.10.ejs",
-      "concepts/Upgrading/To0.12.ejs",
-      "concepts/Upgrading/To0.11.ejs"
+      "concepts/Upgrading/To0.11.ejs",
+      "concepts/Upgrading/To0.12.ejs"
     ],
     "isParent": true
   },
@@ -1014,9 +1014,9 @@
       "displayName": "Views"
     },
     "children": [
+      "concepts/Views/Locals.ejs",
       "concepts/Views/Layouts.ejs",
       "concepts/Views/Partials.ejs",
-      "concepts/Views/Locals.ejs",
       "concepts/Views/ViewEngines.ejs"
     ],
     "isParent": true
