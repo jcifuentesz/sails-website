@@ -18,15 +18,6 @@
     "isChild": true
   },
   {
-    "templateTitle": "sailsTroll.ejs",
-    "fullPathAndFileName": "irc/sailsTroll.ejs",
-    "data": {
-      "displayName": "Sails Troll"
-    },
-    "parent": "irc/irc.ejs",
-    "isChild": true
-  },
-  {
     "templateTitle": "irc.ejs",
     "fullPathAndFileName": "irc/irc.ejs",
     "realPath": "irc/",
@@ -39,5 +30,14 @@
       "irc/sailsTroll.ejs"
     ],
     "isParent": true
+  },
+  {
+    "templateTitle": "sailsTroll.ejs",
+    "fullPathAndFileName": "irc/sailsTroll.ejs",
+    "data": {
+      "displayName": "Sails Troll"
+    },
+    "parent": "irc/irc.ejs",
+    "isChild": true
   }
 ]
