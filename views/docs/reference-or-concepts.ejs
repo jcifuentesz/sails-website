@@ -75,3 +75,15 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
     </div>
   </div>
 </div>
+
+<!-- For tiny screens (link to file on github instead) -->
+<div class="docs-github-message">
+  <img src="/images/squidford_swimming.png"/>
+  <% if(data.currentTemplate.path.indexOf('0home') < 0) { %>
+  <p>Looks like your screen's a bit too small to read the documentation here. Follow the link below to view the <span><%=data.currentTemplate.displayName%></span> docs on GitHub.</p>
+  <a href="https://github.com/balderdashy/sails-docs/blob/<%= branchToEdit %>/<%= data.currentTemplate.path.replace(/\.ejs/, '') %>.md">To GitHub!</a>
+  <% } else { %>
+  <p>Looks like your screen's a bit too small to read the documentation here. Follow the link below to <span>balderdashy/sails-docs</span> on GitHub.</p>
+  <a href="https://github.com/balderdashy/sails-docs">To GitHub</a>
+  <% } %>
+</div>
