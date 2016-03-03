@@ -16,7 +16,7 @@ The [contribution guide for the Sails project](https://github.com/balderdashy/sa
 ## Which branch do I use?
 All direct changes should be made to the `master` branch of this repository.
 
-The branch corresopnding with the latest stable release of Sails (e.g. `0.12`) contains the code that is currently deployed on **both** sailsjs.org and preview.sailsjs.org.
+**Both** sailsjs.org and preview.sailsjs.org are deployed directly from `master`. The code for the websites with documentation for earlier realeases of sails are on the branches that correspond with those versions. (e.g. branch `0.11` → [0.11.sailsjs.org](http://0.11.sailsjs.org))
 
 ## Recompiling the documentation for production
 

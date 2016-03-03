@@ -3,7 +3,7 @@
   .container();
   .clearfix();
   display: none;
-  padding: 145px 0 50px;
+  padding: 145px 0 25px;
   img {
     width: 60%;
     margin-left: auto;
@@ -11,22 +11,28 @@
     margin-bottom: 25px;
   }
   a {
+    .transition(all 250ms);
     display: block;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
     padding: 15px;
-    font-size: 18px;
-    background-color: @ltestGray;
+    font-size: 20px;
+    background-color: @brightBlue;
     text-align: center;
     font-family: @headerFont;
-    color: @darkTurquoise;
+    color: @white;
+    font-family: @mainFont;
+    border-radius: 4px;
+    &:hover {
+      background-color: darken(@brightBlue, 10%);
+    }
   }
   p {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-align: center;
     font-size: 14px;
     span {
