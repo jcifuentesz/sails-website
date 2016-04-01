@@ -39,9 +39,10 @@ var io = require(&apos;sails.io.js&apos;)( require(&apos;socket.io-client&apos;)
 &gt;&lt;/script&gt;
 </code></pre><!-- __LANG=%%__ -->
 <p>This example will disable the eager socket connection, force the client environment to &quot;production&quot; (which disables logs), and set an <code>x-csrf-token</code> header that will be sent in every socket request (unless overridden).  Note that comoposite values like the <code>headers</code> dictionary are wrapped in a pair of <em>single-quotes</em>.  That&apos;s because composite values specified this way must be <em>JSON-encoded</em>-- meaning they must use double-quotes around string values <em>and</em> around key names. </p>
+<p>Any configuration which may be provided as an HTML attribute may alternately be provided prefixed with <code>data-</code> (e.g. <code>data-autoConnect</code>, <code>data-environment</code>, <code>data-headers</code>, <code>data-url</code>).  This is for folks who need to support browsers that have issues with nonstandard HTML attributes (or if the idea of using nonstandard HTML attributes just creeps you out). If both the standard HTML attribute and the <code>data-</code> prefixed HTML attribute are provided, the latter takes precendence.</p>
 <blockquote>
-<p><strong>Note:</strong>
-Any configuration which may be provided as an HTML attribute may alternately be provided prefixed with <code>data-</code> (e.g. <code>data-autoConnect</code>, <code>data-environment</code>, <code>data-headers</code>, <code>data-url</code>).  This is for folks who need to support browsers that have issues with nonstandard HTML attributes (or if the idea of using nonstandard HTML attributes just creeps you out). If both the standard HTML attribute and the <code>data-</code> prefixed HTML attribute are provided, the latter takes precendence.</p>
+<p><strong>Note:</strong> 
+In order to use this approach for configuring the socket client, if you are using the default Grunt asset pipeline (i.e. which automatically injects script tags), you will need to remove <code>sails.io.js</code> from your <code>pipeline.js</code> file, and instead include an explicit <code>&lt;script&gt;</code> tag which imports it.</p>
 </blockquote>
 <h5 id="programmatic-configuration-using-io-sails-" permalink="programmatic-configuration-using-iosails">Programmatic configuration using <code>io.sails</code></h5>
 <p>As of Sails v0.12.x, only the most basic configuration options may be set using HTML attributes.  If you want to configure any of the other options not mentioned above, you will need to interact with <code>io.sails</code> programmatically.  Fortunately, the approach described above is really just a convenient shortcut for doing just that!  Heres how it works:</p>
@@ -53,22 +54,28 @@ Any configuration which may be provided as an HTML attribute may alternately be 
 &lt;!-- ...other scripts... --&gt;
 </code></pre><!-- __LANG=%%__ -->
 <p>Normally, the socket client always connects to the server where the script is being served.  The example above will cause the eager (auto-connecting) socket to attempt a (cross-domain) socket connection to the Sails server running at <code>https://myapp.com</code> instead.</p>
+<blockquote>
+<p><strong>Note:</strong> 
+If you are using the default Grunt asset pipeline (i.e. which automatically injects script tags), it is a good idea to exclude <code>sails.io.js</code> from your <code>pipeline.js</code> file, and instead explicitly add a <code>&lt;script&gt;</code> tag for it.  This ensures that your configuration will be applied <em>before</em> the &quot;eager&quot; auto-connecting socket begins connecting-- since it means the inline <code>&lt;script&gt;</code> tag you are using for programmatic configuration (e.g. which sets <code>io.sais.url = &apos;https://myapp.com&apos;;</code>) is executed <em>immediately after</em> the socket client.</p>
+</blockquote>
 <h3 id="advanced-usage" permalink="advanced-usage">Advanced usage</h3>
 <p>You can also create and connect client sockets manually using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails#?the-connect-method" target="_blank"><code>io.sails.connect</code></a>.  This returns an instance of the <code>SailsSocket</code>. For more information about rarer / more advanced use cases such as connecting multiple sockets, see <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket" target="_blank">SailsSocket</a>.</p>
 <h5 id="advanced-configuration" permalink="advanced-configuration">Advanced configuration</h5>
 <p>The <code>sails.io.js</code> library and its individual client sockets have a handful of configuration options.  Global configuration lives in <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails" target="_blank"><code>io.sails</code></a>.  This includes the ability to disable the &quot;eager&quot; socket and default settings for new sockets.  Individual sockets can also be configured when they are manually connected-- see <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails#?the-connect-method" target="_blank"><code>io.sails.connect()</code></a> for more information on that.</p>
-<!--
-
-  TODO: add a bit more of a technical description in here at some point
-
-Under the covers, sails.io.js emits Socket.io messages with reserved names that, when interpreted by Sails, are routed to the appropriate policies/controllers/etc. according to your app's routes and blueprint configuration.
--->
 <h3 id="frequently-asked-questions" permalink="frequently-asked-questions">Frequently asked questions</h3>
 <h5 id="can-i-use-this-with-xyz-front-end-framework-" permalink="can-i-use-this-with-xyz-frontend-framework">Can I use this with XYZ front-end framework?</h5>
 <p>Yes.  The Sails socket client can be used to great effect with any front-end framework-- no matter whether it&apos;s angular, react, ember, backbone, knockout, jQuery, <a href="http://mrsharpoblunto.github.io/foswig.js/" target="_blank">FishBerry</a>, etc.</p>
 <h5 id="do-i-have-to-use-this-" permalink="do-i-have-to-use-this">Do I have to use this?</h5>
 <p>No. The Sails socket client is extremely helpful when building realtime/chat features in a browser-based UI, but like the rest of the <code>assets/</code> directory, it is probably not particularly useful if you are building a <a href="http://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server/25081189#25081189" target="_blank">native Android app</a>, or an API with no user interface at all.</p>
 <p>Fortunately, like every other boilerplate file and folder in Sails, the socket client is completely optional. To remove it, just delete <code>assets/js/dependencies/sails.io.js</code>.</p>
+<h5 id="how-does-this-work-" permalink="how-does-this-work">How does this work?</h5>
+<p>Under the covers, the socket client (<code>sails.io.js</code>) emits Socket.io messages with reserved names that, when interpreted by Sails, are routed to the appropriate policies/controllers/etc. according to your app&apos;s routes and blueprint configuration.</p>
+<h5 id="can-i-bypass-this-client-and-use-socket-io-directly-" permalink="can-i-bypass-this-client-and-use-socketio-directly">Can I bypass this client and use Socket.io directly?</h5>
+<p>It is possible to bypass the request interpreter in your Sails app and communicate with Socket.io directly.  However, it is not reccommended, since it breaks the convention over configuration philosophy used elsewhere in the framework.    The Sails socket client (<code>sails.io.js</code>) is unobtrusive:  it works by wrapping the native socket.io client and exposing a higher level API that takes advantage of the virtual request interpreter in Sails to send simulated HTTP requests.  This makes your backend code more reusable, reduces the barrier to entry for developers new to using WebSockets/Socket.io, and keeps your app easier to reason about.  </p>
+<blockquote>
+<p><strong>Note:</strong>
+Under very rare circumstances (e.g. compatibility with an existing/legacy frontend using socket.io directly), bypassing the request interpreter is a <em>requirement</em>.  If you find yourself in this position, you can use the socket.io client SDK, and then use <code>sails.io</code> on the backend to access the raw Socket.io instance.  Please embark down this road only if you have extensive experience working directly with Socket.io; and only if you have first reviewed the internals of the <a href="https://github.com/balderdashy/sails-hook-sockets" target="_blank"><code>sockets</code> hook</a> (particularly the &quot;admin bus&quot; implementation, a Redis integration that sits on top of socket.io-redis and powers Sails&apos; multi-server support for joining/leaving rooms.)</p>
+</blockquote>
 <docmeta name="displayName" value="Socket Client">
 
 </docmeta>

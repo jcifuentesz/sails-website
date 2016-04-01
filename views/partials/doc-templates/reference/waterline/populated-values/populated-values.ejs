@@ -46,6 +46,11 @@ orders[1].save(function (err) { ... });
   orders[1].buyers.add({ name: &apos;Jon Snow&apos; });
   orders[1].seller = { corporateName: &apos;Wolf Orphanage&apos; };
   orders[1].save(function (err) {
+    if (err) {
+      // handle error (e.g. `return res.serverError(err);` )
+      return;
+    }
+
     // We successfully created a new Customer named Jon and added
     // him to `order[1]` as one of its &quot;buyers&quot;.
     // We also created a new company and set it as `order[1]`&apos;s &quot;seller&quot;.

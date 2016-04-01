@@ -1,54 +1,71 @@
-<h1 id="-exec-callback-">.exec(<code>callback</code>)</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>This is run at the end of a chain of stringable methods.  It signals the adapter to run the query.</p>
-<h4 id="parameters" permalink="parameters">Parameters</h4>
+<h1 id="-exec-">.exec()</h1>
+<p>Execute a Waterline <a href="http://sailsjs.org/documentation/reference/waterline-orm/queries" target="_blank">query instance</a>.</p>
+<pre><code data-language="javascript">query.exec(function afterwards(err, result) {
+
+});
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Callback</td>
-<td><code>function</code></td>
-<td>Yes</td>
+<td style="text-align:left">callback</td>
+<td><bubble type="function" colors="true"></bubble></td>
+<td style="text-align:left">The Node-style callback that will be called when the query completes; successfully or otherwise.</td>
 </tr>
 </tbody>
 </table>
-<h4 id="callback-parameters" permalink="callback-parameters">Callback Parameters</h4>
+<h5 id="callback" permalink="callback">Callback</h5>
 <table>
 <thead>
 <tr>
 <th></th>
-<th>Description</th>
-<th>Possible Data Types</th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td>Error</td>
-<td><code>Error</code></td>
+<td style="text-align:left">err</td>
+<td><bubble type="Error?" colors="true"></bubble></td>
+<td style="text-align:left">The error that occurred, or <code>undefined</code> if there were no errors.</td>
 </tr>
 <tr>
 <td>2</td>
-<td>Data Returned</td>
-<td><code>{}</code>, <code>[{}]</code>, <code>int</code></td>
+<td style="text-align:left">result</td>
+<td><bubble type="JSON" colors="true"></bubble></td>
+<td style="text-align:left">The result from the database.  Exact data type depends on the query.  If an error occurred (i.e. <code>err</code> is truthy), then this result argument should be ignored.</td>
 </tr>
 </tbody>
 </table>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<pre><code data-language="javascript">// refer to any of the examples above
+<h3 id="example" permalink="example">Example</h3>
+<pre><code data-language="javascript">Zookeeper.find().exec(function (err, zookeepers) {
+  if (err) {
+    // uh oh
+    // (handle error; e.g. `return res.negotiate()`)
+    return;
+  }
+
+  // would you look at all those zookeepers?
+  // (now let&apos;s do the next thing;
+  //  e.g. `_.reduce(zookeepers, ...)` and/or `return res.json(zookeepers)`)
+});
+//
+// (don&apos;t put code out here)
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
-<p>The .find() method returns a chainable object if you don&apos;t supply a callback.  This method can be chained to .find() to further filter your results.</p>
-<p>If you don&apos;t run .exec(), your query will not execute.</p>
+<p>If you don&apos;t run <code>.exec()</code> or use promises, your query will not execute. For help using <code>.exec()</code> with model methods like <code>.find()</code>, read more about the <a href="http://sailsjs.org/documentation/reference/waterline-orm/queries" target="_blank">chainable query object</a>.</p>
 </blockquote>
 <p><docmeta name="displayName" value=".exec()"></docmeta></p>
 <docmeta name="pageType" value="method">

@@ -4,7 +4,10 @@
 <pre><code>sudo npm -g install sails
 </code></pre><p>On Windows (or Mac OS with Homebrew), you don&apos;t need sudo:</p>
 <pre><code>npm -g install sails
-</code></pre><h2 id="creating-a-new-sails-project" permalink="creating-a-new-sails-project">Creating a New Sails Project</h2>
+</code></pre><blockquote>
+<p>You may see some <code>npm WARN deprecated</code> messages when installing Sails.  These can be safely ignored.  They don&#x2019;t come from Sails itself, but rather from some packages that Sails relies on--packages which themselves rely on some older modules.  The Sails team is committed to keeping the framework secure and stable, and sometimes that (counter-intuitively) requires using some older versions of packages.  See <a href="https://github.com/balderdashy/sails/issues/3582#issuecomment-185297653" target="_blank">this thread</a> for more info about the warnings, and <a href="https://github.com/balderdashy/sails/pull/3180" target="_blank">this one</a> for a discussion about updating dependencies in general.</p>
+</blockquote>
+<h2 id="creating-a-new-sails-project" permalink="creating-a-new-sails-project">Creating a New Sails Project</h2>
 <p>Create a new app:</p>
 <pre><code>sails new testProject
 </code></pre><p>Now lift the server:</p>

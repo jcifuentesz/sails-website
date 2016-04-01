@@ -56,13 +56,13 @@
 </code></pre><!-- __LANG=%%__ -->
 <p>Assuming that your have a <strong>api/controllers/UserController.js</strong> file and a <strong>api/models/User.js</strong> file, browsing to <strong>/foo/go</strong> in a browser will, using the above config, run the default &quot;find* blueprint action which displays a list of all <code>User</code> models.  If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions" target="_blank">custom action</a> named <code>find</code> in UserController, that action will be run instead.</p>
 <h4 id="view-target-syntax" permalink="view-target-syntax">View target syntax</h4>
-<p>Another common target is one that binds a route to a <a href="http://sailsjs.org/documentation/concepts/Views" target="_blank">view</a>.  The syntax for this is simple: it&apos;s the path to the view file relative to the <strong>views</strong> folder, without the file extension:</p>
-<pre><code data-language="text">&apos;GET /home&apos;: {view: &apos;home/index&apos;}
+<p>Another common target is one that binds a route to a <a href="http://sailsjs.org/documentation/concepts/Views" target="_blank">view</a>.  This is particularly useful for binding static views to a custom URL, and it&apos;s how the default homepage for new projects is set up out of the box.</p>
+<p>The syntax for view targets is simple: it is just the path to the view file, without the file extension (e.g. <code>.ejs</code>) and relative to the <strong>views/</strong> folder :</p>
+<pre><code data-language="text">&apos;GET /team&apos;: {view: &apos;brochure/about&apos;}
 </code></pre><!-- __LANG=%%__ -->
-<p>This maps the <code>GET /home</code> to the view stored in <strong>views/home/index.ejs</strong> (assuming the default EJS <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html" target="_blank">template engine</a> is used).  As long as that view file exists, a <strong>GET</strong> request to  <strong>/home</strong> will display it.</p>
+<p>This tells Sails to handle <code>GET</code> requests to <code>/team</code> by serving the view template located at <code>views/brochure/about.ejs</code> (assuming the default EJS <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html" target="_blank">template engine</a> is used).  As long as that view file exists, a <strong>GET</strong> request to  <strong>/home</strong> will display it. For consistency with Express/consolidate, if the specified relative path does not match a view file, then Sails will look for a sub-folder with the same name (e.g. <code>pages/brochure</code>) and serve the &quot;index&quot; view in that sub-folder (e.g. <code>pages/brochure/index.ejs</code>) if one exists.</p>
 <blockquote>
-<p>Note that this route will be bound directly to the view, no policies will be applied in this case.
-See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sailsjs-policy-based-route-with-a-view/21340313#21340313" target="_blank">question</a> for more information.</p>
+<p>Note that since this route is bound directly to the view, none of your configured policies will be applied.  If you need to configure a policy, use <code>res.view()</code> from a controller action.  See <a href="http://stackoverflow.com/questions/21303217/sailsjs-policy-based-route-with-a-view/21340313#21340313" target="_blank">this StackOverflow question</a> for more background information.</p>
 </blockquote>
 <h4 id="blueprint-target-syntax" permalink="blueprint-target-syntax">Blueprint target syntax</h4>
 <p>In some cases you may want to map a non-standard address to one of the Sails <a href="http://sailsjs.org/documentation/reference/blueprint-api?q=blueprint-actions" target="_blank">blueprint actions</a>.  For example, if you have a controller and model named <strong>UserController</strong> and <strong>User</strong> respectively, then Sails will automatically map <strong>GET /user</strong> to the &quot;find&quot; blueprint action which returns a list of User records.  If you&apos;d like to map a different address to that action, you can use the blueprint target syntax:</p>
@@ -95,6 +95,16 @@ See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sails
 <pre><code data-language="text">&apos;/foo&apos;: [{policy: &apos;myPolicy&apos;}, {blueprint: &apos;find&apos;, model: &apos;user&apos;}]
 </code></pre><!-- __LANG=%%__ -->
 <p>This will apply the <strong>myPolicy</strong> policy to the route and, if it passes, continue by running the <strong>find</strong> blueprint for the <strong>User</strong> model.</p>
+<h4 id="function-target-syntax" permalink="function-target-syntax">Function target syntax</h4>
+<p>For quick-and-dirty jobs (useful for quick tests), you can assign a route directly to a function:</p>
+<pre><code data-language="text">&apos;/foo&apos;: function(req, res) {res.send(&quot;FOO!&quot;);}
+</code></pre><!-- __LANG=%%__ -->
+<p>You can also use a dictionary with an <code>fn</code> key to assign a function.  This allows you to also specify <a href="http://sailsjs.org/documentation/concepts/routes/custom-routes#?route-target-options" target="_blank">other route target  options</a> at the same time:</p>
+<pre><code data-language="text">&apos;/foo/*&apos;: {
+   fn: function(req, res) {res.send(&quot;FOO!&quot;);},
+   skipAssets: true
+</code></pre><!-- __LANG=%%__ -->
+<p>Best practice is to use the function syntax only for temporary routes, since it goes against the MVC structure that makes Sails useful!</p>
 <h3 id="route-target-options" permalink="route-target-options">Route target options</h3>
 <p>In addition to the options discussed in the various route target syntaxes above, any other property you add to a route target object will be passed through to the route handler in the <code>req.options</code> object.  There are several reserved properties that can be used to affect the behavior of the route handlers.  These are listed in the table below.</p>
 <table>

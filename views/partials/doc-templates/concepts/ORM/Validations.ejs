@@ -1,5 +1,5 @@
 <h1 id="validations">Validations</h1>
-<p>Sails bundles support for automatic validations of your models&apos; attributes. Any time a record is updated, or a new record is created, the data for each attribute will be checked against all of your predefined validation rules. This provides a convenient failsafe to ensure that invalid entries don&apos;t make their way into your app&apos;s database(s).</p>
+<p>Sails bundles support for automatic validations of your models&apos; attributes. Any time a record is updated, or a new record is created, the data for each attribute will be checked against all of your predefined validation rules. This provides a convenient failsafe to ensure that invalid entries don&apos;t make their way into your app&apos;s database(s). </p>
 <p>Except for <code>unique</code> (which is implemented as a database-level constraint; <a href="/unique">see &quot;Unique&quot;</a>), all validations below are implemented in JavaScript and run in the same Node.js server process as Sails.  Also keep in mind that, no matter what validations are used, an attribute must <em>always</em> specify one of the built in data types (&apos;string&apos;, &apos;integer&apos;, json&apos;, etc).</p>
 <pre><code data-language="javascript">// User
 module.exports = {
@@ -12,341 +12,305 @@ module.exports = {
   }
 };
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="validation-rules" permalink="validation-rules">Validation Rules</h3>
-<p>The following validation rules are handled by <a href="https://github.com/sailsjs/anchor" target="_blank">Anchor</a>, a thin layer on top of <a href="https://github.com/chriso/validator.js" target="_blank">node-validator</a>, a robust validation library for Node.js.</p>
-<blockquote>
-<p>In the table below, the &quot;Compatible Attribute Type(s)&quot; column shows what type(s) (i.e. for the attribute definition&apos;s <code>type</code> property) are appropriate for each validation rule.  In many cases, a validation rule can be used with more than one type.  Coincidentally, the table below takes a few shortcuts:</p>
-<ul>
-<li>If compatible with <bubble type="string" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="text" colors="true"></bubble> and <bubble type="json" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="integer" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="number" colors="true"></bubble> and <bubble type="json" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="float" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="number" colors="true"></bubble> and <bubble type="json" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="number" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="json" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="boolean" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="json" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="date" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="datetime" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="time" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="datetime" colors="true"></bubble>.</li>
-<li>If compatible with <bubble type="array" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="json" colors="true"></bubble>.</li>
-</ul>
-</blockquote>
+<h3 id="built-in-data-types" permalink="builtin-data-types">Built-in Data Types</h3>
+<p>Every attribute definition must have a built-in data type (or <em>typeclass</em>) specified.  This is used for logical validation and coercion of results and criteria.</p>
 <table>
 <thead>
 <tr>
-<th>Name of Rule</th>
-<th>What It Checks</th>
-<th>Notes On Usage</th>
+<th style="text-align:center">Data Type</th>
+<th style="text-align:left">Usage</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+<td style="text-align:left"><code>type: &apos;string&apos;</code></td>
+<td style="text-align:left">Any string (tolerates <code>null</code>).</td>
+</tr>
+<tr>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
+<td style="text-align:left"><code>type: &apos;number&apos;</code></td>
+<td style="text-align:left">Any number (tolerates <code>null</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:left"><code>type: &apos;boolean&apos;</code></td>
+<td style="text-align:left"><code>true</code> or <code>false</code> (also tolerates <code>null</code>)</td>
+</tr>
+<tr>
+<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
+<td style="text-align:left"><code>type: &apos;json&apos;</code></td>
+<td style="text-align:left">Any JSON-serializable value, including numbers, booleans, strings, arrays, dictionaries, and <code>null</code>.</td>
+</tr>
+<tr>
+<td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
+<td style="text-align:left"><code>type: &apos;array&apos;</code></td>
+<td style="text-align:left">Any array consisting solelyof JSON-serializable contents.</td>
+</tr>
+</tbody>
+</table>
+<p>Different databases vary slightly in the way they handle edge cases and special values such as <code>Infinity</code>, <code>null</code>, strings of varying lengths, etc.  Sails&apos; ORM (Waterline) and its adapters perform loose validation to ensure that the values provided in criteria dictionaries and as values to <code>.create()</code> or <code>.update()</code> match the expected typeclass.</p>
+<blockquote>
+<p>Note that auto-migration also relies on the attribute&apos;s declared <code>type</code>. This is mainly relevant for schemaful databases (like MySQL or PostgreSQL), since the relevant adapter needs to use this information in order to alter/define tables during auto-migration.  Remember that in production, <code>migrate: &apos;safe&apos;</code> will be enabled and auto-migration will be skipped.</p>
+</blockquote>
+<h3 id="validation-rules" permalink="validation-rules">Validation Rules</h3>
+<p>The following validation rules are handled by <a href="https://github.com/sailsjs/anchor" target="_blank">Anchor</a>, a robust validation library for Node.js.</p>
+<p>In the table below, the &quot;Compatible Attribute Type(s)&quot; column shows what data type(s) (i.e. for the attribute definition&apos;s <code>type</code> property) are appropriate for each validation rule.  In many cases, a validation rule can be used with more than one type.  Note that coincidentally, the table below takes a shortcut:  If compatible with <bubble type="string" colors="true"></bubble>, <bubble type="number" colors="true"></bubble>, <bubble type="boolean" colors="true"></bubble>, or <bubble type="array" colors="true"></bubble>, then the validation rule is also compatible with <bubble type="json" colors="true"></bubble>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Name of Rule</th>
+<th style="text-align:left">What It Checks For</th>
+<th style="text-align:left">Notes On Usage</th>
 <th style="text-align:center">Compatible Attribute Type(s)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>after</td>
-<td>Interpret incoming string as date and ensure that it refers to a moment <em>after</em> the configured JavaScript <code>Date</code> instance.</td>
-<td><code>after: new Date(&apos;Sat Nov 05 1605 00:00:00 GMT-0000&apos;)</code></td>
+<td style="text-align:left">after</td>
+<td style="text-align:left">A value that, when parsed as a date, refers to moment <em>after</em> the configured JavaScript <code>Date</code> instance.</td>
+<td style="text-align:left"><code>after: new Date(&apos;Sat Nov 05 1605 00:00:00 GMT-0000&apos;)</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>alpha</td>
-<td>Ensure incoming string contains only uppercase and/or lowercase letters.</td>
-<td>(i.e. <code>/a-z/i</code>)</td>
+<td style="text-align:left">alpha</td>
+<td style="text-align:left">A value that contains only uppercase and/or lowercase letters.</td>
+<td style="text-align:left"><code>alpha: true</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>alphadashed</td>
-<td></td>
-<td>does this <code>string</code> contain only letters and/or dashes?</td>
+<td style="text-align:left">alphadashed</td>
+<td style="text-align:left">A value that contains only letters and dashes.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>alphanumeric</td>
-<td>check if <code>string</code> in this record contains only letters and numbers.</td>
-<td></td>
+<td style="text-align:left">alphanumeric</td>
+<td style="text-align:left">A value that contains only letters and numbers.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>alphanumericdashed</td>
-<td>does this <code>string</code> contain only numbers and/or letters and/or dashes?</td>
-<td></td>
+<td style="text-align:left">alphanumericdashed</td>
+<td style="text-align:left">A value that is a string consisting of only letters, numbers, and/or dashes.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>array</td>
-<td>is this a valid javascript <code>array</code> object?</td>
-<td>strings formatted as arrays won&apos;t pass</td>
-<td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>before</td>
-<td>Only allow date strings that refer to a moment <em>before</em> the configured JavaScript <code>Date</code> instance</td>
-<td><code>before: new Date(&apos;Sat Nov 05 1605 00:00:00 GMT-0000&apos;)</code></td>
+<td style="text-align:left">before</td>
+<td style="text-align:left">A value that, when parsed as a date, refers to a moment <em>before</em> the configured JavaScript <code>Date</code> instance.</td>
+<td style="text-align:left"><code>before: new Date(&apos;Sat Nov 05 1605 00:00:00 GMT-0000&apos;)</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>binary</td>
-<td>is this binary data?</td>
-<td>If it&apos;s a string, it will always pass</td>
+<td style="text-align:left">contains</td>
+<td style="text-align:left">A value that contains the specified substring.</td>
+<td style="text-align:left"><code>contains: &apos;needle&apos;</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>boolean</td>
-<td>is this a valid javascript <code>boolean</code> ?</td>
-<td><code>string</code>s will fail</td>
-<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>contains</td>
-<td>check if <code>string</code> in this record contains the seed</td>
-<td></td>
+<td style="text-align:left">creditcard</td>
+<td style="text-align:left">A value that is a credit card number.</td>
+<td style="text-align:left"><strong>Do not store credit card numbers in your database unless your app is PCI compliant!</strong>  If you want to allow users to store credit card information, a safe alternative is to use a payment API like <a href="https://stripe.com" target="_blank">Stripe</a>.</td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>creditcard</td>
-<td>check if <code>string</code> in this record is a credit card</td>
-<td></td>
+<td style="text-align:left">datetime</td>
+<td style="text-align:left">A value that can be parsed as a timestamp; i.e. would construct a JavaScript Date with <code>new Date()</code></td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>date</td>
-<td>check if <code>string</code> in this record is a date</td>
-<td>takes both strings and javascript</td>
+<td style="text-align:left"><em>decimal</em></td>
+<td style="text-align:left"><em>Alias for <code>float</code>.</em></td>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">email</td>
+<td style="text-align:left">A value that looks like an email address.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>datetime</td>
-<td>check if <code>string</code> in this record looks like a javascript <code>datetime</code></td>
-<td></td>
+<td style="text-align:left">finite</td>
+<td style="text-align:left">A value that is, or can be coerced to, a finite number.</td>
+<td style="text-align:left">This is not the same as native isFinite which will return true for booleans and empty strings</td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">float</td>
+<td style="text-align:left">A value that is, or can be coerced to, a floating point (aka decimal) number.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">hexadecimal</td>
+<td style="text-align:left">A value that is a hexadecimal number.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">hexColor</td>
+<td style="text-align:left">A value that is a hexadecimal color.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>decimal</td>
-<td></td>
-<td>contains a decimal or is less than 1?</td>
+<td style="text-align:left">in</td>
+<td style="text-align:left">A value that is in the specified array of allowed strings.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>int</em></td>
+<td style="text-align:left"><em>Alias for <code>integer</code>.</em></td>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">integer</td>
+<td style="text-align:left">A value that is an integer, or a string that looks like one.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">ip</td>
+<td style="text-align:left">A value that is a valid IP address (v4 or v6)</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">ipv4</td>
+<td style="text-align:left">A value that is a valid IP v4 address.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">ipv6</td>
+<td style="text-align:left">A value that is a valid IP v6 address.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left"><em>is</em></td>
+<td style="text-align:left"><em>Alias for <code>regex</code>.</em></td>
+<td style="text-align:left"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:left">lowercase</td>
+<td style="text-align:left">A value that consists only of lowercase characters.</td>
+<td style="text-align:left"></td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">max</td>
+<td style="text-align:left">A value that is less than the configured number.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>email</td>
-<td>check if <code>string</code> in this record looks like an email address</td>
-<td></td>
+<td style="text-align:left">maxLength</td>
+<td style="text-align:left">A value that has no more than the configured number of characters.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>empty</td>
-<td>Arrays, strings, or arguments objects with a length of 0 and objects with no own enumerable properties are considered &quot;empty&quot;</td>
-<td>lo-dash _.isEmpty()</td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>equals</td>
-<td>check if <code>string</code> in this record is equal to the specified value</td>
-<td><code>===</code> ! They must match in both value and type</td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>falsey</td>
-<td>Would a Javascript engine register a value of <code>false</code> on this?</td>
-<td></td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>finite</td>
-<td>Checks if given value is, or can be coerced to, a finite number</td>
-<td>This is not the same as native isFinite which will return true for booleans and empty strings</td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>float</td>
-<td>check if <code>string</code> in this record is of the number type float</td>
-<td></td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>hexadecimal</td>
-<td>check if <code>string</code> in this record is a hexadecimal number</td>
-<td></td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>hexColor</td>
-<td>check if <code>string</code> in this record is a hexadecimal color</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>in</td>
-<td>check if <code>string</code> in this record is in the specified array of allowed <code>string</code> values</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>int</td>
-<td>Ensure incoming value is an integer, or is a string that looks like one.</td>
-<td>This is an alias for the <code>integer</code> rule below.</td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>integer</td>
-<td>Ensure incoming value is an integer, or is a string that looks like one.</td>
-<td></td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>ip</td>
-<td>check if <code>string</code> in this record is a valid IP (v4 or v6)</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>ipv4</td>
-<td>check if <code>string</code> in this record is a valid IP v4</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>ipv6</td>
-<td>check if <code>string</code> in this record is a valid IP v6</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>is</td>
-<td>Ensure incoming value matches the configured regular expression.</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>json</td>
-<td>does a try&amp;catch to check for valid JSON.</td>
-<td></td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>lowercase</td>
-<td>is this string in all lowercase?</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>max</td>
-<td></td>
-<td></td>
+<td style="text-align:left">min</td>
+<td style="text-align:left">A value that is greater than the configured number.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>maxLength</td>
-<td></td>
-<td></td>
+<td style="text-align:left">minLength</td>
+<td style="text-align:left">A value that has at least the configured number of characters.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>min</td>
-<td></td>
-<td></td>
-<td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>minLength</td>
-<td></td>
-<td></td>
+<td style="text-align:left">notRegex</td>
+<td style="text-align:left">A value that <strong>does not</strong> match the configured regular expression.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>not</td>
-<td>Ensure incoming value <strong>does not</strong> match the configured regular expression.</td>
-<td></td>
+<td style="text-align:left">notContains</td>
+<td style="text-align:left">A value that does not contain the configured substring.</td>
+<td style="text-align:left">e.g. <code>&apos;-haystack-needle-haystack-&apos;</code> would fail validation against <code>notContains: &apos;needle&apos;</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>notContains</td>
-<td></td>
-<td></td>
+<td style="text-align:left">notIn</td>
+<td style="text-align:left">A value that <strong>is not in</strong> the configured array.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>notEmpty</td>
-<td></td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>notIn</td>
-<td>Ensure incoming value <strong>is not in</strong> the configured array.</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>notNull</td>
-<td>Ensure incoming value <strong>is not</strong> equal to <code>null</code></td>
-<td></td>
+<td style="text-align:left">notNull</td>
+<td style="text-align:left">A value that <strong>is not</strong> equal to <code>null</code></td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>null</td>
-<td>Ensure incoming value <strong>is <code>null</code></strong>.</td>
-<td></td>
+<td style="text-align:left">numeric</td>
+<td style="text-align:left">A value that is a string which is parseable as a number.</td>
+<td style="text-align:left">Note that <a href="https://www.destroyallsoftware.com/talks/wat" target="_blank">while <code>NaN</code> is considered a number in JavaScript</a>, that is not true for the purposes of this validation.</td>
+<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
+</tr>
+<tr>
+<td style="text-align:left">required</td>
+<td style="text-align:left">A value that is defined; that is, <strong>not <code>undefined</code></strong>.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>numeric</td>
-<td>Ensure incoming value is a string which is parseable as a number.</td>
-<td>Note that <a href="https://www.destroyallsoftware.com/talks/wat" target="_blank">while <code>NaN</code> is considered a number in JavaScript</a>, that is not true for the purposes of this validation.</td>
+<td style="text-align:left">regex</td>
+<td style="text-align:left">A value that matches the configured regular expression.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>required</td>
-<td>Ensure incoming value is defined; that is, <strong>not <code>undefined</code></strong>.</td>
-<td></td>
+<td style="text-align:left">truthy</td>
+<td style="text-align:left">A value that would be considered truthy if used in a JavaScript <code>if</code> statement.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>string</td>
-<td>Ensure incoming value is a string.</td>
-<td></td>
+<td style="text-align:left">uppercase</td>
+<td style="text-align:left">A value that is uppercase.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>truthy</td>
-<td>Ensure a Javascript engine would consider the incoming value <code>false</code> if used in an <code>if</code> statement.</td>
-<td></td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>undefined</td>
-<td>Ensure incoming value is <code>undefined</code>.</td>
-<td></td>
-<td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>uppercase</td>
-<td>checks if <code>string</code> in this record is uppercase</td>
-<td></td>
+<td style="text-align:left">url</td>
+<td style="text-align:left">A value that is a URL.</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>url</td>
-<td>Ensure incoming value is a URL.</td>
-<td></td>
+<td style="text-align:left">urlish</td>
+<td style="text-align:left">A value that looks vaguely like a URL of some kind (i.e. <code>/^\s([^\/]+\.)+.+\s*$/g</code>).</td>
+<td style="text-align:left"><code>urlish: true</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>urlish</td>
-<td>Ensure incoming value looks vaguely like a URL of some kind.</td>
-<td><code>/^\s([^\/]+\.)+.+\s*$/g</code></td>
+<td style="text-align:left">uuid</td>
+<td style="text-align:left">A value that is a UUID (v3, v4, or v5)</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>uuid</td>
-<td>checks if <code>string</code> in this record is a UUID (v3, v4, or v5)</td>
-<td></td>
+<td style="text-align:left">uuidv3</td>
+<td style="text-align:left">A value that is a UUID (v3)</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 <tr>
-<td>uuidv3</td>
-<td>checks if <code>string</code> in this record is a UUID (v3)</td>
-<td></td>
-<td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-</tr>
-<tr>
-<td>uuidv4</td>
-<td>checks if <code>string</code> in this record is a UUID (v4)</td>
-<td></td>
+<td style="text-align:left">uuidv4</td>
+<td style="text-align:left">A value that is a UUID (v4)</td>
+<td style="text-align:left"></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 </tr>
 </tbody>
@@ -397,14 +361,15 @@ module.exports = {
 <li>Are two user accounts in the database allowed to have the same billing email?  What about the email from LinkedIn?  Or the one they entered manually?</li>
 </ul>
 <p>Depending on the answers to questions like these, we might end up keeping the <code>required</code> validation on <code>billingEmail</code>, adding new attributes (like <code>hasBillingEmailBeenChangedManually</code>), or even changing whether or not to use a <code>unique</code> constraint.</p>
+<h3 id="best-practices" permalink="best-practices">Best Practices</h3>
 <p>Finally, here are a few tips:</p>
 <ul>
 <li>Your initial decision about whether or not to use validations for a particular attribute should depend on your app&apos;s requirements and how you are calling <code>.update()</code> and <code>.create()</code>. Don&apos;t be afraid to forgo built-in validation support and check values by hand in your controllers or in a helper function.  Oftentimes this is the cleanest and most maintainable approach.</li>
 <li>There&apos;s nothing wrong with adding or removing validations from your models as your app evolves. But once you go to production, there is one <strong>very important exception</strong>: <code>unique</code>.  During development, when your app is configured to use <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?migrate" target="_blank"><code>migrate: &apos;alter&apos;</code></a>, you can add or remove <code>unique</code> validations at will.  However, if you are using <code>migrate: safe</code> (e.g. with your production database), you will want to update constraints/indices in your database, as well as <a href="https://github.com/BlueHotDog/sails-migrations" target="_blank">migrate your data by hand</a>.</li>
-<li>It is a very good idea to spend the time to fully understand your application&apos;s user interface <em>first</em> before spending up lots of time setting up complex validations on your model attributes.</li>
+<li>It is a very good idea to spend the time to fully understand your application&apos;s user interface <em>first</em> before setting up complex validations on your model attributes.</li>
 </ul>
 <blockquote>
-<p>As much as possible, you should obtain or flesh out your own wireframes of your app&apos;s user interface <em>before</em> you spend any serious amount of time implementing backend code <em>in general</em>.  Of course, this isn&apos;t always possible- and that&apos;s what <a href="http://sailsjs.org/documentation/concepts/blueprints" target="_blank">blueprints</a> are for.  But you should realize that applications built with a UI-centric, or &quot;front-end first&quot; philosophy are often easier to maintain, tend to have fewer bugs, and since they rebuilt with full knowledge of the user interface from the get-go, they often have more elegant APIs.</p>
+<p>As much as possible, it is a good idea to obtain or flesh out your own wireframes of your app&apos;s user interface <em>before</em> you spend any serious amount of time implementing <em>any</em> backend code.  Of course, this isn&apos;t always possible- and that&apos;s what the <a href="http://sailsjs.org/documentation/concepts/blueprints" target="_blank">blueprint API</a> is for.  Applications built with a UI-centric, or &quot;front-end first&quot; philosophy are easier to maintain, tend to have fewer bugs and, since they are built with full knowledge of the user interface from the get-go, they often have more elegant APIs.</p>
 </blockquote>
 <h3 id="custom-validation-rules" permalink="custom-validation-rules">Custom Validation Rules</h3>
 <blockquote>
@@ -418,7 +383,7 @@ module.exports = {
   attributes: {
 
     firstName: {
-      // Note that a base type (in this case &quot;json&quot;) still has to be defined, even though validation rules are in use.
+      // Note that a base type (in this case &quot;string&quot;) still has to be defined, even though validation rules are in use.
       type: &apos;string&apos;,
       required: true,
       minLength: 5,
