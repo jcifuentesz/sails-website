@@ -8,10 +8,11 @@
   z-index: 95;
   .clearfix();
   .nav-container {
-    .container();
+    .docs-container();
     min-width: 1000px;
     .clearfix();
-    padding: 110px 0 45px;
+    padding-top: 110px;
+    padding-bottom: 45px;
     .nav-content {
       position: relative;
       .header-title {
@@ -54,9 +55,9 @@
   @media screen and (max-width: 1000px) {
     .nav-container {
       min-width: 300px;
-      width: 100%;
-      padding-left: 15px;
-      padding-right: 15px;
+      // width: 100%;
+      // padding-left: 15px;
+      // padding-right: 15px;
     }
     //class to make the header skinny when we're scrolling
     &.juice-fast {

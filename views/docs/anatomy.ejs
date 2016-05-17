@@ -6,7 +6,7 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
 
 <%- partial('../partials/docs-main-header.ejs', {templateList: data.templateList}) %>
 
-<div class="main-container anatomy-page" ng-controller="DocsCtrl" scrollng>
+<div class="main-container anatomy-page" ng-controller="DocsCtrl" scrollng table-wrap>
   <div class="anatomy-container">
     <!-- Region with the information about the selected file -->
     <div class="anatomy-content">

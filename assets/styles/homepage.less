@@ -13,68 +13,72 @@
     .banner-container {
       .borderBox();
       .container();
-      position: relative;
-      margin: auto;
-      padding: 220px 0 100px;
-      .squid, .light {
-        position: absolute;
-      }
-      .squid {
-        z-index: 5;
-        width: 750px;
-        height: auto;
-        bottom: 40px;
-        left: @bannerTextWidth - 70;
-      }
-      .light {
-        z-index: 10;
-        top: 0;
-        left: -10%;
-        width: 90%;
-      }
-
-      .tagline {
+      .banner-img {
+        .borderBox();
         position: relative;
-        z-index: 15;
-
-
-        h2 {
-          color: @ltBlue;
-          font: 46px @headerFont;
-          margin-bottom: 5px;
-          line-height: 100%;
-          position: relative;
-          width: @bannerTextWidth;
+        padding: 220px 0 100px;
+        .squid, .light {
+          position: absolute;
+        }
+        .squid {
+          z-index: 5;
+          width: 750px;
+          height: auto;
+          bottom: 40px;
+          left: @bannerTextWidth - 70;
+        }
+        .light {
+          z-index: 10;
+          top: 0;
+          left: -10%;
+          width: 90%;
         }
 
-        h3 {
-          color: @taglineBlue;
-          font: 24px @headerFont;
-          font-weight: @light;
+        .tagline {
           position: relative;
-          width: @bannerTextWidth;
-        }
+          z-index: 15;
 
-        .button {
-          .borderBox();
-          .lgButton(@black, @white);
-          display: block;
-          width: 200px;
-          margin-top: 20px;
-          &:hover {
-            color: @turquoise;
-            .transition (all .25s);
+
+          h2 {
+            color: @ltBlue;
+            font: 46px @headerFont;
+            margin-bottom: 5px;
+            line-height: 100%;
+            position: relative;
+            width: @bannerTextWidth;
+          }
+
+          h3 {
+            color: @taglineBlue;
+            font: 24px @headerFont;
+            font-weight: @light;
+            position: relative;
+            width: @bannerTextWidth;
+          }
+
+          .button {
+            .borderBox();
+            .lgButton(@black, @white);
+            display: block;
+            width: 200px;
+            margin-top: 20px;
+            &:hover {
+              color: @turquoise;
+              .transition (all .25s);
+            }
           }
         }
       }
     }
     @media screen and (max-width: 1100px) {
       .banner-container {
-        padding: 180px 0px 100px;
-        .squid {
-          width: 600px;
-          bottom: 55px;
-          left: 320px;
+        .banner-img {
+          padding: 180px 0px 100px;
+          .squid {
+            width: 600px;
+            bottom: 55px;
+            left: 320px;
+          }
         }
       }
     }
