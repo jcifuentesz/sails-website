@@ -93,7 +93,7 @@ avatar: function (req, res){
 <h4 id="uploading-to-a-custom-folder" permalink="uploading-to-a-custom-folder">Uploading to a custom folder</h4>
 <p>In the above example we upload the file to .tmp/uploads. So how do we configure it with a custom folder, say &#x2018;assets/images&#x2019;. We can achieve this by adding options to upload function as shown below.</p>
 <pre><code data-language="javascript">req.file(&apos;avatar&apos;).upload({
-  dirname: require(&apos;path&apos;).resolve(sails.config.appPath, &apos;/assets/images&apos;)
+  dirname: require(&apos;path&apos;).resolve(sails.config.appPath, &apos;assets/images&apos;)
 },function (err, uploadedFiles) {
   if (err) return res.negotiate(err);
 

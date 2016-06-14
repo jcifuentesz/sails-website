@@ -3,9 +3,9 @@
 <p>The sections below provide a high level overview of what&apos;s changed, major bug fixes, enhancements and new features, as well as a basic tutorial on how to upgrade your v0.11.x Sails app to v0.12.</p>
 <h2 id="installing-the-update" permalink="installing-the-update">Installing the update</h2>
 <p>Run the following command from the root of your Sails app:</p>
-<pre><code data-language="javascript">npm install sails@0.12.0 --force --save
+<pre><code data-language="javascript">npm install sails@~0.12.0 --force --save
 </code></pre><!-- __LANG=%%__ -->
-<p>The <code>--force</code> flag will override the existing Sails dependency installed in your <code>node_modules/</code> folder with Sails v0.12, and the <code>--save</code> flag will update your package.json file so that future npm installs will also use the new version.</p>
+<p>The <code>--force</code> flag will override the existing Sails dependency installed in your <code>node_modules/</code> folder with the latest patch release of Sails v0.12, and the <code>--save</code> flag will update your package.json file so that future npm installs will also use the new version.</p>
 <h2 id="things-to-do-immediately-after-upgrading" permalink="things-to-do-immediately-after-upgrading">Things to do immediately after upgrading</h2>
 <ul>
 <li>If your app uses the <code>socket.io-redis</code> adapter, upgrade to at least version 1.0.0 (<code>npm install --save socket.io-redis@^1.0.0</code>).</li>

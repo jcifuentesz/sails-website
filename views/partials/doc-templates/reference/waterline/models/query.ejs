@@ -6,6 +6,15 @@
   return res.ok(results.rows);
 });
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="prepared-statement-example" permalink="prepared-statement-example">Prepared Statement Example</h3>
+<pre><code data-language="javascript">Pet.query({
+  text: &apos;SELECT pet.name FROM pet WHERE pet.name = $1&apos;,
+  values: [ &quot;dog&quot; ]
+}, function(err, results) {
+  if (err) return res.serverError(err);
+  return res.ok(results.rows);
+});
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <p>This method only works with PostgreSQL and mySQL! use .native() for Mongo.</p>

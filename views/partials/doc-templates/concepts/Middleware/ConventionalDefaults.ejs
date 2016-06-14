@@ -18,7 +18,7 @@
 </tr>
 <tr>
 <td style="text-align:left"> <em>session</em> *</td>
-<td style="text-align:left">Sets up a unique session object using your <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.session.html" target="_blank">session configuration</a>.</td>
+<td style="text-align:left">Creates or loads a unique session object (<code>req.session</code>) for the requesting user agent based on their cookies and your <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.session.html" target="_blank">session configuration</a>.</td>
 </tr>
 <tr>
 <td style="text-align:left"> <strong>bodyParser</strong></td>
@@ -62,5 +62,9 @@
 </tr>
 </tbody>
 </table>
+<h6 id="legend-">Legend:</h6>
+<ul>
+<li><code>*</code> - The middleware with an asterisk (*) should <em>almost never</em> need to be modified or removed. Please only do so if you really understand what you&apos;re doing.</li>
+</ul>
 <docmeta name="displayName" value="Conventional Defaults">
 </docmeta>

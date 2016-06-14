@@ -35,6 +35,12 @@ in the way you might be used to from Express or Connect.</p>
 <td><em>n/a</em></td>
 <td>This session secret is automatically generated when your new app is created. Care should be taken any time this secret is changed in production-- doing so will invalidate the sesssion cookies of your users, forcing them to log in again.  Note that this is also used as the &quot;cookie secret&quot; for signed cookies.</td>
 </tr>
+<tr>
+<td><code>cookie</code></td>
+<td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
+<td><code>{ path: &apos;/&apos;, httpOnly: true, secure: false, maxAge: null }</code></td>
+<td>Options for the session cookie.  See the <a href="https://github.com/expressjs/session#cookie" target="_blank">express-session docs</a> for more info.</td>
+</tr>
 </tbody>
 </table>
 <h3 id="production-config" permalink="production-config">Production Config</h3>
@@ -94,7 +100,7 @@ in the way you might be used to from Express or Connect.</p>
 <h5 id="using-other-connect-compatible-session-stores" permalink="using-other-connectcompatible-session-stores">Using Other Connect-Compatible Session Stores</h5>
 <p>Any session adapter written for Connect/Express works in Sails, as long as you use a compatible version.</p>
 <p>For example, to use Mongo as your session store, install <a href="https://github.com/kcbanner/connect-mongo" target="_blank">connect-mongo</a>:</p>
-<pre><code data-language="javascript">npm install connect-mongo@0.8.2 --save --save-exact
+<pre><code data-language="javascript">npm install connect-mongo@1.1.0 --save --save-exact
 </code></pre><!-- __LANG=%%__ -->
 <p>Then set the your <code>adapter</code> in <code>config/session.js</code>:</p>
 <pre><code data-language="javascript">adapter: &apos;connect-mongo&apos;,
@@ -110,7 +116,7 @@ in the way you might be used to from Express or Connect.</p>
 <blockquote>
 <p><strong>Notes:</strong></p>
 <ul>
-<li>When using Node version &lt;= 0.12.x, install <code>connect-mongo</code> version 0.8.2.  For Node version &gt;= 4.0, install <code>connect-mongo</code> &gt;= 1.0</li>
+<li>When using Node version &lt;= 0.12.x, install <code>connect-mongo</code> version 0.8.2.  For Node version &gt;= 4.0, install <code>connect-mongo</code> version <code>1.1.0</code>.</li>
 <li>If you run into kerberos-related issues when using the MongoDB as your session store or the database for one or more of your app&apos;s models, be sure and have a look at the relevant <a href="http://mongodb.github.io/node-mongodb-native/2.0/getting-started/installation-guide/#troubleshooting" target="_blank">troubleshooting page</a> in the Mongo docs.  Also see <a href="https://github.com/balderdashy/sails/issues/3362" target="_blank">#3362</a> for more diagnostic information about using Kerberos with Mongo in your Sails app.</li>
 </ul>
 </blockquote>

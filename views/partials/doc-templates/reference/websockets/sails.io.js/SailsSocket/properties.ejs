@@ -54,7 +54,7 @@
 <td> <code>initialConnectionHeaders</code></td>
 <td><bubble type="dictionary" colors="true"></bubble></td>
 <td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.initialConnectionHeaders</code></a></td>
-<td style="text-align:center"><em>Node.js only--not available in browser.</em> Dictionary of headers to be sent with the initial connection to the server.  In server code, these can be accessed via <code>req.socket.handshake.headers</code> in controller actions or <code>socket.handshake.headers</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets" target="_blank">socket lifecycle callbacks</a>.</td>
+<td style="text-align:center"><em>Node.js only--not available in browser.</em> Dictionary of headers to be sent with the initial connection to the server.  In server code, these can be accessed via <code>req.socket.handshake.headers</code> in controller actions or <code>socket.handshake.headers</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets" target="_blank">socket lifecycle callbacks</a>.  This is useful for (for example) sending a <code>cookie</code> header with the initial handshake, allowing a socket to connect to a previously-established Sails session.</td>
 </tr>
 <tr>
 <td> <code>useCORSRouteToGetCookie</code></td>

@@ -17,7 +17,7 @@
 <td>1</td>
 <td>Callback</td>
 <td><code>function</code></td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
@@ -36,11 +36,6 @@
 <td>Error</td>
 <td><code>Error</code></td>
 </tr>
-<tr>
-<td>2</td>
-<td>Saved Record</td>
-<td><code>{ }</code></td>
-</tr>
 </tbody>
 </table>
 <h3 id="example-usage" permalink="example-usage">Example Usage</h3>
@@ -51,8 +46,8 @@
     var getOneRecord = myRecords.pop();
     getOneRecord.name = &apos;Hank&apos;;
     getOneRecord.save(
-      function(err,s){
-        console.log(&apos;User with ID &apos;+s.id+&apos; now has name &apos;+s.name);
+      function(err){
+        console.log(&apos;User with ID &apos;+getOneRecord.id+&apos; now has name &apos;+getOneRecord.name);
       });
   });
 

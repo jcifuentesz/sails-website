@@ -6,6 +6,10 @@
 </ul>
 <h3 id="configuration" permalink="configuration">Configuration</h3>
 <p>Sails&apos; log configuration is determined by <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-log" target="_blank"><code>sails.config.log</code></a>, which is conventionally set by a generated configuration file (<a href="http://sailsjs.org/documentation/anatomy/my-app/config/log-js" target="_blank"><code>config/log.js</code></a>) in new Sails projects out of the box.</p>
+<h3 id="usage" permalink="usage">Usage</h3>
+<pre><code data-language="text">sails.log.error(new Error(&quot;Doh, got an error :/&quot;));
+sails.log.debug(&quot;I am a debug message&quot;);
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="log-levels" permalink="log-levels">Log levels</h3>
 <p>Using the built-in logger, Sails will write output (to stdout/stderr) for log function calls that are <em>at</em> or <em>above</em> the priority of the currently-configurd log level.  This log level is normalized and also applied to generated output from Grunt, Socket.io, Waterline, Express, and other dependencies. The hierarchy of log levels and their relative priorities is summarized by the chart below:</p>
 <table>

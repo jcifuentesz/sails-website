@@ -7,8 +7,8 @@
 <h5 id="example" permalink="example">Example</h5>
 <p>Connect a client-side socket to the server, subscribe to the <code>user</code> event, and request <code>/user</code> to subscribe to current and future User model instances.</p>
 <pre><code data-language="html">&lt;!-- Simply include the sails.io.js script, and a client socket will be created for you --&gt;
-&lt;script type&quot;text/javascript&quot; src=&quot;/js/dependencies/sails.io.js&quot;&gt;&lt;/script&gt;
-&lt;script type&quot;text/javascript&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/dependencies/sails.io.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
 // The automatically-created socket is exposed as io.socket.
 // Use .on() to subscribe to the &apos;user&apos; event on the client.
 // This event is sent by the Sails &quot;create&quot;, &quot;update&quot;,
@@ -63,8 +63,8 @@ module.exports = {
 <h3 id="reference" permalink="reference">Reference</h3>
 <ul>
 <li>See the full reference for the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-on" target="_blank">sails.io.js library</a> to learn how to use sockets on the client side to communicate with your Sails app.</li>
-<li>See the <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets" target="_blank">sails.sockets</a> reference to learn how to send messages from the server to connected sockets</li>
-<li>See the <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub" target="_blank">resourceful pub-sub</a> reference to learn how to use Sails blueprints to automatically send realtime messages about changes to your <a href="http://sailsjs.org/documentation/concepts/models-and-orm/models" target="_blank">models</a>.</li>
+<li>See the <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets" target="_blank">sails.sockets</a> reference to learn how to send custom messages from the server to connected sockets.</li>
+<li>See the <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub" target="_blank">resourceful pub-sub</a> reference to learn how Sails&apos; blueprint API automatically sends realtime messages about changes to your <a href="http://sailsjs.org/documentation/concepts/models-and-orm/models" target="_blank">models</a>.</li>
 <li>Visit the <a href="http://socket.io" target="_blank">Socket.io</a> website to learn more about the underlying library Sails uses for realtime communication</li>
 </ul>
 <docmeta name="displayName" value="Realtime">

@@ -8,6 +8,7 @@
 <blockquote>
 <ul>
 <li>If a request contains one or more file uploads, only the text parameters sent <em><strong>before</strong></em> the first file parameter will be available in <code>req.body</code>.</li>
+<li>When using the default <a href="https://github.com/balderdashy/skipper" target="_blank">Skipper</a> body parser, this property will be <code>undefined</code> for GET requests.</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="req.body"></docmeta></p>
