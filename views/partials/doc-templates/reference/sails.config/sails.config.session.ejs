@@ -10,36 +10,42 @@ in the way you might be used to from Express or Connect.</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th style="text-align:left">Property</th>
 <th style="text-align:center">Type</th>
-<th>Default</th>
-<th>Details</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>adapter</code></td>
+<td style="text-align:left"><code>adapter</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><code>undefined</code></td>
-<td>If left unspecified, Sails will use the default memory store bundled in the underlying session middleware.   In production, you should specify the package name of a scalable session store instead (e.g. <code>connect-redis</code>).  See below for details. </td>
+<td style="text-align:left"><code>undefined</code></td>
+<td style="text-align:left">If left unspecified, Sails will use the default memory store bundled in the underlying session middleware.   In production, you should specify the package name of a scalable session store instead (e.g. <code>connect-redis</code>).  See below for details. </td>
 </tr>
 <tr>
-<td><code>key</code></td>
+<td style="text-align:left"><code>key</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><code>sails.sid</code></td>
-<td>Session key is set as <code>sails.sid</code> by default. This is the name of the key which is added to the cookie of visitors to your site when sessions are enabled (which is the case by default for Sails apps). If you are running multiple different Sails apps from the same shared cookie namespace (i.e. the top-level DNS domain, like <code>frog-enthusiasts.net</code>), you must be especially careful to configure separate unique keys for each separate app, otherwise the wrong cookie could be used (like crossing streams)</td>
+<td style="text-align:left"><code>sails.sid</code></td>
+<td style="text-align:left">Session key is set as <code>sails.sid</code> by default. This is the name of the key which is added to the cookie of visitors to your site when sessions are enabled (which is the case by default for Sails apps). If you are running multiple different Sails apps from the same shared cookie namespace (i.e. the top-level DNS domain, like <code>frog-enthusiasts.net</code>), you must be especially careful to configure separate unique keys for each separate app, otherwise the wrong cookie could be used (like crossing streams)</td>
 </tr>
 <tr>
-<td><code>secret</code></td>
+<td style="text-align:left"><code>secret</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><em>n/a</em></td>
-<td>This session secret is automatically generated when your new app is created. Care should be taken any time this secret is changed in production-- doing so will invalidate the sesssion cookies of your users, forcing them to log in again.  Note that this is also used as the &quot;cookie secret&quot; for signed cookies.</td>
+<td style="text-align:left"><em>n/a</em></td>
+<td style="text-align:left">This session secret is automatically generated when your new app is created. Care should be taken any time this secret is changed in production-- doing so will invalidate the sesssion cookies of your users, forcing them to log in again.  Note that this is also used as the &quot;cookie secret&quot; for signed cookies.</td>
 </tr>
 <tr>
-<td><code>cookie</code></td>
+<td style="text-align:left"><code>cookie</code></td>
 <td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
-<td><code>{ path: &apos;/&apos;, httpOnly: true, secure: false, maxAge: null }</code></td>
-<td>Options for the session cookie.  See the <a href="https://github.com/expressjs/session#cookie" target="_blank">express-session docs</a> for more info.</td>
+<td style="text-align:left"><code>{ path: &apos;/&apos;, httpOnly: true, secure: false, maxAge: null }</code></td>
+<td style="text-align:left">Options for the session cookie.  See the <a href="https://github.com/expressjs/session#cookie" target="_blank">express-session docs</a> for more info.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>routesDisabled</code></td>
+<td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
+<td style="text-align:left"><code>[]</code></td>
+<td style="text-align:left">An array of route address strings for which built-in session support will be skipped.  Useful for performance tuning; particularly preventing the unnecessary creation of sessions in requests for assets (e.g. <code>[&apos;GET /js/*&apos;, &apos;GET /styles/*&apos;, &apos;GET /images/*&apos;]</code>).</td>
 </tr>
 </tbody>
 </table>
