@@ -23,31 +23,18 @@
 </tbody>
 </table>
 <h3 id="details" permalink="details">Details</h3>
-<p>Sails/Express/Koa/Connect support a few forms of redirection, first being a fully qualified URI for redirecting to a different domain:</p>
+<p>Sails/Express support a few forms of redirection, first being a fully qualified URI for redirecting to a different domain:</p>
 <pre><code data-language="javascript">return res.redirect(&apos;http://google.com&apos;);
 </code></pre><!-- __LANG=%%__ -->
 <p>The second form is the domain-relative redirect.  For example, if you were on <a href="http://example.com/admin/post/new" target="_blank">http://example.com/admin/post/new</a>, the following redirect to <code>/admin</code> would land you at <a href="http://example.com/admin" target="_blank">http://example.com/admin</a>:</p>
 <pre><code data-language="javascript">return res.redirect(&apos;/checkout&apos;);
 </code></pre><!-- __LANG=%%__ -->
-<!--
-Probably more confusing than helpful:
-
-This next redirect is relative to the mount point of the application. For example if you have a blog application mounted at /blog, ideally it has no knowledge of where it was mounted, so where a redirect of /admin/post/new would simply give you http://example.com/admin/post/new, the following mount-relative redirect would give you http://example.com/blog/admin/post/new:
-
-```
-<!-- __LANG=%javascript%__ -->
-<p>return res.redirect(&apos;admin/post/new&apos;);</p>
-<pre><code data-language="text">--&gt;
-
-
-Pathname relative redirects are also possible. If you were on http://example.com/admin/post/new, the following redirect would land you at http//example.com/admin/post:
-</code></pre><!-- __LANG=%javascript%__ -->
-<p>return res.redirect(&apos;..&apos;);</p>
-<pre><code data-language="text">The final special-case is a back redirect, which allows you to redirect a request back where it came from using the &quot;Referer&quot; (or &quot;Referrer&quot;) header (if omitted, redirects to `/` by default)
-</code></pre><!-- __LANG=%javascript%__ -->
-<p>return res.redirect(&apos;back&apos;);
-```
-<!-- __LANG=%%__ --></p>
+<p>Pathname relative redirects are also possible. If you were on <a href="http://example.com/admin/post/new" target="_blank">http://example.com/admin/post/new</a>, the following redirect would land you at http//example.com/admin/post:</p>
+<pre><code data-language="javascript">return res.redirect(&apos;..&apos;);
+</code></pre><!-- __LANG=%%__ -->
+<p>The final special-case is a back redirect, which allows you to redirect a request back where it came from using the &quot;Referer&quot; (or &quot;Referrer&quot;) header (if omitted, redirects to <code>/</code> by default)</p>
+<pre><code data-language="javascript">return res.redirect(&apos;back&apos;);
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
