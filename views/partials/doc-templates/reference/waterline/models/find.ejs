@@ -52,7 +52,7 @@
 <p>To find any users named Finn in the database:</p>
 <pre><code data-language="javascript">User.find({name:&apos;Finn&apos;}).exec(function (err, usersNamedFinn){
   if (err) {
-    return res.negotiate(err);
+    return res.serverError(err);
   }
   sails.log(&apos;Wow, there are %d users named Finn.  Check it out:&apos;, usersNamedFinn.length, usersNamedFinn);
   return res.json(usersNamedFinn);

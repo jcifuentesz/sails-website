@@ -1,63 +1,131 @@
-<h1 id="-create-values-callback-">.create( <code>values</code>, [<code>callback</code>] )</h1>
-<h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Creates a new instance of this model in the database.</p>
-<h3 id="overview" permalink="overview">Overview</h3>
-<h4 id="parameters" permalink="parameters">Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Accepted Data Types</th>
-<th>Required ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Record(s) to Create</td>
-<td><code>{}</code>, <code>[{}]</code></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Callback</td>
-<td><code>function</code></td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-<h4 id="callback-parameters" permalink="callback-parameters">Callback Parameters</h4>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Description</th>
-<th>Possible Data Types</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Error</td>
-<td><code>Error</code></td>
-</tr>
-<tr>
-<td>2</td>
-<td>Records Created</td>
-<td><code>{}</code>, <code>[{}]</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="example-usage" permalink="example-usage">Example Usage</h3>
-<pre><code data-language="javascript">// create a new record with name &apos;Walter Jr&apos;
+<h1 id="-create-">.create()</h1>
+<p>Create a record in the database.</p>
+<pre><code data-language="javascript">Something.create(values).exec(function (err, records) {
 
-User.create({name:&apos;Walter Jr&apos;}).exec(function createCB(err, created){
-  console.log(&apos;Created user with name &apos; + created.name);
 });
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="usage" permalink="usage">Usage</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:left">values</td>
+<td><bubble type="dictionary" colors="true"></bubble></td>
+<td style="text-align:left">The attributes that the new record should have.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="callback" permalink="callback">Callback</h5>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:left">Argument</th>
+<th>Type</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td style="text-align:left"><em>err</em></td>
+<td><bubble type="Error?" colors="true"></bubble></td>
+<td style="text-align:left">The error that occurred, or <code>undefined</code> if there were no errors.  See below for an example of how to negotiate validation errors (e.g. attempting to insert a record that would violate a uniqueness constraint)</td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align:left">newRecord</td>
+<td><bubble type="array" colors="true"></bubble></td>
+<td style="text-align:left">The newly-created record, with its primary key (usually <code>id</code>) set.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example" permalink="example">Example</h3>
+<p>To create a user named Finn in the database:</p>
+<pre><code data-language="javascript">User.create({name:&apos;Finn&apos;}).exec(function (err, finn){
+  if (err) { return res.serverError(err); }
 
-// Created user with name Walter Jr
-// Don&apos;t forget to handle your errors and abide by the rules you defined in your model
+  sails.log(&apos;Finn\&apos;s id is:&apos;, finn.id);
+  return res.ok();
+});
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="negotiating-validation-errors" permalink="negotiating-validation-errors">Negotiating Validation Errors</h5>
+<blockquote>
+<p>Originally posted in <a href="https://github.com/balderdashy/sails/issues/3459#issuecomment-170155680" target="_blank">#3459</a></p>
+</blockquote>
+<pre><code data-language="javascript">var Passwords = require(&apos;machinepack-passwords&apos;);
+
+
+module.exports = {
+
+  signup: function (req, res) {
+    // Encrypt a string using the BCrypt algorithm.
+    Passwords.encryptPassword({
+      password: req.param(&apos;password&apos;),
+    }).exec({
+      // An unexpected error occurred encrypting the password.
+      error: function (err){
+        return res.serverError(err);
+      },
+      // OK.
+      success: function (encryptedPassword) {
+
+        // Create a user record in the database.
+        User.create({
+          email: req.param(&apos;email&apos;),
+          password: encryptedPassword
+        }).exec(function (err, newUser) {
+          // If there was an error, we negotiate it.
+          if (err) {
+
+            // If this is NOT a waterline validation error, it is a mysterious error indeed.
+            var isWLValidationErr = _.isObject(err) &amp;&amp; _.isObject(err.invalidAttributes);
+            if (!isWLValidationErr) {
+              return res.serverError(err);
+            }
+
+            // Otherwise, it must be a waterline validation error.
+
+            // If it doesn&apos;t contain a problem with the password, then just handle is
+            // using `res.badRequest()` like normal.
+            if (!_.isArray(err.invalidAttributes.password)) {
+              return res.badRequest(err);
+            }
+
+            // Otherwise, something was wrong with the provided encrypted password.
+            // So in this case, we&apos;ll modify the validation error in place to improve the error output
+            // and so that we don&apos;t inadvertently reveal info about the encrypted password.
+            // (specifically, we loop over the array of attribute errors and modify them).
+            err.invalidAttributes.password = _.map(err.invalidAttributes.password, function eachPasswordErr (passwordError) {
+              return _.reduce(passwordError, function (memo, val, key) {
+                var allOccurrencesOfEncryptedPassMatcher = new RegExp(_.escapeRegExp(encryptedPassword),&apos;g&apos;);
+                memo[key] = val.replace(allOccurrencesOfEncryptedPassMatcher, &apos;****&apos;);
+                return memo;
+              }, {});
+            });
+
+            // Finally, respond with the modified waterline validation error and a 400 status code.
+            return res.badRequest(err);
+
+          }//&lt;/if (err)&gt;
+
+          // Otherwise, `err` was falsy, so it worked!  The user was created.
+          // (maybe do other stuff here, or just send a 200 OK response)
+          return res.ok();
+
+        });//&lt;/User.create&gt;
+      }
+    });//&lt;/Passwords.encryptPassword&gt;
+  }//&lt;/UserController.signup&gt;
+});
 </code></pre><!-- __LANG=%%__ -->
 <p><docmeta name="displayName" value=".create()"></docmeta></p>
 <docmeta name="pageType" value="method">
