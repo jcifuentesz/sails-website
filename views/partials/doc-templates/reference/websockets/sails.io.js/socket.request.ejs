@@ -71,6 +71,9 @@
 <pre><code data-language="javascript">io.socket.request({
   method: &apos;get&apos;,
   url: &apos;/user/3/friends&apos;,
+  data: {
+    limit: 15
+  },
   headers: {
     &apos;x-csrf-token&apos;: &apos;ji4brixbiub3&apos;
   }
