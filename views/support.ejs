@@ -8,7 +8,7 @@
     </div>
     <div class="main-container">
       <ul class="link-list">
-      
+
         <li>
           <a class="so-link" target="_blank" href="http://stackoverflow.com/questions/tagged/sails.js">
             <img class="icon" alt="Chain link icon" src="images/icon_stackoverflow.png"/>
@@ -30,7 +30,7 @@
             </div>
           </a>
         </li>
-        
+
         <li>
         <a class="manning-book-link" target="_blank" href="http://www.manning.com/mcneil/">
             <img class="icon" alt="Book icon" src="images/icon_book.png"/>
@@ -74,7 +74,7 @@ with the code <span>mcneildoc</span>.</p>
           <h5><%= menuItem.displayName %></h5>
           <ul>
             <%
-            var populatedChildren = _.where(menuItems, function (potentialChild) {
+            var populatedChildren = _.filter(menuItems, function (potentialChild) {
               if (_.contains(menuItem.children, potentialChild.path.toLowerCase())) {
                 return true;
               }
