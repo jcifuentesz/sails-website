@@ -39,10 +39,13 @@ localesDirectory: &apos;/config/locales&apos;
 <p>But worth noting is that since Sails implements <a href="https://github.com/mashpie/i18n-node" target="_blank">node-i18n</a> integration in the <a href="http://sailsjs.org/documentation/concepts/Internationalization" target="_blank">i18n hook</a>, you can completely disable or override it using the <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>loadHooks</code></a> and/or <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>hooks</code></a> configuration options.</p>
 <h3 id="what-about-i18n-on-the-client-" permalink="what-about-i18n-on-the-client">What About i18n on the client?</h3>
 <p>The above technique works great out of the box for server-side views. But what about rich client apps that serve static HTML templates from a CDN or static host? (e.g. performance-obsessed SPAs or PhoneGap apps/Chrome extensions)</p>
-<p>You can actually reuse Sails&apos; i18n support to help you get your translated templates to the browser.  If you want to use Sails to internationalize your <em>client-side templates</em>, put your front-end templates in a subdirectory of your app&apos;s <code>/views</code> folder.</p>
+<p>There are <a href="http://stackoverflow.com/questions/9640630/javascript-i18n-internationalization-frameworks-libraries-for-client-side-use" target="_blank">lots of different options available</a> for client-side internationalization.  Like other client-side technologies, you should have no problem integrating any of them with Sails.</p>
+<blockquote>
+<p>If you&apos;d prefer not to use an external internationalization library, you can actually reuse Sails&apos; i18n support to help you get your translated templates to the browser.  If you want to use Sails to internationalize your <em>client-side templates</em>, put your front-end templates in a subdirectory of your app&apos;s <code>/views</code> folder.</p>
 <ul>
 <li>In development mode, you should retranslate and precompile your templates each time the relevant stringfile or template changes using grunt-contrib-watch, which is already installed by default in new Sails projects.</li>
 <li>In production mode, you&apos;ll want to translate and precompile all templates on lift(). In loadtime-critical scenarios (e.g. mobile web apps) you can even upload your translated, precompiled, minified templates to a CDN like Cloudfront for further performance gains.</li>
 </ul>
+</blockquote>
 <docmeta name="displayName" value="Internationalization">
 </docmeta>

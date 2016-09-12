@@ -3,7 +3,7 @@
 <h3 id="example" permalink="example">Example</h3>
 <pre><code data-language="javascript">Pet.query(&apos;SELECT pet.name FROM pet&apos;, function(err, results) {
   if (err) return res.serverError(err);
-  return res.ok(results.rows);
+  return res.json(results.rows);
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="prepared-statement-example" permalink="prepared-statement-example">Prepared Statement Example</h3>
@@ -12,7 +12,7 @@
   values: [ &quot;dog&quot; ]
 }, function(err, results) {
   if (err) return res.serverError(err);
-  return res.ok(results.rows);
+  return res.json(results.rows);
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>

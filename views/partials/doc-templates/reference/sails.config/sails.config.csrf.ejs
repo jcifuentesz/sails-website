@@ -6,36 +6,36 @@
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th style="text-align:left">Property</th>
 <th style="text-align:center">Type</th>
 <th>Default</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>csrf</code></td>
+<td style="text-align:left"><code>csrf</code></td>
 <td style="text-align:center"><bubble type="boolean" colors="true"></bubble> or <bubble type="dictionary" colors="true"></bubble></td>
 <td>false</td>
-<td>CSRF protection is disabled by default to facilitate development.  To turn it on, just set <code>sails.config.csrf</code> to true, or for more flexibility, specify a dictionary with any of the properties described below.</td>
+<td style="text-align:left">CSRF protection is disabled by default to facilitate development.  To turn it on, just set <code>sails.config.csrf</code> to true, or for more flexibility, specify a dictionary with any of the properties described below.</td>
 </tr>
 <tr>
-<td><code>csrf.grantTokenViaAjax</code></td>
+<td style="text-align:left"><code>csrf.grantTokenViaAjax</code></td>
 <td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
 <td>true</td>
-<td>Whether to activate the <strong>/csrfToken</strong> route, which will return the current CSRF token value which can then be used in AJAX requests.</td>
+<td style="text-align:left">Whether to activate the <strong>/csrfToken</strong> route, which will return the current CSRF token value which can then be used in AJAX requests.</td>
 </tr>
 <tr>
-<td><code>csrf.origin</code></td>
+<td style="text-align:left"><code>csrf.origin</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 <td>&apos;&apos;</td>
-<td>Comma-delimited list of origins that are allowed to access the CSRF token via the <strong>/csrfToken</strong> shadow route.  This is separate from the other <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.cors.html" target="_blank">CORS</a> settings, which <em>do not apply</em> to <strong>/csrfToken</strong>.</td>
+<td style="text-align:left">Comma-delimited list of origins that are allowed to access the CSRF token via the <strong>/csrfToken</strong> shadow route.  This is separate from the other <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.cors.html" target="_blank">CORS</a> settings, which <em>do not apply</em> to <strong>/csrfToken</strong>.</td>
 </tr>
 <tr>
-<td><code>csrf.routesDisabled</code></td>
+<td style="text-align:left"><code>csrf.routesDisabled</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble> or <bubble type="array" colors="true"></bubble></td>
 <td>&apos;&apos;</td>
-<td>Array or comma-delimited list of routes where CSRF protection is disabled.  Routes with Express-style wildcards (e.g. <code>&apos;/foo/:id&apos;</code>) and regular expressions (e.g.  <code>/user\/\d+/</code>) can both be used.</td>
+<td style="text-align:left">Array or comma-delimited list of routes where CSRF protection is disabled.  Routes with Express-style wildcards (e.g. <code>&apos;/foo/:id&apos;</code>) and regular expressions (e.g.  <code>/user\/\d+/</code>) can both be used.</td>
 </tr>
 </tbody>
 </table>

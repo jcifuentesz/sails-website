@@ -1,7 +1,7 @@
 <h1 id="blueprint-api">Blueprint API</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
-<p>For a conceptual overview of Blueprints, see the <a href="http://sailsjs.org/documentation/concepts/blueprints" target="_blank">Blueprints concept section</a>.</p>
-<h3 id="activating-deactivating-blueprints-in-your-app" permalink="activating/deactivating-blueprints-in-your-app">Activating/Deactivating Blueprints in your App</h3>
+<p>For a conceptual overview of blueprints, see <a href="http://sailsjs.org/documentation/concepts/blueprints" target="_blank">Concepts &gt; Blueprints</a>.</p>
+<h3 id="activating-deactivating-blueprints-in-your-app" permalink="activating/deactivating-blueprints-in-your-app">Activating/deactivating blueprints in your app</h3>
 <p>The process for activating/deactivating blueprints varies slightly with the kind of blueprint route you are concerned with (RESTful routes, shortcut routes or action routes).  See the <a href="http://sailsjs.org/documentation/concepts/blueprints?blueprint-routes" target="_blank">Blueprint Routes documentation section</a> for a discussion of the different blueprint types.</p>
 <h5 id="restful-routes" permalink="restful-routes">RESTful routes</h5>
 <p>RESTful routes are activated by default in new Sails apps, and can be turned off by setting <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-blueprints" target="_blank"><code>sails.config.blueprints.rest</code></a> to <code>false</code> (typically in <a href="http://sailsjs.org/documentation/anatomy/my-app/config/blueprints-js" target="_blank"><code>/config/blueprints.js</code></a>.</p>
@@ -19,7 +19,7 @@
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>then a route <code>/pet/adore</code> will automatically be created.  Note that action routes respond to <em>all</em> HTTP verbs (GET, PUT, POST, etc.).  You can use <code>req.method</code> inside an action to determine which method was used.</p>
-<h5 id="disabling-blueprints-on-a-per-controller-basis" permalink="disabling-blueprints-on-a-percontroller-basis">Disabling Blueprints on a Per-Controller Basis</h5>
+<h5 id="disabling-blueprints-on-a-per-controller-basis" permalink="disabling-blueprints-on-a-percontroller-basis">Disabling blueprints on a per-controller basis</h5>
 <p>You may also override any of the settings from <a href="http://sailsjs.org/documentation/anatomy/my-app/config/blueprints-js" target="_blank"><code>config/blueprints.js</code></a> on a per-controller basis by defining a <code>_config</code> key in your controller definition:</p>
 <pre><code data-language="javascript">// In /api/controllers/PetController.js
 module.exports = {
@@ -30,22 +30,22 @@ module.exports = {
   }
 }
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="overriding-blueprints" permalink="overriding-blueprints">Overriding Blueprints</h3>
-<h5 id="restful-shortcut-routes-and-actions" permalink="restful-/-shortcut-routes-and-actions">RESTful / Shortcut Routes and Actions</h5>
+<h3 id="overriding-blueprints" permalink="overriding-blueprints">Overriding blueprints</h3>
+<h5 id="restful-shortcut-routes-and-actions" permalink="restful-/-shortcut-routes-and-actions">RESTful / shortcut routes and actions</h5>
 <p>To override a RESTful blueprint route for a single controller, simply create an action in that controller with the appropriate name: <a href="http://sailsjs.org/documentation/reference/blueprint-api/find-where" target="_blank"><em>find</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/find-one" target="_blank"><em>findOne</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/create" target="_blank"><em>create</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/update" target="_blank"><em>update</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/destroy" target="_blank"><em>destroy</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/populate" target="_blank"><em>populate</em></a>, <a href="http://sailsjs.org/documentation/reference/blueprint-api/add" target="_blank"><em>add</em></a> or <a href="http://sailsjs.org/documentation/reference/blueprint-api/remove" target="_blank"><em>remove</em></a>.</p>
 <p>To override the default <em>action</em> that <em>all</em> controllers use, create an <code>api/blueprints</code> folder and add files to it with names matching the actions to override (e.g. <code>find.js</code>, <code>findone.js</code>, <code>create.js</code>, etc.). You can take a look at <a href="https://github.com/balderdashy/sails/tree/master/lib/hooks/blueprints/actions" target="_blank">the code for the default actions</a> in the Sails blueprints hook for a head start.</p>
 <blockquote>
 <p><strong>Note:</strong> All blueprint action files must be lowercase! (The default actions contains <code>findOne.js</code>, but in <code>/api/blueprints</code> it needs to be <code>findone.js</code>).</p>
 </blockquote>
-<h5 id="action-routes" permalink="action-routes">Action Routes</h5>
+<h5 id="action-routes" permalink="action-routes">Action routes</h5>
 <p>In production apps, you may often wish to turn action routes off completely for security reasons (to keep from accidentally exposing a controller action).  However, if you do wish to keep action routes on, but simply want to turn off a particular method or path, you can do so easily in your <a href="http://sailsjs.org/documentation/anatomy/my-app/config/routes-js" target="_blank"><code>/config/routes.js</code></a> file using the <a href="http://sailsjs.org/documentation/concepts/routes/custom-routes#?response-target-syntax" target="_blank">response target syntax</a>, for example:</p>
 <pre><code data-language="text">&apos;POST /user&apos;: {response: &apos;notFound&apos;}
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="custom-blueprints" permalink="custom-blueprints">Custom Blueprints</h3>
+<h3 id="custom-blueprints" permalink="custom-blueprints">Custom blueprints</h3>
 <p>Along with the built-in RESTful actions provided by Sails, you can create your own custom blueprints to be shared by your controllers.  However, custom blueprints do not get bound to routes automatically. If you create a /blueprints/foo.js file, you can bind a route to it in your <a href="http://sailsjs.org/documentation/anatomy/my-app/config/routes-js" target="_blank"><code>/config/routes.js</code></a> file using the <a href="http://sailsjs.org/documentation/concepts/routes/custom-routes#?blueprint-target-syntax" target="_blank">blueprint target syntax</a>.  For example:</p>
 <pre><code data-language="text">GET /myRoute: {blueprint: &apos;foo&apos;}
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="blueprints-and-resourceful-pubsub" permalink="blueprints-and-resourceful-pubsub">Blueprints and Resourceful Pubsub</h3>
+<h3 id="blueprints-and-resourceful-pubsub" permalink="blueprints-and-resourceful-pubsub">Blueprints and resourceful pubsub</h3>
 <h5 id="blueprints-and-subscribe-" permalink="blueprints-and-subscribe()">Blueprints and <code>.subscribe()</code></h5>
 <p>By default, the <strong>Find</strong> and <strong>Find One</strong> blueprint actions will call <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe" target="_blank"><code>.subscribe()</code></a> automatically when a socket request is used. This subscribes the requesting socket to each of the returned records.  However, the <strong>Update</strong> and <strong>Destroy</strong> actions will <em>not</em> cause a message to be sent to the requesting socket by default--only to the <em>other</em> connected sockets.  This is intended to allow the caller of <code>io.socket.update()</code> (for example) to use the client-side SDK&apos;s callback to handle the server response separately.  To force the blueprint actions to send messages to all sockets, <em>including the requesting socket</em>, set <code>sails.config.blueprints.mirror</code> to <code>true</code>.</p>
 <h5 id="blueprints-and-watch-" permalink="blueprints-and-watch()">Blueprints and <code>.watch()</code></h5>
@@ -53,7 +53,7 @@ module.exports = {
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>While the following documentation focuses on HTTP, the blueprint API (just like any of your custom actions and policies) is also compatible with WebSockets, thanks to the request interpreter.  Check out the reference section on the <a href="http://sailsjs.org/documentation/reference/websockets/sails.io.js" target="_blank">browser SDK</a> for example usage.</li>
+<li>While the following documentation focuses on HTTP, the blueprint API (just like any of your custom actions and policies) is also compatible with WebSockets, thanks to the virtual request interpreter.  Check out the reference section on the browser SDK (<a href="http://sailsjs.org/documentation/reference/websockets/sails.io.js" target="_blank">Reference &gt; WebSockets &gt; sails.io.js</a>) for example usage.</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="Blueprint API"></docmeta></p>
