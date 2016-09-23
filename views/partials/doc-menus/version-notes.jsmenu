@@ -8,8 +8,8 @@
       "version": "0.10.0"
     },
     "children": [
-      "version-notes/0.10.x/Changelog0.10x.ejs",
-      "version-notes/0.10.x/Changelog0.10.0-rc9.ejs"
+      "version-notes/0.10.x/Changelog0.10.0-rc9.ejs",
+      "version-notes/0.10.x/Changelog0.10x.ejs"
     ],
     "isParent": true
   },
@@ -88,10 +88,10 @@
       "version": "0.8.0"
     },
     "children": [
-      "version-notes/0.8.x/Changelog0.8.9.ejs",
-      "version-notes/0.8.x/ChangelogPre-0.8.77.ejs",
+      "version-notes/0.8.x/Changelog0.8.8x.ejs",
       "version-notes/0.8.x/Changelog0.8.7x.ejs",
-      "version-notes/0.8.x/Changelog0.8.8x.ejs"
+      "version-notes/0.8.x/Changelog0.8.9.ejs",
+      "version-notes/0.8.x/ChangelogPre-0.8.77.ejs"
     ],
     "isParent": true
   },
@@ -144,10 +144,10 @@
       "version": "0.9.0"
     },
     "children": [
-      "version-notes/0.9.x/Changelog0.9.16.ejs",
       "version-notes/0.9.x/Changelog0.9.0.ejs",
-      "version-notes/0.9.x/Changelog0.9.7.ejs",
-      "version-notes/0.9.x/Changelog0.9.4.ejs"
+      "version-notes/0.9.x/Changelog0.9.16.ejs",
+      "version-notes/0.9.x/Changelog0.9.4.ejs",
+      "version-notes/0.9.x/Changelog0.9.7.ejs"
     ],
     "isParent": true
   },
