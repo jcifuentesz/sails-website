@@ -35,7 +35,7 @@
 <td style="text-align:left"><code>csrf.routesDisabled</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble> or <bubble type="array" colors="true"></bubble></td>
 <td>&apos;&apos;</td>
-<td style="text-align:left">Array or comma-delimited list of routes where CSRF protection is disabled.  Routes with Express-style wildcards (e.g. <code>&apos;/foo/:id&apos;</code>) and regular expressions (e.g.  <code>/user\/\d+/</code>) can both be used.</td>
+<td style="text-align:left">Array or comma-delimited list of routes where CSRF protection is disabled.  Routes with Express-style wildcards (e.g. <code>&apos;/foo/:id&apos;</code>) and regular expressions (e.g.  <code>/user\/\d+/</code>) can both be used.  Do <em>not</em> include HTTP verbs (e.g. <code>POST</code> or <code>PUT</code>) with the routes -- disabling CSRF for a route always applies to all verbs for that route&apos;s address.</td>
 </tr>
 </tbody>
 </table>

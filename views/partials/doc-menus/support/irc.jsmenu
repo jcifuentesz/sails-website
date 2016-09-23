@@ -25,9 +25,9 @@
       "displayName": "#sailsjs on IRC"
     },
     "children": [
-      "irc/sailsTroll.ejs",
+      "irc/configuringClient.ejs",
       "irc/grabClient.ejs",
-      "irc/configuringClient.ejs"
+      "irc/sailsTroll.ejs"
     ],
     "isParent": true
   },
