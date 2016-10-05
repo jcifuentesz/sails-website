@@ -5,54 +5,54 @@
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th style="text-align:left">Property</th>
 <th style="text-align:center">Type</th>
-<th>Default</th>
-<th>Details</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>allRoutes</code></td>
+<td style="text-align:left"><code>allRoutes</code></td>
 <td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td>false</td>
-<td>Indicates whether the other CORS configuration settings should apply to every route in the app by default.</td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">Indicates whether the other CORS configuration settings should apply to every route in the app by default.</td>
 </tr>
 <tr>
-<td><code>origin</code></td>
+<td style="text-align:left"><code>origin</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><code>*</code></td>
-<td>Comma-delimited list of default hosts (beginning with http:// or https://) to give access to, or <code>*</code> to allow all domains CORS access.  If <code>allRoutes</code> is <code>true</code> and <code>origin</code> is <code>*</code>, then your app will be fully accessible to sites hosted on foreign domains (except for routes which have their own CORS settings).</td>
+<td style="text-align:left"><code>*</code></td>
+<td style="text-align:left">Comma-delimited list of default hosts (beginning with http:// or https://) to give access to, or <code>*</code> to allow all domains CORS access.  If <code>allRoutes</code> is <code>true</code> and <code>origin</code> is <code>*</code>, then your app will be fully accessible to sites hosted on foreign domains (except for routes which have their own CORS settings).  If <code>credentials</code> is also <code>true</code>, this means your app will be unprotected against cross-origin attacks that exploit your logged-in users.  Any routes that are exposed in this way must be careful not to perform sensitive actions or return secure data!</td>
 </tr>
 <tr>
-<td><code>methods</code></td>
+<td style="text-align:left"><code>methods</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td>GET, POST, PUT, DELETE, OPTIONS, HEAD</td>
-<td>Comma-delimited list of methods that are allowed to be used in CORS requests.  This is only used in response to <a href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Preflighted_requests" target="_blank">preflight requests</a>, so the inclusion of GET, POST, OPTIONS and HEAD, although customary, is not necessary.</td>
+<td style="text-align:left">GET, POST, PUT, DELETE, OPTIONS, HEAD</td>
+<td style="text-align:left">Comma-delimited list of methods that are allowed to be used in CORS requests.  This is only used in response to <a href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Preflighted_requests" target="_blank">preflight requests</a>, so the inclusion of GET, POST, OPTIONS and HEAD, although customary, is not necessary.</td>
 </tr>
 <tr>
-<td><code>headers</code></td>
+<td style="text-align:left"><code>headers</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td>content-type</td>
-<td>Comma-delimited list of headers that are allowed to be sent with CORS requests.  This is only used in response to <a href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Preflighted_requests" target="_blank">preflight requests</a>.</td>
+<td style="text-align:left">content-type</td>
+<td style="text-align:left">Comma-delimited list of headers that are allowed to be sent with CORS requests.  This is only used in response to <a href="https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Preflighted_requests" target="_blank">preflight requests</a>.</td>
 </tr>
 <tr>
-<td><code>exposeHeaders</code></td>
+<td style="text-align:left"><code>exposeHeaders</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td><code>&apos;&apos;</code></td>
-<td>List of headers that browsers will be allowed to access.  See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Expose-Headers" target="_blank">access-control-expose-headers</a>.</td>
+<td style="text-align:left"><code>&apos;&apos;</code></td>
+<td style="text-align:left">List of headers that browsers will be allowed to access.  See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Expose-Headers" target="_blank">access-control-expose-headers</a>.</td>
 </tr>
 <tr>
-<td><code>credentials</code></td>
+<td style="text-align:left"><code>credentials</code></td>
 <td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td>true</td>
-<td>Indicates whether cookies can be shared in CORS requests.</td>
+<td style="text-align:left">true</td>
+<td style="text-align:left">Indicates whether cookies can be shared in CORS requests.</td>
 </tr>
 <tr>
-<td><code>securityLevel</code></td>
+<td style="text-align:left"><code>securityLevel</code></td>
 <td style="text-align:center"><bubble type="integer" colors="true"></bubble></td>
-<td>0</td>
-<td>Indicates how Sails should respond to requests from disallowed origins.  In normal  mode (0), Sails processes all requests normally, simply setting the appropriate CORS headers and leaving it to the client to determine how to handle the response.  In high mode (1), Sails will send back a 403 response to requests from disallowed origins, if the origin starts with http or https.  In very high mode (2), Sails will send back a 403 response to requests from disallowed origins, regardless of the origin protocol.   See <a href="http://sailsjs.org/documentation/concepts/Security/CORS.html?q=security-levels" target="_blank">Security Levels</a> in the CORS concepts documentation for more info.</td>
+<td style="text-align:left">0</td>
+<td style="text-align:left">Indicates how Sails should respond to requests from disallowed origins.  In normal  mode (0), Sails processes all requests normally, simply setting the appropriate CORS headers and leaving it to the client to determine how to handle the response.  In high mode (1), Sails will send back a 403 response to requests from disallowed origins, if the origin starts with http or https.  In very high mode (2), Sails will send back a 403 response to requests from disallowed origins, regardless of the origin protocol.   See <a href="http://sailsjs.org/documentation/concepts/Security/CORS.html?q=security-levels" target="_blank">Security Levels</a> in the CORS concepts documentation for more info.</td>
 </tr>
 </tbody>
 </table>

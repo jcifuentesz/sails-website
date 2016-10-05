@@ -9,22 +9,24 @@
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>Note that the keys in your stringfiles (e.g. &quot;Hello %s, how are you today?&quot;) are <strong>case sensitive</strong> and require exact matches.  There are a few different schools of thought on the best approach here, and it really depends on who/how often you&apos;ll be editing the stringfiles vs. HTML in the future.  Especially if you&apos;ll be editing the translations by hand, simpler, all-lowercase key names may be preferable for maintainability.</p>
-<p>For example, here&apos;s another pass at <code>config/locales/es.json</code>:</p>
+<p>For example, here&apos;s another way you could approach <code>config/locales/es.json</code>:</p>
 <pre><code data-language="json">{
-    &quot;hello&quot;: &quot;Hola!&quot;,
-    &quot;hello-how-are-you-today&quot;: &quot;Hola %s, &#xBF;c&#xF3;mo est&#xE1;s?&quot;
+    &quot;hello&quot;: &quot;hola&quot;,
+    &quot;howAreYouToday&quot;: &quot;c&#xF3;mo est&#xE1;s&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
 <p>And here&apos;s <code>config/locales/en.json</code>:</p>
 <pre><code data-language="json">{
-    &quot;hello&quot;: &quot;Hello!&quot;,
-    &quot;hello-how-are-you-today&quot;: &quot;Hello, how are you today?&quot;
+    &quot;hello&quot;: &quot;hello&quot;,
+    &quot;howAreYouToday&quot;: &quot;how are you today&quot;
 }
 </code></pre><!-- __LANG=%%__ -->
-<p>You can also nest locale strings. But a better approach would be to use <code>.</code> to represent nested strings. For example, here&apos;s the list of labels for the index page of a user controller:</p>
+<p>To represent nested strings, use <code>.</code> in keys.  For example, here&apos;s some of the strings for an app&apos;s &quot;Edit profile&quot; page:</p>
 <pre><code class="lang-json">{
-    &quot;user.index.label.id&quot;: &quot;User ID&quot;,
-    &quot;user.index.label.name&quot;: &quot;User Name&quot;
+  &quot;editProfile.heading&quot;: &quot;Edit your profile&quot;,
+  &quot;editProfile.username.label&quot;: &quot;Username&quot;,
+  &quot;editProfile.username.description&quot;: &quot;Choose a new unique username.&quot;,
+  &quot;editProfile.username.placeholder&quot;: &quot;callmethep4rtysquid&quot;
 }
 </code></pre>
 <!-- __LANG=%%__ -->

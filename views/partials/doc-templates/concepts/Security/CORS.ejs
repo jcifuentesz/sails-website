@@ -9,6 +9,13 @@ Your default Sails setup is already equipped to handle AJAX requests from a web 
 <p>To allow cross-origin requests from <em>any</em> domain to <em>any</em> route in your app, simply enable <code>allRoutes</code> in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.cors.html" target="_blank"><code>config/cors.js</code></a>:</p>
 <pre><code data-language="javascript">allRoutes: true
 </code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>Note that if this is all you do, your app will not be protected against attacks that exploit CORS.  To prevent third-party sites from being able to trick your logged-in users into making unauthorized requests to your app, you should either set <code>credentials: false</code> (for requests that don&apos;t require a session) or set <code>origin</code> to a specific set of trusted domains.  You can also configure these settings on a per-route basis (see below).</p>
+</blockquote>
+<p>To allow cross-origin requests to <em>any</em> route in your app from a whitelist of trusted domains (<strong>the recommended approach</strong>), use:</p>
+<pre><code data-language="javascript">allRoutes: true,
+origin: &apos;sailsjs.com,beta.sailsjs.com,0.11.sailsjs.com&apos;
+</code></pre><!-- __LANG=%%__ -->
 <p>See <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.cors.html" target="_blank"><code>sails.config.cors</code></a> for a comprehensive reference of all available options.</p>
 <h3 id="configuring-cors-for-individual-routes" permalink="configuring-cors-for-individual-routes">Configuring CORS For Individual Routes</h3>
 <p>Besides the global CORS configuration, you can set up individual routes in <code>config/routes.js</code> to accept (or deny) cross-origin requests.  To indicate that a route should accept CORS requests using the configuration parameters in <code>config/cors.js</code>, set its <code>cors</code> property to <code>true</code>:</p>

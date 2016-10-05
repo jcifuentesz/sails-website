@@ -22,15 +22,15 @@
       "displayName": "Application"
     },
     "children": [
-      "reference/application/events.ejs",
       "reference/application/lifecycle.ejs",
       "reference/application/sails.getBaseUrl.ejs",
-      "reference/application/sails.getRouteFor.ejs",
-      "reference/application/sails.getUrlFor.ejs",
+      "reference/application/events.ejs",
       "reference/application/sails.load.ejs",
+      "reference/application/sails.getUrlFor.ejs",
+      "reference/application/sails.getRouteFor.ejs",
       "reference/application/sails.log.ejs",
-      "reference/application/sails.lift.ejs",
       "reference/application/sails.lower.ejs",
+      "reference/application/sails.lift.ejs",
       "reference/application/sails.request.ejs"
     ],
     "isParent": true
@@ -58,7 +58,8 @@
     "fullPathAndFileName": "reference/application/sails.getBaseUrl.ejs",
     "data": {
       "displayName": "sails.getBaseUrl()",
-      "pageType": "method"
+      "pageType": "method",
+      "isDeprecated": "true"
     },
     "parent": "reference/application/application.ejs",
     "isChild": true
@@ -224,11 +225,11 @@
     "children": [
       "reference/blueprint-api/Add.ejs",
       "reference/blueprint-api/Create.ejs",
-      "reference/blueprint-api/Destroy.ejs",
-      "reference/blueprint-api/Find.ejs",
       "reference/blueprint-api/FindOne.ejs",
-      "reference/blueprint-api/Populate.ejs",
+      "reference/blueprint-api/Find.ejs",
+      "reference/blueprint-api/Destroy.ejs",
       "reference/blueprint-api/Remove.ejs",
+      "reference/blueprint-api/Populate.ejs",
       "reference/blueprint-api/Update.ejs"
     ],
     "isParent": true
@@ -242,11 +243,11 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/cli/sailsdebug.ejs",
-      "reference/cli/sailsconsole.ejs",
       "reference/cli/sailsgenerate.ejs",
-      "reference/cli/sailsnew.ejs",
       "reference/cli/sailslift.ejs",
+      "reference/cli/sailsconsole.ejs",
+      "reference/cli/sailsdebug.ejs",
+      "reference/cli/sailsnew.ejs",
       "reference/cli/sailsversion.ejs"
     ],
     "isParent": true
@@ -410,36 +411,36 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/req/req.acceptedLanguages.ejs",
-      "reference/req/req.body.ejs",
-      "reference/req/req.acceptedCharsets.ejs",
-      "reference/req/req.acceptsCharset.ejs",
-      "reference/req/req.acceptsLanguage.ejs",
       "reference/req/req.accepted.ejs",
-      "reference/req/req.accepts.ejs",
+      "reference/req/req.acceptedCharsets.ejs",
       "reference/req/req.allParams.ejs",
+      "reference/req/req.acceptsLanguage.ejs",
+      "reference/req/req.acceptedLanguages.ejs",
+      "reference/req/req.accepts.ejs",
+      "reference/req/req.acceptsCharset.ejs",
+      "reference/req/req.body.ejs",
+      "reference/req/req.cookies.ejs",
+      "reference/req/req.headers.ejs",
+      "reference/req/req.get.ejs",
       "reference/req/req.file.ejs",
       "reference/req/req.fresh.ejs",
-      "reference/req/req.cookies.ejs",
-      "reference/req/req.host.ejs",
-      "reference/req/req.get.ejs",
-      "reference/req/req.isSocket.ejs",
-      "reference/req/req.headers.ejs",
-      "reference/req/req.ip.ejs",
-      "reference/req/req.is.ejs",
       "reference/req/req.ips.ejs",
+      "reference/req/req.ip.ejs",
+      "reference/req/req.host.ejs",
+      "reference/req/req.is.ejs",
+      "reference/req/req.isSocket.ejs",
       "reference/req/req.method.ejs",
-      "reference/req/req.params.ejs",
       "reference/req/req.param.ejs",
+      "reference/req/req.params.ejs",
       "reference/req/req.path.ejs",
       "reference/req/req.protocol.ejs",
       "reference/req/req.secure.ejs",
       "reference/req/req.query.ejs",
-      "reference/req/req.signedCookies.ejs",
       "reference/req/req.socket.ejs",
-      "reference/req/req.url.ejs",
       "reference/req/req.subdomains.ejs",
       "reference/req/req.wantsJSON.ejs",
+      "reference/req/req.signedCookies.ejs",
+      "reference/req/req.url.ejs",
       "reference/req/req.xhr.ejs",
       "reference/req/req.options/req.options.ejs"
     ],
@@ -757,26 +758,26 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/res/res.badRequest.ejs",
       "reference/res/res.attachment.ejs",
-      "reference/res/res.get.ejs",
-      "reference/res/res.clearCookie.ejs",
-      "reference/res/res.json.ejs",
-      "reference/res/res.forbidden.ejs",
       "reference/res/res.cookie.ejs",
+      "reference/res/res.badRequest.ejs",
+      "reference/res/res.forbidden.ejs",
+      "reference/res/res.jsonp.ejs",
       "reference/res/res.created.ejs",
       "reference/res/res.location.ejs",
-      "reference/res/res.jsonp.ejs",
+      "reference/res/res.get.ejs",
+      "reference/res/res.clearCookie.ejs",
       "reference/res/res.negotiate.ejs",
+      "reference/res/res.json.ejs",
       "reference/res/res.notFound.ejs",
-      "reference/res/res.ok.ejs",
       "reference/res/res.redirect.ejs",
       "reference/res/res.send.ejs",
-      "reference/res/res.serverError.ejs",
-      "reference/res/res.status.ejs",
-      "reference/res/res.type.ejs",
+      "reference/res/res.ok.ejs",
       "reference/res/res.view.ejs",
-      "reference/res/res.set.ejs"
+      "reference/res/res.serverError.ejs",
+      "reference/res/res.type.ejs",
+      "reference/res/res.set.ejs",
+      "reference/res/res.status.ejs"
     ],
     "isParent": true
   },
@@ -998,20 +999,20 @@
       "stabilityIndex": "3"
     },
     "children": [
-      "reference/sails.config/sails.config.blueprints.ejs",
       "reference/sails.config/miscellaneous.ejs",
-      "reference/sails.config/sails.config.http.ejs",
-      "reference/sails.config/sails.config.connections.ejs",
+      "reference/sails.config/sails.config.blueprints.ejs",
       "reference/sails.config/sails.config.bootstrap.ejs",
-      "reference/sails.config/sails.config.csrf.ejs",
       "reference/sails.config/sails.config.cors.ejs",
+      "reference/sails.config/sails.config.csrf.ejs",
+      "reference/sails.config/sails.config.connections.ejs",
       "reference/sails.config/sails.config.globals.ejs",
-      "reference/sails.config/sails.config.i18n.ejs",
-      "reference/sails.config/sails.config.log.ejs",
       "reference/sails.config/sails.config.models.ejs",
       "reference/sails.config/sails.config.policies.ejs",
       "reference/sails.config/sails.config.routes.ejs",
+      "reference/sails.config/sails.config.log.ejs",
+      "reference/sails.config/sails.config.http.ejs",
       "reference/sails.config/sails.config.views.ejs",
+      "reference/sails.config/sails.config.i18n.ejs",
       "reference/sails.config/sails.config.session.ejs",
       "reference/sails.config/sails.config.sockets.ejs"
     ],
@@ -1190,15 +1191,15 @@
     "isChild": true,
     "children": [
       "reference/waterline/models/count.ejs",
-      "reference/waterline/models/update.ejs",
+      "reference/waterline/models/native.ejs",
+      "reference/waterline/models/query.ejs",
+      "reference/waterline/models/destroy.ejs",
       "reference/waterline/models/create.ejs",
       "reference/waterline/models/find.ejs",
       "reference/waterline/models/findOne.ejs",
-      "reference/waterline/models/destroy.ejs",
+      "reference/waterline/models/stream.ejs",
       "reference/waterline/models/findOrCreate.ejs",
-      "reference/waterline/models/query.ejs",
-      "reference/waterline/models/native.ejs",
-      "reference/waterline/models/stream.ejs"
+      "reference/waterline/models/update.ejs"
     ],
     "isParent": true
   },
@@ -1412,8 +1413,8 @@
     "children": [
       "reference/waterline/models/models.ejs",
       "reference/waterline/populated-values/populated-values.ejs",
-      "reference/waterline/records/records.ejs",
-      "reference/waterline/queries/queries.ejs"
+      "reference/waterline/queries/queries.ejs",
+      "reference/waterline/records/records.ejs"
     ],
     "isParent": true
   },
@@ -1490,14 +1491,14 @@
       "reference/websockets/resourceful-pubsub/message.ejs",
       "reference/websockets/resourceful-pubsub/publishAdd.ejs",
       "reference/websockets/resourceful-pubsub/publishCreate.ejs",
-      "reference/websockets/resourceful-pubsub/publishDestroy.ejs",
       "reference/websockets/resourceful-pubsub/publishUpdate.ejs",
-      "reference/websockets/resourceful-pubsub/unsubscribe.ejs",
-      "reference/websockets/resourceful-pubsub/subscribe.ejs",
+      "reference/websockets/resourceful-pubsub/publishDestroy.ejs",
       "reference/websockets/resourceful-pubsub/publishRemove.ejs",
+      "reference/websockets/resourceful-pubsub/subscribe.ejs",
+      "reference/websockets/resourceful-pubsub/watch.ejs",
       "reference/websockets/resourceful-pubsub/subscribers.ejs",
       "reference/websockets/resourceful-pubsub/unwatch.ejs",
-      "reference/websockets/resourceful-pubsub/watch.ejs"
+      "reference/websockets/resourceful-pubsub/unsubscribe.ejs"
     ],
     "isParent": true
   },
@@ -1563,8 +1564,8 @@
     "parent": "reference/websockets/sails.io.js/sails.io.js.ejs",
     "isChild": true,
     "children": [
-      "reference/websockets/sails.io.js/SailsSocket/properties.ejs",
-      "reference/websockets/sails.io.js/SailsSocket/methods.ejs"
+      "reference/websockets/sails.io.js/SailsSocket/methods.ejs",
+      "reference/websockets/sails.io.js/SailsSocket/properties.ejs"
     ],
     "isParent": true
   },
@@ -1637,14 +1638,14 @@
     "isChild": true,
     "children": [
       "reference/websockets/sails.io.js/io.sails.ejs",
-      "reference/websockets/sails.io.js/io.socket.on.ejs",
       "reference/websockets/sails.io.js/io.socket.ejs",
+      "reference/websockets/sails.io.js/io.socket.on.ejs",
       "reference/websockets/sails.io.js/io.socket.off.ejs",
-      "reference/websockets/sails.io.js/socket.delete.ejs",
+      "reference/websockets/sails.io.js/socket.post.ejs",
       "reference/websockets/sails.io.js/socket.get.ejs",
+      "reference/websockets/sails.io.js/socket.delete.ejs",
       "reference/websockets/sails.io.js/socket.put.ejs",
       "reference/websockets/sails.io.js/socket.request.ejs",
-      "reference/websockets/sails.io.js/socket.post.ejs",
       "reference/websockets/sails.io.js/SailsSocket/SailsSocket.ejs"
     ],
     "isParent": true
@@ -1741,18 +1742,18 @@
     "isChild": true,
     "children": [
       "reference/websockets/sails.sockets/sails.sockets.addRoomMembersToRooms.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.leaveAll.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.blast.ejs",
       "reference/websockets/sails.sockets/sails.sockets.broadcast.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.blast.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.emit.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.join.ejs",
       "reference/websockets/sails.sockets/sails.sockets.getid.ejs",
       "reference/websockets/sails.sockets/sails.sockets.id.ejs",
       "reference/websockets/sails.sockets/sails.sockets.leave.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.emit.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.join.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.removeRoomMembersFromRoom.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.rooms.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.leaveAll.ejs",
       "reference/websockets/sails.sockets/sails.sockets.subscribers.ejs",
-      "reference/websockets/sails.sockets/sails.sockets.socketRooms.ejs"
+      "reference/websockets/sails.sockets/sails.sockets.removeRoomMembersFromRoom.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.socketRooms.ejs",
+      "reference/websockets/sails.sockets/sails.sockets.rooms.ejs"
     ],
     "isParent": true
   },

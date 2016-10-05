@@ -64,7 +64,7 @@ Copies all directories and files from the .tmp/public directory into a www direc
 </blockquote>
 <h5 id="uglify" permalink="uglify">uglify</h5>
 <blockquote>
-<p>Minifies client-side javascript assets.</p>
+<p>Minifies client-side javascript assets.  Note that by default, this task will &quot;mangle&quot; all of your function and variable names (either by changing them to a much shorter name, or stripping them entirely).  This is usually desirable as it makes your code significantly smaller, but in some cases can lead to unexpected results (particularly when you expect an object&apos;s constructor to have a certain name).  To turn off or modify this behavior, <a href="https://github.com/gruntjs/grunt-contrib-uglify#no-mangling" target="_blank">use the <code>mangle</code> option</a> when setting up this task.</p>
 <p><a href="https://github.com/gruntjs/grunt-contrib-uglify" target="_blank">usage docs</a></p>
 </blockquote>
 <h5 id="watch" permalink="watch">watch</h5>

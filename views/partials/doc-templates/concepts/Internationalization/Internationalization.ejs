@@ -1,13 +1,6 @@
 <h1 id="internationalization">Internationalization</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>If your app will touch people or systems from all over the world, internationalization and localization (i18n) may be an important part of your international strategy.  Sails provides built-in support for detecting user language preferences and translating static words/sentences thanks to <a href="https://github.com/mashpie/i18n-node" target="_blank">i18n-node</a>. (<a href="https://www.npmjs.org/package/i18n" target="_blank">npm</a>).</p>
-<!--
-  Potentially cover this:
-  *(but it might be obvious and not useful/necessary to include, not sure- could also be more confusing than helpful)*
-Note that this built-in support is for **dynamically-rendered** (but otherwise **static**) content.  You can only use it in responses which are pre-processed on the server.  In other words, you can use these translations in your views, controller actions, and policies, but stuff in your assets folder.)
-
-we do not recommend translating strings in the front-end of your application (e.g. the browser or an iOS app) for a variety of reasons, the most obvious being SEO, but also fragmentation. You can of course still do so- just don't use this built-in support from the i18n hook.
--->
 <h3 id="usage" permalink="usage">Usage</h3>
 <p>In a view:</p>
 <pre><code data-language="ejs">&lt;h1&gt; &lt;%= __(&apos;Hello&apos;) %&gt; &lt;/h1&gt;
@@ -26,7 +19,9 @@ req.__(&apos;Hello {{name}}&apos;, { name: &apos;Marcus&apos; }); // =&gt; Hola 
 });
 // =&gt; &apos;Hola!&apos;
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="additional-options" permalink="additional-options">Additional Options</h3>
+<h3 id="locales" permalink="locales">Locales</h3>
+<p>See <a href="http://sailsjs.org/documentation/concepts/internationalization/locales" target="_blank"><strong>Concepts &gt; Internationalization &gt; Locales</strong></a>.</p>
+<h3 id="additional-options" permalink="additional-options">Additional options</h3>
 <p>Settings for localization/internationalization may be configured in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.i18n.html" target="_blank"><code>sails.config.i18n</code></a>.  The most common reason you&apos;ll need to modify these settings is to edit the list of your app&apos;s supported locales and/or the location of your translation stringfiles:</p>
 <pre><code data-language="javascript">// Which locales are supported?
 locales: [&apos;en&apos;, &apos;es&apos;],
@@ -34,10 +29,12 @@ locales: [&apos;en&apos;, &apos;es&apos;],
 // Where are your locale translations located?
 localesDirectory: &apos;/config/locales&apos;
 </code></pre><!-- __LANG=%%__ -->
-<h3 id="disabling-or-customizating-sails-default-internationalization-support" permalink="disabling-or-customizating-sails-default-internationalization-support">Disabling or customizating Sails&apos; default internationalization support</h3>
+<h3 id="disabling-or-customizing-sails-default-internationalization-support" permalink="disabling-or-customizing-sails-default-internationalization-support">Disabling or customizing Sails&apos; default internationalization support</h3>
 <p>Of course you can always <code>require()</code> any Node modules you like, anywhere in your project, and use any internationalization strategy you want.</p>
 <p>But worth noting is that since Sails implements <a href="https://github.com/mashpie/i18n-node" target="_blank">node-i18n</a> integration in the <a href="http://sailsjs.org/documentation/concepts/Internationalization" target="_blank">i18n hook</a>, you can completely disable or override it using the <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>loadHooks</code></a> and/or <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>hooks</code></a> configuration options.</p>
-<h3 id="what-about-i18n-on-the-client-" permalink="what-about-i18n-on-the-client">What About i18n on the client?</h3>
+<h3 id="translating-dynamic-content" permalink="translating-dynamic-content">Translating dynamic content</h3>
+<p>See <a href="http://sailsjs.org/documentation/concepts/internationalization/translating-dynamic-content" target="_blank"><strong>Concepts &gt; Internationalization &gt; Translating dynamic content</strong></a>.</p>
+<h3 id="what-about-i18n-on-the-client-" permalink="what-about-i18n-on-the-client">What about i18n on the client?</h3>
 <p>The above technique works great out of the box for server-side views. But what about rich client apps that serve static HTML templates from a CDN or static host? (e.g. performance-obsessed SPAs or PhoneGap apps/Chrome extensions)</p>
 <p>There are <a href="http://stackoverflow.com/questions/9640630/javascript-i18n-internationalization-frameworks-libraries-for-client-side-use" target="_blank">lots of different options available</a> for client-side internationalization.  Like other client-side technologies, you should have no problem integrating any of them with Sails.</p>
 <blockquote>

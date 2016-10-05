@@ -22,12 +22,15 @@
 <p><strong>Note:</strong> When using a route with a wildcard, such as <code>&apos;/*&apos;</code>, be aware that this will also match requests to static assets (i.e. <code>/js/dependencies/sails.io.js</code>) and override them. To prevent this, consider using the <code>skipAssets</code> option <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=route-target-options" target="_blank">described below</a>.</p>
 </blockquote>
 <p>You can capture the parts of the address that are matched by wildcards into named parameters by using the <code>:paramName</code> wildcard syntax instead of the <code>*</code>:</p>
-<pre><code data-language="text">&apos;/user/foo/:name/bar/:age&apos;
+<pre><code data-language="text">&apos;/user/foo/bar/:name&apos;
 </code></pre><!-- __LANG=%%__ -->
-<p>Will match the same URLs as:</p>
-<pre><code data-language="text">&apos;/user/foo/*/bar/*&apos;
+<p>Will match <em>almost</em> the same URLs as:</p>
+<pre><code data-language="text">&apos;/user/foo/bar/*&apos;
 </code></pre><!-- __LANG=%%__ -->
-<p>but will provide the values of the wildcard portions of the route to the route handler as <code>req.param(&apos;name&apos;)</code> and <code>req.param(&apos;age&apos;)</code>, respectively.</p>
+<p>but will provide the value of the dynamic portions of the route URL to the route handler as parameter values.  In this case: <code>req.param(&apos;name&apos;)</code>.</p>
+<blockquote>
+<p>Note that the wildcard (<code>*</code>) syntax matches slashes, where the URL pattern variable (<code>:</code>) syntax does not.  So in the example above, given the route address <code>GET /user/foo/bar/*</code>, incoming requests with URLs like <code>/user/foo/bar/baz/bing/bong/bang</code> would match (whereas if you used the <code>:name</code> syntax, the same URL would not match.)</p>
+</blockquote>
 <h4 id="regular-expressions-in-addresses" permalink="regular-expressions-in-addresses">Regular expressions in addresses</h4>
 <p>In addition to the wildcard address syntax, you may also use Regular Expressions to define the URLs that a route should match.  The syntax for defining an address with a regular expression is:</p>
 <p><code>&quot;r|&lt;regular expression string&gt;|&lt;comma-delimited list of param names&gt;&quot;</code></p>
