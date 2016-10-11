@@ -26,22 +26,22 @@ module.exports.policies = {
   // (`true` allows public access)
   &apos;*&apos;: true,
 
-    // Here&apos;s an example of mapping some policies to run before
+  // Here&apos;s an example of mapping some policies to run before
   // a controller and its actions
-    // RabbitController: {
+  // RabbitController: {
 
-        // Apply the `false` policy as the default for all of RabbitController&apos;s actions
-        // (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-        // &apos;*&apos;: false,
+    // Apply the `false` policy as the default for all of RabbitController&apos;s actions
+    // (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
+    // &apos;*&apos;: false,
 
-        // For the action `nurture`, apply the &apos;isRabbitMother&apos; policy
-        // (this overrides `false` above)
-        // nurture    : &apos;isRabbitMother&apos;,
+    // For the action `nurture`, apply the &apos;isRabbitMother&apos; policy
+    // (this overrides `false` above)
+    // nurture  : &apos;isRabbitMother&apos;,
 
-        // Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-        // before letting any users feed our rabbits
-        // feed : [&apos;isNiceToAnimals&apos;, &apos;hasRabbitFood&apos;]
-    // }
+    // Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
+    // before letting any users feed our rabbits
+    // feed : [&apos;isNiceToAnimals&apos;, &apos;hasRabbitFood&apos;]
+  // }
 };
 </code></pre><!-- __LANG=%%__ -->
 </docmeta>

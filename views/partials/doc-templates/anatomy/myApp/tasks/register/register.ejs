@@ -1,7 +1,10 @@
-<h1 id="register">register</h1>
+<h1 id="tasks-register-">tasks/register/</h1>
 <h3 id="purpose" permalink="purpose">Purpose</h3>
-<p>Halp!  Make this document better!!</p>
-<p>To run a custom task list, create a file in this directory and set NODE_ENV to match this file name.  For example, if NODE_ENV is QA, sails will run tasks/register/QA.js if it exists.</p>
+<p>This folder contains the Grunt tasks that Sails runs by default.</p>
+<p>For more information, see <a href="http://sailsjs.com/documentation/concepts/assets/task-automation#?task-triggers" target="_blank">Assets &gt; Task Automation &gt; Task Triggers</a>.</p>
+<blockquote>
+<p>To run a custom task list, create a file in this directory and set <a href="http://sailsjs.org/documentation/reference/configuration/sails-config#?sailsconfigenvironment" target="_blank"><code>sails.config.environment</code></a> to match this file name.  For example, if the Sails <code>environment</code> config is set to &quot;qa&quot;, then when you lift, instead of <code>tasks/register/default.js</code> or <code>tasks/register/prod.js</code>, Sails will <em>instead</em> run <code>tasks/register/qa.js</code>. (If it does not exist, then <code>default.js</code> will be run instead.)</p>
+</blockquote>
 <docmeta name="displayName" value="register">
 
 </docmeta>

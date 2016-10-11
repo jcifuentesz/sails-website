@@ -1,54 +1,87 @@
 <h1 id="waterline-query-language">Waterline Query Language</h1>
-<p>The Waterline Query language is an object-based criteria used to retrieve the records from any of the supported database adapters. This means that you can use the same query on MySQL as you do on Redis or MongoDb. This allows you to change your database without changing your code.</p>
+<p>The Waterline Query language is an object-based syntax used to retrieve the records from any supported database.  Under the covers, Waterline uses the database adapter(s) installed in your project to translates this language into native queries, and then to send those queries to the appropriate database.  This means that you can use the same query with MySQL as you do with Redis, or MongoDb. And it allows you to change your database with minimal (if any) changes to your application code.</p>
 <blockquote>
-<p>All queries inside of Waterline are case insensitive. This allows for easier querying but makes indexing strings tough. This is something to be aware of if you are indexing and searching on string fields.</p>
+<p>All queries inside of Waterline are case-insensitive. While this allows for more consistent querying across databases, depending on the database you&apos;re using, it can make indexing strings tough.  This is something to be aware of if you plan to create indexes in your database to optimize the performance of searching on string fields.</p>
 </blockquote>
 <h3 id="query-language-basics" permalink="query-language-basics">Query Language Basics</h3>
 <p>The criteria objects are formed using one of four types of object keys. These are the top level
 keys used in a query object. It is loosely based on the criteria used in MongoDB with a few slight variations.</p>
-<p>Queries can be built using either a <code>where</code> key to specify attributes, which will allow you to also use query options such as <code>limit</code> and <code>skip</code> or if <code>where</code> is excluded the entire object will be treated as a <code>where</code> criteria.</p>
-<pre><code data-language="javascript">Model.find({ where: { name: &apos;foo&apos; }, skip: 20, limit: 10, sort: &apos;name DESC&apos; });
+<p>Queries can be built using either a <code>where</code> key to specify attributes, which will allow you to also use query options such as <code>limit</code> and <code>skip</code> or, if <code>where</code> is excluded, the entire object will be treated as a <code>where</code> criteria.</p>
+<pre><code data-language="javascript">Model.find({
+  name: &apos;mary&apos;
+}).exec(function (err, peopleNamedMary){
+
+});
+
 
 // OR
 
-Model.find({ name: &apos;foo&apos; })
+
+Model.find({
+  where: { name: &apos;mary&apos; },
+  skip: 20,
+  limit: 10,
+  sort: &apos;createdAt DESC&apos;
+}).exec(function(err, thirdPageOfRecentPeopleNamedMary){
+
+});
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="key-pairs" permalink="key-pairs">Key Pairs</h4>
 <p>A key pair can be used to search records for values matching exactly what is specified. This is the base of a criteria object where the key represents an attribute on a model and the value is a strict equality check of the records for matching values.</p>
-<pre><code data-language="javascript">Model.find({ name: &apos;walter&apos; })
+<pre><code data-language="javascript">Model.find({
+  name: &apos;lyra&apos;
+}).exec(function (err, peopleNamedLyra) {
+
+});
 </code></pre><!-- __LANG=%%__ -->
 <p>They can be used together to search multiple attributes.</p>
-<pre><code data-language="javascript">Model.find({ name: &apos;walter&apos;, state: &apos;new mexico&apos; })
+<pre><code data-language="javascript">Model.find({
+  name: &apos;walter&apos;,
+  state: &apos;new mexico&apos;
+}).exec(function (err, waltersFromNewMexico) {
+
+});
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="modified-pairs" permalink="modified-pairs">Modified Pairs</h4>
 <p>Modified pairs also have model attributes for keys but they also use any of the supported criteria modifiers to perform queries where a strict equality check wouldn&apos;t work.</p>
 <pre><code data-language="javascript">Model.find({
   name : {
-    &apos;contains&apos; : &apos;alt&apos;
+    &apos;contains&apos; : &apos;yra&apos;
   }
 })
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="in-pairs" permalink="in-pairs">In Pairs</h4>
-<p>IN queries work similarly to mysql &apos;in queries&apos;. Each element in the array is treated as &apos;or&apos;.</p>
+<p>Provide an array to find records whose value for this attribute exactly matches (case-insensitive) <em>any</em> of the specified search terms.</p>
+<blockquote>
+<p>This is more or less equivalent to &quot;IN&quot; queries in SQL, and the <code>$in</code> operator in MongoDB.</p>
+</blockquote>
 <pre><code data-language="javascript">Model.find({
-  name : [&apos;Walter&apos;, &apos;Skyler&apos;]
+  name : [&apos;walter&apos;, &apos;skyler&apos;]
+}).exec(function (err, waltersAndSkylers){
+
 });
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="not-in-pairs" permalink="notin-pairs">Not-In Pairs</h4>
-<p>Not-In queries work similar to <code>in</code> queries, except for the nested object criteria.</p>
+<p>Provide an array wrapped in a dictionary under a <code>!</code> key (like <code>{ &apos;!&apos;: [...] }</code>) to find records whose value for this attribute <em>ARE NOT</em> exact matches (case-insensitive) for any of the specified search terms.</p>
+<blockquote>
+<p>This is more or less equivalent to &quot;NOT IN&quot; queries in SQL, and the <code>$nin</code> operator in MongoDB.</p>
+</blockquote>
 <pre><code data-language="javascript">Model.find({
-  name: { &apos;!&apos; : [&apos;Walter&apos;, &apos;Skyler&apos;] }
+  name: { &apos;!&apos; : [&apos;walter&apos;, &apos;skyler&apos;] }
+}).exec(function (err, everyoneExceptWaltersAndSkylers){
+
 });
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="or-pairs" permalink="or-pairs">Or Pairs</h4>
-<p>Performing <code>OR</code> queries is done by using an array of query pairs. Results will be returned that
-match any of the criteria objects inside the array.</p>
+<p>Use the <code>or</code> modifier to match <em>any</em> of the nested rulesets you specify as an array of query pairs.  For records to match an <code>or</code> query, they must match at least one of the specified query pairs in the <code>or</code> array.</p>
 <pre><code data-language="javascript">Model.find({
   or : [
     { name: &apos;walter&apos; },
     { occupation: &apos;teacher&apos; }
   ]
-})
+}).exec(function(waltersAndTeachers){
+
+});
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="criteria-modifiers" permalink="criteria-modifiers">Criteria Modifiers</h3>
 <p>The following modifiers are available to use when building queries.</p>
@@ -81,38 +114,37 @@ match any of the criteria objects inside the array.</p>
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="-not-" permalink="-/-not">&apos;!&apos; / &apos;not&apos;</h4>
 <p>Searches for records where the value is not equal to the value specified.</p>
-<pre><code data-language="javascript">Model.find({ name: { &apos;!&apos;: &apos;foo&apos; }})
+<pre><code data-language="javascript">Model.find({
+  name: { &apos;!&apos;: &apos;foo&apos; }
+})
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="-contains-" permalink="contains">&apos;contains&apos;</h4>
+<p>Searches for records where the value for this attribute <em>contains</em> the given string. (Case insensitive.)</p>
+<pre><code data-language="javascript">Model.find({
+  subject: { contains: &apos;music&apos; }
+}).exec(function (err, musicCourses){
+
+});
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="-startswith-" permalink="startswith">&apos;startsWith&apos;</h4>
+<p>Searches for records where the value for this attribute <em>starts with</em> the given string. (Case insensitive.)</p>
+<pre><code data-language="javascript">Model.find({
+  subject: { startsWith: &apos;american&apos; }
+}).exec(function (err, coursesAboutAmerica){
+
+});
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="-endswith-" permalink="endswith">&apos;endsWith&apos;</h4>
+<p>Searches for records where the value for this attribute <em>ends with</em> the given string. (Case insensitive.)</p>
+<pre><code data-language="javascript">Model.find({
+  subject: { endsWith: &apos;history&apos; }
+}).exec(function (err, historyCourses) {
+
+})
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="-like-" permalink="like">&apos;like&apos;</h4>
 <p>Searches for records using pattern matching with the <code>%</code> sign. (Case insensitive.)</p>
 <pre><code data-language="javascript">Model.find({ food: { &apos;like&apos;: &apos;%beans&apos; }})
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="-contains-" permalink="contains">&apos;contains&apos;</h4>
-<p>A shorthand for pattern matching both sides of a string. Will return records where the value
-contains the string anywhere inside of it. (Case insensitive.)</p>
-<pre><code data-language="javascript">Model.find({ class: { &apos;contains&apos;: &apos;history&apos; }})
-
-// The same as
-
-Model.find({ class: { &apos;like&apos;: &apos;%history%&apos; }})
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="-startswith-" permalink="startswith">&apos;startsWith&apos;</h4>
-<p>A shorthand for pattern matching the right side of a string. Will return records where the value
-starts with the supplied string value. (Case insensitive.)</p>
-<pre><code data-language="javascript">Model.find({ class: { &apos;startsWith&apos;: &apos;american&apos; }})
-
-// The same as
-
-Model.find({ class: { &apos;like&apos;: &apos;american%&apos; }})
-</code></pre><!-- __LANG=%%__ -->
-<h4 id="-endswith-" permalink="endswith">&apos;endsWith&apos;</h4>
-<p>A shorthand for pattern matching the left side of a string. Will return records where the value
-ends with the supplied string value. (Case insensitive.)</p>
-<pre><code data-language="javascript">Model.find({ class: { &apos;endsWith&apos;: &apos;can&apos; }})
-
-// The same as
-
-Model.find({ class: { &apos;like&apos;: &apos;%can&apos; }})
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="-date-ranges-" permalink="date-ranges">&apos;Date Ranges&apos;</h4>
 <p>You can do date range queries using the comparison operators.</p>

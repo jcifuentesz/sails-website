@@ -1,6 +1,6 @@
 <h1 id="validations">Validations</h1>
 <p>Sails bundles support for automatic validations of your models&apos; attributes. Any time a record is updated, or a new record is created, the data for each attribute will be checked against all of your predefined validation rules. This provides a convenient failsafe to ensure that invalid entries don&apos;t make their way into your app&apos;s database(s). </p>
-<p>Except for <code>unique</code> (which is implemented as a database-level constraint; <a href="/unique">see &quot;Unique&quot;</a>), all validations below are implemented in JavaScript and run in the same Node.js server process as Sails.  Also keep in mind that, no matter what validations are used, an attribute must <em>always</em> specify one of the built in data types (&apos;string&apos;, &apos;integer&apos;, json&apos;, etc).</p>
+<p>Except for <code>unique</code> (which is implemented as a database-level constraint; <a href="http://sailsjs.org/documentation/concepts/models-and-orm/validations#?unique" target="_blank">see &quot;Unique&quot;</a>), all validations below are implemented in JavaScript and run in the same Node.js server process as Sails.  Also keep in mind that, no matter what validations are used, an attribute must <em>always</em> specify one of the built in data types (&apos;string&apos;, &apos;number&apos;, json&apos;, etc).</p>
 <pre><code data-language="javascript">// User
 module.exports = {
   attributes: {

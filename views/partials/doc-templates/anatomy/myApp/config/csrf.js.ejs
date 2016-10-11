@@ -9,12 +9,12 @@
 <h5 id="a-for-traditional-view-driven-web-apps-" permalink="a)-for-traditional-viewdriven-web-apps">A) For traditional view-driven web apps:</h5>
 <ul>
 <li>Fetching it from one of your views, where it may be accessed as a local variable, e.g.<pre><code data-language="html">&lt;form&gt;
- &lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
 &lt;/form&gt;
 </code></pre><!-- __LANG=%%__ -->
 </li>
 </ul>
-<h5 id="b-for-ajax-socket-heavy-and-or-single-page-apps-" permalink="b)----for-ajax/socketheavy-and/or-singlepage-apps">B)    For AJAX/Socket-heavy and/or single-page apps:</h5>
+<h5 id="b-for-ajax-socket-heavy-and-or-single-page-apps-" permalink="b)--for-ajax/socketheavy-and/or-singlepage-apps">B)  For AJAX/Socket-heavy and/or single-page apps:</h5>
 <ul>
 <li>Sending a GET request to the <code>/csrfToken</code> route, where it will be returned as JSON, e.g.<pre><code data-language="javascript">{ _csrf: &apos;ajg4JD(JGdajhLJALHDa&apos; }
 </code></pre><!-- __LANG=%%__ -->
@@ -47,17 +47,17 @@
  *
  * This token has a short-lived expiration timeline, and must be acquired by either:
  *
- * (a)        For traditional view-driven web apps:
- *            Fetching it from one of your views, where it may be accessed as
- *            a local variable, e.g.:
- *            &lt;form&gt;
- *                &lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
- *            &lt;/form&gt;
+ * (a)    For traditional view-driven web apps:
+ *      Fetching it from one of your views, where it may be accessed as
+ *      a local variable, e.g.:
+ *      &lt;form&gt;
+ *        &lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
+ *      &lt;/form&gt;
  *
- * or (b)    For AJAX/Socket-heavy and/or single-page apps:
- *            Sending a GET request to the `/csrfToken` route, where it will be returned
- *            as JSON, e.g.:
- *            { _csrf: &apos;ajg4JD(JGdajhLJALHDa&apos; }
+ * or (b)  For AJAX/Socket-heavy and/or single-page apps:
+ *      Sending a GET request to the `/csrfToken` route, where it will be returned
+ *      as JSON, e.g.:
+ *      { _csrf: &apos;ajg4JD(JGdajhLJALHDa&apos; }
  *
  *
  * Enabling this option requires managing the token in your front-end app.
