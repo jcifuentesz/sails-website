@@ -6,7 +6,7 @@
   .borderBox();
   background-color: @turquoise;
   .page-header-container {
-    .docs-container();
+    .container();
     h1 {
       color: @white;
       font-size: 2.7em;
@@ -242,6 +242,7 @@
 .docs_table() {
   border: 1px solid @borderLtGray;
   border-collapse: collapse;
+  margin-bottom: 25px;
   font-size: 14px;
   line-height: 22px;
 
@@ -359,34 +360,8 @@
       .docs_code();
     }
   }
-  .table-wrapper {
-    .borderBox();
-    overflow-x: auto;
-    margin-bottom: 25px;
-    table {
-      .docs_table();
-    }
-    ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
-    }
-    ::-webkit-scrollbar-button {
-      width: 10px;
-      height: 10px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: @ltTurquoise;
-      border: 1px solid @darkTurquoise;
-      border-radius: 50px;
-    }
-    ::-webkit-scrollbar-track {
-      background: @ltestGray ;
-      border: 0px none @ltestGray;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-corner {
-      background: transparent;
-    }
+  table {
+    .docs_table();
   }
 
 } //</.doc-page() mixin>
@@ -428,6 +403,30 @@
   .fadeAnimation();
 }
 
+//MOBILE STYLES:
+div.docs-github-message {
+  font-family: @mainFont;
+  display: none;
+  .container();
+  .clearfix();
+  padding: 125px 0 50px;
+  a {
+    display: block;
+    width: 70%;
+    margin: auto;
+    padding: 15px;
+    font-size: 18px;
+    background-color: @ltestGray;
+    text-align: center;
+    margin-bottom: 25px;
+    font-family: @headerFont;
+    color: @darkTurquoise;
+  }
+  p {
+    text-align: center;
+    font-family: @mainFont;
+  }
+}
 
 @media screen and (max-width: 500px) {
   .docs-main-nav {
@@ -445,5 +444,8 @@
     .main-container {
       display: block;
     }
+  }
+  div.docs-github-message {
+    display: block;
   }
 }

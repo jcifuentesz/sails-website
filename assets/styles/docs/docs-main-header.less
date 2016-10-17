@@ -8,11 +8,10 @@
   z-index: 95;
   .clearfix();
   .nav-container {
-    .docs-container();
+    .container();
     min-width: 1000px;
     .clearfix();
-    padding-top: 110px;
-    padding-bottom: 45px;
+    padding: 110px 0 45px;
     .nav-content {
       position: relative;
       .header-title {
@@ -52,27 +51,82 @@
       }
     }
   }
-  @media screen and (max-width: 1000px) {
+}
+
+@media screen and (max-width: 1000px) {
+  .docs-main-header {
     .nav-container {
       min-width: 300px;
-      // width: 100%;
-      // padding-left: 15px;
-      // padding-right: 15px;
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      // .header-title {
+      //   width: auto;
+      //   text-align: center;
+      //   float: none;
+      // }
+      // ul.docs-header-nav {
+      //   float: none;
+      //   margin-top: 10px;
+      //   a {
+      //     width: 25%;
+      //     text-align: center
+      //   }
+      // }
     }
-    //class to make the header skinny when we're scrolling
-    &.juice-fast {
-      .docs-main-header {
-        .nav-container {
-          padding: 85px 0 20px;
-        }
+  }
+  //class to make the header skinny when we're scrolling
+  &.juice-fast {
+    .docs-main-header {
+      .nav-container {
+        padding: 85px 0 20px;
       }
     }
   }
-  @media screen and (max-width: 500px) {
-    min-width: 0px;
-    display: none;
+}
+
+
+
+div.docs-github-message {
+  .container();
+  .clearfix();
+  display: none;
+  padding: 125px 0 50px;
+  img {
+    width: 60%;
+    margin: auto;
+  }
+  a {
+    display: block;
+    width: 70%;
+    margin: auto;
+    padding: 15px;
+    font-size: 1.3em;
+    background-color: @ltestGray;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  p {
     text-align: center;
   }
 }
 
+@media screen and (max-width: 500px) {
+  min-width: 0px;
+  .documentation-section-header, .documentation-section-content {
+    display: none;
+  }
+  div.documentation-header div.documentation-header-container {
+    text-align: center;
+    .header-title {
+      font-size: 2.3em;
+    }
+  }
+  .main-container {
+    display: none;
+  }
+  div.docs-github-message {
+    display: block;
+  }
+}
 
