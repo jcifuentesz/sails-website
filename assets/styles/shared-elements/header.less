@@ -13,7 +13,8 @@
   // position: relative;
 
   .nav-container {
-    .container();
+    .docs-container();
+    // .container();
     .clearfix();
     a {
       cursor: pointer;
@@ -21,7 +22,7 @@
   }
 
   .branding {
-    width: 265px;
+    width: 200px;
     float: left;
     cursor: pointer;
     .logo {
@@ -110,7 +111,7 @@
   }
 
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 801px) {
     @mobileNavWidth: 175px;
 
 
@@ -214,4 +215,11 @@
       background-color: @black;
     }
   }
+  // // Special styles for proper alignment on docs pages:
+  // &.docs-page-header {
+  //   .nav-container {
+  //     .docs-container();
+  //   }
+  // }
+
 }

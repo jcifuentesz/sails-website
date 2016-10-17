@@ -111,7 +111,22 @@ module.exports = {
       html = html.replace(/(href="\/documentation)([^"]*)\.html"/g, '$1$2"');
 
       // Add target=_blank to external links (e.g. http://google.com or https://chase.com)
-      html = html.replace(/(href="https?:\/\/([^"]+)")/g, '$1 target="_blank"');
+      html = html.replace(/(href="https?:\/\/([^"]+)")/g, function(match) {
+        // Check if this is an external link that is ALSO not a link to some page
+        // on `(*.)?sailsjs.com` or `(*.)?sailsjs.org`.
+        var isExternal = ! match.match(/^href=\"https?:\/\/([^\.]+\.)*sailsjs\.(org|com)/g);
+
+        // If it is NOT external, then leave it be.
+        if (!isExternal) {
+          return match;
+        }//--•
+
+        // Otherwise, it is external, so add target="_blank" and return that instead.
+        // This way, it'll open in a new tab.
+        var newHtmlAttrsSnippet = match.replace(/(href="https?:\/\/([^"]+)")/g, '$1 target="_blank"');
+
+        return newHtmlAttrsSnippet;
+      });
 
 
       // Add the appropriate `data-language` based on the temporary marker

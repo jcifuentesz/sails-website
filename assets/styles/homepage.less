@@ -13,68 +13,74 @@
     .banner-container {
       .borderBox();
       .container();
-      position: relative;
-      margin: auto;
-      padding: 220px 0 100px;
-      .squid, .light {
-        position: absolute;
-      }
-      .squid {
-        z-index: 5;
-        width: 750px;
-        height: auto;
-        bottom: 40px;
-        left: @bannerTextWidth - 70;
-      }
-      .light {
-        z-index: 10;
-        top: 0;
-        left: -10%;
-        width: 90%;
-      }
-
-      .tagline {
+      .banner-img {
+        .borderBox();
+        padding-top: 220px;
+        padding-bottom: 100px;
         position: relative;
-        z-index: 15;
-
-
-        h2 {
-          color: @ltBlue;
-          font: 46px @headerFont;
-          margin-bottom: 5px;
-          line-height: 100%;
-          position: relative;
-          width: @bannerTextWidth;
+        .squid, .light {
+          position: absolute;
+        }
+        .squid {
+          z-index: 5;
+          width: 750px;
+          height: auto;
+          bottom: 40px;
+          left: @bannerTextWidth - 70;
+        }
+        .light {
+          z-index: 10;
+          top: 0;
+          left: -10%;
+          width: 90%;
         }
 
-        h3 {
-          color: @taglineBlue;
-          font: 24px @headerFont;
-          font-weight: @light;
+        .tagline {
           position: relative;
-          width: @bannerTextWidth;
-        }
+          z-index: 15;
 
-        .button {
-          .borderBox();
-          .lgButton(@black, @white);
-          display: block;
-          width: 200px;
-          margin-top: 20px;
-          &:hover {
-            color: @turquoise;
-            .transition (all .25s);
+
+          h2 {
+            color: @ltBlue;
+            font: 46px @headerFont;
+            margin-bottom: 5px;
+            line-height: 100%;
+            position: relative;
+            width: @bannerTextWidth;
+          }
+
+          h3 {
+            color: @taglineBlue;
+            font: 24px @headerFont;
+            font-weight: @light;
+            position: relative;
+            width: @bannerTextWidth;
+          }
+
+          .button {
+            .borderBox();
+            .lgButton(@black, @white);
+            display: block;
+            width: 200px;
+            margin-top: 20px;
+            &:hover {
+              color: @turquoise;
+              .transition (all .25s);
+            }
           }
         }
       }
     }
     @media screen and (max-width: 1100px) {
       .banner-container {
-        padding: 180px 0px 100px;
-        .squid {
-          width: 600px;
-          bottom: 55px;
-          left: 320px;
+        .banner-img {
+          padding-top: 180px;
+          padding-bottom: 100px;
+          .squid {
+            width: 600px;
+            bottom: 55px;
+            left: 320px;
+          }
         }
       }
     }
@@ -82,32 +88,34 @@
       height: auto;
       padding-bottom: 25px;
       .banner-container {
-        padding-top: 110px;
-        padding-bottom: 70px;
-        background: url('/images/bkgd_seaweed.png') no-repeat 80% bottom;
-        background-size: 100%;
-        img.squid {
-          display: none;
-        }
-        img.light {
-          width: 120%;
-          left: -50%;
-        }
-        .tagline {
-          h2, h3 {
-            width: 100%;
-            text-align: center;
+        .banner-img {
+          padding-top: 110px;
+          padding-bottom: 70px;
+          background: url('/images/bkgd_seaweed.png') no-repeat 80% bottom;
+          background-size: 100%;
+          img.squid {
+            display: none;
           }
-          h2 {
-            font-size: 29px;
-            padding-bottom: 5px;
+          img.light {
+            width: 120%;
+            left: -50%;
           }
-          h3 {
-            font-size: 20px;
-            padding-bottom: 25px;
-          }
-          .button {
-            margin: 0 auto 35px;
+          .tagline {
+            h2, h3 {
+              width: 100%;
+              text-align: center;
+            }
+            h2 {
+              font-size: 29px;
+              padding-bottom: 5px;
+            }
+            h3 {
+              font-size: 20px;
+              padding-bottom: 25px;
+            }
+            .button {
+              margin: 0 auto 35px;
+            }
           }
         }
       }

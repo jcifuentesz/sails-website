@@ -10,6 +10,7 @@ div.support {
       width: 100%;
       padding: 95px 0 35px;
       position: relative;
+      .container();
       h5 {
         font-style: italic;
       }
@@ -86,11 +87,17 @@ div.support {
               font-size: 12px;
 
               .btn-icon {
+                .borderBox();
                 display: inline-block;
-                height: 14px;
+                height: 12px;
                 position: absolute;
                 right: 7px;
-                top: 5px;
+                top: 6px;
+                >img {
+                  .borderBox();
+                  width: 14px;
+                  height: auto;
+                }
               }
 
               &:hover {

@@ -31,7 +31,8 @@ module.exports = {
         "displayNameSlug": "foo-bar",
         "parentDisplayName": "idk",
         "version": "0.3.6",
-        "isDeprecated": false
+        "isDeprecated": false,
+        "isMethod": false
       }]
     }
   },
@@ -64,8 +65,13 @@ module.exports = {
         var deprecatedChildPages = _.remove(childrenData, function(pageData) {
           return pageData.data.isDeprecated;
         });
-        // Then re-add them at the end.
-        childrenData = childrenData.concat(deprecatedChildPages);
+        // Grab out the method pages
+        var methodChildPages = _.remove(childrenData, function(pageData) {
+          return pageData.data.pageType === 'method';
+        });
+        // Now re-add the method pages at the end,
+        // followed by the deprecated pages.
+        childrenData = childrenData.concat(methodChildPages).concat(deprecatedChildPages);
 
         // Now put it back the way it was.
         // (As an array of `fullPathAndFileName`s)
@@ -155,6 +161,8 @@ module.exports = {
 
       docPage.isDeprecated = docPage.data.isDeprecated;
 
+      docPage.isMethod = docPage.data.isMethod;
+
       var pathSections = docPage.path.split('/');
       var parentPathIndex = pathSections.length - 2;
       docPage.parentDisplayName = pathSections[parentPathIndex];
@@ -180,8 +188,13 @@ module.exports = {
     var deprecatedPages = _.remove(inputs.docPageMetadatas, function(pageData) {
       return pageData.data.isDeprecated;
     });
-    // Then re-add them at the end.
-    inputs.docPageMetadatas = inputs.docPageMetadatas.concat(deprecatedPages);
+    // Grab out the method pages
+    var methodPages = _.remove(inputs.docPageMetadatas, function(pageData) {
+      return pageData.data.pageType === 'method';
+    });
+    // Then re-add the method pages at the end,
+    // followed by the deprecated pages.
+    inputs.docPageMetadatas = inputs.docPageMetadatas.concat(methodPages).concat(deprecatedPages);
 
 
     return exits.success(inputs.docPageMetadatas);
