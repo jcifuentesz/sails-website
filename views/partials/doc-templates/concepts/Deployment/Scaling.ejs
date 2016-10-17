@@ -25,19 +25,19 @@ Load Balancer  &lt;--&gt;    Sails.js server    &lt;--&gt;    Socket.io message 
 </ul>
 </li>
 <li><strong>If your cluster is on a single server (for instance, using <a href="http://pm2.keymetrics.io/docs/usage/cluster-mode/" target="_blank">pm2 cluster mode</a>)</strong><ul>
-<li>To avoid file conflict issues due to Grunt tasks, always start your apps in <code>production</code> environment, and/or consider <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">turning Grunt off completely</a>.  See <a href="https://github.com/balderdashy/sails/issues/3577#issuecomment-184786535" target="_blank">here</a> for more details on Grunt issues in single-server clusters</li>
-<li>Be careful with <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap" target="_blank"><code>config/bootstrap.js</code> code</a> that persists data in a database, to avoid conflicts when the bootstrap runs multiple times (once per node in the cluster)</li>
+<li>To avoid file conflict issues due to Grunt tasks, always start your apps in <code>production</code> environment, and/or consider <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt">turning Grunt off completely</a>.  See <a href="https://github.com/balderdashy/sails/issues/3577#issuecomment-184786535" target="_blank">here</a> for more details on Grunt issues in single-server clusters</li>
+<li>Be careful with <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap"><code>config/bootstrap.js</code> code</a> that persists data in a database, to avoid conflicts when the bootstrap runs multiple times (once per node in the cluster)</li>
 </ul>
 </li>
 </ul>
 <h3 id="deploying-a-node-sails-app-to-a-paas" permalink="deploying-a-node/sails-app-to-a-paas">Deploying a Node/Sails app to a PaaS</h3>
-<p>Deploying your app to a PaaS like Heroku or Modulus is dead simple. Depending on your situation, there may still be a few devils in the details, but Node support with hosting providers has gotten <em>really good</em> over the last couple of years.  Take a look at <a href="http://sailsjs.org/documentation/concepts/deployment/Hosting" target="_blank">Hosting</a> for more platform-specific information.</p>
+<p>Deploying your app to a PaaS like Heroku or Modulus is dead simple. Depending on your situation, there may still be a few devils in the details, but Node support with hosting providers has gotten <em>really good</em> over the last couple of years.  Take a look at <a href="http://sailsjs.org/documentation/concepts/deployment/Hosting">Hosting</a> for more platform-specific information.</p>
 <h3 id="deploying-your-own-cluster" permalink="deploying-your-own-cluster">Deploying your own cluster</h3>
 <ul>
 <li>Deploy multiple instances (aka servers running a copy of your app) behind a <a href="https://en.wikipedia.org/wiki/Load_balancing_(computing" target="_blank">load balancer</a>) (e.g. nginx)<ul>
 <li>Configure your load balancer to terminate SSL requests</li>
 <li>But remember that you won&apos;t need to use the SSL configuration in Sails-- the traffic will already be decrypted by the time it reaches Sails.</li>
-<li>Lift your app on each instance using a daemon like <code>forever</code> or <code>pm2</code> (see <a href="http://sailsjs.org/documentation/concepts/deployment" target="_blank">http://sailsjs.org/documentation/concepts/deployment</a> for more about daemonology)</li>
+<li>Lift your app on each instance using a daemon like <code>forever</code> or <code>pm2</code> (see <a href="http://sailsjs.org/documentation/concepts/deployment">http://sailsjs.org/documentation/concepts/deployment</a> for more about daemonology)</li>
 </ul>
 </li>
 </ul>

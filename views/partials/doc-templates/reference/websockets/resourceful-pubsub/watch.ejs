@@ -1,5 +1,5 @@
 <h1 id="-watch-">.watch()</h1>
-<p>Enroll the requesting client socket in the &quot;class room&quot; for this model, causing it to receive broadcasts every time <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-create" target="_blank"><code>publishCreate()</code></a> is called on this model.  In addition, this client socket will be subscribed <em>every new record</em> it hears about automatically.</p>
+<p>Enroll the requesting client socket in the &quot;class room&quot; for this model, causing it to receive broadcasts every time <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-create"><code>publishCreate()</code></a> is called on this model.  In addition, this client socket will be subscribed <em>every new record</em> it hears about automatically.</p>
 <pre><code data-language="javascript">Something.watch(req);
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="usage" permalink="usage">Usage</h3>
@@ -54,9 +54,9 @@
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>Much like the default blueprint API, <code>.watch()</code> should be used with care.  Client sockets allowed to <code>.watch()</code> will receive broadcasted messages <em>every time <code>publishCreate()</code> is called</em>, and then be subscribed to future notifications (like <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-update" target="_blank"><code>publishUpdate()</code></a>) about those new records.  This method is a great fit for use cases where access control is &quot;all or nothing&quot;-- e.g. something like an admin dashboard, or a publicly-available endpoint.</li>
+<li>Much like the default blueprint API, <code>.watch()</code> should be used with care.  Client sockets allowed to <code>.watch()</code> will receive broadcasted messages <em>every time <code>publishCreate()</code> is called</em>, and then be subscribed to future notifications (like <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-update"><code>publishUpdate()</code></a>) about those new records.  This method is a great fit for use cases where access control is &quot;all or nothing&quot;-- e.g. something like an admin dashboard, or a publicly-available endpoint.</li>
 <li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to refer to the requesting socket.  The provided <code>req</code> must be from a socket request, not just any old HTTP request.</li>
-<li><code>watch()</code> will only work when the request is made over a socket connection (e.g. using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get" target="_blank"><code>io.socket.get()</code></a>), <em>not</em> over HTTP (e.g. using <a href="https://api.jquery.com/jquery.get/" target="_blank"><code>jQuery.get()</code></a>).</li>
+<li><code>watch()</code> will only work when the request is made over a socket connection (e.g. using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get"><code>io.socket.get()</code></a>), <em>not</em> over HTTP (e.g. using <a href="https://api.jquery.com/jquery.get/" target="_blank"><code>jQuery.get()</code></a>).</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value=".watch()"></docmeta></p>

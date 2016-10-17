@@ -23,7 +23,7 @@
 <td>1</td>
 <td style="text-align:left">roomNames</td>
 <td><bubble type="string" colors="true"></bubble>, <bubble type="Array" colors="true"></bubble></td>
-<td style="text-align:left">The name of one or more rooms to broadcast a message in (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.join.html" target="_blank">sails.sockets.join</a>).  To broadcast to individual sockets, use their IDs as room names.</td>
+<td style="text-align:left">The name of one or more rooms to broadcast a message in (see <a href="http://sailsjs.org/documentation/reference/websockets/sails.sockets/sails.sockets.join.html">sails.sockets.join</a>).  To broadcast to individual sockets, use their IDs as room names.</td>
 </tr>
 <tr>
 <td>2</td>
@@ -60,7 +60,7 @@
 <blockquote>
 <ul>
 <li><code>sails.sockets.broadcast()</code> is more or less equivalent to the functionality of <code>.emit()</code> and <code>.broadcast()</code> in Socket.io.</li>
-<li>Every socket is automatically subscribed to a room with its ID as the name, allowing direct messaging to a socket via <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/sails-sockets-broadcast" target="_blank"><code>sails.sockets.broadcast()</code></a></li>
+<li>Every socket is automatically subscribed to a room with its ID as the name, allowing direct messaging to a socket via <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/sails-sockets-broadcast"><code>sails.sockets.broadcast()</code></a></li>
 <li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> as <code>socketToOmit</code>. For the requesting socket to be omitted, the request (<code>req</code>) must be from a socket request, not just any old HTTP request.</li>
 <li><code>data</code> must be JSON-serializable; i.e. it&apos;s best to use plain dictionaries/arrays, and make sure your data does not contain any circular references. If you aren&apos;t sure, build your broadcast <code>data</code> manually, or call something like <a href="https://github.com/node-machine/rttc/blob/master/README.md#dehydratevalue-allownullfalse-dontstringifyfunctionsfalse" target="_blank"><code>rttc.dehydrate(data,true,true)</code></a> on it first.</li>
 </ul>

@@ -50,9 +50,9 @@ in the way you might be used to from Express or Connect.</p>
 </tbody>
 </table>
 <h3 id="production-config" permalink="production-config">Production Config</h3>
-<p>In production, you should configure a session store that can be <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">shared across multiple servers</a>.  To do so, you will need to set <code>sails.config.session.adapter</code>, set up your session database, and then add any other configuration specific to the Connect session adapter you are using.</p>
+<p>In production, you should configure a session store that can be <a href="http://sailsjs.org/documentation/concepts/deployment/scaling">shared across multiple servers</a>.  To do so, you will need to set <code>sails.config.session.adapter</code>, set up your session database, and then add any other configuration specific to the Connect session adapter you are using.</p>
 <h5 id="configuring-redis-as-your-session-store" permalink="configuring-redis-as-your-session-store">Configuring Redis as Your Session Store</h5>
-<p>The most popular session store for production Sails applications is Redis.  It works great as a session database since it is inherently good at ephemeral storage, but Redis&apos; popularity probably has more to do with the fact that, if you are using sockets and plan to scale your app to multiple servers, you will <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">need a Redis instance</a> anyway.</p>
+<p>The most popular session store for production Sails applications is Redis.  It works great as a session database since it is inherently good at ephemeral storage, but Redis&apos; popularity probably has more to do with the fact that, if you are using sockets and plan to scale your app to multiple servers, you will <a href="http://sailsjs.org/documentation/concepts/deployment/scaling">need a Redis instance</a> anyway.</p>
 <p>The easiest way to set up Redis as your app&apos;s shared session store is to uncomment the following line in <code>config/session.js</code>:</p>
 <pre><code data-language="javascript">adapter: &apos;connect-redis&apos;,
 </code></pre><!-- __LANG=%%__ -->
@@ -127,10 +127,10 @@ in the way you might be used to from Express or Connect.</p>
 </ul>
 </blockquote>
 <h3 id="disabling-sessions" permalink="disabling-sessions">Disabling sessions</h3>
-<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook by changing your <code>.sailsrc</code> file.  The process for disabling <code>session</code> is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">disabling the Grunt hook</a> (just type <code>session: false</code> instead of <code>grunt: false</code>).</p>
+<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook by changing your <code>.sailsrc</code> file.  The process for disabling <code>session</code> is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt">disabling the Grunt hook</a> (just type <code>session: false</code> instead of <code>grunt: false</code>).</p>
 <blockquote>
 <p><strong>Note:</strong>
-If the session hook is disabled, the session secret configured as <code>sails.config.session.secret</code> will still be used to support signed cookies, if relevant.  If the session hook is disabled <em>AND</em> no session secret configuration exists for your app (e.g. because you deleted <code>config/session.js</code>), then signed cookies will not be usable in your application.  To make more advanced changes to this behavior, you can customize any of your app&apos;s HTTP middleware manually using <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-http" target="_blank"><code>sails.config.http</code></a>.</p>
+If the session hook is disabled, the session secret configured as <code>sails.config.session.secret</code> will still be used to support signed cookies, if relevant.  If the session hook is disabled <em>AND</em> no session secret configuration exists for your app (e.g. because you deleted <code>config/session.js</code>), then signed cookies will not be usable in your application.  To make more advanced changes to this behavior, you can customize any of your app&apos;s HTTP middleware manually using <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-http"><code>sails.config.http</code></a>.</p>
 </blockquote>
 <p><docmeta name="displayName" value="sails.config.session"></docmeta></p>
 <docmeta name="pageType" value="property">

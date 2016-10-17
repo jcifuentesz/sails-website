@@ -3,7 +3,7 @@
 <pre><code data-language="text">GET /:model/:id
 </code></pre><!-- __LANG=%%__ -->
 <p>The <strong>findOne()</strong> blueprint action returns a single record from the model (given by <code>:model</code>) as a JSON object. The specified <code>id</code> is the <a href="http://en.wikipedia.org/wiki/Unique_key" target="_blank">primary key</a> of the desired record.</p>
-<p>If the action was triggered via a socket request, the requesting socket will be &quot;subscribed&quot; to the returned record. If the record is subsequently updated or deleted, a message will be sent to that socket&apos;s client informing them of the change. See the docs for <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/subscribe.html" target="_blank">.subscribe()</a> for more info.</p>
+<p>If the action was triggered via a socket request, the requesting socket will be &quot;subscribed&quot; to the returned record. If the record is subsequently updated or deleted, a message will be sent to that socket&apos;s client informing them of the change. See the docs for <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub/subscribe.html">.subscribe()</a> for more info.</p>
 <h3 id="parameters" permalink="parameters">Parameters</h3>
 <table>
 <thead>
@@ -17,7 +17,7 @@
 <tr>
 <td> model</td>
 <td><bubble type="string" colors="true"></bubble></td>
-<td style="text-align:left">The <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity" target="_blank">identity</a> of the containing model.<br><br>e.g. <code>&apos;purchase&apos;</code> (in <code>/purchase/7</code>)</td>
+<td style="text-align:left">The <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity">identity</a> of the containing model.<br><br>e.g. <code>&apos;purchase&apos;</code> (in <code>/purchase/7</code>)</td>
 </tr>
 <tr>
 <td> id</td>

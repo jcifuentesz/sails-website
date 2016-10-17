@@ -22,12 +22,12 @@
 <td style="text-align:left"><code>transports</code></td>
 <td><bubble type="array" colors="true"></bubble></td>
 <td><code>[&apos;polling&apos;, &apos;websocket&apos;]</code></td>
-<td style="text-align:left">An array of allowed transport strategies.  This should <em>always</em> match your configuration in your socket client (i.e. <code>sails.io.js</code>). For help, see <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client#?configuring-the-sailsiojs-library" target="_blank">Configuring the <code>sails.io.js</code> Library</a>.</td>
+<td style="text-align:left">An array of allowed transport strategies.  This should <em>always</em> match your configuration in your socket client (i.e. <code>sails.io.js</code>). For help, see <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client#?configuring-the-sailsiojs-library">Configuring the <code>sails.io.js</code> Library</a>.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="redis-configuration" permalink="redis-configuration">Redis Configuration</h3>
-<p> If you are configuring your Sails app for production and plan to <a href="http://sailsjs.org/documentation/concepts/deployment/scaling" target="_blank">scale to more than one server</a>, then you should set <code>sails.config.sockets.adapter</code> to <code>&apos;socket.io-redis&apos;</code>, set up your redis instance, and then use the following config to point at it from your app:</p>
+<p> If you are configuring your Sails app for production and plan to <a href="http://sailsjs.org/documentation/concepts/deployment/scaling">scale to more than one server</a>, then you should set <code>sails.config.sockets.adapter</code> to <code>&apos;socket.io-redis&apos;</code>, set up your redis instance, and then use the following config to point at it from your app:</p>
 <table>
 <thead>
 <tr>
@@ -104,7 +104,7 @@
 <td style="text-align:left"><code>maxBufferSize</code></td>
 <td style="text-align:center"><bubble type="number" colors="true"></bubble></td>
 <td style="text-align:center"><code>10E7</code></td>
-<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It reflects the maximum number of bytes or characters in a message when polling before automatically closing the socket (to avoid <a href="http://sailsjs.org/documentation/concepts/Security/DDOS.html" target="_blank">DoS</a>).</td>
+<td style="text-align:left">This is a raw configuration option exposed from Engine.io.  It reflects the maximum number of bytes or characters in a message when polling before automatically closing the socket (to avoid <a href="http://sailsjs.org/documentation/concepts/Security/DDOS.html">DoS</a>).</td>
 </tr>
 <tr>
 <td style="text-align:left"><code>path</code></td>

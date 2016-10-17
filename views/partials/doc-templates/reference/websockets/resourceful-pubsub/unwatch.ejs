@@ -1,5 +1,5 @@
 <h1 id="-unwatch-">.unwatch()</h1>
-<p>Unenroll the requesting client socket from this model&apos;s &quot;class room&quot; for this model, meaning it will no longer receive broadcasts every time <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-create" target="_blank"><code>publishCreate()</code></a> is called on this model, and also no longer be subscribed to those new records.</p>
+<p>Unenroll the requesting client socket from this model&apos;s &quot;class room&quot; for this model, meaning it will no longer receive broadcasts every time <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish-create"><code>publishCreate()</code></a> is called on this model, and also no longer be subscribed to those new records.</p>
 <pre><code data-language="javascript">Something.unwatch(req);
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="usage" permalink="usage">Usage</h3>
@@ -22,7 +22,7 @@
 </tbody>
 </table>
 <blockquote>
-<p>See <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/watch" target="_blank"><code>.watch()</code></a> for more information.</p>
+<p>See <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/watch"><code>.watch()</code></a> for more information.</p>
 </blockquote>
 <h3 id="example" permalink="example">Example</h3>
 <p>Let&apos;s say we have a mobile app or single-page web app where new public pictures of cute animals are displayd in real time when you are viewing the dashboard.  Since there is no page refresh, the client-side socket remains connected; so when you view your user settings, as an optimization our app might hit a special endpoint that uses <code>.unwatch()</code> to temporarily stop receiving new animal pictures:</p>
@@ -41,7 +41,7 @@ return res.ok();
 <blockquote>
 <ul>
 <li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to refer to the requesting socket.  The provided <code>req</code> must be from a socket request, not just any old HTTP request.</li>
-<li><code>unwatch()</code> will only work when the request is made over a socket connection (e.g. using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get" target="_blank"><code>io.socket.get()</code></a>), <em>not</em> over HTTP (e.g. using <a href="https://api.jquery.com/jquery.get/" target="_blank"><code>jQuery.get()</code></a>).</li>
+<li><code>unwatch()</code> will only work when the request is made over a socket connection (e.g. using <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get"><code>io.socket.get()</code></a>), <em>not</em> over HTTP (e.g. using <a href="https://api.jquery.com/jquery.get/" target="_blank"><code>jQuery.get()</code></a>).</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value=".unwatch()"></docmeta></p>

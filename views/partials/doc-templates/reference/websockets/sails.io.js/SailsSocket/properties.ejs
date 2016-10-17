@@ -1,7 +1,7 @@
 <h1 id="sailssocket-properties">SailsSocket Properties</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
-<p>This page describes the properties available on each <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket" target="_blank">SailsSocket instance</a>.  These properties are set in the initial call to <code>io.sails.connect</code> which creates the SailsSocket, and cannot be changed while the socket is connected (with the exception of <code>headers</code>).</p>
-<p>If the socket becomes disconnected (either involuntarily or as a result of a call to <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/methods#?disconnect" target="_blank"><code>.disconnect</code></a>), the properties can be changed until the socket connects again.  This allows you to connect the same SailsSocket instance (keeping its bound events and queued requests intact) to a different server if necessary.</p>
+<p>This page describes the properties available on each <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket">SailsSocket instance</a>.  These properties are set in the initial call to <code>io.sails.connect</code> which creates the SailsSocket, and cannot be changed while the socket is connected (with the exception of <code>headers</code>).</p>
+<p>If the socket becomes disconnected (either involuntarily or as a result of a call to <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/methods#?disconnect"><code>.disconnect</code></a>), the properties can be changed until the socket connects again.  This allows you to connect the same SailsSocket instance (keeping its bound events and queued requests intact) to a different server if necessary.</p>
 <h3 id="common-properties" permalink="common-properties">Common properties</h3>
 <table>
 <thead>
@@ -16,20 +16,20 @@
 <tr>
 <td> <code>url</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.url</code></a></td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.url</code></a></td>
 <td style="text-align:center">The URL that the socket is connected to, or will attempt to connect to.</td>
 </tr>
 <tr>
 <td> <code>transports</code></td>
 <td><bubble type="array" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.transports</code></a></td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.transports</code></a></td>
 <td style="text-align:center">The transports that the socket will attempt to connect using.  Transports will be tried in order, with upgrades allowed: that is, if you list both &quot;polling&quot; and &quot;websocket&quot;, then after establishing a long-polling connection the server will attempt to upgrade it to a websocket connection.  This setting should match the value of <code>sails.config.sockets.transports</code> in your Sails app.</td>
 </tr>
 <tr>
 <td><code>headers</code></td>
 <td><bubble type="dictionary" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.headers</code></a></td>
-<td style="text-align:center">Dictionary of headers to be sent by default with every request from this socket.  Can be overridden via the <code>headers</code> option in <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-request" target="_blank"><code>.request()</code></a>.</td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.headers</code></a></td>
+<td style="text-align:center">Dictionary of headers to be sent by default with every request from this socket.  Can be overridden via the <code>headers</code> option in <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-request"><code>.request()</code></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -47,19 +47,19 @@
 <tr>
 <td> <code>query</code></td>
 <td><bubble type="string" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.query</code></a></td>
-<td style="text-align:center">Query string to use with the initial connection to the server.  In server code, this can be accessed via <code>req.socket.handshake.query</code> in controller actions or <code>socket.handshake.query</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets" target="_blank">socket lifecycle callbacks</a>.  Note that information about the sails.io.js SDK version will be tacked onto whatever query string you specify.</td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.query</code></a></td>
+<td style="text-align:center">Query string to use with the initial connection to the server.  In server code, this can be accessed via <code>req.socket.handshake.query</code> in controller actions or <code>socket.handshake.query</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets">socket lifecycle callbacks</a>.  Note that information about the sails.io.js SDK version will be tacked onto whatever query string you specify.</td>
 </tr>
 <tr>
 <td> <code>initialConnectionHeaders</code></td>
 <td><bubble type="dictionary" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.initialConnectionHeaders</code></a></td>
-<td style="text-align:center"><em>Node.js only--not available in browser.</em> Dictionary of headers to be sent with the initial connection to the server.  In server code, these can be accessed via <code>req.socket.handshake.headers</code> in controller actions or <code>socket.handshake.headers</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets" target="_blank">socket lifecycle callbacks</a>.  This is useful for (for example) sending a <code>cookie</code> header with the initial handshake, allowing a socket to connect to a previously-established Sails session.</td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.initialConnectionHeaders</code></a></td>
+<td style="text-align:center"><em>Node.js only--not available in browser.</em> Dictionary of headers to be sent with the initial connection to the server.  In server code, these can be accessed via <code>req.socket.handshake.headers</code> in controller actions or <code>socket.handshake.headers</code> in <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-sockets">socket lifecycle callbacks</a>.  This is useful for (for example) sending a <code>cookie</code> header with the initial handshake, allowing a socket to connect to a previously-established Sails session.</td>
 </tr>
 <tr>
 <td> <code>useCORSRouteToGetCookie</code></td>
 <td><bubble type="boolean" colors="true"></bubble> -or- <bubble type="string" colors="true"></bubble></td>
-<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults" target="_blank"><code>io.sails.useCORSRouteToGetCookie</code></a></td>
+<td>Value of <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/sails-socket/properties#?iosails-defaults"><code>io.sails.useCORSRouteToGetCookie</code></a></td>
 <td style="text-align:center">For cross-origin socket connections, use this property to choose a route to send an initial JSONP request (in browser environments) or HTTP request (in Node.js environments) in order to retrieve a cookie, so that a session can be established.  The route should return the string <code>_sailsIoJSConnect()</code>, which will allow the connection to continue.  If <code>useCORSRouteToGetCookie</code> is <code>true</code>, the default <code>/__getcookie</code> route on the Sails server will be used.  If it is <code>false</code>, no attempt will be made to contact the remote server before continuing the socket connection.</td>
 </tr>
 </tbody>

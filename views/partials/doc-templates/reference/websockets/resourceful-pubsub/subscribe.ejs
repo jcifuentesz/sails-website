@@ -60,7 +60,7 @@
 <blockquote>
 <ul>
 <li>Be sure and check <code>req.isSocket === true</code> before passing in <code>req</code> to refer to the requesting socket.  The provided <code>req</code> must be from a socket request, not just any old HTTP request.</li>
-<li><code>.subscribe()</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client" target="_blank">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</li>
+<li><code>.subscribe()</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</li>
 <li>This function does <em>not actually talk to the database</em>!  In fact, none of the resourceful pubsub methods do.  Remember: these are just a simplified abstraction layer built on top of the lower-level <code>sails.sockets</code> methods, designed to make your app cleaner and easier to debug by using conventional names for events/rooms/namespaces etc.</li>
 </ul>
 </blockquote>

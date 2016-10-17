@@ -3,7 +3,7 @@
 <p><em><strong>This method is deprecated</strong>.</em></p>
 <p>If you absolutely need to retrieve the list of socket IDs in a room, you may use the lower-level <code>sails.io.sockets.in(roomName).clients(cb)</code> method (see <a href="https://github.com/socketio/socket.io/#namespaceclientsfnfunction" target="_blank">https://github.com/socketio/socket.io/#namespaceclientsfnfunction</a>).</p>
 <p>However, be aware that in multi-server scenarios, that method will <em>not</em> return IDs of sockets on other servers (at the time of writing, the current documentation on Socket.io&apos;s GitHub is out of date on that point).</p>
-<p>For the most common use-case of &quot;taking all members of room A and subscribing/unsubscribing them to room B&quot;, you can use the <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/add-room-members-to-rooms" target="_blank"><code>sails.sockets.addRoomMembersToRooms</code></a> and <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/remove-room-members-from-rooms" target="_blank"><code>sails.sockets.removeRoomMembersFromRooms</code></a> methods, which <em>do</em> work cross-server.</p>
+<p>For the most common use-case of &quot;taking all members of room A and subscribing/unsubscribing them to room B&quot;, you can use the <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/add-room-members-to-rooms"><code>sails.sockets.addRoomMembersToRooms</code></a> and <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/remove-room-members-from-rooms"><code>sails.sockets.removeRoomMembersFromRooms</code></a> methods, which <em>do</em> work cross-server.</p>
 </blockquote>
 <hr>
 <p>Get the IDs of all sockets subscribed to a room.</p>
