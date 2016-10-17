@@ -2,7 +2,7 @@
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>Sails comes with a simple, built-in logger called <a href="https://github.com/balderdashy/captains-log" target="_blank"><code>captains-log</code></a>.  Its usage is purposely very similar to Node&apos;s <a href="https://nodejs.org/api/console.html#console_console_log_data" target="_blank"><code>console.log</code></a>, but with a handful of extra features; namely support for multiple log levels with colorized, prefixed console output.</p>
 <h3 id="configuration" permalink="configuration">Configuration</h3>
-<p>The Sails logger&apos;s configuration is located in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.log.html" target="_blank"><code>sails.config.log</code></a>, for which a conventional configuration file (<a href="http://sailsjs.org/documentation/anatomy/myApp/config/log.js.html" target="_blank"><code>config/log.js</code></a>) is bundled in new Sails projects out of the box.</p>
+<p>The Sails logger&apos;s configuration is located in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.log.html"><code>sails.config.log</code></a>, for which a conventional configuration file (<a href="http://sailsjs.org/documentation/anatomy/myApp/config/log.js.html"><code>config/log.js</code></a>) is bundled in new Sails projects out of the box.</p>
 <p>When configured at a given log level, Sails will output log messages that are output at a level at or above the currently configured level. This log level is normalized and also applied to the generated output from socket.io, Waterline, and other dependencies. The hierarchy of log levels and their relative priorities is summarized by the chart below:</p>
 <table>
 <thead>

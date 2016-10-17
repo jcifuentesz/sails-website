@@ -1,5 +1,10 @@
 [
   {
+    "templateTitle": "README.ejs",
+    "fullPathAndFileName": "anatomy/README.ejs",
+    "data": {}
+  },
+  {
     "templateTitle": "Gruntfile.js.ejs",
     "fullPathAndFileName": "anatomy/myApp/Gruntfile.js.ejs",
     "data": {
@@ -28,8 +33,8 @@
     "isChild": true,
     "children": [
       "anatomy/myApp/api/controllers/controllers.ejs",
-      "anatomy/myApp/api/policies/policies.ejs",
       "anatomy/myApp/api/models/models.ejs",
+      "anatomy/myApp/api/policies/policies.ejs",
       "anatomy/myApp/api/responses/responses.ejs",
       "anatomy/myApp/api/services/services.ejs"
     ],
@@ -67,6 +72,13 @@
     },
     "parent": "anatomy/myApp/api/controllers/controllers.ejs",
     "isChild": true
+  },
+  {
+    "templateTitle": "index.js.ejs",
+    "fullPathAndFileName": "anatomy/myApp/api/hooks/myHook/index.js.ejs",
+    "data": {
+      "displayName": "index.js"
+    }
   },
   {
     "templateTitle": "User.js.ejs",
@@ -171,10 +183,10 @@
     "isChild": true,
     "children": [
       "anatomy/myApp/api/responses/badRequest.js.ejs",
-      "anatomy/myApp/api/responses/forbidden.js.ejs",
       "anatomy/myApp/api/responses/notFound.js.ejs",
       "anatomy/myApp/api/responses/serverError.js.ejs",
-      "anatomy/myApp/api/responses/ok.js.ejs"
+      "anatomy/myApp/api/responses/ok.js.ejs",
+      "anatomy/myApp/api/responses/forbidden.js.ejs"
     ],
     "isParent": true
   },
@@ -252,11 +264,11 @@
     "parent": "anatomy/myApp/myApp.ejs",
     "isChild": true,
     "children": [
-      "anatomy/myApp/assets/robots.txt.ejs",
       "anatomy/myApp/assets/favicon.ico.ejs",
+      "anatomy/myApp/assets/robots.txt.ejs",
       "anatomy/myApp/assets/_templates/_templates.ejs",
-      "anatomy/myApp/assets/js/js.ejs",
       "anatomy/myApp/assets/images/images.ejs",
+      "anatomy/myApp/assets/js/js.ejs",
       "anatomy/myApp/assets/styles/styles.ejs"
     ],
     "isParent": true
@@ -393,19 +405,19 @@
       "anatomy/myApp/config/blueprints.js.ejs",
       "anatomy/myApp/config/bootstrap.js.ejs",
       "anatomy/myApp/config/connections.js.ejs",
-      "anatomy/myApp/config/csrf.js.ejs",
-      "anatomy/myApp/config/globals.js.ejs",
       "anatomy/myApp/config/cors.js.ejs",
+      "anatomy/myApp/config/csrf.js.ejs",
       "anatomy/myApp/config/http.js.ejs",
+      "anatomy/myApp/config/globals.js.ejs",
       "anatomy/myApp/config/i18n.js.ejs",
       "anatomy/myApp/config/log.js.ejs",
       "anatomy/myApp/config/models.js.ejs",
       "anatomy/myApp/config/local.js.ejs",
+      "anatomy/myApp/config/session.js.ejs",
       "anatomy/myApp/config/policies.js.ejs",
       "anatomy/myApp/config/routes.js.ejs",
-      "anatomy/myApp/config/session.js.ejs",
-      "anatomy/myApp/config/sockets.js.ejs",
       "anatomy/myApp/config/views.js.ejs",
+      "anatomy/myApp/config/sockets.js.ejs",
       "anatomy/myApp/config/env/env.ejs",
       "anatomy/myApp/config/locales/locales.ejs"
     ],
@@ -562,10 +574,10 @@
     "parent": "anatomy/myApp/config/config.ejs",
     "isChild": true,
     "children": [
-      "anatomy/myApp/config/locales/de.json.ejs",
-      "anatomy/myApp/config/locales/en.json.ejs",
       "anatomy/myApp/config/locales/_README.md.ejs",
+      "anatomy/myApp/config/locales/en.json.ejs",
       "anatomy/myApp/config/locales/es.json.ejs",
+      "anatomy/myApp/config/locales/de.json.ejs",
       "anatomy/myApp/config/locales/fr.json.ejs"
     ],
     "isParent": true
@@ -643,6 +655,28 @@
     "isChild": true
   },
   {
+    "templateTitle": "myApp.ejs",
+    "fullPathAndFileName": "anatomy/myApp/myApp.ejs",
+    "realPath": "anatomy/myApp/",
+    "data": {
+      "displayName": "myApp"
+    },
+    "children": [
+      "anatomy/myApp/Gruntfile.js.ejs",
+      "anatomy/myApp/package.json.ejs",
+      "anatomy/myApp/sailsrc.ejs",
+      "anatomy/myApp/README.md.ejs",
+      "anatomy/myApp/app.js.ejs",
+      "anatomy/myApp/gitignore.ejs",
+      "anatomy/myApp/api/api.ejs",
+      "anatomy/myApp/assets/assets.ejs",
+      "anatomy/myApp/config/config.ejs",
+      "anatomy/myApp/tasks/tasks.ejs",
+      "anatomy/myApp/views/views.ejs"
+    ],
+    "isParent": true
+  },
+  {
     "templateTitle": "package.json.ejs",
     "fullPathAndFileName": "anatomy/myApp/package.json.ejs",
     "data": {
@@ -711,11 +745,11 @@
       "anatomy/myApp/tasks/config/concat.js.ejs",
       "anatomy/myApp/tasks/config/copy.js.ejs",
       "anatomy/myApp/tasks/config/cssmin.js.ejs",
-      "anatomy/myApp/tasks/config/sails-linker.js.ejs",
       "anatomy/myApp/tasks/config/jst.js.ejs",
       "anatomy/myApp/tasks/config/sync.js.ejs",
       "anatomy/myApp/tasks/config/less.js.ejs",
       "anatomy/myApp/tasks/config/watch.js.ejs",
+      "anatomy/myApp/tasks/config/sails-linker.js.ejs",
       "anatomy/myApp/tasks/config/uglify.js.ejs"
     ],
     "isParent": true
@@ -885,12 +919,12 @@
     "children": [
       "anatomy/myApp/tasks/register/build.js.ejs",
       "anatomy/myApp/tasks/register/buildProd.js.ejs",
+      "anatomy/myApp/tasks/register/default.js.ejs",
       "anatomy/myApp/tasks/register/compileAssets.js.ejs",
       "anatomy/myApp/tasks/register/linkAssets.js.ejs",
-      "anatomy/myApp/tasks/register/default.js.ejs",
       "anatomy/myApp/tasks/register/linkAssetsBuild.js.ejs",
-      "anatomy/myApp/tasks/register/linkAssetsBuildProd.js.ejs",
       "anatomy/myApp/tasks/register/prod.js.ejs",
+      "anatomy/myApp/tasks/register/linkAssetsBuildProd.js.ejs",
       "anatomy/myApp/tasks/register/syncAssets.js.ejs"
     ],
     "isParent": true
@@ -977,44 +1011,10 @@
     "isChild": true,
     "children": [
       "anatomy/myApp/views/403.ejs.ejs",
+      "anatomy/myApp/views/layout.ejs.ejs",
       "anatomy/myApp/views/404.ejs.ejs",
-      "anatomy/myApp/views/500.ejs.ejs",
       "anatomy/myApp/views/homepage.ejs.ejs",
-      "anatomy/myApp/views/layout.ejs.ejs"
-    ],
-    "isParent": true
-  },
-  {
-    "templateTitle": "README.ejs",
-    "fullPathAndFileName": "anatomy/README.ejs",
-    "data": {}
-  },
-  {
-    "templateTitle": "index.js.ejs",
-    "fullPathAndFileName": "anatomy/myApp/api/hooks/myHook/index.js.ejs",
-    "data": {
-      "displayName": "index.js"
-    }
-  },
-  {
-    "templateTitle": "myApp.ejs",
-    "fullPathAndFileName": "anatomy/myApp/myApp.ejs",
-    "realPath": "anatomy/myApp/",
-    "data": {
-      "displayName": "myApp"
-    },
-    "children": [
-      "anatomy/myApp/api/api.ejs",
-      "anatomy/myApp/package.json.ejs",
-      "anatomy/myApp/sailsrc.ejs",
-      "anatomy/myApp/README.md.ejs",
-      "anatomy/myApp/Gruntfile.js.ejs",
-      "anatomy/myApp/gitignore.ejs",
-      "anatomy/myApp/app.js.ejs",
-      "anatomy/myApp/assets/assets.ejs",
-      "anatomy/myApp/config/config.ejs",
-      "anatomy/myApp/tasks/tasks.ejs",
-      "anatomy/myApp/views/views.ejs"
+      "anatomy/myApp/views/500.ejs.ejs"
     ],
     "isParent": true
   }

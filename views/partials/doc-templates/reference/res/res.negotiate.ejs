@@ -1,5 +1,5 @@
 <h1 id="res-negotiate-">res.negotiate()</h1>
-<p>Given an error (<code>err</code>), send an appropriate error response back down to the client.  Especially handy for handling potential validation errors from <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html" target="_blank">Model.create()</a> or <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html" target="_blank">Model.update()</a>.</p>
+<p>Given an error (<code>err</code>), send an appropriate error response back down to the client.  Especially handy for handling potential validation errors from <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html">Model.create()</a> or <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html">Model.update()</a>.</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <pre><code data-language="javascript">return res.negotiate(err);
 </code></pre><!-- __LANG=%%__ -->
@@ -7,10 +7,10 @@
 <p>Like the other built-in custom response modules, the behavior of this method is customizable.</p>
 <p><code>res.negotiate()</code> examines the provided error (<code>err</code>) and determines the appropriate error-handling behavior from one of the following methods:</p>
 <ul>
-<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/badRequest.js.html" target="_blank"><code>res.badRequest()</code></a>   (400)</li>
-<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/forbidden.js.html" target="_blank"><code>res.forbidden()</code></a>    (403)</li>
-<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/notFound.js.html" target="_blank"><code>res.notFound()</code></a>     (404)</li>
-<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/serverError.js.html" target="_blank"><code>res.serverError()</code></a>  (500)</li>
+<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/badRequest.js.html"><code>res.badRequest()</code></a>   (400)</li>
+<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/forbidden.js.html"><code>res.forbidden()</code></a>    (403)</li>
+<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/notFound.js.html"><code>res.notFound()</code></a>     (404)</li>
+<li><a href="http://sailsjs.org/documentation/anatomy/myApp/api/responses/serverError.js.html"><code>res.serverError()</code></a>  (500)</li>
 </ul>
 <p>The determination is made based on <code>err</code>&apos;s &quot;status&quot; property.  If a more specific diagnosis cannot be determined (e.g. <code>err</code> doesn&apos;t have a &quot;status&quot; property, or it&apos;s a string), Sails will default to <code>res.serverError()</code>.</p>
 <h3 id="example" permalink="example">Example</h3>

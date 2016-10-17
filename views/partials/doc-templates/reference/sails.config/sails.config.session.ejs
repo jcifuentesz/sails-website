@@ -42,6 +42,9 @@ in the way you might be used to from Express or Connect.</p>
 that can be shared across multiple Sails.js servers:</p>
 <pre><code data-language="javascript">adapter: &apos;redis&apos;,
 </code></pre><!-- __LANG=%%__ -->
+<p>And install the connect-redis Session adapter as a dependency of your project:</p>
+<pre><code data-language="text">npm install connect-redis@1.4.5 --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
 <p>The following values are optional, if no options are set a redis instance running on <code>localhost</code> is expected.  Read more about these options at: <a href="https://github.com/visionmedia/connect-redis" target="_blank">https://github.com/visionmedia/connect-redis</a></p>
 <pre><code data-language="javascript">host: &apos;localhost&apos;,
   port: 6379,
@@ -53,7 +56,7 @@ that can be shared across multiple Sails.js servers:</p>
 <h3 id="using-other-connect-compatible-session-stores" permalink="using-other-connectcompatible-session-stores">Using Other Connect-Compatible Session Stores</h3>
 <p>Any session adapter written for Connect/Express works in Sails, as long as you use a compatible version.</p>
 <p>For example to use Mongo as your session store, you should use version 0.8.4 of <code>connect-mongo</code>.  First, run the following from your project&apos;s directory:</p>
-<pre><code data-language="text">npm install connect-mongo@0.8.4 --save
+<pre><code data-language="text">npm install connect-mongo@0.8.2 --save --save-exact
 </code></pre><!-- __LANG=%%__ -->
 <p>Then add the following lines to your session configuration dictionary in <code>config/session.js</code>:</p>
 <pre><code data-language="javascript">adapter: &apos;mongo&apos;,
@@ -74,7 +77,7 @@ that can be shared across multiple Sails.js servers:</p>
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <h6 id="disabling-sessions">Disabling sessions</h6>
-<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook.  Note that tthe process for disabling any hook is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt" target="_blank">disabling the Grunt hook</a> (just type <code>grunt</code> instead of <code>session</code>).</p>
+<p>Sessions are enabled by default in Sails.  To disable sessions in your app, disable the <code>session</code> hook.  Note that tthe process for disabling any hook is identical to the process for <a href="http://sailsjs.org/documentation/concepts/assets/disabling-grunt">disabling the Grunt hook</a> (just type <code>grunt</code> instead of <code>session</code>).</p>
 <docmeta name="displayName" value="sails.config.session">
 
 </docmeta>

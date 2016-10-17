@@ -86,7 +86,7 @@
 <blockquote>
 <ul>
 <li>If you&apos;d like to spend some more time with Dolly, a more detailed walkthrough related to the example above is available <a href="https://gist.github.com/mikermcneil/e5a20b03be5aa4e0459b" target="_blank">here</a>.</li>
-<li>This action is for dealing with <em>plural</em> (&quot;collection&quot;) associations.  If you want to set or unset a <em>singular</em> (&quot;model&quot;) association, just use <a href="http://sailsjs.org/documentation/reference/blueprint-api/Update.html" target="_blank">update</a>.</li>
+<li>This action is for dealing with <em>plural</em> (&quot;collection&quot;) associations.  If you want to set or unset a <em>singular</em> (&quot;model&quot;) association, just use <a href="http://sailsjs.org/documentation/reference/blueprint-api/Update.html">update</a>.</li>
 <li><p>The example above assumes &quot;rest&quot; blueprints are enabled, and that your project contains at least an &apos;Employee&apos; model with association: <code>involvedInPurchases: {collection: &apos;Purchase&apos;, via: &apos;cashier&apos;}</code> as well as a <code>Purchase</code> model with association: <code>cashier: {model: &apos;Employee&apos;}</code>.  You&apos;ll also need at least an empty <code>PurchaseController</code> and <code>EmployeeController</code>.  You can quickly achieve this by running:</p>
 <pre><code data-language="shell">$ sails new foo
 $ cd foo

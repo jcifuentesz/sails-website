@@ -3,7 +3,7 @@
 <pre><code data-language="javascript">var query = Stuff.find();
 </code></pre><!-- __LANG=%%__ -->
 <p>You have likely already interacted with query objects in your Sails app. Most of the time, you probably won&apos;t think about them as objects <em>per se</em>, rather just another part of the syntax for communicating with the database.</p>
-<p>The primary purpose of Waterline query instances is to provide a convenient, chainable syntax for working with your models.  Methods like <code>.populate()</code>, <code>.where()</code>, and <code>.sort()</code> allow you to refine database calls <em>before</em> they&apos;re sent down the wire.  When you&apos;re ready to fire the query off to the database, you can just call <a href="http://sailsjs.org/documentation/reference/waterline/queries/exec.html" target="_blank"><code>.exec()</code></a>.</p>
+<p>The primary purpose of Waterline query instances is to provide a convenient, chainable syntax for working with your models.  Methods like <code>.populate()</code>, <code>.where()</code>, and <code>.sort()</code> allow you to refine database calls <em>before</em> they&apos;re sent down the wire.  When you&apos;re ready to fire the query off to the database, you can just call <a href="http://sailsjs.org/documentation/reference/waterline/queries/exec.html"><code>.exec()</code></a>.</p>
 <h3 id="promises" permalink="promises">Promises</h3>
 <p>In addition to the <code>.exec()</code> method, Waterline queries implement a partial integration with the <a href="https://github.com/petkaantonov/bluebird" target="_blank">Bluebird</a> promise library, exposing <code>.then()</code> and <code>.catch()</code> methods.</p>
 <pre><code data-language="javascript">Stuff.find()
@@ -20,7 +20,7 @@
   // would you look at all those zookeepers?
 });
 </code></pre><!-- __LANG=%%__ -->
-<p>First, it is &quot;shaken out&quot; by Waterline core into a normalized <a href="http://sailsjs.org/documentation/concepts/ORM/Querylanguage.html?q=query-language-basics" target="_blank">criteria object</a>.  Then it passes through the relevant Waterline adapter(s) for translation to the raw query syntax of your database(s) (e.g. Redis or Mongo commands, various SQL dialects, etc.)  Finally, each involved adapter uses its native Node.js database driver to send the query out over the network to the corresponding physical database.</p>
+<p>First, it is &quot;shaken out&quot; by Waterline core into a normalized <a href="http://sailsjs.org/documentation/concepts/ORM/Querylanguage.html?q=query-language-basics">criteria object</a>.  Then it passes through the relevant Waterline adapter(s) for translation to the raw query syntax of your database(s) (e.g. Redis or Mongo commands, various SQL dialects, etc.)  Finally, each involved adapter uses its native Node.js database driver to send the query out over the network to the corresponding physical database.</p>
 <p>When the adapter receives a response, it is marshalled to the Waterline interface spec and passed back up to Waterine core, where it is integrated with any other raw adapter responses into a coherent result set.  At that point, it undergoes one last normalization before being passed back to your callback for consumption by your app.</p>
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>

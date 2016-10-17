@@ -36,7 +36,7 @@ req.setLocale(&apos;de&apos;);
 // (this will use the strings located in `config/locales/de.json` for translation)
 </code></pre><!-- __LANG=%%__ -->
 <p>By default, node-i18n will detect the desired language of a request by examining its language headers.  Language headers are set in your users&apos; browser settings, and while they&apos;re correct most of the time, you may need the flexibility to override this detected locale and provide your own.</p>
-<p>For instance, if your app allows users to pick their preferred language, you might create a <a href="http://sailsjs.org/documentation/concepts/Policies" target="_blank">policy</a> which checks for a custom language in the user&apos;s session, and if one exists, sets the appropriate locale for use in subsequent policies, controller actions, and views:</p>
+<p>For instance, if your app allows users to pick their preferred language, you might create a <a href="http://sailsjs.org/documentation/concepts/Policies">policy</a> which checks for a custom language in the user&apos;s session, and if one exists, sets the appropriate locale for use in subsequent policies, controller actions, and views:</p>
 <pre><code data-language="javascript">// api/policies/localize.js
 module.exports = function(req, res, next) {
   req.setLocale(req.session.languagePreference);
