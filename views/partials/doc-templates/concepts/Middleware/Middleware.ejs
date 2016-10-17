@@ -1,7 +1,7 @@
 <h1 id="middleware">Middleware</h1>
-<p>Sails is fully compatible with Express / Connect middleware - in fact, it&apos;s all over the place!  Much of the code you&apos;ll write in Sails is effectively middleware; most notably <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">controller actions</a> and <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a>.</p>
+<p>Sails is fully compatible with Express / Connect middleware - in fact, it&apos;s all over the place!  Much of the code you&apos;ll write in Sails is effectively middleware; most notably <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions" target="_blank">controller actions</a> and <a href="http://sailsjs.org/documentation/concepts/Policies" target="_blank">policies</a>.</p>
 <h3 id="http-middleware" permalink="http-middleware">HTTP Middleware</h3>
-<p>Sails also utilizes an additional <a href="http://sailsjs.org/documentation/concepts/Middleware?q=adding-or-overriding-http-middleware">configurable middleware stack</a> just for handling HTTP requests.  Each time your app receives an HTTP request, the configured HTTP middleware stack runs in order.</p>
+<p>Sails also utilizes an additional <a href="http://sailsjs.org/documentation/concepts/Middleware?q=adding-or-overriding-http-middleware" target="_blank">configurable middleware stack</a> just for handling HTTP requests.  Each time your app receives an HTTP request, the configured HTTP middleware stack runs in order.</p>
 <blockquote>
 <p>Note that this HTTP middleware stack is only used for &quot;true&quot; HTTP requests-- it is ignored for <strong>virtual requests</strong> (e.g. requests from a live Socket.io connection.)</p>
 </blockquote>
@@ -59,9 +59,9 @@
 <blockquote>
 <p><em>&quot;Where do I <code>app.use()</code> this thing?&quot;</em>.</p>
 </blockquote>
-<p>In most cases, the answer is to install the Express middleware as a custom HTTP middleware in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.http.html"><code>sails.config.http.middleware</code></a>.  This will trigger it for ALL HTTP requests to your Sails app, and allow you to configure the order in which it runs in relation to other HTTP middleware.</p>
+<p>In most cases, the answer is to install the Express middleware as a custom HTTP middleware in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.http.html" target="_blank"><code>sails.config.http.middleware</code></a>.  This will trigger it for ALL HTTP requests to your Sails app, and allow you to configure the order in which it runs in relation to other HTTP middleware.</p>
 <h3 id="express-routing-middleware-in-sails" permalink="express-routing-middleware-in-sails">Express Routing Middleware In Sails</h3>
-<p>You can also include Express middleware as a policy- just configure it in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html"><code>config/policies.js</code></a>.  You can either require and setup the middleware in an actual wrapper policy (usually a good idea) or just require it directly in your policies.js file.  The following example uses the latter strategy for brevity:</p>
+<p>You can also include Express middleware as a policy- just configure it in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html" target="_blank"><code>config/policies.js</code></a>.  You can either require and setup the middleware in an actual wrapper policy (usually a good idea) or just require it directly in your policies.js file.  The following example uses the latter strategy for brevity:</p>
 <pre><code data-language="javascript">{
   &apos;*&apos;: true,
 

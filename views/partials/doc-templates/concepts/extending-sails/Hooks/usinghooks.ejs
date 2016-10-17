@@ -1,8 +1,8 @@
 <h1 id="using-hooks-in-a-sails-app">Using Hooks in a Sails App</h1>
 <h2 id="using-a-project-hook" permalink="using-a-project-hook">Using a project hook</h2>
-<p>To use a project hook in your app, first create the <code>api/hooks</code> folder if it doesn&#x2019;t already exist.  Then <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/projecthooks.html">create the project hook</a> or copy the folder for the hook you want to use into <code>api/hooks</code>.</p>
+<p>To use a project hook in your app, first create the <code>api/hooks</code> folder if it doesn&#x2019;t already exist.  Then <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/projecthooks.html" target="_blank">create the project hook</a> or copy the folder for the hook you want to use into <code>api/hooks</code>.</p>
 <h2 id="using-an-installable-hook" permalink="using-an-installable-hook">Using an installable hook</h2>
-<p>To use an installable hook in your app, simply run <code>npm install</code> with the package name of the hook you wish to install (e.g. <code>npm install sails-hook-autoreload</code>).  You may also manually copy or link an <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/installablehooks.html">installable hook folder that you&apos;ve created</a> directly into your app&#x2019;s <code>node_modules</code> folder.</p>
+<p>To use an installable hook in your app, simply run <code>npm install</code> with the package name of the hook you wish to install (e.g. <code>npm install sails-hook-autoreload</code>).  You may also manually copy or link an <a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/installablehooks.html" target="_blank">installable hook folder that you&apos;ve created</a> directly into your app&#x2019;s <code>node_modules</code> folder.</p>
 <h2 id="calling-hook-methods" permalink="calling-hook-methods">Calling hook methods</h2>
 <p>Any methods that a hook exposes are available in the <code>sails.hooks[&lt;hook-name&gt;]</code> object.  For example, the <code>sails-hook-email</code> hook provides a <code>sails.hooks.email.send()</code> method (note that the <code>sails-hook-</code> prefix is stripped off).  Consult a hook&#x2019;s documentation to determine which methods it provides.</p>
 <h2 id="configuring-a-hook" permalink="configuring-a-hook">Configuring a hook</h2>
@@ -23,10 +23,10 @@ module.exports.installedHooks = {
 <p>Note: you may have to create the <code>config/installedHooks.js</code> file yourself.</p>
 </blockquote>
 <ul>
-<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks">Hooks overview</a></li>
-<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/hookspec">The hook specification</a></li>
-<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/projecthooks.html">Creating a project hook</a></li>
-<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/installablehooks.html">Creating an installable hook</a></li>
+<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks" target="_blank">Hooks overview</a></li>
+<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/hookspec" target="_blank">The hook specification</a></li>
+<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/projecthooks.html" target="_blank">Creating a project hook</a></li>
+<li><a href="http://sailsjs.org/documentation/concepts/extending-sails/Hooks/installablehooks.html" target="_blank">Creating an installable hook</a></li>
 </ul>
 <p><docmeta name="displayName" value="Using Hooks"></docmeta></p>
 <docmeta name="stabilityIndex" value="3">

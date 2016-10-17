@@ -1,5 +1,5 @@
 <h1 id="res-notfound-">res.notFound()</h1>
-<p>Sends a <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error" target="_blank">404</a> (&quot;Not Found&quot;) response using either <a href="http://sailsjs.org/documentation/reference/res/res.json.html">res.json()</a> or <a href="http://sailsjs.org/documentation/reference/res/res.view.html">res.view()</a>. Called automatically when Sails receives a request which doesn&apos;t match any of its explicit routes or route blueprints (i.e. serves the 404 page).</p>
+<p>Sends a <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error" target="_blank">404</a> (&quot;Not Found&quot;) response using either <a href="http://sailsjs.org/documentation/reference/res/res.json.html" target="_blank">res.json()</a> or <a href="http://sailsjs.org/documentation/reference/res/res.view.html" target="_blank">res.view()</a>. Called automatically when Sails receives a request which doesn&apos;t match any of its explicit routes or route blueprints (i.e. serves the 404 page).</p>
 <p>When called manually from your app code, this method is normally used to indicate that the user-agent tried to find, update, or delete something that doesn&apos;t exist.</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <pre><code data-language="javascript">return res.notFound();
@@ -13,11 +13,11 @@
 <p>Like the other built-in custom response modules, the behavior of this method is customizable.</p>
 <p>By default, it works as follows:</p>
 <ul>
-<li>If the request &quot;<a href="http://sailsjs.org/documentation/reference/req/req.wantsJSON.html">wants JSON</a>&quot; (e.g. the request originated from AJAX, WebSockets, or a REST client like cURL), Sails will send the provided error <code>data</code> as JSON.  If no <code>data</code> is provided a default response body will be sent (the string <code>&quot;Not Found&quot;</code>).</li>
+<li>If the request &quot;<a href="http://sailsjs.org/documentation/reference/req/req.wantsJSON.html" target="_blank">wants JSON</a>&quot; (e.g. the request originated from AJAX, WebSockets, or a REST client like cURL), Sails will send the provided error <code>data</code> as JSON.  If no <code>data</code> is provided a default response body will be sent (the string <code>&quot;Not Found&quot;</code>).</li>
 <li>If the request <em>does not</em> &quot;want JSON&quot; (e.g. a URL typed into a web browser), Sails will attempt to serve one of your views.<ul>
 <li>If a specific <code>pathToView</code> was provided, Sails will attempt to use that view.</li>
-<li>Alternatively if <code>pathToView</code> was <em>not</em> provided, Sails will try to guess an appropriate view (see <a href="http://sailsjs.org/documentation/reference/res/res.view.html"><code>res.view()</code></a> for details).  If Sails cannot guess a workable view, it will just send JSON.</li>
-<li>If Sails serves a view, the <code>data</code> argument will be accessible as a <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html">view local</a>: <code>data</code>.</li>
+<li>Alternatively if <code>pathToView</code> was <em>not</em> provided, Sails will try to guess an appropriate view (see <a href="http://sailsjs.org/documentation/reference/res/res.view.html" target="_blank"><code>res.view()</code></a> for details).  If Sails cannot guess a workable view, it will just send JSON.</li>
+<li>If Sails serves a view, the <code>data</code> argument will be accessible as a <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html" target="_blank">view local</a>: <code>data</code>.</li>
 </ul>
 </li>
 </ul>

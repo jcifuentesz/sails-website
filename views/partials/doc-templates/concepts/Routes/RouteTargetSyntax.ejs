@@ -19,7 +19,7 @@
 </code></pre><!-- __LANG=%%__ -->
 <p>will match all paths that <em>start</em> with <strong>/user/foo</strong>.</p>
 <blockquote>
-<p><strong>Note:</strong> When using a route with a wildcard, such as <code>&apos;/*&apos;</code>, be aware that this will also match requests to static assets (i.e. <code>/js/dependencies/sails.io.js</code>) and override them. To prevent this, consider using the <code>skipAssets</code> option <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=route-target-options">described below</a>.</p>
+<p><strong>Note:</strong> When using a route with a wildcard, such as <code>&apos;/*&apos;</code>, be aware that this will also match requests to static assets (i.e. <code>/js/dependencies/sails.io.js</code>) and override them. To prevent this, consider using the <code>skipAssets</code> option <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=route-target-options" target="_blank">described below</a>.</p>
 </blockquote>
 <p>You can capture the parts of the address that are matched by wildcards into named parameters by using the <code>:paramName</code> wildcard syntax instead of the <code>*</code>:</p>
 <pre><code data-language="text">&apos;/user/foo/:name/bar/:age&apos;
@@ -39,11 +39,11 @@
 <p>When using wildcards or regular expressions in your addresses, keep in mind that the ordering of your routes in <strong>config/routes.js</strong> matters; URLs are matched against addresses in the list from the top down.  If you have two configurations in this order:</p>
 <pre><code>&apos;/user&apos;: &apos;UserController.doSomething&apos;,
 &apos;/*&apos;   : &apos;CatchallController.doSomethingElse&apos;
-</code></pre><p>then a request to <code>/user</code> will not be matched by the second configuration unless the first configuration&apos;s handler calls <code>next()</code> in its code, which is discouraged (only <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> should call <code>next()</code>).  Unless you&apos;re doing something very advanced, it is safe to assume that every request will be handled by at most one route in your <strong>config/routes.js</strong> file.</p>
+</code></pre><p>then a request to <code>/user</code> will not be matched by the second configuration unless the first configuration&apos;s handler calls <code>next()</code> in its code, which is discouraged (only <a href="http://sailsjs.org/documentation/concepts/Policies" target="_blank">policies</a> should call <code>next()</code>).  Unless you&apos;re doing something very advanced, it is safe to assume that every request will be handled by at most one route in your <strong>config/routes.js</strong> file.</p>
 <h3 id="route-target" permalink="route-target">Route Target</h3>
 <p>The address portion of a custom route specifies which URLs the route should match.  The <em>target</em> portion specifies what Sails should do after the match is made.  A target can take one of several different forms.  In some cases you may want to chain multiple targets to a single address by placing them in an array, but in most cases each address will have only one target.  The different types of targets are discussed below, followed by a discussion of the various options that can be applied to them.</p>
 <h4 id="controller-action-target-syntax" permalink="controller-/-action-target-syntax">Controller / action target syntax</h4>
-<p>The most common type of target is one which binds a route to a custom <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">controller action</a>.  The following four routes are equivalent:</p>
+<p>The most common type of target is one which binds a route to a custom <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions" target="_blank">controller action</a>.  The following four routes are equivalent:</p>
 <pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;FooController.myGoAction&apos;,
 &apos;GET /foo/go&apos;: &apos;Foo.myGoAction&apos;,
 &apos;GET /foo/go&apos;: {controller: &quot;Foo&quot;, action: &quot;myGoAction&quot;},
@@ -51,21 +51,21 @@
 </code></pre><!-- __LANG=%%__ -->
 <p>Each one maps <code>GET /foo/go</code> to the <code>myGoAction</code> action of the controller in <strong>api/controllers/FooController.js</strong>.  If no such controller or action exists, Sails will output an error message and ignore the route.  Otherwise, whenever a <strong>GET</strong> request to <strong>/foo/go</strong> is made, the code in that action will be run.</p>
 <p>The controller and action names in this syntax are case-insensitive.</p>
-<p>Note that the <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprint API</a> adds several actions to your controllers by default (like &quot;find&quot;, &quot;create&quot;, &quot;update&quot; and &quot;delete&quot;), all of which are available for routing:</p>
+<p>Note that the <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprint API</a> adds several actions to your controllers by default (like &quot;find&quot;, &quot;create&quot;, &quot;update&quot; and &quot;delete&quot;), all of which are available for routing:</p>
 <pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;UserController.find&apos;
 </code></pre><!-- __LANG=%%__ -->
-<p>Assuming that your have a <strong>api/controllers/UserController.js</strong> file and a <strong>api/models/User.js</strong> file, browsing to <strong>/foo/go</strong> in a browser will, using the above config, run the default &quot;find* blueprint action which displays a list of all <code>User</code> models.  If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">custom action</a> named <code>find</code> in UserController, that action will be run instead.</p>
+<p>Assuming that your have a <strong>api/controllers/UserController.js</strong> file and a <strong>api/models/User.js</strong> file, browsing to <strong>/foo/go</strong> in a browser will, using the above config, run the default &quot;find* blueprint action which displays a list of all <code>User</code> models.  If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions" target="_blank">custom action</a> named <code>find</code> in UserController, that action will be run instead.</p>
 <h4 id="view-target-syntax" permalink="view-target-syntax">View target syntax</h4>
-<p>Another common target is one that binds a route to a <a href="http://sailsjs.org/documentation/concepts/Views">view</a>.  The syntax for this is simple: it&apos;s the path to the view file relative to the <strong>views</strong> folder, without the file extension:</p>
+<p>Another common target is one that binds a route to a <a href="http://sailsjs.org/documentation/concepts/Views" target="_blank">view</a>.  The syntax for this is simple: it&apos;s the path to the view file relative to the <strong>views</strong> folder, without the file extension:</p>
 <pre><code data-language="text">&apos;GET /home&apos;: {view: &apos;home/index&apos;}
 </code></pre><!-- __LANG=%%__ -->
-<p>This maps the <code>GET /home</code> to the view stored in <strong>views/home/index.ejs</strong> (assuming the default EJS <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html">template engine</a> is used).  As long as that view file exists, a <strong>GET</strong> request to  <strong>/home</strong> will display it.</p>
+<p>This maps the <code>GET /home</code> to the view stored in <strong>views/home/index.ejs</strong> (assuming the default EJS <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html" target="_blank">template engine</a> is used).  As long as that view file exists, a <strong>GET</strong> request to  <strong>/home</strong> will display it.</p>
 <blockquote>
 <p>Note that this route will be bound directly to the view, no policies will be applied in this case.
 See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sailsjs-policy-based-route-with-a-view/21340313#21340313" target="_blank">question</a> for more information.</p>
 </blockquote>
 <h4 id="blueprint-target-syntax" permalink="blueprint-target-syntax">Blueprint target syntax</h4>
-<p>In some cases you may want to map a non-standard address to one of the Sails <a href="http://sailsjs.org/documentation/reference/blueprint-api?q=blueprint-actions">blueprint actions</a>.  For example, if you have a controller and model named <strong>UserController</strong> and <strong>User</strong> respectively, then Sails will automatically map <strong>GET /user</strong> to the &quot;find&quot; blueprint action which returns a list of User records.  If you&apos;d like to map a different address to that action, you can use the blueprint target syntax:</p>
+<p>In some cases you may want to map a non-standard address to one of the Sails <a href="http://sailsjs.org/documentation/reference/blueprint-api?q=blueprint-actions" target="_blank">blueprint actions</a>.  For example, if you have a controller and model named <strong>UserController</strong> and <strong>User</strong> respectively, then Sails will automatically map <strong>GET /user</strong> to the &quot;find&quot; blueprint action which returns a list of User records.  If you&apos;d like to map a different address to that action, you can use the blueprint target syntax:</p>
 <pre><code data-language="text">&apos;GET /findAllUsers&apos;: {model: &apos;user&apos;, blueprint: &apos;find&apos;},
 &apos;GET /user/findAll&apos;: {blueprint: &apos;find&apos;}
 </code></pre><!-- __LANG=%%__ -->
@@ -83,12 +83,12 @@ See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sails
 <p>Be careful to avoid redirect loops when redirecting within your Sails app!</p>
 <p>Note that when redirecting, the HTTP method of the original request (and any extra headers / parameters) will likely be lost, and the request will be transformed to a simple <strong>GET</strong> request.  In the above example, a <strong>POST</strong> request to <strong>/alias</strong> will result in a <strong>GET</strong> request to <strong>/some/other/route</strong>.  This is somewhat browser-dependent behavior, but it is recommended that you don&apos;t expect request methods and other data to survive a redirect.  </p>
 <h4 id="response-target-syntax" permalink="response-target-syntax">Response target syntax</h4>
-<p>You can map an address directly to a default or custom <a href="http://sailsjs.org/documentation/concepts/Custom-Responses">response</a> using this syntax:</p>
+<p>You can map an address directly to a default or custom <a href="http://sailsjs.org/documentation/concepts/Custom-Responses" target="_blank">response</a> using this syntax:</p>
 <pre><code data-language="text">&apos;/foo&apos;: {response: &apos;notFound&apos;}
 </code></pre><!-- __LANG=%%__ -->
 <p>Simply specify the name of the response file in your <strong>api/responses</strong> folder, without the <strong>.js</strong> extension.  The response name in this syntax is case-sensitive.  If you attempt to bind a route to a non-existent response, Sails will output an error and ignore the route.</p>
 <h4 id="policy-target-syntax" permalink="policy-target-syntax">Policy target syntax</h4>
-<p>In most cases, you will want to apply <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> to your controller actions using the <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html"><strong>config/policies.js</strong></a> config file.  However, there are some times when you will want to apply a policy directly to a custom route: particularly when you are using the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax">view</a> or <a href="(http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a> target syntax.  The policy target syntax is:</p>
+<p>In most cases, you will want to apply <a href="http://sailsjs.org/documentation/concepts/Policies" target="_blank">policies</a> to your controller actions using the <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html" target="_blank"><strong>config/policies.js</strong></a> config file.  However, there are some times when you will want to apply a policy directly to a custom route: particularly when you are using the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax" target="_blank">view</a> or <a href="(http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a> target syntax.  The policy target syntax is:</p>
 <pre><code data-language="text">&apos;/foo&apos;: {policy: &apos;myPolicy&apos;}
 </code></pre><!-- __LANG=%%__ -->
 <p>However, you will always want to chain the policy to at least one other type of target, using an array:</p>
@@ -111,7 +111,7 @@ See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sails
 <td><code>skipAssets</code></td>
 <td style="text-align:center">all</td>
 <td><bubble type="boolean" colors="true"></bubble></td>
-<td>Set to <code>true</code> if you <em>don&apos;t</em> want the route to match URLs with dots in them (e.g. <strong>myImage.jpg</strong>).  This will keep your routes with <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=wildcards-and-dynamic-parameters">wildcard notation</a> from matching URLs of static assets.  Useful when creating <a href="/documentation/concepts/Routes/URLSlugs">URL slugs</a>.</td>
+<td>Set to <code>true</code> if you <em>don&apos;t</em> want the route to match URLs with dots in them (e.g. <strong>myImage.jpg</strong>).  This will keep your routes with <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=wildcards-and-dynamic-parameters" target="_blank">wildcard notation</a> from matching URLs of static assets.  Useful when creating <a href="/documentation/concepts/Routes/URLSlugs">URL slugs</a>.</td>
 </tr>
 <tr>
 <td><code>skipRegex</code></td>
@@ -121,25 +121,25 @@ See the StackOverflow <a href="http://stackoverflow.com/questions/21303217/sails
 </tr>
 <tr>
 <td><code>locals</code></td>
-<td style="text-align:center"><a href="http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html?q=controller-%2F-action-target-syntax">controller</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax">view</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=response-target-syntax">response</a></td>
+<td style="text-align:center"><a href="http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html?q=controller-%2F-action-target-syntax" target="_blank">controller</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax" target="_blank">view</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax" target="_blank">blueprint</a>, <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=response-target-syntax" target="_blank">response</a></td>
 <td><bubble type="object" colors="true"></bubble></td>
-<td>Sets default <a href="http://sailsjs.org/documentation/reference/res/res.view.html?q=arguments">local variables</a> to pass to any view that is rendered while handling the request.</td>
+<td>Sets default <a href="http://sailsjs.org/documentation/reference/res/res.view.html?q=arguments" target="_blank">local variables</a> to pass to any view that is rendered while handling the request.</td>
 </tr>
 <tr>
 <td><code>cors</code></td>
 <td style="text-align:center">all</td>
 <td><bubble type="object" colors="true"></bubble> or <bubble type="boolean" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
-<td>Specifies how to handle requests for this route from a different origin.  See the <a href="http://sailsjs.org/documentation/concepts/CORS">main CORS documentation</a> for more info.</td>
+<td>Specifies how to handle requests for this route from a different origin.  See the <a href="http://sailsjs.org/documentation/concepts/CORS" target="_blank">main CORS documentation</a> for more info.</td>
 </tr>
 <tr>
 <td><code>populate</code></td>
-<td style="text-align:center"><a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a></td>
+<td style="text-align:center"><a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax" target="_blank">blueprint</a></td>
 <td><bubble type="boolean" colors="true"></bubble></td>
-<td>Indicates whether the results in a &quot;find&quot; or &quot;findOne&quot; blueprint action should have associated model fields <a href="http://sailsjs.org/documentation/reference/waterline/populated-values">populated</a>.  Defaults to the value set in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.blueprints.html"><strong>config/blueprints.js</strong></a>.</td>
+<td>Indicates whether the results in a &quot;find&quot; or &quot;findOne&quot; blueprint action should have associated model fields <a href="http://sailsjs.org/documentation/reference/waterline/populated-values" target="_blank">populated</a>.  Defaults to the value set in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.blueprints.html" target="_blank"><strong>config/blueprints.js</strong></a>.</td>
 </tr>
 <tr>
 <td><code>skip</code>, <code>limit</code>, <code>sort</code>, <code>where</code></td>
-<td style="text-align:center"><a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a></td>
+<td style="text-align:center"><a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax" target="_blank">blueprint</a></td>
 <td><bubble type="object" colors="true"></bubble></td>
 <td>Set criteria for &quot;find&quot; blueprint.  See the <a href="https://github.com/balderdashy/sails-docs/blob/master/reference/waterline/queries/queries.md" target="_blank">queries reference</a> for more info.</td>
 </tr>

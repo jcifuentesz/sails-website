@@ -1,10 +1,10 @@
 <h1 id="req-options">req.options</h1>
 <p><code>req.options</code> allows altering of (or providing defaults for) request parameters without modifying the original object.</p>
-<p>Any properties provided in a <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html">custom route configuration</a> are made available in the <code>req.options</code> object.  For example, given the following in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html"><code>config/routes.js</code></a>:</p>
+<p>Any properties provided in a <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html" target="_blank">custom route configuration</a> are made available in the <code>req.options</code> object.  For example, given the following in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html" target="_blank"><code>config/routes.js</code></a>:</p>
 <pre><code data-language="javascript">&quot;GET /foo&quot;: {controller: &apos;user&apos;, action: &apos;myAction&apos;, owl: &apos;hoot&apos;}
 </code></pre><!-- __LANG=%%__ -->
 <p><code>req.options.controller</code>, <code>req.options.action</code> and <code>req.options.owl</code> will all be available.</p>
-<p>Additionally, several special <code>req.options</code> objects are available for use with <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprints</a>, specifically to programatically change the criteria and/or values that a blueprint action uses when accessing a data store.  These are best used in <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> to, for example, filter requested records based on the logged-in user.</p>
+<p>Additionally, several special <code>req.options</code> objects are available for use with <a href="http://sailsjs.org/documentation/reference/blueprint-api" target="_blank">blueprints</a>, specifically to programatically change the criteria and/or values that a blueprint action uses when accessing a data store.  These are best used in <a href="http://sailsjs.org/documentation/concepts/Policies" target="_blank">policies</a> to, for example, filter requested records based on the logged-in user.</p>
 <h3 id="example" permalink="example">Example</h3>
 <p>In a <code>config/policies/filterByUser.js</code> policy:</p>
 <pre><code data-language="javascript">module.exports = function filterByUser (req, res, next) {

@@ -1,6 +1,6 @@
 <h1 id="sails-config-cors">sails.config.cors</h1>
-<p>Configuration for Sails&apos; <a href="http://sailsjs.org/documentation/concepts/CORS">built-in support for Cross-Origin Resource Sharing</a>.  CORS specifies how HTTP requests to your app originating from foreign domains should be treated.  It is primarily used to allow third-party sites to make AJAX requests to your app, which are normally blocked by browsers following the <a href="http://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">same-origin policy</a>.</p>
-<p>These options are conventionally set in the <strong>config/cors.js</strong> configuration file.  Note that these settings (with the exception of <code>allRoutes</code>) can be changed on a per-route basis in the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=route-target-options"><strong>config/routes.js</strong> file</a>.</p>
+<p>Configuration for Sails&apos; <a href="http://sailsjs.org/documentation/concepts/CORS" target="_blank">built-in support for Cross-Origin Resource Sharing</a>.  CORS specifies how HTTP requests to your app originating from foreign domains should be treated.  It is primarily used to allow third-party sites to make AJAX requests to your app, which are normally blocked by browsers following the <a href="http://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">same-origin policy</a>.</p>
+<p>These options are conventionally set in the <strong>config/cors.js</strong> configuration file.  Note that these settings (with the exception of <code>allRoutes</code>) can be changed on a per-route basis in the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=route-target-options" target="_blank"><strong>config/routes.js</strong> file</a>.</p>
 <h3 id="properties" permalink="properties">Properties</h3>
 <table>
 <thead>
@@ -52,7 +52,7 @@
 <td><code>securityLevel</code></td>
 <td style="text-align:center"><bubble type="integer" colors="true"></bubble></td>
 <td>0</td>
-<td>Indicates how Sails should respond to requests from disallowed origins.  In normal  mode (0), Sails processes all requests normally, simply setting the appropriate CORS headers and leaving it to the client to determine how to handle the response.  In high mode (1), Sails will send back a 403 response to requests from disallowed origins, if the origin starts with http or https.  In very high mode (2), Sails will send back a 403 response to requests from disallowed origins, regardless of the origin protocol.   See <a href="http://sailsjs.org/documentation/concepts/Security/CORS.html?q=security-levels">Security Levels</a> in the CORS concepts documentation for more info.</td>
+<td>Indicates how Sails should respond to requests from disallowed origins.  In normal  mode (0), Sails processes all requests normally, simply setting the appropriate CORS headers and leaving it to the client to determine how to handle the response.  In high mode (1), Sails will send back a 403 response to requests from disallowed origins, if the origin starts with http or https.  In very high mode (2), Sails will send back a 403 response to requests from disallowed origins, regardless of the origin protocol.   See <a href="http://sailsjs.org/documentation/concepts/Security/CORS.html?q=security-levels" target="_blank">Security Levels</a> in the CORS concepts documentation for more info.</td>
 </tr>
 </tbody>
 </table>

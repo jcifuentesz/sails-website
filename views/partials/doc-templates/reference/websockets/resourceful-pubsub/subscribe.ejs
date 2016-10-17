@@ -41,7 +41,7 @@
 </tr>
 </tbody>
 </table>
-<p><em>Note</em>: <code>subscribe</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</p>
+<p><em>Note</em>: <code>subscribe</code> will only work with requests made over a socket.io connection (e.g. using <code>io.socket.get()</code>), <em>not</em> over an http connection (e.g. using <code>jQuery.get()</code>).  See the <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client" target="_blank">sails.io.js socket client documentation</a> for information on using client sockets to send WebSockets/Socket.io messages with Sails.</p>
 <h3 id="example" permalink="example">Example</h3>
 <pre><code data-language="javascript">subscribeToLouies: function (req, res) {
     if (!req.isSocket) {

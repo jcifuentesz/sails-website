@@ -18,20 +18,6 @@
     "isChild": true
   },
   {
-    "templateTitle": "irc.ejs",
-    "fullPathAndFileName": "irc/irc.ejs",
-    "realPath": "irc/",
-    "data": {
-      "displayName": "#sailsjs on IRC"
-    },
-    "children": [
-      "irc/configuringClient.ejs",
-      "irc/grabClient.ejs",
-      "irc/sailsTroll.ejs"
-    ],
-    "isParent": true
-  },
-  {
     "templateTitle": "sailsTroll.ejs",
     "fullPathAndFileName": "irc/sailsTroll.ejs",
     "data": {
@@ -39,5 +25,19 @@
     },
     "parent": "irc/irc.ejs",
     "isChild": true
+  },
+  {
+    "templateTitle": "irc.ejs",
+    "fullPathAndFileName": "irc/irc.ejs",
+    "realPath": "irc/",
+    "data": {
+      "displayName": "#sailsjs on IRC"
+    },
+    "children": [
+      "irc/sailsTroll.ejs",
+      "irc/grabClient.ejs",
+      "irc/configuringClient.ejs"
+    ],
+    "isParent": true
   }
 ]

@@ -9,8 +9,8 @@
 <li><code>return res.view(locals);</code></li>
 <li><code>return res.view();</code></li>
 </ul>
-<p>Uses the <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html">configured view engine</a> to compile the <a href="http://sailsjs.org/documentation/concepts/Views/Partials.html">view template</a> at <code>pathToView</code> into HTML.  If <code>pathToView</code> is not provided, serves the conventional view based on the current controller and action.</p>
-<p>The specified <a href="http://sailsjs.org/documentation/reference/Views/Locals.html"><code>locals</code></a> are merged with your configured app-wide locals, as well as certain built-in locals from Sails and/or your view engine, then passed to the view engine as data.</p>
+<p>Uses the <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html" target="_blank">configured view engine</a> to compile the <a href="http://sailsjs.org/documentation/concepts/Views/Partials.html" target="_blank">view template</a> at <code>pathToView</code> into HTML.  If <code>pathToView</code> is not provided, serves the conventional view based on the current controller and action.</p>
+<p>The specified <a href="http://sailsjs.org/documentation/reference/Views/Locals.html" target="_blank"><code>locals</code></a> are merged with your configured app-wide locals, as well as certain built-in locals from Sails and/or your view engine, then passed to the view engine as data.</p>
 <h3 id="arguments" permalink="arguments">Arguments</h3>
 <table>
 <thead>
@@ -26,13 +26,13 @@
 <td>1</td>
 <td><code>pathToView</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
-<td>The path to the desired view file relative to your app&apos;s <a href="http://sailsjs.org/documentation/anatomy/myApp/views"><code>views</code> folder</a> (usually <code>views/</code>), without the file extension (e.g. <code>.ejs</code>), and with no trailing slash.<br>Defaults to &quot;identityOfController/nameOfAction&quot;.</td>
+<td>The path to the desired view file relative to your app&apos;s <a href="http://sailsjs.org/documentation/anatomy/myApp/views" target="_blank"><code>views</code> folder</a> (usually <code>views/</code>), without the file extension (e.g. <code>.ejs</code>), and with no trailing slash.<br>Defaults to &quot;identityOfController/nameOfAction&quot;.</td>
 </tr>
 <tr>
 <td>2</td>
 <td><code>locals</code></td>
 <td style="text-align:center"><bubble type="object" colors="true"></bubble></td>
-<td>Data to pass to the view template.  These explicitly specified locals will be merged in to Sails&apos; <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html">built-in locals</a> and your <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">configured app-wide locals</a>.<br>Defaults to <code>{}</code>.</td>
+<td>Data to pass to the view template.  These explicitly specified locals will be merged in to Sails&apos; <a href="http://sailsjs.org/documentation/concepts/Views/Locals.html" target="_blank">built-in locals</a> and your <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">configured app-wide locals</a>.<br>Defaults to <code>{}</code>.</td>
 </tr>
 </tbody>
 </table>

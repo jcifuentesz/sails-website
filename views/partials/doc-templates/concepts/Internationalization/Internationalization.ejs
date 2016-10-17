@@ -27,7 +27,7 @@ req.__(&apos;Hello {{name}}&apos;, { name: &apos;Marcus&apos; }); // =&gt; Hola 
 // =&gt; &apos;Hola!&apos;
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="additional-options" permalink="additional-options">Additional Options</h3>
-<p>Settings for localization/internationalization may be configured in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.i18n.html"><code>sails.config.i18n</code></a>.  The most common reason you&apos;ll need to modify these settings is to edit the list of your app&apos;s supported locales and/or the location of your translation stringfiles:</p>
+<p>Settings for localization/internationalization may be configured in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.i18n.html" target="_blank"><code>sails.config.i18n</code></a>.  The most common reason you&apos;ll need to modify these settings is to edit the list of your app&apos;s supported locales and/or the location of your translation stringfiles:</p>
 <pre><code data-language="javascript">// Which locales are supported?
 locales: [&apos;en&apos;, &apos;es&apos;],
 
@@ -36,7 +36,7 @@ localesDirectory: &apos;/config/locales&apos;
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="disabling-or-customizating-sails-default-internationalization-support" permalink="disabling-or-customizating-sails-default-internationalization-support">Disabling or customizating Sails&apos; default internationalization support</h3>
 <p>Of course you can always <code>require()</code> any Node modules you like, anywhere in your project, and use any internationalization strategy you want.</p>
-<p>But worth noting is that since Sails implements <a href="https://github.com/mashpie/i18n-node" target="_blank">node-i18n</a> integration in the <a href="http://sailsjs.org/documentation/concepts/Internationalization">i18n hook</a>, you can completely disable or override it using the <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>loadHooks</code></a> and/or <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>hooks</code></a> configuration options.</p>
+<p>But worth noting is that since Sails implements <a href="https://github.com/mashpie/i18n-node" target="_blank">node-i18n</a> integration in the <a href="http://sailsjs.org/documentation/concepts/Internationalization" target="_blank">i18n hook</a>, you can completely disable or override it using the <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>loadHooks</code></a> and/or <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank"><code>hooks</code></a> configuration options.</p>
 <h3 id="what-about-i18n-on-the-client-" permalink="what-about-i18n-on-the-client">What About i18n on the client?</h3>
 <p>The above technique works great out of the box for server-side views. But what about rich client apps that serve static HTML templates from a CDN or static host? (e.g. performance-obsessed SPAs or PhoneGap apps/Chrome extensions)</p>
 <p>You can actually reuse Sails&apos; i18n support to help you get your translated templates to the browser.  If you want to use Sails to internationalize your <em>client-side templates</em>, put your front-end templates in a subdirectory of your app&apos;s <code>/views</code> folder.</p>
