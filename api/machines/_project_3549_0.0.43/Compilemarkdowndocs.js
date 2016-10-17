@@ -111,13 +111,10 @@ module.exports = {
       html = html.replace(/(href="\/documentation)([^"]*)\.html"/g, '$1$2"');
 
       // Add target=_blank to external links (e.g. http://google.com or https://chase.com)
-      html = html.replace(/(href="https?:\/\/([^"]+)")/g, function(match, string) {
+      html = html.replace(/(href="https?:\/\/([^"]+)")/g, function(match) {
         // Check if this is an external link that is ALSO not a link to some page
-        // on `*sailsjs.com` or `*.sailsjs.org`.
-        var isExternal = !string.match(/sailsjs\./g);
-        // NOTE: ^^This will work 99% of the time. However, if a URL has 'sailsjs.' in it, it won't be given
-        // the 'target="_blank"', e.g. in the case of github.com/balderdashy/www.sailsjs.org.)
-        // TODO: come back and make this check smarter
+        // on `(*.)?sailsjs.com` or `(*.)?sailsjs.org`.
+        var isExternal = ! match.match(/^href=\"https?:\/\/([^\.]+\.)*sailsjs\.(org|com)/g);
 
         // If it is NOT external, then leave it be.
         if (!isExternal) {

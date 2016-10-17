@@ -1,18 +1,25 @@
 <h1 id="req-options">req.options</h1>
-<p><code>req.options</code> allows altering of (or providing defaults for) request parameters without modifying the original object.</p>
-<p>Any properties provided in a <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html">custom route configuration</a> are made available in the <code>req.options</code> object.  For example, given the following in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html"><code>config/routes.js</code></a>:</p>
-<pre><code data-language="javascript">&quot;GET /foo&quot;: {controller: &apos;user&apos;, action: &apos;myAction&apos;, owl: &apos;hoot&apos;}
+<p><code>req.options</code> is a dictionary of additional information that allows your action to access its configured route options, if there are any.</p>
+<h3 id="route-options" permalink="route-options">Route options</h3>
+<p>Any additional properties provided in a <a href="http://sailsjs.com/docs/concepts/routes/custom-routes#?route-target">route target</a> are made available as properties of <code>req.options</code>.  For example, given the following in <a href="http://sailsjs.com/anatomy/config/routes-js"><code>config/routes.js</code></a>:</p>
+<pre><code data-language="javascript">&apos;GET /foo&apos;: {
+  controller: &apos;UserController&apos;,
+  action: &apos;login&apos;,
+  owl: &apos;hoot&apos;
+}
 </code></pre><!-- __LANG=%%__ -->
-<p><code>req.options.controller</code>, <code>req.options.action</code> and <code>req.options.owl</code> will all be available.</p>
-<p>Additionally, several special <code>req.options</code> objects are available for use with <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprints</a>, specifically to programatically change the criteria and/or values that a blueprint action uses when accessing a data store.  These are best used in <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> to, for example, filter requested records based on the logged-in user.</p>
-<h3 id="example" permalink="example">Example</h3>
-<p>In a <code>config/policies/filterByUser.js</code> policy:</p>
-<pre><code data-language="javascript">module.exports = function filterByUser (req, res, next) {
+<p>In this example, <code>req.options.owl</code> will be available in our <code>UserController.login</code> action.</p>
+<h3 id="with-the-blueprint-api" permalink="with-the-blueprint-api">With the blueprint API</h3>
+<p>Several special route options are always provided to <a href="http://sailsjs.com/docs/reference/blueprint-api">blueprint actions</a>.  This provides a way to programatically modify the criteria and/or values that a blueprint action uses when accessing models.  These options can be configured in a route, or set dynamically in a policy.</p>
+<p>For example, <code>req.options</code> can be modified in a <a href="http://sailsjs.com/docs/concepts/policies">policy</a> to filter requested records based on the logged-in user:</p>
+<pre><code data-language="javascript">// `config/policies/filterByUser.js`
+module.exports = function filterByUser (req, res, next) {
 
-  if (req.session.user) {
+  if (req.session.me) {  
 
-    req.options.where = req.options.where || {};
-    req.options.where.userId = req.session.user.id;
+    req.options.where = {
+      userId: req.session.me
+    }
 
   }
 
@@ -20,5 +27,8 @@
 
 }
 </code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>Making the transition between the blueprint API and writing custom actions?  Check out <a href="http://sailsjs.com/docs/concepts/controllers">Concepts &gt; Controllers</a>.</p>
+</blockquote>
 <docmeta name="displayName" value="req.options">
 </docmeta>
