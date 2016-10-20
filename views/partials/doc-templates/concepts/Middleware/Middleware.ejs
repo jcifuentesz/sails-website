@@ -56,6 +56,9 @@
 <p><em>&quot;Where do I <code>app.use()</code> this thing?&quot;</em>.</p>
 </blockquote>
 <p>In most cases, the answer is to install the Express middleware as a custom HTTP middleware in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.http.html"><code>sails.config.http.middleware</code></a>.  This will trigger it for ALL HTTP requests to your Sails app, and allow you to configure the order in which it runs in relation to other HTTP middleware.</p>
+<blockquote>
+<p>You should never override or remove the <code>router</code> HTTP middleware.  It is built-in to Sails, and without it, your app&apos;s explicit routes and blueprint routes will not work.</p>
+</blockquote>
 <h3 id="express-routing-middleware-in-sails" permalink="express-routing-middleware-in-sails">Express Routing Middleware In Sails</h3>
 <p>You can also include Express middleware as a policy- just configure it in <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html"><code>config/policies.js</code></a>.  You can either require and setup the middleware in an actual wrapper policy (usually a good idea) or just require it directly in your policies.js file.  The following example uses the latter strategy for brevity:</p>
 <pre><code data-language="javascript">var auth = require(&apos;http-auth&apos;);
