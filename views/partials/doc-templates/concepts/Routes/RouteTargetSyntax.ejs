@@ -9,7 +9,8 @@
 <pre><code data-language="text">&apos;POST  /foo/bar&apos;
 ^verb^ ^^path^^
 </code></pre><!-- __LANG=%%__ -->
-<p>If no verb is specified, the target will be applied to any request that matches the path, regardless of the HTTP method used (<strong>GET</strong>, <strong>POST</strong>, <strong>PUT</strong> etc.).  Note the initial <code>/</code> in the path--all paths should start with one in order to work properly.</p>
+<p>If no verb is specified, the route will match any CRUD method (<strong>GET</strong>, <strong>PUT</strong>, <strong>POST</strong>, <strong>DELETE</strong> or <strong>PATCH</strong>).  If <code>ALL</code> is specified as the verb, the route will match <em>any</em> method.</p>
+<p>Note the initial <code>/</code> in the path--all paths should start with one in order to work properly.</p>
 <h4 id="wildcards-and-dynamic-parameters" permalink="wildcards-and-dynamic-parameters">Wildcards and dynamic parameters</h4>
 <p>In addition to specifying a static path like <strong>foo/bar</strong>, you can use <code>*</code> as a wildcard:</p>
 <pre><code data-language="text">&apos;/*&apos;
@@ -84,7 +85,7 @@
 &apos;GET /google&apos;: &apos;http://www.google.com&apos;
 </code></pre><!-- __LANG=%%__ -->
 <p>Be careful to avoid redirect loops when redirecting within your Sails app!</p>
-<p>Note that when redirecting, the HTTP method of the original request (and any extra headers / parameters) will likely be lost, and the request will be transformed to a simple <strong>GET</strong> request.  In the above example, a <strong>POST</strong> request to <strong>/alias</strong> will result in a <strong>GET</strong> request to <strong>/some/other/route</strong>.  This is somewhat browser-dependent behavior, but it is recommended that you don&apos;t expect request methods and other data to survive a redirect.  </p>
+<p>Note that when redirecting, the HTTP method of the original request (and any extra headers / parameters) will likely be lost, and the request will be transformed to a simple <strong>GET</strong> request.  In the above example, a <strong>POST</strong> request to <strong>/alias</strong> will result in a <strong>GET</strong> request to <strong>/some/other/route</strong>.  This is somewhat browser-dependent behavior, but it is recommended that you don&apos;t expect request methods and other data to survive a redirect.</p>
 <h4 id="response-target-syntax" permalink="response-target-syntax">Response target syntax</h4>
 <p>You can map an address directly to a default or custom <a href="http://sailsjs.org/documentation/concepts/Custom-Responses">response</a> using this syntax:</p>
 <pre><code data-language="text">&apos;/foo&apos;: {response: &apos;notFound&apos;}

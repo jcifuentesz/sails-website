@@ -1,9 +1,0 @@
-<h2 id="code-coverage" permalink="code-coverage">Code coverage</h2>
-<p>Another popular method for testing your code is <a href="http://en.wikipedia.org/wiki/Code_coverage" target="_blank">Code Coverage</a>.</p>
-<p>You can use <a href="http://mochajs.org/" target="_blank">mocha</a> and <a href="https://github.com/gotwarlost/istanbul" target="_blank">istanbul</a> to check your code and prepare various coverage reports (HTML, Cobertura) which can be used in continuous integration services such as <a href="http://jenkins-ci.org" target="_blank">Jenkins</a>.</p>
-<p>To test your code and prepare a simple HTML report run the following commands:</p>
-<pre><code data-language="javascript">istanbul cover -x &quot;**/config/**&quot; _mocha -- --timeout 5000
-istanbul report html
-</code></pre><!-- __LANG=%%__ -->
-<docmeta name="displayName" value="Code Coverage">
-</docmeta>
