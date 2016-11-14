@@ -32,7 +32,10 @@ module.exports = {
         "parentDisplayName": "idk",
         "version": "0.3.6",
         "isDeprecated": false,
-        "isMethod": false
+        "isMethod": false,
+        "isTableOfContents": false,
+        "isOverviewPage": false,
+        "notShownOnWebsite": false
       }]
     }
   },
@@ -46,7 +49,7 @@ module.exports = {
 
     // Before formatting the metadata, sort each doc page's `children` array,
     // First by whether it has children (i.e. can be expanded), then alphabetically.
-    inputs.docPageMetadatas = _.map(inputs.docPageMetadatas, function sortDocPageChildren(docPage) {
+    var docPageMetadatas = _.map(inputs.docPageMetadatas, function sortDocPageChildren(docPage) {
       if (docPage.children && docPage.children.length > 0) {
 
         // Create an array with data about the docPage's children
@@ -86,10 +89,36 @@ module.exports = {
 
 
     // Marshal menu metadata
-    var docPageMetadatas = _.map(inputs.docPageMetadatas, function normalizeEachDocPage(docPage) {
+    _.reduce(docPageMetadatas, function normalizeEachDocPage(memo, docPage) {
+
+      // If this template is not to be shown (e.g. in the case of a README):
+      if(docPage.data.notShownOnWebsite === 'true') {
+        docPage.notShownOnWebsite = true;
+      }
+      else {
+        docPage.notShownOnWebsite = false;
+      }
+
 
       // Rename `fullPathAndFileName`
       docPage.path = docPage.fullPathAndFileName;
+
+      // Whether this template is a table of contents
+      if(docPage.data.isTableOfContents === 'true') {
+        docPage.isTableOfContents = true;
+      }
+      else {
+        docPage.isTableOfContents = false;
+      }
+
+      // Whether this template is not to be shown in the navigation
+      // (e.g. in the case of an overview section)
+      if(docPage.data.isOverviewPage === 'true') {
+        docPage.isOverviewPage = true;
+      }
+      else {
+        docPage.isOverviewPage = false;
+      }
 
 
       // Determine the display name-- either use the data bundled as <docmeta> tags, or
@@ -102,8 +131,8 @@ module.exports = {
       // Create an empty array, in order to build up the slug.
       var slugParts = [];
       // Add the kebab-cased display name of the selected page
-      // (But only if it's not the top-level, aka table of contents)
-      if (docPage.displayName.toLowerCase().indexOf('Table of Contents'.toLowerCase()) < 0) {
+      // (But only if it's not the top-level, aka this template is used and is in the navigation)
+      if (!docPage.isOverviewPage && !docPage.isTableOfContents) {
         slugParts.push(_.kebabCase(docPage.displayName));
       }
 
@@ -177,26 +206,59 @@ module.exports = {
         docPage.isParent = true;
       }
 
+      memo.push(docPage);
+      return memo;
+    }, []);
+
+    // Now, update the 'isChild' flag for any section whose parent is an 'overview' or 'table of contents' page.
+    // (These will be considered top-level nav items, instead of being nested under the parent item.)
+    docPageMetadatas = _.map(docPageMetadatas, function(docPage) {
+      if (docPage.parent) {
+        var parent = _.find(docPageMetadatas, {path: docPage.parent});
+        if(parent && (parent.isOverviewPage || parent.isTableOfContents)) {
+          docPage.isChild = false;
+          docPage.parent = '';
+        }
+      }
       return docPage;
     });
+
 
     inputs.docPageMetadatas = docPageMetadatas;
 
     // Now sort the metadatas, first by 'isParent', then by 'displayName'.
     inputs.docPageMetadatas = _.sortByOrder(inputs.docPageMetadatas, ['isParent', 'displayName'], [false, true]);
+
+
+    // Sort the pages by version, if applicable.
+    inputs.docPageMetadatas = inputs.docPageMetadatas.sort(function(a, b) {
+      if(a.version === '' && b.version === '') {
+        return 0;
+      }
+      else if(a.version === '') {
+        return -1;
+      }
+      else if(b.version === '') {
+        return 1;
+      }
+      else {
+        var semver = require('semver');
+        var comparison = semver.rcompare(a.version, b.version);
+        return comparison;
+      }
+    });
+
     // Grab out the deprecated pages
     var deprecatedPages = _.remove(inputs.docPageMetadatas, function(pageData) {
-      return pageData.data.isDeprecated;
+      return pageData.isDeprecated;
     });
     // Grab out the method pages
     var methodPages = _.remove(inputs.docPageMetadatas, function(pageData) {
-      return pageData.data.pageType === 'method';
+      return pageData.pageType === 'method';
     });
     // Then re-add the method pages at the end,
     // followed by the deprecated pages.
     inputs.docPageMetadatas = inputs.docPageMetadatas.concat(methodPages).concat(deprecatedPages);
-
-
     return exits.success(inputs.docPageMetadatas);
   },
   "identity": "MarshaldocPageMetadata"

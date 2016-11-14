@@ -1,0 +1,106 @@
+<h1 id="actions-and-controllers">Actions and Controllers</h1>
+<h3 id="overview" permalink="overview">Overview</h3>
+<p><em>Actions</em> are the principal objects in your Sails application that are responsible for responding to <em>requests</em> from a web browser, mobile application or any other system capable of communicating with a server.  They often act as a middleman between your <a href="http://sailsjs.org/documentation/concepts/ORM/Models.html">models</a> and <a href="http://sailsjs.org/documentation/concepts/Views">views</a>. For many applications, the actions will contain the bulk of your project&#x2019;s <a href="http://en.wikipedia.org/wiki/Business_logic" target="_blank">business logic</a>.</p>
+<p>Actions are bound to <a href="http://sailsjs.org/documentation/concepts/Routes">routes</a> in your application, so that when a client requests the route, the action is executed to perform some business logic and send a response.  For example, the <code>GET /hello</code> route in your application could be bound to an action like:</p>
+<pre><code data-language="javascript">function (req, res) {
+  return res.send(&apos;Hi there!&apos;);
+}
+</code></pre><!-- __LANG=%%__ -->
+<p>Any time a web browser is pointed to the <code>/hello</code> URL on your app&apos;s server, the page will display the message: &#x201C;Hi there&#x201D;.</p>
+<h3 id="where-are-actions-defined-" permalink="where-are-actions-defined">Where are actions defined?</h3>
+<p>Actions are defined in the <code>api/controllers/</code> folder and subfolders (we&#x2019;ll talk more about <em>controllers</em> in a bit). In order for a file to be recognized as an action, it must be <em>kebab-cased</em> (containing only lowercase letters, numbers and dashes).  When referring to an action in Sails (for example, when <a href="http://sailsjs.com/documentation/concepts/routes/custom-routes#?action-target-syntax">binding it to a route</a>), use its path relative to <code>api/controllers</code>, without any file extension.  For example, the <code>api/controllers/user/find.js</code> file represents an action with the identity <code>user/find</code>.</p>
+<h3 id="what-does-an-action-file-look-like-" permalink="what-does-an-action-file-look-like">What does an action file look like?</h3>
+<p>Action files can use one of two formats: <em>function</em> or <em>machine</em>.</p>
+<h5 id="machine-actions" permalink="machine-actions">Machine actions</h5>
+<p>This is the recommended way of creating an action file.  It utilizes the <a href="http://node-machine.org" target="_blank">node-machine specification</a> to specify an action&#x2019;s expected <em>inputs</em> (the request parameters) and its <em>exits</em> (the possible responses).  By defining your action as a machine, it is essentially self-documenting and self-validating.  Here&apos;s a sample machine that looks up a user by ID, and either displays a &quot;welcome&quot; view or redirects to a signup page if the user can&apos;t be found:</p>
+<pre><code data-language="text">module.exports = {
+
+   friendlyName: &apos;Welcome user&apos;,
+
+   description: &apos;Look up the specified user and welcome them, or redirect to a signup page if no user was found.&apos;,
+
+   inputs: {
+      userId: {
+         description: &apos;The ID of the user to look up.&apos;,
+         example: 123,
+         required: true
+      }
+   },
+
+   exits: {
+      success: {
+         responseType: &apos;view&apos;,
+         viewTemplatePath: &apos;welcome&apos;
+      },
+      notFound: {
+         description: &apos;No user with the specified ID was found in the database.&apos;,
+         responseType: &apos;redirect&apos;
+      }
+   },
+
+   fn: function (inputs, exits) {
+
+      // Look up the user whose ID was specified in the request.
+      User.findOne(inputs.userId).exec(function (err, user) {
+         // Handle unknown errors.
+         if (err) {return exits.error(err);}
+         // If no user was found, redirect to signup.
+         if (!user) {return exits.notFound(&apos;/signup&apos;);
+         // Display the welcome view.
+         return exits.success({name: user.name});
+      });
+   }
+};
+</code></pre><!-- __LANG=%%__ -->
+<p>Sails uses the <a href="https://github.com/treelinehq/machine-as-action" target="_blank">machine-as-action</a> module to automatically create route-handling functions out of machines like the example above.  See the <a href="https://github.com/treelinehq/machine-as-action#customizing-the-response" target="_blank">machine-as-action docs</a> for more information.</p>
+<h5 id="function-actions" permalink="function-actions">Function actions</h5>
+<p>You can also specify actions by declaring a function with <code>req</code> and <code>res</code> parameters.  Here&apos;s the same action as above, specified as a function:</p>
+<pre><code data-language="text">module.exports = function welcomeUser (req, res) {
+
+   // If no `userId` was specified, return an error.
+   if (!req.param(&apos;userId&apos;)) {
+      return res.serverError(&apos;No user ID specified!&apos;);
+   }
+
+   // Look up the user whose ID was specified in the request.
+   User.findOne(inputs.userId).exec(function (err, user) {
+      // Handle unknown errors.
+      if (err) {return res.serverError(err);}
+      // If no user was found, redirect to signup.
+      if (!user) {return res.redirect(&apos;/signup&apos;);
+      // Display the welcome view.
+      return res.view(&apos;welcome&apos;, {name: user.name});
+   });
+
+}
+</code></pre><!-- __LANG=%%__ -->
+<p>At first, using a function may seem simpler and easier than declaring an action as a machine.  But using a machine provides several advantages:</p>
+<ul>
+<li>The code you write is not directly dependent on <code>res</code> and <code>res</code>, making it easier to re-use or abstract into a <a href="http://sailsjs.com/documentation/concepts/helpers">helper</a>.</li>
+<li>You guarantee that you&#x2019;ll be able to quickly determine the names and types of the request parameters the action expects, and you&apos;ll know that they will be automatically validated before the action is run.</li>
+<li>You&#x2019;ll be able to see all of the possible outcomes from running the action without having to dissect the code.</li>
+</ul>
+<p>In a nutshell, your code will be standardized in a way that makes it easier to re-use and modify later.</p>
+<h3 id="controllers" permalink="controllers">Controllers</h3>
+<p>Actions that share a common purpose are often organized into <em>controllers</em> to make apps easier to maintain.  In Sails, controllers are especially useful when using <a href="http://next.sailsjs.org/documentation/concepts/policies">policies</a>, as you can easily apply a single policy to all of the actions in a controller.</p>
+<p>The recommended way to organize action is to simply group the action files into folders.  For example, if your app has the following files:</p>
+<pre><code data-language="text">api/
+ controllers/
+  user/
+   login.js
+   logout.js
+   signup.js
+</code></pre><!-- __LANG=%%__ -->
+<p>then you can consider the <strong>api/controllers/user</strong> folder the &quot;User controller&quot;.</p>
+<p>For compatibility with previous versions of Sails, you can also create traditional <em>controller files</em>.  A controller file is a <a href="https://en.wikipedia.org/wiki/PascalCase" target="_blank"><em>PascalCased</em></a> file whose name must end in <code>Controller</code>, containing a dictionary of actions (which can be declared as either functions or machines).  For example, you could get the same &quot;User controller&quot; shown above by creating a <code>api/controllers/UserController.js</code> file containing:</p>
+<pre><code data-language="text">module.exports = {
+   login: ...,
+   logout: ...,
+   signup: ...
+};
+</code></pre><!-- __LANG=%%__ -->
+<p>where <code>login</code>, <code>logout</code> and <code>signup</code> are functions or machine definitions.</p>
+<h3 id="keeping-it-lean" permalink="keeping-it-lean">Keeping it lean</h3>
+<p>In the tradition of most MVC frameworks, Sails recommends that your apps contain &quot;thin&quot; controllers -- that is, your action code should be as lean as possible, with any re-usable code moved into <a href="http://sailsjs.com/documentation/concepts/helpers">helpers</a> or even extracted into node modules.  This makes your apps easier to maintain in the long term!</p>
+<docmeta name="displayName" value="Actions and Controllers">
+</docmeta>

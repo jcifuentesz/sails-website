@@ -9,7 +9,7 @@
 <th></th>
 <th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
@@ -17,21 +17,24 @@
 <td>1</td>
 <td style="text-align:left"><code>req</code></td>
 <td style="text-align:center"><bubble type="req" colors="true"></bubble></td>
-<td>The incoming socket request (<code>req</code>) containing the socket to subscribe.</td>
+<td style="text-align:left">The incoming socket request (<code>req</code>) containing the socket to subscribe.</td>
 </tr>
 <tr>
 <td>2</td>
 <td style="text-align:left"><code>ids</code></td>
 <td style="text-align:center"><bubble type="array" colors="true"></bubble></td>
-<td>An array of record ids (primary key values).</td>
+<td style="text-align:left">An array of record ids (primary key values).</td>
 </tr>
 </tbody>
 </table>
-<p>When a client socket is subscribed to a record, it is a member of its &quot;record room&quot; aka &quot;instance room&quot;.  That means it will receive all messages about that record which are broadcasted by <code>.publishUpdate()</code>, <code>.publishDestroy()</code>, <code>.publishAdd()</code>, <code>.publishRemove()</code>, and <code>.message()</code>.</p>
+<p>When a client socket is subscribed to a record, it is a member of its dynamic &quot;record room&quot;.  That means it will receive all messages broadcasted to that room by <a href="http://sailsjs.com/documentation/reference/web-sockets/resourceful-pubsub/publish"><code>.publish()</code></a>.</p>
 <h3 id="example" permalink="example">Example</h3>
-<pre><code data-language="javascript">subscribeToLouies: function (req, res) {
+<p>On the server, in a controller action:</p>
+<pre><code data-language="javascript">// On the server:
+
+  subscribeToLouies: function (req, res) {
     if (!req.isSocket) {
-      return res.badRequest(&apos;Only a client socket can subscribe to Louies.  You, sir or madame, appear to be an HTTP request.&apos;);
+      return res.badRequest(&apos;Only a client socket can subscribe to Louies.  But you look like an HTTP request to me.&apos;);
     }
 
     // Let&apos;s say our client socket has a problem with people named &quot;louie&quot;.
@@ -42,20 +45,42 @@
         return res.serverError(err);
       }
 
-      // Now we&apos;ll use the ids we found to subscribe our client socket to each of these records.
+      // Now we&apos;ll subscribe our client socket to each of these records.
       User.subscribe(req, _.pluck(usersNamedLouie, &apos;id&apos;));
 
-      // Now any time a user named &quot;louie&quot; or &quot;louis&quot; is modified or destroyed, our client socket
-      // will receive a notification (as long as it stays connected anyways).
-
-      // All done!  We could send down some data, but instead we send an empty response.
-      // (although we&apos;re ok telling this vengeful client socket when our users get
-      //  destroyed, it seems ill-advised to send him our Louies&apos; sensitive user data.
-      //  We don&apos;t want to help this guy to hunt them down in real life.)
+      // All done!  We could send down some data, but instead, we just send an empty 200 (OK) response.
+      // 
+      // &gt; Although we&apos;re ok telling this vengeful client socket when our users get
+      // &gt; destroyed, it seems ill-advised to send him our Louies&apos; sensitive user data.
+      // &gt; (We don&apos;t want to help this guy to hunt them down in real life!)
       return res.ok();
-    });
+
+    });//&lt;/ User.find() &gt;
   }
 </code></pre><!-- __LANG=%%__ -->
+<p>Then, back in our client-side code:</p>
+<pre><code data-language="javascript">// On the client:
+
+// Send a request to the &quot;subscribeToLouies&quot; action, subscribing this client socket
+// to all future events that the server publishes about Louies.
+io.socket.get(&apos;/foo/bar/subscribeToLouies&apos;, function (data, jwr){
+  if (jwr.error) {
+    console.error(&apos;Could not subscribe to Louie-related notifications: &apos;+jwr.error);
+    return;
+  }
+
+  console.log(&apos;Successfully subscribed.&apos;);
+
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>From now on, as long as our requesting client socket stays connected, it will receive a notification any time our server-side code (e.g. other actions or helpers) calls <code>User.publish()</code> for one of the Louies we subscribed to above.</p>
+<p>In order for our client-side code to handle these future notifications, it must <em>listen</em> for the relevant event with <code>.on()</code>.  For example:</p>
+<pre><code data-language="javascript">// Whenever a `user` event is received, say something.
+io.socket.on(&apos;user&apos;, function(msg) {
+  console.log(&apos;Got a message about a Louie: &apos;, msg);
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>See <a href="http://sailsjs.com/documentation/concepts/realtime">Concepts &gt; Realtime</a> for more background on the difference between rooms and events in Sails/Socket.io.</p>
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>

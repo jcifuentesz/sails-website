@@ -7,7 +7,7 @@
 <thead>
 <tr>
 <th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:left">Details</th>
 </tr>
@@ -15,13 +15,13 @@
 <tbody>
 <tr>
 <td>1</td>
-<td><code>roomName</code></td>
+<td style="text-align:left"><code>roomName</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">The room to evactuate.  Note that this room&apos;s members will be forced to leave <em>all of their rooms</em>, not just this one.</td>
 </tr>
 <tr>
 <td>2</td>
-<td><em><code>cb</code></em></td>
+<td style="text-align:left"><em><code>cb</code></em></td>
 <td style="text-align:center"><bubble type="function?" colors="true"></bubble></td>
 <td style="text-align:left">An optional callback which will be called when the operation is complete <em>on the current server</em> (see notes below for more information), or if fatal errors were encountered.  In the case of errors, it will be called with a single argument (<code>err</code>).</td>
 </tr>
@@ -30,11 +30,15 @@
 <h3 id="example" permalink="example">Example</h3>
 <p>In a controller action:</p>
 <pre><code data-language="javascript">unsubscribeFunRoomMembersFromEverything: function(req, res) {
+
   sails.sockets.leaveAll(&apos;funRoom&apos;, function(err) {
-    if (err) {return res.serverError(err);}
-    return res.json({
-      message: &apos;Unsubscribed all members of `funRoom` from everything!&apos;
-    });
+    if (err) { return res.serverError(err); }
+
+    // Unsubscribed all sockets in &quot;funRoom&quot; from &quot;funRoom&quot;.
+    // And... from every other room too.
+
+    return res.ok();
+
   });
 }
 </code></pre><!-- __LANG=%%__ -->

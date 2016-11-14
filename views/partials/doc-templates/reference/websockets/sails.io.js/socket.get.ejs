@@ -9,7 +9,7 @@
 <thead>
 <tr>
 <th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:left">Details</th>
 </tr>
@@ -17,19 +17,19 @@
 <tbody>
 <tr>
 <td>1</td>
-<td><code>url</code></td>
+<td style="text-align:left"><code>url</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">The destination URL path, e.g. &quot;/checkout&quot;.</td>
 </tr>
 <tr>
 <td>2</td>
-<td><em><code>data</code></em></td>
+<td style="text-align:left"><em><code>data</code></em></td>
 <td style="text-align:center"><bubble type="json?" colors="true"></bubble></td>
 <td style="text-align:left">Optional request data- if provided, will be URL encoded and appended to <code>url</code> (existing query string params in url will be preserved)</td>
 </tr>
 <tr>
 <td>3</td>
-<td><em><code>callback</code></em></td>
+<td style="text-align:left"><em><code>callback</code></em></td>
 <td style="text-align:center"><bubble type="function?" colors="true"></bubble></td>
 <td style="text-align:left">Optional callback- if provided, will be called when the server responds.</td>
 </tr>
@@ -40,7 +40,7 @@
 <thead>
 <tr>
 <th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:left">Details</th>
 </tr>
@@ -48,15 +48,15 @@
 <tbody>
 <tr>
 <td>1</td>
-<td><code>resData</code></td>
+<td style="text-align:left"><code>resData</code></td>
 <td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-<td style="text-align:left">Data received in the response from the Sails server (=== <code>jwres.body</code>, equivalent to the HTTP response body.)</td>
+<td style="text-align:left">Data, if any, sent in the response from the Sails server.  This is the same thing as <code>jwres.body</code>.</td>
 </tr>
 <tr>
 <td>2</td>
-<td><code>jwres</code></td>
+<td style="text-align:left"><code>jwres</code></td>
 <td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
-<td style="text-align:left">A <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">JSON WebSocket Response</a> object consisting of <code>headers</code> (a <bubble type="dictionary" colors="true"></bubble>), <code>body</code> (<bubble type="json" colors="true"></bubble>), and <code>statusCode</code> (a <bubble type="number" colors="true"></bubble>).</td>
+<td style="text-align:left">A JSON WebSocket response, which consists of <code>headers</code> (a <bubble type="dictionary" colors="true"></bubble>), <code>body</code> (<bubble type="json" colors="true"></bubble>), and <code>statusCode</code> (a <bubble type="number" colors="true"></bubble>).</td>
 </tr>
 </tbody>
 </table>

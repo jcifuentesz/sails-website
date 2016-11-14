@@ -1,9 +1,86 @@
 <h1 id="xss">XSS</h1>
 <p>Cross-site scripting (XSS) is a type of attack in which a malicious agent manages to inject client-side JavaScript into your website, so that it runs in the trusted environment of your users&apos; browsers.</p>
+<h3 id="protecting-against-xss-attacks" permalink="protecting-against-xss-attacks">Protecting against XSS attacks</h3>
+<p>The cleanest way to prevent XSS attacks is to escape untrusted data <em>at the point of injection</em>.  That means at the point where it&apos;s actually being injected into the HTML.</p>
+<h4 id="on-the-server" permalink="on-the-server">On the server</h4>
+<h5 id="when-injecting-data-into-a-server-side-view-" permalink="when-injecting-data-into-a-serverside-view">When injecting data into a server-side view...</h5>
+<p>Use <code>&lt;%= %&gt;</code> to HTML-encode data:</p>
+<pre><code data-language="html">&lt;h3 is=&quot;welcome-msg&quot;&gt;Hello &lt;%= me.username %&gt;!&lt;/h3&gt;
+
+&lt;h4&gt;&lt;%= owner.username %&gt;&apos;s projects:&lt;/h4&gt;
+&lt;ul&gt;&lt;% _.each(projects, function (project) { %&gt;
+  &lt;li&gt;
+    &lt;a href=&quot;/&lt;%= owner.username %&gt;/&lt;%= project.slug %&gt;&quot;&gt;&lt;%= project.friendlyName %&gt;&lt;/a&gt;
+  &lt;/li&gt;
+&lt;% }); %&gt;&lt;/ul&gt;
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="when-exposing-view-locals-to-client-side-javascript-" permalink="when-exposing-view-locals-to-clientside-javascript">When exposing view locals to client-side JavaScript...</h5>
+<p>Use the <code>exposeLocalsToBrowser</code> helper to safely expose some or all of your view locals to client-side JavaScript:</p>
+<pre><code data-language="html">&lt;%- exposeLocalsToBrowser(); %&gt;
+
+&lt;script&gt;
+console.log(window.SAILS_LOCALS);
+// {
+//   me: {
+//     username: &apos;eleven&apos;,
+//     memberSince: &apos;1982-08-01T05:00:00.000Z&apos;
+//   },
+//   owner: {
+//     username: &apos;joyce&apos;,
+//     memberSince: &apos;1987-11-03T05:00:00.000Z&apos;
+//   },
+//   projects: [
+//     {
+//       slug: &apos;my-neat-stuff-n-things&apos;,
+//       friendlyName: &apos;My neat stuff &amp; things&apos;,
+//       description: &apos;Yet another project.&apos;
+//     },
+//     {
+//       slug: &apos;kind-of-neat-stuff-but-not-that-great&apos;,
+//       friendlyName: &apos;Kind of neat stuff, but not that great...&apos;,
+//       description: &apos;I am so sick and tired of these project. &lt;script&gt;alert(\&apos;attack\&apos;);&lt;/script&gt;&apos;
+//     }
+//   ],
+//   _csrf: &apos;oon95Uac-wKfWQKC5pHx1rP3HsiN9tjqGMyE&apos;
+// }
+&lt;/script&gt;
+</code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>Note that, when you use this strategy, the strings in your view locals are no longer HTML unescaped after being exposed to client-side JavaScript.
+That&apos;s because you&apos;ll want to escape them <em>again</em> when you stick them in the DOM.  If you always escape at the point of injection, this stuff is a
+lot easier to keep track of.  This way, you know you can safely escape <em>any</em> string you inject into the DOM from your client-side JavaScript.
+(More on that below.)</p>
+</blockquote>
+<h4 id="on-the-client" permalink="on-the-client">On the client</h4>
+<p>A lot of XSS prevention is about what you do in your client-side code.  Here are a few examples:</p>
+<h5 id="when-injecting-data-into-a-client-side-jst-template-" permalink="when-injecting-data-into-a-clientside-jst-template">When injecting data into a client-side JST template...</h5>
+<p>Use <code>&lt;%- %&gt;</code> to HTML-encode data:</p>
+<pre><code data-language="html">&lt;div data-template-id=&quot;welcome-box&quot;&gt;
+  &lt;h3 is=&quot;welcome-msg&quot;&gt;Hello &lt;%- me.username %&gt;!&lt;/h3&gt;
+&lt;/div&gt;
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="when-modifying-the-dom-with-client-side-javascript-" permalink="when-modifying-the-dom-with-clientside-javascript">When modifying the DOM with client-side JavaScript...</h5>
+<p>Use something like <code>$(...).text()</code> to HTML-encode data:</p>
+<pre><code data-language="javascript">var $welcomeMsg = $(&apos;#signup&apos;).find(&apos;[is=&quot;welcome-msg&quot;]&apos;);
+welcomeMsg.text(&apos;Hello, &apos;+window.SAILS_LOCALS.me.username+&apos;!&apos;);
+
+// Avoid using `$(...).html()` to inject untrusted data.
+// Even if you know an XSS is not possible under particular circumstances,
+// accidental escaping issues can cause really, really annoying client-side bugs.
+</code></pre><!-- __LANG=%%__ -->
+<blockquote>
+<p>As you&apos;ve probably figured out, the example above assumes you are using jQuery- but the same concepts apply regardless of what front-end library you are using.</p>
+</blockquote>
 <h3 id="additional-resources" permalink="additional-resources">Additional Resources</h3>
 <ul>
 <li><a href="https://www.owasp.org/index.php/XSS" target="_blank">XSS (OWasp)</a></li>
 <li><a href="https://www.owasp.org/index.php/XSS_Prevention_Cheat_Sheet" target="_blank">XSS Prevention Cheatsheet</a></li>
 </ul>
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>The examples above assume you are using the default view engine (EJS) and client-side JST/Lodash templates from the default asset pipeline.</li>
+</ul>
+</blockquote>
 <docmeta name="displayName" value="XSS">
 </docmeta>

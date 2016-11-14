@@ -1,0 +1,45 @@
+<h1 id="generating-controllers">Generating controllers</h1>
+<p>You can use the <a href="http://sailsjs.org/documentation/reference/command-line-interface">Sails command line tool</a> to quickly generate a controller, by typing:</p>
+<pre><code data-language="javascript">$ sails generate action &lt;action identity&gt;
+</code></pre><!-- __LANG=%%__ -->
+<p>For example, if you run the following command:</p>
+<pre><code data-language="javascript">$ sails generate action user/signup
+info: Created a new action!
+</code></pre><!-- __LANG=%%__ -->
+<p>Sails will generate <code>api/controllers/user/sign-up.js</code>:</p>
+<pre><code data-language="javascript">/**
+ * user/sign-up.js
+ *
+ * @description :: Server-side controller action for handling incoming requests.
+ * @help        :: See http://sailsjs.com/docs/concepts/controllers
+ */
+module.exports = {
+
+
+  friendlyName: &apos;Sign up&apos;,
+
+
+  description: &apos;&apos;,
+
+
+  inputs: {
+
+  },
+
+
+  exits: {
+
+  },
+
+
+  fn: function (inputs, exits) {
+
+    return exits.success();
+
+  }
+
+
+};
+</code></pre><!-- __LANG=%%__ -->
+<docmeta name="displayName" value="Generating Actions">
+</docmeta>

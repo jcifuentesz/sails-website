@@ -1,0 +1,53 @@
+<h1 id="migration-guide-">Migration guide:</h1>
+<h2 id="security" permalink="security">Security</h2>
+<p>New apps created with Sails 1.0 will contain a <strong>config/security.js</strong> file instead of individual <strong>config/cors.js</strong> and <strong>config/csrf.js</strong> files, but apps migrating from earlier versions don&#x2019;t can keep their existing files as long as they perform the following upgrades:</p>
+<ul>
+<li>Change <code>module.exports.cors</code> to <code>module.exports.security.cors</code> in <code>config/cors.js</code></li>
+<li>Change CORS config settings names to match the newly documented names in <a href="http://sailsjs.com/documentation/reference/configuration/sails-config-security-cors">http://sailsjs.com/documentation/reference/configuration/sails-config-security-cors</a></li>
+<li>Change <code>module.exports.csrf</code> to <code>module.exports.security.csrf</code> in <code>config/csrf.js</code></li>
+<li><code>sails.config.csrf.routesDisabled</code> is no longer supported -- instead, add <code>csrf: false</code> to any route in <code>config/routes.js</code> that you wish to be unprotected by CSRF, for example:</li>
+</ul>
+<pre><code data-language="text">&apos;POST /some-thing&apos;: { action: &apos;do-a-thing&apos;, csrf: false },
+</code></pre><!-- __LANG=%%__ -->
+<h2 id="views" permalink="views">Views</h2>
+<p>For maximum flexibility, Consolidate is no longer bundled within Sails.  If you are using a view engine besides EJS, you&apos;ll probably want to install Consolidate as a direct dependency of your app.  Then you can configure the view engine in <code>config/views.js</code> like so:</p>
+<pre><code data-language="javascript">&apos;extension&apos;: &apos;swig&apos;,
+&apos;getRenderFn&apos;: function() {
+  // Import `consolidate`.
+  var cons = require(&apos;consolidate&apos;);
+  // Return the rendering function for Swig.
+  return cons.swig;
+}
+</code></pre><!-- __LANG=%%__ -->
+<p>Adding custom configuration to your view engine is a lot easier in Sails 1.0:</p>
+<pre><code data-language="javascript">&apos;extension&apos;: &apos;swig&apos;,
+&apos;getRenderFn&apos;: function() {
+  // Import `consolidate`.
+  var cons = require(&apos;consolidate&apos;);
+  // Import `swig`.
+  var swig = require(&apos;swig&apos;);
+  // Configure `swig`.
+  swig.setDefaults({tagControls: [&apos;{?&apos;, &apos;?}&apos;]});
+  // Set the module that Consolidate uses for Swig.
+  cons.requires.swig = swig;
+  // Return the rendering function for Swig.
+  return cons.swig;
+}
+</code></pre><!-- __LANG=%%__ -->
+<h2 id="pubsub" permalink="pubsub">Pubsub</h2>
+<ul>
+<li>Removed deprecated <code>backwardsCompatibilityFor0.9SocketClients</code> setting.</li>
+<li>Removed deprecated <code>.subscribers()</code> method.</li>
+<li>The following resourceful pubsub methods have been removed:<ul>
+<li><code>.publishAdd()</code></li>
+<li><code>.publishCreate()</code></li>
+<li><code>.publishDestroy()</code></li>
+<li><code>.publishRemove()</code></li>
+<li><code>.publishUpdate()</code></li>
+<li><code>.watch()</code></li>
+<li><code>.unwatch()</code></li>
+<li><code>.message()</code>
+In their place, you should use the new <code>.publish()</code> method, or the low-level <a href="http://sailsjs.com/documentation/reference/web-sockets/sails-sockets">sails.sockets</a> methods.  Keep in mind that unlike <code>.message()</code>, <code>.publish()</code> does <em>not</em> wrap your data in an envelope containing the record ID, so you&apos;ll need to include that as part of the data if it&apos;s important.</li>
+</ul>
+</li>
+</ul>

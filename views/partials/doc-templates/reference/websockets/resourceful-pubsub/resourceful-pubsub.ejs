@@ -1,11 +1,21 @@
-<h1 id="resourceful-pubsub">Resourceful PubSub</h1>
+<h1 id="resourceful-pubsub-rps-">Resourceful PubSub (RPS)</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
-<p>For apps that rely heavily on <a href="http://sailsjs.org/documentation/concepts/realtime">realtime</a> client-server communication--for example, peer-to-peer chat and social networking apps--sending and listening for socket events can quickly become overwhelming.  Sails helps smooth away some of this complexity by introducing the concept of <strong>resourceful pubsub</strong> (<a href="http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern" target="_blank">Publish / Subscribe</a>).  Every model (AKA <em>resource</em>) in your app is automatically equipped with class methods which provide a conventional, data-centric interface for both <em>broadcasting notifications</em> and <em>subscribing sockets to notifications</em> about individual database records being created, updated, or destroyed.</p>
-<p>If your app is currently using the <a href="http://sailsjs.org/documentation/reference/blueprint-api">Blueprint API</a>, you are already using resourceful pubsub methods!  They are embedded in the default blueprint actions bundled with Sails, and called automatically when those actions run; causing requesting sockets to be subscribed when data is fetched and messages to be broadcasted to already-subscribed sockets when data is changed.</p>
+<p>For apps that rely heavily on <a href="http://sailsjs.org/documentation/concepts/realtime">realtime</a> client-server communication--for example, peer-to-peer chat and social networking apps--sending and listening for socket events can quickly become overwhelming.  Sails helps smooth away some of this complexity by introducing the concept of <strong>resourceful pubsub</strong> (<a href="http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern" target="_blank">Publish / Subscribe</a>).  Every model in your app is automatically equipped with resourceful pubsub methods which provide a conventional, data-centric interface for both <em>broadcasting notifications</em> and <em>subscribing sockets to notifications</em> about individual database records.</p>
+<p>If your app is currently using the <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprint API</a>, you are already using resourceful pubsub methods!  They are embedded in the default blueprint actions bundled with Sails, and called automatically when those actions run; causing requesting sockets to be subscribed when data is fetched and messages to be broadcasted to already-subscribed sockets when data is changed.</p>
 <p>But even when writing custom code, you can call the methods described in this section manually in lieu of using <code>sails.sockets.*</code> methods directly.  Think of resourceful pubsub methods as a way of standardizing the interface for socket communication across your application: things like the names for rooms, the schema for data transmitted as socket messages, and the names of socket events.  These methods are designed <em>exclusively</em> for scenarios where one or more user interfaces are listening to socket events as a way of keeping in sync with the backend.  If that does not fit your use case or if you are having trouble deciding, don&apos;t worry; just call <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/broadcast"><code>sails.sockets.broadcast()</code></a>, <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/join"><code>sails.sockets.join()</code></a>, or <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/leave"><code>sails.sockets.leave()</code></a> directly instead.  It is perfectly acceptable to use either approach, or even <em>both</em> approaches in the same app.</p>
+<h3 id="methods" permalink="methods">Methods</h3>
+<p>Sails exposes 3 different resourceful pubsub (RPS) methods: <code>.publish()</code>, <code>.subscribe()</code>, and <code>.unsubscribe()</code>.</p>
+<p>To get a deeper understanding of resourceful pubsub methods, you may find it useful to familiarize yourself with the underlying <a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets"><code>sails.sockets.*</code></a> methods first.  That&apos;s because each RPS method is more or less just a contextualized wrapper around one of the simpler <code>sails.sockets.*</code> methods:</p>
+<ul>
+<li><a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish"><code>.publish()</code></a> is like <em><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/broadcast"><code>sails.sockets.broadcast()</code></a></em></li>
+<li><a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe"><code>.subscribe()</code></a> is like <em><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/join"><code>sails.sockets.join()</code></a></em></li>
+<li><a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/unsubscribe"><code>.unsubscribe()</code></a>  is like <em><a href="http://sailsjs.org/documentation/reference/web-sockets/sails-sockets/leave"><code>sails.sockets.leave()</code></a></em></li>
+</ul>
+<p>The biggest difference between these methods and their counterparts in <code>sails.sockets.*</code> is that RPS methods expose a higher-level interface.  For example, RPS methods choose room names for you behind the scenes, and they infer a conventional event name based on your model&apos;s identity.</p>
 <h3 id="listening-for-events-on-the-client" permalink="listening-for-events-on-the-client">Listening for events on the client</h3>
 <p>While you are free to use any Javascript library to listen for socket events on the client, Sails provides its own socket client called <a href="http://sailsjs.org/documentation/reference/websockets/sails.io.js">sails.io.js</a> as a convenient way to communicate with the Sails server from any web browser or Node.js process that supports Socket.io.  Using the Sails socket client makes listening for resourceful pubsub events as easy as:</p>
-<pre><code data-language="text">io.socket.on(&apos;&lt;model identity&gt;&apos;, function (event) {
+<pre><code data-language="text">io.socket.on(&apos;&lt;model identity&gt;&apos;, function (data) {
+
 });
 </code></pre><!-- __LANG=%%__ -->
 <blockquote>
@@ -13,15 +23,26 @@
 </blockquote>
 <h3 id="example" permalink="example">Example</h3>
 <p>Let&#x2019;s say you have a model named <code>User</code> in your app, with a single &#x201C;name&#x201D; attribute.  First, we&#x2019;ll add a listener for &#x201C;user&#x201D; events:</p>
-<pre><code data-language="text">io.socket.on(&apos;user&apos;, function(event){console.log(event);})
+<pre><code data-language="text">io.socket.on(&apos;user&apos;, function(data){
+  console.log(data);
+})
 </code></pre><!-- __LANG=%%__ -->
-<p>This will log any notifications about <code>User</code> models to the console.  However, we won&#x2019;t receive any such messages until we <em>subscribe</em> to the existing <code>User</code> records (aka model instances).  If your app currently has the blueprint API enabled, you can use the sails.io.js client to watch the User model for new records, as well as subscribing to the returned set of records by making a socket <code>GET</code> request from the client to <code>/user</code>:</p>
-<pre><code data-language="javascript">io.socket.get(&apos;/user&apos;, function(resData, jwres) {console.log(resData);})
+<p>This will log any notifications about <code>User</code> models to the console.  However, we won&#x2019;t receive any such messages until we <em>subscribe</em> to one or more existing <code>User</code> records.</p>
+<p>If your app has the blueprint API enabled, then this is really easy.  In addition to fetching data, if the <a href="http://sailsjs.org/documentation/reference/blueprint-api/find-where">&quot;Find&quot; blueprint action</a> is accessed via a <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get">socket request</a>, then it calls <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe"><code>User.subscribe()</code></a> (a resourceful pubsub method) automatically.</p>
+<p>For example, imagine you write some client-side code that sends a socket <code>GET</code> request to <code>http://localhost:1337/user</code>:</p>
+<pre><code data-language="javascript">io.socket.get(&apos;/user&apos;, function(resData) {
+  console.log(resData);
+});
 </code></pre><!-- __LANG=%%__ -->
-<p>This requests the current list of users from the Sails server, and subscribes the client to events about each user.  Additionally, if the <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.blueprints.html?q=properties"><code>autoWatch</code> setting</a> is on (the default), the client will also be notified whenever a new <code>User</code> is created, and will automatically be subscribed to the new user.  The callback in this example simply logs the user list to the console.  See the <a href="http://sailsjs.org/documentation/reference/websockets/sails.io.js/socket.get.html">socket.get</a> reference for more info about this method.</p>
-<p>It&#x2019;s important to note that in order for the subscription to take place, the <code>/user</code> request must be made via a websocket call, <em>not</em> a regular HTTP request.  That is, using an AJAX request (e.g. <code>jQuery.get(&quot;/user&quot;)</code>) will <em>not</em> result in the client being subscribed to resourceful pubsub messages about <code>User</code>.  However, once the subscription is made, <em>any</em> changes to models--whether they be the result of a socket call, an AJAX request, even a cURL request from the command line--will cause the client to receive a notification.  Continuing with the above example, if you were to open up a new browser window and go to the following URL:</p>
-<pre><code>/user/create?name=joe
-</code></pre><p>You would see something like the following in the console of the first window:</p>
+<p>When that runs, it will hit the &quot;Find&quot; blueprint action, which returns the current list of users from the Sails server.  And if we&apos;d sent a normal HTTP request (like <code>jQuery.get(&apos;/user&apos;)</code>), then that&apos;s all that would happen.  But because we sent a <em>socket request</em>, the server <em>also</em> subscribed our client socket to future notifications (calls to <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/publish"><code>.publish()</code></a>)) about the user records that were returned.  </p>
+<blockquote>
+<p>See <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get">io.socket.get()</a> for more info about using the sails.io.js client to send virtual requests.</p>
+</blockquote>
+<p>Unlike <code>.subscribe()</code>, the RPS <code>.publish()</code> method can run from anywhere--it could be in a controller action triggered as the result of a socket request, an AJAX request, or even a cURL request from the command line.  Or <code>.publish()</code> could be called from a custom helper, or in a command-line script.</p>
+<p>Continuing with the above example, if you were to open up a new (2nd) browser window and go to the following URL:</p>
+<pre><code data-language="text">/user/create?name=joe
+</code></pre><!-- __LANG=%%__ -->
+<p>You would see something like the following in the console of the original (1st) window:</p>
 <pre><code data-language="javascript">{
     verb: &apos;created&apos;,
   id: 1,
@@ -33,6 +54,6 @@
   }
 }
 </code></pre><!-- __LANG=%%__ -->
-<p>The <code>verb</code> indicates the kind of action that occurred.  The <code>id</code> refers to the record that the alleged action occurred on, and <code>data</code> contains new/modified information about the <code>User</code> that was acted upon.  Each event type sends back slightly different information; see the individual resourceful pubsub method reference documents for more info.</p>
+<p>What you&apos;re seeing here is a dictionary (aka plain JavaScript object) that was broadcasted by the <a href="http://sailsjs.org/documentation/reference/blueprint-api/create">&quot;Create&quot; blueprint action</a>.  In the case of the blueprint API, the format of this data is standardized, but in your app, you can use <code>.publish()</code> to broadcast any data you like.</p>
 <docmeta name="displayName" value="Resourceful PubSub">
 </docmeta>

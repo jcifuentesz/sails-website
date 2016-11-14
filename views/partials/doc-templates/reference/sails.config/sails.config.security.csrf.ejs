@@ -1,0 +1,32 @@
+<h1 id="sails-config-security-csrf">sails.config.security.csrf</h1>
+<p>Configuration for Sails&apos; built-in <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">CSRF</a> protection middleware.  These options are conventionally set in the <a href="http://sailsjs.org/documentation/anatomy/myApp/config/security.js.html"><code>config/security.js</code></a> configuration file.  For detailed usage instructions, see <a href="http://sailsjs.com/documentation/concepts/security/csrf">Concepts &gt; Security &gt; Cross-Site Request Forgery</a>.</p>
+<p>This option protects your Sails app against cross-site request forgery (or CSRF) attacks.  A would-be attacker needs not only a user&apos;s session cookie, but also this timestamped, secret CSRF token, which is refreshed/granted when the user visits a URL on your app&apos;s domain.  This allows you to have certainty that your users&apos; requests haven&apos;t been hijacked, and that the requests they&apos;re making are intentional and legitimate.</p>
+<h3 id="properties" permalink="properties">Properties</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:center">Type</th>
+<th style="text-align:left">Default</th>
+<th style="text-align:left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>csrf</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble> or <bubble type="dictionary" colors="true"></bubble></td>
+<td style="text-align:left">false</td>
+<td style="text-align:left">CSRF protection is disabled by default to facilitate development.  To turn it on, just set <code>sails.config.security.csrf</code> to <code>true</code>, or for more flexibility, specify <code>csrf: true</code> or <code>csrf: false</code> in any route in your <a href="http://sailsjs.com/anatomy/config/routes-js"><code>config/routes.js</code></a> file.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notes" permalink="notes">Notes</h3>
+<blockquote>
+<ul>
+<li>In Sails v1.0, <code>sails.config.csrf.grantTokenViaAjax</code> and <code>sails.config.csrf.origin</code> were removed in favor of the <a href="http://sailsjs.com/docs/concepts/security/csrf">built-in <code>security/grant-csrf-token</code></a> action.</li>
+</ul>
+</blockquote>
+<p><docmeta name="displayName" value="sails.config.security.csrf"></docmeta></p>
+<docmeta name="pageType" value="property">
+
+</docmeta>

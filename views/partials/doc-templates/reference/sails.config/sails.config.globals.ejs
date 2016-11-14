@@ -1,10 +1,10 @@
 <h1 id="sails-config-globals">sails.config.globals</h1>
-<p>Configuration for the <a href="http://sailsjs.org/documentation/reference/Globals">global variables</a> that Sails exposes to its Node process.  The options are conventionally specified in the <a href="http://sailsjs.org/documentation/anatomy/myApp/config/globals.js.html"><code>config/globals.js</code></a> configuration file.</p>
+<p>Configuration for the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Global_variable" target="_blank">global variables</a> that Sails exposes by default.  The options are conventionally specified in the <a href="http://sailsjs.com/anatomy/config/globals-js"><code>config/globals.js</code></a> configuration file.</p>
 <h3 id="properties" permalink="properties">Properties</h3>
 <table>
 <thead>
 <tr>
-<th>Property</th>
+<th style="text-align:left">Property</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:left">Default</th>
 <th style="text-align:left">Details</th>
@@ -12,41 +12,60 @@
 </thead>
 <tbody>
 <tr>
-<td><code>sails</code></td>
-<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td style="text-align:left"><code>true</code></td>
-<td style="text-align:left">Expose the <code>sails</code> instance representing your app.  If this is disabled, you can still get access via <code>req._sails</code>.</td>
+<td style="text-align:left"><code>_</code> <em>(underscore)</em></td>
+<td style="text-align:center"><bubble type="ref" colors="true"></bubble><br><em>or</em><br><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:left"><code>require(&apos;lodash&apos;)</code></td>
+<td style="text-align:left">Expose the specified <code>lodash</code> as a global variable (<code>_</code>).  Or set this to <code>false</code> to disable the <code>_</code> global altogether.  <em>(More on that below.)</em></td>
 </tr>
 <tr>
-<td><code>models</code></td>
-<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td style="text-align:left"><code>true</code></td>
-<td style="text-align:left">Expose each of your app&apos;s models as global variables (using their &quot;globalId&quot;).  E.g. a model defined in <code>api/models/User.js</code> would have a globalId of <code>User</code> by default.   If this is disabled, you can still access your models via <code>sails.models.*</code>.</td>
+<td style="text-align:left"><code>async</code></td>
+<td style="text-align:center"><bubble type="ref" colors="true"></bubble><br><em>or</em><br><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:left"><code>require(&apos;async&apos;)</code></td>
+<td style="text-align:left">Expose the specified <code>async</code> as a global variable (<code>async</code>).  Or set this to <code>false</code> to disable the <code>async</code> global altogether. <em>(More on that below.)</em></td>
 </tr>
 <tr>
-<td><code>services</code></td>
+<td style="text-align:left"><code>models</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Expose each of your app&apos;s models as a global variable (using its &quot;globalId&quot;).  For example, a model defined in <code>api/models/User.js</code> would have a &quot;globalId&quot; of <code>User</code>.   If this is disabled, then you can still access all of your models by identity in the <a href="http://sailsjs.org/documentation/reference/application#?sailsmodels"><code>sails.models</code></a> dictionary.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>sails</code></td>
+<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Expose the <code>sails</code> instance representing your app.  Even if this is disabled, you can still get access to it in your actions via <code>env.sails</code>, or in your policies via <code>req._sails</code>.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>services</code></td>
 <td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
 <td style="text-align:left"><code>true</code></td>
 <td style="text-align:left">Expose each of your app&apos;s services as global variables (using their &quot;globalId&quot;).  E.g. a service defined in <code>api/services/NaturalLanguage.js</code> would have a globalId of <code>NaturalLanguage</code> by default.  If this is disabled, you can still access your services via <code>sails.services.*</code>.</td>
 </tr>
-<tr>
-<td><code>_</code></td>
-<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td style="text-align:left"><code>true</code></td>
-<td style="text-align:left">Expose the <code>lodash</code> installed in Sails core as a global variable. If this is disabled, like <a href="https://soundcloud.com/marak/marak-the-node-js-rap" target="_blank">any other node module</a> you can always run <code>npm install lodash --save</code>, then <code>var _ = require(&apos;lodash&apos;)</code> at the top of any file.</td>
-</tr>
-<tr>
-<td><code>async</code></td>
-<td style="text-align:center"><bubble type="boolean" colors="true"></bubble></td>
-<td style="text-align:left"><code>true</code></td>
-<td style="text-align:left">Expose the <code>async</code> installed in Sails core as a global variable.  If this is disabled, like <a href="https://soundcloud.com/marak/marak-the-node-js-rap" target="_blank">any other node module</a> you can always run <code>npm install async --save</code>, then <code>var async = require(&apos;async&apos;)</code> at the top of any file.</td>
-</tr>
 </tbody>
 </table>
+<h3 id="using-lodash-_-and-async-without-globals" permalink="using-lodash-()-and-async-without-globals">Using Lodash (<code>_</code>) and async without globals</h3>
+<p>If you have to disable globals, but would still like to use Lodash and/or async, you&apos;re in luck.  With Node.js and NPM, importing modules is very straightforward.</p>
+<p>To use your own version of Lodash or async without relying on globals, first modify the relevant settings in <code>config/globals.js</code>:</p>
+<pre><code data-language="javascript">// Disable `_` and `async` globals.
+_: false,
+async: false,
+</code></pre><!-- __LANG=%%__ -->
+<p>Then install your own Lodash:</p>
+<pre><code data-language="javascript">npm install lodash --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
+<p>Or async:</p>
+<pre><code data-language="javascript">npm install async --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
+<p>Finally, just like you&apos;d import <a href="https://soundcloud.com/marak/marak-the-node-js-rap" target="_blank">any other Node.js module</a>, include <code>var _ = require(&apos;lodash&apos;);</code> or <code>var async = require(&apos;async&apos;)</code> at the top of any file where you need them.</p>
+<h3 id="using-a-different-version-of-lodash-or-async-" permalink="using-a-different-version-of-lodash-or-async">Using a different version of <code>lodash</code> or <code>async</code></h3>
+<p>As of Sails v1.0, to use your own version of Lodash or async, you just need to <code>npm install</code> the version you want.  For example, to install the latest version of Lodash 4.x.x:</p>
+<pre><code data-language="javascript">npm install lodash@^4.x.x --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>To disable all global variables, you can set <code>sails.config.globals</code> to <code>false</code>.</li>
+<li>As a shortcut to disable <em>all</em> of the above global variables, you can set <code>sails.config.globals</code> itself to <code>false</code>.  This does the same thing as if you had manually disabled each of the settings above.</li>
+<li>In previous versions of Sails, when <code>sails.config.globals._</code> or <code>sails.config.globals.async</code> was set to <code>true</code>, Sails would expose its own internal <code>lodash</code> and/or <code>async</code> dependency.  If you are migrating an app built before Sails v1.0 and want to use the same lodash and async version as before, run <code>npm install lodash@3.10.1 async@1.5.2 --save --save-exact</code>, then modify <code>config/globals.js</code> to pass in <code>_: require(&apos;lodash&apos;)</code> and <code>async: require(&apos;async&apos;)</code>.  See <a href="https://github.com/lodash/lodash/issues/2768" target="_blank">lodash/lodash#2768</a> for more background.</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="sails.config.globals"></docmeta></p>

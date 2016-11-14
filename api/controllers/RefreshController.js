@@ -194,7 +194,7 @@ module.exports = {
                                                                     "success": function(compileGettingStartedDocs) {
                                                                         // Compile irc docs
                                                                         sails.machines['_project_3549_0.0.43'].Compilemarkdowndocs({
-                                                                            "path": "support/irc"
+                                                                            "path": "irc"
                                                                         }).setEnvironment({
                                                                             sails: sails
                                                                         }).exec({

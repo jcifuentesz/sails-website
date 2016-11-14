@@ -1,9 +1,37 @@
 <h1 id="csrf">CSRF</h1>
 <p>Cross-site request forgery (<a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery" target="_blank">CSRF</a>) is a type of attack which forces an end user to execute unwanted actions on a web application backend with which he/she is currently authenticated.  In other words, without protection, cookies stored in a browser like Google Chrome can be used to send requests to Chase.com from a user&apos;s computer whether that user is currently visiting Chase.com or Horrible-Hacker-Site.com.</p>
-<h3 id="enabling-csrf-protection" permalink="enabling-csrf-protection">Enabling CSRF Protection</h3>
-<p>Sails bundles optional CSRF protection out of the box. To enable the built-in enforcement, just make the following adjustment to <a href="http://sailsjs.com/docs/reference/configuration/sails-config-csrf">sails.config.csrf</a> (conventionally located in your project&apos;s <a href="http://sailsjs.com/anatomy/config/csrf-js"><code>config/csrf.js</code></a> file):</p>
+<h3 id="about-csrf-tokens" permalink="about-csrf-tokens">About CSRF tokens</h3>
+<p>CSRF tokens are like limited-edition swag.  While a session tells the server that a user &quot;is who they say they are&quot;, a csrf token tells the server they &quot;were where they say they were&quot;.  When CSRF protection is enabled in your Sails app, all non-GET requests to the server must be accompanied by a special &quot;CSRF token&quot;, which can be included as either the &apos;_csrf&apos; parameter or the &apos;X-CSRF-Token&apos; header.</p>
+<p>Using tokens protects your Sails app against cross-site request forgery (or CSRF) attacks. A would-be attacker needs not only a user&apos;s session cookie, but also this timestamped, secret CSRF token, which is refreshed/granted when the user visits a URL on your app&apos;s domain.  This allows you to have certainty that your users&apos; requests haven&apos;t been hijacked, and that the requests they&apos;re making are intentional and legitimate.</p>
+<p>Enabling CSRF protection requires managing the token in your front-end app.  In traditional form submissions, this can be easily accomplished by sending along the CSRF token as a hidden input in your <code>&lt;form&gt;</code>.  Or better yet, include the CSRF token as a request param or header when you send AJAX requests.  To do that, you can either fetch the token by sending a request to the route where you mounted <code>security/grantCsrfToken</code>, or better yet, harvest the token from view locals using the <code>exposeLocalsToBrowser</code> partial.</p>
+<p>Here are some examples:</p>
+<h4 id="-a-for-modern-view-driven-hybrid-apps-that-submit-forms-with-ajax-" permalink="(a)-for-modern,-viewdriven-hybrid-apps-that-submit-forms-with-ajax">(a) For modern, view-driven hybrid apps that submit forms with AJAX:</h4>
+<p>Use the <code>exposeLocalsToBrowser</code> partial to provide access to the token from
+your client-side JavaScript, e.g.:</p>
+<pre><code data-language="html">&lt;%- exposeLocalsToBrowser() %&gt;
+&lt;script&gt;
+  $.post({
+    foo: &apos;bar&apos;,
+    _csrf: window.SAILS_LOCALS._csrf
+  })
+&lt;/script&gt;
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="-b-for-single-page-apps-with-static-html-" permalink="(b)-for-singlepage-apps-with-static-html">(b) For single-page apps with static HTML:</h4>
+<p>Fetch the token by sending a GET request to the route where you mounted
+the <code>security.grantCsrfToken</code>.  It will respond with JSON, e.g.:</p>
+<pre><code data-language="javascript">{ _csrf: &apos;ajg4JD(JGdajhLJALHDa&apos; }
+</code></pre><!-- __LANG=%%__ -->
+<h4 id="-c-for-traditional-html-form-submissions-" permalink="(c)-for-traditional-html-form-submissions">(c) For traditional HTML form submissions:</h4>
+<p>Render the token directly into a hidden form input element in your HTML, e.g.:</p>
+<pre><code data-language="html">&lt;form&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;&lt;%= _csrf %&gt;&quot; /&gt;
+&lt;/form&gt;
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="enabling-csrf-protection" permalink="enabling-csrf-protection">Enabling CSRF protection</h3>
+<p>Sails bundles optional CSRF protection out of the box. To enable the built-in enforcement, just make the following adjustment to <a href="http://sailsjs.com/docs/reference/configuration/sails-config-security-csrf">sails.config.security.csrf</a> (conventionally located in your project&apos;s <a href="http://sailsjs.com/anatomy/config/security-js"><code>config/security.js</code></a> file):</p>
 <pre><code data-language="javascript">csrf: true
 </code></pre><!-- __LANG=%%__ -->
+<p>You can also turn CSRF protection on or off on a per-route basis by adding <code>csrf: true</code> or <code>csrf: false</code> to any route in your <a href="http://sailsjs.com/anatomy/config/routes-js"><code>config/routes.js</code></a> file.</p>
 <p>Note that if you have existing code that communicates with your Sails backend via POST, PUT, or DELETE requests, you&apos;ll need to acquire a CSRF token and include it as a parameter or header in those requests.  More on that in a sec.</p>
 <h3 id="csrf-tokens" permalink="csrf-tokens">CSRF tokens</h3>
 <p>Like most Node applications, Sails and Express are compatibile with Connect&apos;s <a href="http://www.senchalabs.org/connect/csrf.html" target="_blank">CSRF protection middleware</a> for guarding against such attacks.  This middleware implements the <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_%28CSRF%29_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern" target="_blank">Synchronizer Token Pattern</a>.  When CSRF protection is enabled, all non-GET requests to the Sails server must be accompanied by a special token, identified by either a header or a parameter in the query string or HTTP body.</p>
@@ -21,7 +49,12 @@
 </code></pre><!-- __LANG=%%__ -->
 <p>If you are doing a <code>multipart/form-data</code> upload with the form, be sure to place the <code>_csrf</code> field before the <code>file</code> input, otherwise you run the risk of a timeout and a 403 firing before the file finishes uploading.</p>
 <h5 id="using-ajax-websockets" permalink="using-ajax/websockets">Using AJAX/WebSockets</h5>
-<p>In AJAX/Socket-heavy apps, you might prefer to send a GET request to the built-in <code>/csrfToken</code> route, where it will be returned as JSON, e.g.:</p>
+<p>In AJAX/Socket-heavy apps, you might prefer to get the CSRF token dynamically rather than having it bootstrapped on the page.  You can do so by setting up a route in your <a href="http://sailsjs.com/anatomy/config/routes-js"><code>config/routes.js</code></a> file pointing to the <code>security/grantcsrftoken</code> action:</p>
+<pre><code data-language="json">{
+  &quot;GET /csrfToken&quot;: { action: &quot;security/grant-csrf-token&quot; }
+}
+</code></pre><!-- __LANG=%%__ -->
+<p>Then send a GET request to the route you defined, and you&apos;ll get CSRF token returned as JSON, e.g.:</p>
 <pre><code data-language="json">{
   &quot;_csrf&quot;: &quot;ajg4JD(JGdajhLJALHDa&quot;
 }

@@ -7,10 +7,7 @@
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="prepared-statement-example" permalink="prepared-statement-example">Prepared Statement Example</h3>
-<pre><code data-language="javascript">Pet.query({
-  text: &apos;SELECT pet.name FROM pet WHERE pet.name = $1&apos;,
-  values: [ &quot;dog&quot; ]
-}, function(err, results) {
+<pre><code data-language="javascript">Pet.query(&apos;SELECT pet.name FROM pet WHERE pet.name = ?&apos;,[ &quot;dog&quot; ]} ,function(err, results) {
   if (err) return res.serverError(err);
   return res.json(results.rows);
 });

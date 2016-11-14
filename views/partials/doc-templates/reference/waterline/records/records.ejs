@@ -1,9 +1,19 @@
 <h1 id="records">Records</h1>
-<p>A record is a uniquely identifiable object that corresponds 1-to-1 with a database entry; e.g. a row in Oracle/MSSQL/PostgreSQL/MySQL, a document in MongoDB, or a hash in Redis.</p>
-<pre><code data-language="javascript">Order.findOne().exec(function (err, order){
-  var record = order;
+<p>A <em>record</em> is what you get back from <code>.find()</code> or <code>.findOne()</code>.  Each record is a uniquely identifiable object that corresponds 1-to-1 with a physical database entry; e.g. a row in Oracle/MSSQL/PostgreSQL/MySQL, a document in MongoDB, or a hash in Redis.</p>
+<pre><code data-language="javascript">Order.find().exec(function (err, records){
+  if (err) {
+    return exits.error(err);
+  }
+
+  console.log(&apos;Found %d records&apos;, records.length);
+  if (records.length &gt; 0) {
+    console.log(&apos;Found at least one record, and its `id` is:&apos;,records[0].id);
+  }
+
+  return exits.success();
+
 });
 </code></pre><!-- __LANG=%%__ -->
-<p>For the most part, records are just plain old JavaScript objects (aka POJOs).  However they do have a few protected (non-enumerable) methods for formatting their wrapped data, as well as a special method (<a href="http://sailsjs.org/documentation/reference/waterline/records/save.html"><code>.save()</code></a>) for persisting <a href="http://en.wikipedia.org/wiki/Active_record_pattern" target="_blank">programmatic changes</a> to the database.</p>
+<p>In Sails, records are just dictionaries (plain JavaScript objects).</p>
 <docmeta name="displayName" value="Records">
 </docmeta>

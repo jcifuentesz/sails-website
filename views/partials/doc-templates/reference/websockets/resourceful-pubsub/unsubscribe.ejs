@@ -28,13 +28,24 @@
 </tbody>
 </table>
 <h3 id="example" permalink="example">Example</h3>
-<pre><code data-language="javascript">User.find({name: &apos;Lenny&apos;}).exec(function(err, lennies) {
-  if (err) return res.serverError(err);
-  if (req.isSocket) {
-    User.unsubscribe( req, _.pluck(lennies, &apos;id&apos;) );
+<p>On the server:</p>
+<pre><code data-language="javascript">unsubscribeFromUsersNamedLenny: function (req, res) {
+
+  if (!req.isSocket) {
+    return res.badRequest();
   }
-  return res.ok();
-});
+
+  User.find({name: &apos;Lenny&apos;}).exec(function(err, lennies) {
+    if (err) { return res.serverError(err); }
+
+    var lennyIds = _.pluck(lennies, &apos;id&apos;);
+
+    User.unsubscribe(req, lennyIds);
+
+    return res.ok();
+
+  });
+},
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>

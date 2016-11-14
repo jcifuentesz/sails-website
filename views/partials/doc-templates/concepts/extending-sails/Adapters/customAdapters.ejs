@@ -1,5 +1,11 @@
 <h1 id="custom-adapters">Custom Adapters</h1>
 <p>Sails makes it fairly easy to write your own database adapter.  Custom adapters can be built directly in your app (<code>api/adapters/</code>) or published as NPM packages.  Check out <a href="https://github.com/balderdashy/sails-docs/blob/master/contributing/intro-to-custom-adapters.md" target="_blank">Intro to Custom Adapters</a>, the <a href="https://github.com/balderdashy/sails-docs/blob/master/contributing/adapter-specification.md" target="_blank">Adapter Interface Reference</a>, and <a href="https://github.com/balderdashy/sails-adapter-boilerplate" target="_blank">sails-adapter-boilerplate</a> for more information about creating your own adapter.</p>
+<h3 id="where-does-my-adapter-go-" permalink="where-does-my-adapter-go">Where does my adapter go?</h3>
+<p>There are two different places you can build an adapter:</p>
+<h5 id="in-your-app-s-api-adapters-folder" permalink="in-your-apps-api/adapters/-folder">In your app&apos;s <code>api/adapters/</code> folder</h5>
+<p>If an adapter is only going to be used in one app (e.g. a short-term fork of an existing adapter) you can put it in <code>api/adapters/</code>.  This is what you get out of the box when you run <code>sails generate adapter</code>.  In this case, the name of the adapter is determined by the name of the folder inside <code>api/adapters/</code>.  (By convention, the entry point for your adapter should be <code>index.js</code>.)</p>
+<h5 id="in-a-separate-repo" permalink="in-a-separate-repo">In a separate repo</h5>
+<p>Go with this option if you plan to share your adapter between multiple Sails apps, whether that&apos;s within your organization or as an open-source package for other members of the Sails/Node.js community at large.  To use an externalized adapter like this, you&apos;ll need to do <code>npm install your-adapter-package-name</code> or <code>npm link your-adapter-package-name</code>.</p>
 <h3 id="what-goes-in-a-custom-adapter-" permalink="what-goes-in-a-custom-adapter">What goes in a custom adapter?</h3>
 <p>In Sails, database adapters expose <strong>interfaces</strong>, which imply a conract to implemnt certain functionality.  This allows us to guarantee conventional usage patterns across multiple models, developers, apps, and even companies, making app code more maintainable, efficient, and reliable.  Adapters are primarily useful for integrating with databases, but they can also be used to support any open API or internal/proprietary web service that is <em>purely</em> RESTful.</p>
 <blockquote>
@@ -12,12 +18,12 @@
 <h3 id="building-a-custom-adapter" permalink="building-a-custom-adapter">Building a custom adapter</h3>
 <p>Check out the <a href="http://sailsjs.com/documentation">Sails docs</a>, or see <a href="http://sailsjs.com/anatomy/config/datastores.js"><code>config/datastores.js</code></a> in a new Sails project for information on setting up this adapter in a Sails app.</p>
 <h4 id="running-the-tests" permalink="running-the-tests">Running the tests</h4>
-<p>Configure the interfaces you plan to support (and targeted version of Sails/Waterline) in the adapter&apos;s <code>package.json</code> file:</p>
+<p>Configure the interfaces you plan to support (and the targeted version of Sails) in the adapter&apos;s <code>package.json</code> file:</p>
 <pre><code data-language="javascript">{
   //...
   &quot;sails&quot;: {
       &quot;adapter&quot;: {
-        &quot;sailsVersion&quot;: &quot;~0.10.0&quot;,
+        &quot;sailsVersion&quot;: &quot;^1.0.0&quot;,
         &quot;implements&quot;: [
           &quot;semantic&quot;,
           &quot;queryable&quot;

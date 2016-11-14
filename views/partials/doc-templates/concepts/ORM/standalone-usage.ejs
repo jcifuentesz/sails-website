@@ -1,0 +1,169 @@
+<h1 id="standalone-waterline-usage">Standalone Waterline Usage</h1>
+<p>In addition to built-in usage with the Sails framework, Waterline can be used as a standalone module.  </p>
+<blockquote>
+<p><strong>Warning:</strong> This section of the documentation is for fairly advanced Node.js users.  If you aren&apos;t planning to use Waterline outside of your Sails app (e.g. to build your own framework), you might want to skip this page and head back to <a href="http://sailsjs.org/documentation/concepts/models-and-orm">Models and ORM</a> instead.</p>
+</blockquote>
+<h3 id="installation" permalink="installation">Installation</h3>
+<p>Waterline is available via NPM.</p>
+<pre><code data-language="javascript">$ npm install --save waterline
+</code></pre><!-- __LANG=%%__ -->
+<p>Waterline ships without any adapters, so you will need to install these separately. For example:</p>
+<pre><code data-language="javascript">$ npm install --save sails-mysql
+$ npm install --save-dev sails-memory
+</code></pre><!-- __LANG=%%__ -->
+<p>You can install any number of adapters into your application.</p>
+<p>The <code>sails-disk</code> and <code>sails-memory</code> adapters are common choices for development and testing.</p>
+<blockquote>
+<p>If you are new to Node, hop on over to <a href="http://sailsjs.org/get-started">Getting Started</a> to learn about installing Node on your preferred platform.</p>
+</blockquote>
+<h3 id="getting-started" permalink="getting-started">Getting Started</h3>
+<p>To get started with Waterline as a standalone module, we need two ingredients - adapters and model definitions.</p>
+<p>The simplest adapter to use is the <code>sails-memory</code> adapter, so let&apos;s install it and Waterline in an empty directory.</p>
+<pre><code data-language="javascript">mkdir my-tool
+cd my-tool
+npm init
+# ...
+npm install waterline sails-memory
+</code></pre><!-- __LANG=%%__ -->
+<p>Now we want some sample code. Copy the <a href="https://github.com/balderdashy/waterline-docs/blob/master/examples/src/getting-started.js" target="_blank">example code demonstrating raw Waterline usage from here</a> into a file in the same directory where you installed the <code>waterline</code> and <code>sails-memory</code> packages.</p>
+<p>Before we run it, let&apos;s unpack how it works.</p>
+<pre><code data-language="javascript">var Waterline = require(&apos;waterline&apos;);
+var sailsMemoryAdapter = require(&apos;sails-memory&apos;);
+var waterline = new Waterline();
+</code></pre><!-- __LANG=%%__ -->
+<p>Here we are simply bootstrapping our main objects. We are setting up the <code>Waterline</code> factory object, an instance of an adapter and an instance of <code>waterline</code> itself.</p>
+<p>Next, we define the specification for the user model, like so:</p>
+<pre><code data-language="javascript">var userCollection = Waterline.Collection.extend({
+  identity: &apos;user&apos;,
+  connection: &apos;default&apos;,
+  attributes: {
+    firstName: &apos;string&apos;,
+    lastName: &apos;string&apos;,
+
+    // Add a reference to Pets
+    pets: {
+      collection: &apos;pet&apos;,
+      via: &apos;owner&apos;
+    }
+  }
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>What&apos;s important here is the object that we are passing into that factory method.</p>
+<p>We need to give our model an <code>identity</code> that we can refer to later, and also declare which connection we are going to use.</p>
+<blockquote>
+<p>A connection is an instance of an adapter. For example, you could have one connection for each type of storage you are using (file, MySQL, etc), or you might even have more than one connection for the same type of adapter.</p>
+</blockquote>
+<p>The <code>attributes</code> define the properties of the model. In a traditional database, these attributes would align with columns in a table. But <code>pets</code> is a little different because it is defining an association that allows a user to own a number of pets.</p>
+<blockquote>
+<p>In a relational database, the <code>pets</code> attribute won&apos;t appear as a column. Rather it establishes a virtual one-to-many association with the pets model that we are about to define.</p>
+</blockquote>
+<p>Obviously we now need to define what a pet is.</p>
+<pre><code data-language="javascript">var petCollection = Waterline.Collection.extend({
+  identity: &apos;pet&apos;,
+  connection: &apos;default&apos;,
+  attributes: {
+    breed: &apos;string&apos;,
+    type: &apos;string&apos;,
+    name: &apos;string&apos;,
+
+    // Add a reference to User
+    owner: {
+      model: &apos;user&apos;
+    }
+  }
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>Most of the structure is the same as for the user. However, the <code>owner</code> field specifies the owner of this pet.</p>
+<blockquote>
+<p>In this case, a pet can only have one owner, so we define which model it is associated with. The name of the model needs to marry to the <code>identity</code> you give the model. Also, in this case, in a relational database this will create a column called <code>owner</code> that will contain a foreign key back to the <code>user</code> table.</p>
+</blockquote>
+<p>Next we have some more boring setup chores.</p>
+<pre><code data-language="javascript">waterline.loadCollection(userCollection);
+waterline.loadCollection(petCollection);
+</code></pre><!-- __LANG=%%__ -->
+<p>Here we are adding the model specifications into the <code>waterline</code> instance itself.</p>
+<p>And last, but not least, we have to configure the storage connections.</p>
+<pre><code data-language="javascript">var config = {
+  adapters: {
+    &apos;memory&apos;: sailsMemoryAdapter
+  },
+
+  connections: {
+    default: {
+      adapter: &apos;memory&apos;
+    }
+  }
+};
+</code></pre><!-- __LANG=%%__ -->
+<p>So here we specify the <code>adapters</code> we are going to use (one for each type of storage we are going to use), and the <code>connections</code> which will usually contain connection details for the target storage system (login details, file paths, etc). Each connection can be named, and in this case we&apos;ve simply settled on &quot;default&quot; to name the connection.</p>
+<p>Ok, it&apos;s time to actually crank things up and work with the datastore. First we need to initialize the <code>waterline</code> instance, and then we can go to work.</p>
+<pre><code data-language="javascript">waterline.initialize(config, function (err, ontology) {
+  if (err) {
+    return console.error(err);
+  }
+
+  // Tease out fully initialized models.
+  var User = ontology.collections.user;
+  var Pet = ontology.collections.pet;
+
+    User.create({ // First we create a user.
+            firstName: &apos;Neil&apos;,
+            lastName: &apos;Armstrong&apos;
+        }).then(function (user) { // Then we create the pet
+            return Pet.create({
+                breed: &apos;beagle&apos;,
+                type: &apos;dog&apos;,
+                name: &apos;Astro&apos;,
+                owner: user.id
+            });
+
+        }).then(function (pet) { // Then we grab all users and their pets
+            return User.find().populate(&apos;pets&apos;);
+
+        }).then(function(users){ // Results of the previous then clause are passed to the next
+             console.dir(users);
+
+        }).catch(function(err){ // If any errors occur execution jumps to the catch block.
+      console.error(err);
+    });
+});
+</code></pre><!-- __LANG=%%__ -->
+<p>That&apos;s a fair chunk of code so let&apos;s unpack it slower.</p>
+<p>First we need to <code>initialize</code> the waterline instance. This wires up the connections (maybe logs into a database server or two) and parses all the models looking for associations as well as a heap of other whizbangery. When that is done, it defers to the callback we passed in the second argument.</p>
+<p>After checking for an error, the <code>ontology</code> variable contains the collection objects for our users and our pets, so we add some shortcuts to them in the form of <code>User</code> and <code>Pet</code>.</p>
+<blockquote>
+<p>We usually name models in the singular form. That is, what is the <em>type</em> of <em>object</em> that you&apos;d get back from a query.</p>
+</blockquote>
+<p>We will use some Promise goodness to create a user and a pet and see what we can get back out of the datastore.</p>
+<p>First, we use the <code>create</code> method to create a new user. We just need to supply the attibutes for our user, and we&apos;ll get back a copy of the record that was created.</p>
+<blockquote>
+<p>Note that by default, Waterline adds an <code>id</code> primary key for you, unless you specifically tell it not to.</p>
+</blockquote>
+<p>Next we create a new pet, but we can use the <code>id</code> of the user that was created in the previous step to associate with the pet. We do this by setting the <code>owner</code> field directly.</p>
+<p>Once the pet is created we have both sides of the association ready. To join them together, we can simply add the pet to a <code>pets</code> array in our new user. Then all we need to do is save the record using the <code>save</code> method on the model.</p>
+<blockquote>
+<p>Note that <code>save</code> is only available on the model objects returned by the query. Our <code>User</code> collection object does not have access to this.</p>
+</blockquote>
+<p>Finally, we want to see what actually got stuffed into the database, so we use <code>User.find</code> to get all the <code>User</code> records out of the datastore. We also want the query to resolve the pet association, so we add the <code>populate</code> method to tell the query to go find the pet records for each user.</p>
+<p>Running that simple application gives us:</p>
+<pre><code data-language="javascript">$ node getting-started.js
+[ { pets:
+     [ { breed: &apos;beagle&apos;,
+         type: &apos;dog&apos;,
+         name: &apos;Astro&apos;,
+         owner: 1,
+         createdAt: Thu May 07 2015 20:44:37 GMT+1000 (AEST),
+         updatedAt: Thu May 07 2015 20:44:37 GMT+1000 (AEST),
+         id: 1 } ],
+    firstName: &apos;Neil&apos;,
+    lastName: &apos;Armstrong&apos;,
+    createdAt: Thu May 07 2015 20:44:37 GMT+1000 (AEST),
+    updatedAt: Thu May 07 2015 20:44:37 GMT+1000 (AEST),
+    id: 1 } ]
+</code></pre><!-- __LANG=%%__ -->
+<p>Interesting. There are the attributes we gave the models, and we can also see the primary keys that were automatically generated for us. We can also see that waterline has thrown in some default <code>createdAt</code> and <code>updatedAt</code> timestamps too. Cool!</p>
+<blockquote>
+<p>You can turn off the timestamps with other global or per-model configuration options.</p>
+</blockquote>
+<docmeta name="displayName" value="Standalone Waterline Usage">
+</docmeta>

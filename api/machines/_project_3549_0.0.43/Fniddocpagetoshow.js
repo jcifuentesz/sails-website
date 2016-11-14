@@ -38,7 +38,11 @@ module.exports = {
         "isParent": true,
         "displayNameSlug": "some-doc-page",
         "parentDisplayName": "--",
-        "version": "0.4.6"
+        "version": "0.4.6",
+        "notShownOnWebsite": false,
+        "isTableOfContents": false,
+        "isOverviewPage": false,
+        "notShownOnWebsite": false
       }
     },
     "notFound": {

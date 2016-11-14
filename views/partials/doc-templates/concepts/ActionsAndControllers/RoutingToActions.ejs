@@ -1,0 +1,15 @@
+<h1 id="routing-to-actions">Routing to Actions</h1>
+<p>By default, Sails will create a <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprint action route</a> for each action, so that a <code>GET</code> request to <code>/:actionIdentity</code> will trigger the action.  For example, an action saved as <code>api/controllers/user/sign-up</code> would be bound to a <code>/user/sign-up</code> route.  See the <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprints documentation</a> for more information about Sails&#x2019; automatic route binding.</p>
+<p>Besides the default routing, Sails allows you to manually bind routes to actions using the <a href="http://sailsjs.org/documentation/concepts/Routes"><code>config/routes.js</code></a> file.  Some examples of when you might want to use explicit routes are:</p>
+<ul>
+<li>When you want to use separate actions to handle the same route path, based on the <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html" target="_blank">HTTP method</a> (aka verb).  The aforementioned <strong>action blueprint</strong> routes bind <em>all</em> request methods for a path to a given action, including <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, etc.</li>
+<li>When you want an action to be available at a custom URL (e.g. <code>PUT /login</code>, <code>POST /signup</code>, or a &quot;vanity URL&quot; like <code>GET /:username</code>)</li>
+<li>When you want to set up additional options for how the route should be handled (e.g. special CORS configuration)</li>
+</ul>
+<p>To manually bind a route to an action in the <code>config/routes.js</code> file, you can use the HTTP verb and path (i.e. the <strong>route address</strong>) as the key, and the action identity as the value (i.e. the <strong>route target</strong>).</p>
+<p>For example, the following manual route will cause your app to trigger the action in <code>api/controllers/sandwich/make-it.js</code> whenever it receives a POST request to <code>/make/a/sandwich</code>:</p>
+<pre><code data-language="javascript">&apos;POST /make/a/sandwich&apos;: &apos;sandwich/make-it&apos;
+</code></pre><!-- __LANG=%%__ -->
+<p>For a full discussion of manual routing, please see the <a href="http://sailsjs.org/documentation/concepts/Routes">routes documentation</a>.</p>
+<docmeta name="displayName" value="Routing to Actions">
+</docmeta>

@@ -331,7 +331,7 @@ module.exports = {
                                                                                     },
                                                                                     "success": function(ifEqualToAnatomy) {
                                                                                         return exits.respond({
-                                                                                            data: "/documentation/anatomy/my-app",
+                                                                                            data: "/documentation/anatomy/",
                                                                                             action: "redirect",
                                                                                             status: 200
                                                                                         });

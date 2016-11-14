@@ -1,8 +1,8 @@
 <h1 id="custom-routes">Custom Routes</h1>
 <h3 id="overview" permalink="overview">Overview</h3>
 <p>Sails allows you to explicitly route URLs in several different ways in your <strong>config/routes.js</strong> file.  Every route configuration consists of an <strong>address</strong> and a <strong>target</strong>, for example:</p>
-<pre><code data-language="text">&apos;GET /foo/bar&apos;: &apos;FooController.bar&apos;
-^^^address^^^^  ^^^^^^target^^^^^^^
+<pre><code data-language="text">&apos;GET /foo/bar&apos;: &apos;user/subscribe&apos;
+^^^address^^^^  ^^^^^target^^^^^
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="route-address" permalink="route-address">Route Address</h3>
 <p>The route address indicates what URL should be matched in order to apply the handler and options defined by the target.  A route consists of an optional verb and a mandatory path:</p>
@@ -34,79 +34,81 @@
 </blockquote>
 <h4 id="regular-expressions-in-addresses" permalink="regular-expressions-in-addresses">Regular expressions in addresses</h4>
 <p>In addition to the wildcard address syntax, you may also use Regular Expressions to define the URLs that a route should match.  The syntax for defining an address with a regular expression is:</p>
-<p><code>&quot;r|&lt;regular expression string&gt;|&lt;comma-delimited list of param names&gt;&quot;</code></p>
+<p><code>&apos;r|&lt;regular expression string&gt;|&lt;comma-delimited list of param names&gt;&apos;</code></p>
 <p>That&apos;s the letter &quot;<strong>r</strong>&quot;, followed by a pipe character <code>|</code>, a regular expression string <em>without delimiters</em>, another pipe, and a list of parameter names that should be mapped to parenthesized groups in the regular expression.  For example:</p>
-<p><code>&quot;r|^/\\d+/(\\w+)/(\\w+)$|foo,bar&quot;: &quot;MessageController.myaction&quot;</code></p>
-<p>Will match <code>/123/abc/def</code>, running the <code>myaction</code> action of <code>MessageController</code> and supplying the values <code>abc</code> and <code>def</code> as <code>req.param(&apos;foo&apos;)</code> and <code>req.param(&apos;bar&apos;)</code>, respectively.</p>
+<p><code>&apos;r|^/\\d+/(\\w+)/(\\w+)$|foo,bar&quot;: &quot;message/my-action&apos;</code></p>
+<p>Will match <code>/123/abc/def</code>, running the action in <strong>api/controllers/message/my-action.js</strong> and supplying the values <code>abc</code> and <code>def</code> as <code>req.param(&apos;foo&apos;)</code> and <code>req.param(&apos;bar&apos;)</code>, respectively.</p>
 <p>Note the double-backslash in <code>\\d</code> and <code>\\w</code>; this escaping is necessary for the regular expression to work correctly!</p>
 <h4 id="about-route-ordering" permalink="about-route-ordering">About route ordering</h4>
-<p>When using wildcards or regular expressions in your addresses, keep in mind that the ordering of your routes in <strong>config/routes.js</strong> matters; URLs are matched against addresses in the list from the top down.  If you have two configurations in this order:</p>
-<pre><code>&apos;/user&apos;: &apos;UserController.doSomething&apos;,
-&apos;/*&apos;   : &apos;CatchallController.doSomethingElse&apos;
-</code></pre><p>then a request to <code>/user</code> will not be matched by the second configuration unless the first configuration&apos;s handler calls <code>next()</code> in its code, which is discouraged (only <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> should call <code>next()</code>).  Unless you&apos;re doing something very advanced, it is safe to assume that every request will be handled by at most one route in your <strong>config/routes.js</strong> file.</p>
+<p>While you are free to add items to your <strong>config/routes.js</strong> file in any order, be aware that Sails will internally sort your routes by <em>inclusiveness</em>, a measure of how many potential requests an address can handle.  In general, routes with addresses containing no dynamic components will be matched first, followed by routes with dynamic parameters, followed by those with wildcards.  This prevents routes from blocking each other (for example, a <code>/*</code> route, if left at the top of the list, would respond to all requests and no other routes would ever be matched).</p>
+<p>If you have any <a href="http://sailsjs.com/documentation/concepts/routes/custom-routes#?regular-expressions-in-addresses">regular expression addresses</a>, they will be left in the order you specify.  For example, if your <strong>config/routes.js</strong> file contains a <code>GET /foo/bar</code> route followed by a <code>GET r|^/foo/\\d+$|</code> route, the second route will always be sorted to appear immediately after <code>GET /foo/bar</code>.  This is due to the extreme difficulty of determining the inclusiveness of a regular expression route.  Take care when specifying these routes that you order them so that they won&apos;t match more requests than intended.</p>
 <h3 id="route-target" permalink="route-target">Route Target</h3>
 <p>The address portion of a custom route specifies which URLs the route should match.  The <em>target</em> portion specifies what Sails should do after the match is made.  A target can take one of several different forms.  In some cases you may want to chain multiple targets to a single address by placing them in an array, but in most cases each address will have only one target.  The different types of targets are discussed below, followed by a discussion of the various options that can be applied to them.</p>
-<h4 id="controller-action-target-syntax" permalink="controller-/-action-target-syntax">Controller / action target syntax</h4>
-<p>The most common type of target is one which binds a route to a custom <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">controller action</a>.  The following four routes are equivalent:</p>
-<pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;FooController.myGoAction&apos;,
-&apos;GET /foo/go&apos;: &apos;Foo.myGoAction&apos;,
-&apos;GET /foo/go&apos;: {controller: &quot;Foo&quot;, action: &quot;myGoAction&quot;},
-&apos;GET /foo/go&apos;: {controller: &quot;FooController&quot;, action:&quot;myGoAction&quot;},
+<h4 id="action-target-syntax" permalink="action-target-syntax">Action target syntax</h4>
+<p>This is the recommended syntax for binding an address to a Sails action.  Simply specify the identity (as a string) of the action you wish to handle requests to the given address:</p>
+<pre><code data-language="text">&apos;GET /&apos;: &apos;index&apos;,         // Use the action in api/controllers/index.js
+
+&apos;GET /foo/go&apos;: &apos;foo/go-action&apos;  // Use the action in api/controllers/foo/go-action.js OR
+                                // the &quot;go-action&quot; action in api/controllers/FooController.js
 </code></pre><!-- __LANG=%%__ -->
-<p>Each one maps <code>GET /foo/go</code> to the <code>myGoAction</code> action of the controller in <strong>api/controllers/FooController.js</strong>.  If no such controller or action exists, Sails will output an error message and ignore the route.  Otherwise, whenever a <strong>GET</strong> request to <strong>/foo/go</strong> is made, the code in that action will be run.</p>
-<p>The controller and action names in this syntax are case-insensitive.</p>
 <p>Note that the <a href="http://sailsjs.org/documentation/reference/blueprint-api">blueprint API</a> adds several actions to your controllers by default (like &quot;find&quot;, &quot;create&quot;, &quot;update&quot; and &quot;delete&quot;), all of which are available for routing:</p>
-<pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;UserController.find&apos;
+<pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;user/find&apos;    // Return a list of users
 </code></pre><!-- __LANG=%%__ -->
-<p>Assuming that your have a <strong>api/controllers/UserController.js</strong> file and a <strong>api/models/User.js</strong> file, browsing to <strong>/foo/go</strong> in a browser will, using the above config, run the default &quot;find* blueprint action which displays a list of all <code>User</code> models.  If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">custom action</a> named <code>find</code> in UserController, that action will be run instead.</p>
+<p>If you have a <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">custom action</a> in <strong>api/controllers/user/find.js</strong>, that action will be run instead of the default blueprint <code>find</code>.</p>
+<h4 id="controller-action-target-syntax" permalink="controller-/-action-target-syntax">Controller / action target syntax</h4>
+<p>This was the most common type of target in previous versions of Sails.  It binds a route to a traditional <a href="http://sailsjs.org/documentation/concepts/Controllers?q=actions">controller action</a>.  The following four routes are equivalent:</p>
+<pre><code data-language="text">&apos;GET /foo/go&apos;: &apos;FooController.myGoAction&apos;,
+&apos;GET /foo/go&apos;: &apos;foo.myGoAction&apos;,
+&apos;GET /foo/go&apos;: { controller: &apos;foo&apos;, action: &apos;myGoAction&apos; },
+&apos;GET /foo/go&apos;: { controller: &apos;FooController&apos;, action:&apos;myGoAction&apos; },
+</code></pre><!-- __LANG=%%__ -->
+<p>Each one maps <code>GET /foo/go</code> to the <code>myGoAction</code> action of the controller in <strong>api/controllers/FooController.js</strong>, or to the action in <strong>api/controllers/foo/mygoaction.js</strong>.  If no such controller or action exists, Sails will output an error message and ignore the route.  Otherwise, whenever a <strong>GET</strong> request to <strong>/foo/go</strong> is made, the code in that action will be run.</p>
+<p>The controller and action names in this syntax are case-insensitive.</p>
 <h4 id="view-target-syntax" permalink="view-target-syntax">View target syntax</h4>
 <p>Another common target is one that binds a route to a <a href="http://sailsjs.org/documentation/concepts/Views">view</a>.  This is particularly useful for binding static views to a custom URL, and it&apos;s how the default homepage for new projects is set up out of the box.</p>
 <p>The syntax for view targets is simple: it is just the path to the view file, without the file extension (e.g. <code>.ejs</code>) and relative to the <strong>views/</strong> folder :</p>
-<pre><code data-language="text">&apos;GET /team&apos;: {view: &apos;brochure/about&apos;}
+<pre><code data-language="text">&apos;GET /team&apos;: { view: &apos;brochure/about&apos; }
 </code></pre><!-- __LANG=%%__ -->
 <p>This tells Sails to handle <code>GET</code> requests to <code>/team</code> by serving the view template located at <code>views/brochure/about.ejs</code> (assuming the default EJS <a href="http://sailsjs.org/documentation/concepts/Views/ViewEngines.html">template engine</a> is used).  As long as that view file exists, a <strong>GET</strong> request to  <strong>/home</strong> will display it. For consistency with Express/consolidate, if the specified relative path does not match a view file, then Sails will look for a sub-folder with the same name (e.g. <code>pages/brochure</code>) and serve the &quot;index&quot; view in that sub-folder (e.g. <code>pages/brochure/index.ejs</code>) if one exists.</p>
 <blockquote>
 <p>Note that since this route is bound directly to the view, none of your configured policies will be applied.  If you need to configure a policy, use <code>res.view()</code> from a controller action.  See <a href="http://stackoverflow.com/questions/21303217/sailsjs-policy-based-route-with-a-view/21340313#21340313" target="_blank">this StackOverflow question</a> for more background information.</p>
 </blockquote>
-<h4 id="blueprint-target-syntax" permalink="blueprint-target-syntax">Blueprint target syntax</h4>
-<p>In some cases you may want to map a non-standard address to one of the Sails <a href="http://sailsjs.org/documentation/reference/blueprint-api?q=blueprint-actions">blueprint actions</a>.  For example, if you have a controller and model named <strong>UserController</strong> and <strong>User</strong> respectively, then Sails will automatically map <strong>GET /user</strong> to the &quot;find&quot; blueprint action which returns a list of User records.  If you&apos;d like to map a different address to that action, you can use the blueprint target syntax:</p>
-<pre><code data-language="text">&apos;GET /findAllUsers&apos;: {model: &apos;user&apos;, blueprint: &apos;find&apos;},
-&apos;GET /user/findAll&apos;: {blueprint: &apos;find&apos;}
-</code></pre><!-- __LANG=%%__ -->
-<p>Note that in the configuration, both the <code>model</code> and <code>blueprint</code> properties are set, while in the second one, only <code>blueprint</code> is used.  In the second configuration, leaving off the <code>model</code> property causes Sails to examine the address and guess that the model is <code>User</code>.  You could override this by explicitly setting <code>model</code> to something else:</p>
-<pre><code data-language="text">&apos;GET /user/findAll&apos;: {blueprint: &apos;find&apos;, model: &apos;pet&apos;}
-</code></pre><!-- __LANG=%%__ -->
-<p>although you will rarely if ever want to do this, as it makes for a messy and confusing API for your app.</p>
-<p>If you specify a non-existent model or blueprint in your configuration, Sails will output an error and ignore the route.</p>
-<p>You can also use this syntax to map a route to one of the default blueprint actions even if you&apos;ve overridden that action in a controller.</p>
 <h4 id="redirect-target-syntax" permalink="redirect-target-syntax">Redirect target syntax</h4>
 <p>You can have one address redirect to another--either within your Sails app, or on another server entirely--you can do so just by specifying the redirect URL as a string:</p>
-<pre><code data-language="text">&apos;/alias&apos; : &apos;/some/other/route&apos;
+<pre><code data-language="text">&apos;/alias&apos; : &apos;/some/other/route&apos;,
 &apos;GET /google&apos;: &apos;http://www.google.com&apos;
 </code></pre><!-- __LANG=%%__ -->
 <p>Be careful to avoid redirect loops when redirecting within your Sails app!</p>
 <p>Note that when redirecting, the HTTP method of the original request (and any extra headers / parameters) will likely be lost, and the request will be transformed to a simple <strong>GET</strong> request.  In the above example, a <strong>POST</strong> request to <strong>/alias</strong> will result in a <strong>GET</strong> request to <strong>/some/other/route</strong>.  This is somewhat browser-dependent behavior, but it is recommended that you don&apos;t expect request methods and other data to survive a redirect.</p>
 <h4 id="response-target-syntax" permalink="response-target-syntax">Response target syntax</h4>
 <p>You can map an address directly to a default or custom <a href="http://sailsjs.org/documentation/concepts/Custom-Responses">response</a> using this syntax:</p>
-<pre><code data-language="text">&apos;/foo&apos;: {response: &apos;notFound&apos;}
+<pre><code data-language="text">&apos;/foo&apos;: { response: &apos;notFound&apos; }
 </code></pre><!-- __LANG=%%__ -->
 <p>Simply specify the name of the response file in your <strong>api/responses</strong> folder, without the <strong>.js</strong> extension.  The response name in this syntax is case-sensitive.  If you attempt to bind a route to a non-existent response, Sails will output an error and ignore the route.</p>
 <h4 id="policy-target-syntax" permalink="policy-target-syntax">Policy target syntax</h4>
-<p>In most cases, you will want to apply <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> to your controller actions using the <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html"><strong>config/policies.js</strong></a> config file.  However, there are some times when you will want to apply a policy directly to a custom route: particularly when you are using the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax">view</a> or <a href="(http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=blueprint-target-syntax">blueprint</a> target syntax.  The policy target syntax is:</p>
-<pre><code data-language="text">&apos;/foo&apos;: {policy: &apos;myPolicy&apos;}
+<p>In most cases, you will want to apply <a href="http://sailsjs.org/documentation/concepts/Policies">policies</a> to your controller actions using the <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.policies.html"><strong>config/policies.js</strong></a> config file.  However, there are some times when you will want to apply a policy directly to a custom route: particularly when you are using the <a href="http://sailsjs.org/documentation/concepts/Routes/RouteTargetSyntax.html?q=view-target-syntax">view</a> target syntax.  The policy target syntax is:</p>
+<pre><code data-language="text">&apos;/foo&apos;: { policy: &apos;my-policy&apos; }
 </code></pre><!-- __LANG=%%__ -->
 <p>However, you will always want to chain the policy to at least one other type of target, using an array:</p>
-<pre><code data-language="text">&apos;/foo&apos;: [{policy: &apos;myPolicy&apos;}, {blueprint: &apos;find&apos;, model: &apos;user&apos;}]
+<pre><code data-language="text">&apos;/foo&apos;: [
+  { policy: &apos;my-policy&apos; },
+  { view: &apos;dashboard&apos; }
+]
 </code></pre><!-- __LANG=%%__ -->
-<p>This will apply the <strong>myPolicy</strong> policy to the route and, if it passes, continue by running the <strong>find</strong> blueprint for the <strong>User</strong> model.</p>
+<p>This will apply the <strong>my-policy</strong> policy to the route and, if it passes, continue by displaying the <strong>views/dashboard.ejs</strong> view.</p>
 <h4 id="function-target-syntax" permalink="function-target-syntax">Function target syntax</h4>
 <p>For quick-and-dirty jobs (useful for quick tests), you can assign a route directly to a function:</p>
-<pre><code data-language="text">&apos;/foo&apos;: function(req, res) {res.send(&quot;FOO!&quot;);}
+<pre><code data-language="text">&apos;/foo&apos;: function(req, res) {
+  return res.send(&apos;FOO!&apos;);
+}
 </code></pre><!-- __LANG=%%__ -->
-<p>You can also use a dictionary with an <code>fn</code> key to assign a function.  This allows you to also specify <a href="http://sailsjs.org/documentation/concepts/routes/custom-routes#?route-target-options">other route target  options</a> at the same time:</p>
+<p>You can also use a dictionary with an <code>fn</code> key to assign a function.  This allows you to also specify <a href="http://sailsjs.org/documentation/concepts/routes/custom-routes#?route-target-options">other route target options</a> at the same time:</p>
 <pre><code data-language="text">&apos;/foo/*&apos;: {
-   fn: function(req, res) {res.send(&quot;FOO!&quot;);},
+   fn: function(req, res) {
+     return res.send(&quot;FOO!&quot;);
+   },
    skipAssets: true
+}
 </code></pre><!-- __LANG=%%__ -->
 <p>Best practice is to use the function syntax only for temporary routes, since it goes against the MVC structure that makes Sails useful!</p>
 <h3 id="route-target-options" permalink="route-target-options">Route target options</h3>
@@ -144,6 +146,12 @@
 <td style="text-align:center">all</td>
 <td><bubble type="dictionary" colors="true"></bubble> or <bubble type="boolean" colors="true"></bubble> or <bubble type="string" colors="true"></bubble></td>
 <td>Specifies how to handle requests for this route from a different origin.  See the <a href="http://sailsjs.org/documentation/concepts/CORS">main CORS documentation</a> for more info.</td>
+</tr>
+<tr>
+<td><code>csrf</code></td>
+<td style="text-align:center">all</td>
+<td><bubble type="boolean" colors="true"></bubble></td>
+<td>Indicate whether the route should be protected by requiring a CSRF token to be passed with the request.  See the <a href="http://sailsjs.com/documentation/concepts/CSRF">main CSRF documentation</a> for more info.</td>
 </tr>
 <tr>
 <td><code>populate</code></td>

@@ -1,29 +1,32 @@
 <h1 id="content-security-policy">Content Security Policy</h1>
-<p>Content Security Policy (CSP) is a W3C specification for instructing the client browser as to which location and/or which type of resources are allowed to be loaded. This spec uses &quot;directives&quot; to define loading behaviors for target resource types. Directives can be specified using HTTP response headers or HTML <code>&lt;meta&gt;</code> tags.</p>
-<h4 id="http-headers" permalink="http-headers">HTTP Headers</h4>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Header</th>
-<th style="text-align:left">Browsers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Content-Security-Policy</td>
-<td style="text-align:left">(W3C Standard header) Chrome version &gt;= 25, Firefox version &gt;= 23, Opera version &gt;= 19</td>
-</tr>
-<tr>
-<td style="text-align:left">X-Content-Security-Policy</td>
-<td style="text-align:left">Firefox version &lt; 23, IE version 10</td>
-</tr>
-<tr>
-<td style="text-align:left">X-WebKit-CSP</td>
-<td style="text-align:left">Chrome version &lt; 25</td>
-</tr>
-</tbody>
-</table>
-<h4 id="supported-directives" permalink="supported-directives">Supported Directives</h4>
+<p><a href="https://www.owasp.org/index.php/Clickjacking" target="_blank">Content Security Policy (CSP)</a> is a <a href="https://w3c.github.io/webappsec/specs/content-security-policy" target="_blank">W3C specification</a> for instructing the client browser as to which location and/or which type of resources are allowed to be loaded.  This spec uses &quot;directives&quot; to define loading behaviors for target resource types. Directives can be specified using HTTP response headers or HTML <code>&lt;meta&gt;</code> tags.</p>
+<h3 id="enabling-csp" permalink="enabling-csp">Enabling CSP</h3>
+<h5 id="using-lusca-https-github-com-krakenjs-lusca-luscacspoptions-" permalink="using-lusca">Using <a href="https://github.com/krakenjs/lusca#luscacspoptions" target="_blank">lusca</a></h5>
+<blockquote>
+<p><code>lusca</code> is open-source under the <a href="https://github.com/krakenjs/lusca/blob/master/LICENSE.txt" target="_blank">Apache license</a></p>
+</blockquote>
+<pre><code data-language="javascript"># In your sails app
+npm install lusca --save --save-exact
+</code></pre><!-- __LANG=%%__ -->
+<p>Then add <code>csp</code> in <a href="http://sailsjs.com/anatomy/config/http-js"><code>config/http.js</code></a>:</p>
+<pre><code data-language="javascript">// ...
+
+  csp: require(&apos;lusca&apos;).csp({
+    policy: {
+      &apos;default-src&apos;: &apos;*&apos;
+    }
+  }),
+
+  // ...
+
+  order: [
+    // ...
+    &apos;csp&apos;,
+    // ...
+  ]
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="supported-directives" permalink="supported-directives">Supported directives</h5>
+<p>To give you an idea how this works, here&apos;s a snapshot of supported CSP directives, as of 2016:</p>
 <table>
 <thead>
 <tr>
@@ -97,6 +100,13 @@
 <blockquote>
 <p>For more information, see the <a href="https://w3c.github.io/webappsec/specs/content-security-policy/" target="_blank">W3C CSP Spec</a>.</p>
 </blockquote>
-<docmeta name="displayName" value="Content Security Policy">
-
+<h5 id="browser-compatibility" permalink="browser-compatibility">Browser compatibility</h5>
+<p>Different CSP response headers are supported by different browsers.  For example, <code>Content-Security-Policy</code> is the W3C standard, but various versions of Chrome, Firefox, and IE use <code>X-Content-Security-Policy</code> or <code>X-WebKit-CSP</code>.  For the latest information on browser support, see <a href="https://www.owasp.org/index.php/Content_Security_Policy" target="_blank">OWasp</a>.</p>
+<h3 id="additional-resources" permalink="additional-resources">Additional Resources</h3>
+<ul>
+<li><a href="https://www.owasp.org/index.php/Content_Security_Policy" target="_blank">Content Security Policy (OWasp)</a></li>
+<li>Learn more about installing HTTP middleware in <a href="http://sailsjs.com/docs/concepts/middleware">Concepts &gt; Middleware</a>.</li>
+</ul>
+<p><docmeta name="displayName" value="Content Security Policy"></docmeta></p>
+<docmeta name="tags" value="csp,content security policy">
 </docmeta>

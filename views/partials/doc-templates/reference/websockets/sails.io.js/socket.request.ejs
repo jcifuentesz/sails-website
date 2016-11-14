@@ -14,29 +14,29 @@
 <table>
 <thead>
 <tr>
-<th>Option</th>
+<th style="text-align:left">Option</th>
 <th style="text-align:center">Type</th>
 <th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>method</code></td>
+<td style="text-align:left"><code>method</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">The HTTP request method; e.g. <code>&apos;GET&apos;</code>.</td>
 </tr>
 <tr>
-<td><code>url</code></td>
+<td style="text-align:left"><code>url</code></td>
 <td style="text-align:center"><bubble type="string" colors="true"></bubble></td>
 <td style="text-align:left">The destination URL path; e.g. &quot;/checkout&quot;.</td>
 </tr>
 <tr>
-<td><em><code>data</code></em></td>
+<td style="text-align:left"><em><code>data</code></em></td>
 <td style="text-align:center"><bubble type="json?" colors="true"></bubble></td>
 <td style="text-align:left">Optional. If provided, this request data will be JSON-encoded and included as the virtual HTTP body.</td>
 </tr>
 <tr>
-<td><em><code>headers</code></em></td>
+<td style="text-align:left"><em><code>headers</code></em></td>
 <td style="text-align:center"><bubble type="dictionary?" colors="true"></bubble></td>
 <td style="text-align:left">Optional. If provided, this dictionary of string headers will be sent as virtual request headers.</td>
 </tr>
@@ -47,23 +47,23 @@
 <thead>
 <tr>
 <th></th>
-<th>Argument</th>
+<th style="text-align:left">Argument</th>
 <th style="text-align:center">Type</th>
-<th>Details</th>
+<th style="text-align:left">Details</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>1</td>
-<td><code>resData</code></td>
+<td style="text-align:left"><code>resData</code></td>
 <td style="text-align:center"><bubble type="json" colors="true"></bubble></td>
-<td>Data received in the response from the Sails server (=== <code>jwres.body</code>, and also equivalent to the HTTP response body.)</td>
+<td style="text-align:left">Data received in the response from the Sails server (=== <code>jwres.body</code>, and also equivalent to the HTTP response body.)</td>
 </tr>
 <tr>
 <td>2</td>
-<td><code>jwres</code></td>
+<td style="text-align:left"><code>jwres</code></td>
 <td style="text-align:center"><bubble type="dictionary" colors="true"></bubble></td>
-<td>A <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">JSON WebSocket Response</a> object.  Has <code>headers</code>, a <code>body</code>, and a <code>statusCode</code>.</td>
+<td style="text-align:left">A <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">JSON WebSocket Response</a> object.  Has <code>headers</code>, a <code>body</code>, and a <code>statusCode</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -82,7 +82,9 @@
     console.log(jwres.statusCode); // =&gt; e.g. 403
     return;
   }
+
   console.log(jwres.statusCode); // =&gt; e.g. 200
+
 });
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="notes" permalink="notes">Notes</h3>

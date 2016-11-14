@@ -1,5 +1,5 @@
 <h1 id="available-database-adapters">Available Database Adapters</h1>
-<p>This file is meant to be an up to date, comprehensive list of all of the core adapters available for the Sails.js framework, and a reference of a few of the community adapters out there.  If you see out of data information on this page, or if you want to add an adapter you made, please just submit a pull request to this file, adding to the list of community adapters below.</p>
+<p>This file is meant to be an up to date, comprehensive list of all of the core adapters available for the Sails.js framework, and a reference of a few of the community adapters out there.  If you see out of date information on this page, or if you want to add an adapter you made, please just submit a pull request to this file, adding to the list of community adapters below.</p>
 <h3 id="officially-supported-database-adapters" permalink="officially-supported-database-adapters">Officially supported database adapters</h3>
 <h5 id="sails-disk" permalink="sailsdisk">sails-disk</h5>
 <p><a href="https://github.com/balderdashy/sails-disk/" target="_blank">https://github.com/balderdashy/sails-disk/</a></p>
@@ -32,7 +32,7 @@
 </ul>
 <h5 id="sails-postgres" permalink="sailspostgres">sails-postgres</h5>
 <p><a href="https://github.com/balderdashy/sails-postgresql/" target="_blank">https://github.com/balderdashy/sails-postgresql/</a></p>
-<p><a href="http://en.wikipedia.org/wiki/PostgreSQL" target="_blank">PostgreSQL</a> is another popular relational database. </p>
+<p><a href="http://en.wikipedia.org/wiki/PostgreSQL" target="_blank">PostgreSQL</a> is another popular relational database.</p>
 <h6 id="interfaces-implemented-">Interfaces implemented:</h6>
 <ul>
 <li>Semantic</li>
@@ -58,40 +58,72 @@
 <li>Queryable</li>
 </ul>
 <h3 id="can-i-contribute-to-a-core-adapter-" permalink="can-i-contribute-to-a-core-adapter">Can I contribute to a core adapter?</h3>
-<p>Definitely!  Get started by reading <a href="http://sailsjs.com/contributing">the Sails project contribution guide</a>. </p>
+<p>Definitely!  Get started by reading <a href="http://sailsjs.com/contributing">the Sails project contribution guide</a>.</p>
 <h3 id="community-supported-database-adapters" permalink="community-supported-database-adapters">Community supported database adapters</h3>
 <p>Is your database not supported by one of the core adapters?  Good news!  There are many different community database adapters for Sails.js and Waterline <a href="https://www.npmjs.com/search?q=sails+adapter" target="_blank">available on NPM</a>.</p>
 <blockquote>
 <p>Learn <a href="http://sailsjs.com/docs/concepts/extending-sails/adapters">how to install and configure community adapters</a>.</p>
 </blockquote>
 <p>Here are a few highlights:</p>
-<h5 id="sails-orientdb" permalink="sailsorientdb">sails-orientdb</h5>
-<p><a href="https://github.com/appscot/sails-orientdb" target="_blank">https://github.com/appscot/sails-orientdb</a></p>
-<p><a href="http://en.wikipedia.org/wiki/OrientDB" target="_blank">OrientDB</a> is an Open Source NoSQL DBMS with the features of both Document and Graph DBMSs. </p>
-<h6 id="interfaces-implemented-">Interfaces implemented:</h6>
-<ul>
-<li>Semantic</li>
-<li>Queryable</li>
-<li>Associations</li>
-<li>Migratable</li>
-</ul>
-<h5 id="sails-filemaker" permalink="sailsfilemaker">sails-filemaker</h5>
-<p><a href="https://github.com/geistinteractive/sails-filemaker" target="_blank">https://github.com/geistinteractive/sails-filemaker</a></p>
-<p><a href="https://en.wikipedia.org/wiki/FileMaker" target="_blank">FileMaker</a>, is cross platform relational database and development platform. It has been owned and published by Apple since 1988.</p>
-<h6 id="interfaces-implemented-">Interfaces implemented:</h6>
-<ul>
-<li>Semantic</li>
-</ul>
-<h5 id="sails-derby" permalink="sailsderby">sails-derby</h5>
-<p><a href="https://github.com/dash-/node-sails-derby" target="_blank">https://github.com/dash-/node-sails-derby</a></p>
-<p><a href="https://db.apache.org/derby/" target="_blank">Apache Derby</a> is an open source relational database implemented entirely in Java and available under the Apache License, Version 2.0.</p>
-<h6 id="interfaces-implemented-">Interfaces implemented:</h6>
-<ul>
-<li>Semantic</li>
-<li>Queryable</li>
-<li>Associations</li>
-<li>SQL</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Maintainer</th>
+<th>Interfaces implemented</th>
+<th>Latest stable version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/misterGF/sails-mssqlserver" target="_blank">Sails-MSsqlserver</a></td>
+<td><a href="https://github.com/misterGF" target="_blank">misterGF</a></td>
+<td></td>
+<td><a href="https://npmjs.org/package/sails-sqlserver" target="_blank"><img src="https://img.shields.io/npm/v/sails-sqlserver.svg?style=flat-square" alt="NPM version"></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/appscot/sails-orientdb" target="_blank">Sails-OrientDB</a></td>
+<td><a href="https://github.com/appscot" target="_blank">appscot</a></td>
+<td>Semantic, Queryable, Associations, Migratable</td>
+<td><a href="http://badge.fury.io/js/sails-orientdb" target="_blank"><img src="https://badge.fury.io/js/sails-orientdb.svg" alt="npm version"></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/zohararad/sails-rest" target="_blank">Sails-REST</a></td>
+<td><a href="https://github.com/zohararad" target="_blank">zohararad</a></td>
+<td>Semantic</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/atiertant/sails-oracle" target="_blank">Sails-Oracle</a></td>
+<td><a href="https://github.com/atiertant" target="_blank">atiertant</a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/dtoubelis/sails-cassandra" target="_blank">Sails-Cassandra</a></td>
+<td><a href="https://github.com/dtoubelis" target="_blank">dtoubelis</a></td>
+<td>Semantic, Migratable, Iterable</td>
+<td><a href="http://badge.fury.io/js/sails-cassandra" target="_blank"><img src="https://badge.fury.io/js/sails-cassandra.svg" alt="npm version"></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/sajov/sails-solr" target="_blank">Sails-Solr</a></td>
+<td><a href="https://github.com/sajov" target="_blank">sajov</a></td>
+<td>Semantic, Migratable, Queryable</td>
+<td><a href="http://badge.fury.io/js/sails-solr" target="_blank"><img src="https://badge.fury.io/js/sails-solr.svg" alt="npm version"></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/geistinteractive/sails-filemaker" target="_blank">Sails-Filemaker</a></td>
+<td><a href="https://github.com/toddgeist" target="_blank">toddgeist</a></td>
+<td>Semantic</td>
+<td><a href="http://badge.fury.io/js/sails-filemaker" target="_blank"><img src="https://badge.fury.io/js/sails-filemaker.svg" alt="npm version"></a></td>
+</tr>
+<tr>
+<td><a href="https://github.com/dash-/node-sails-derby" target="_blank">Sails-Derby</a></td>
+<td><a href="https://github.com/dash-" target="_blank">dash-</a></td>
+<td>Semantic, Queryable, Associations, SQL</td>
+</tr>
+</tbody>
+</table>
 <h3 id="add-your-custom-adapter-to-this-list" permalink="add-your-custom-adapter-to-this-list">Add your custom adapter to this list</h3>
 <p>Have you written a Sails adapter? Submit a PR to this file and add it here!</p>
 <docmeta name="displayName" value="Available Adapters">

@@ -6,7 +6,16 @@
 <p>In addition to the basic communication / event listening methods, each SailsSocket instance (including <code>io.socket</code>) exposes some additional methods for dealing with server connections.</p>
 <h5 id="-isconnected-" permalink="isconnected()">.isConnected()</h5>
 <p>Determines whether the SailsSocket instance is currently connected to a server, returning <code>true</code> if a connection has been established.</p>
-<pre><code data-language="javascript">io.socket.isConnected();
+<pre><code data-language="javascript">io.socket.isConnecting();
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="-isconnecting-" permalink="isconnecting()">.isConnecting()</h5>
+<p>Determines whether the SailsSocket instance is currently in the process of connecting to a server, returning <code>true</code> if a connection is being attempted.</p>
+<pre><code data-language="javascript">io.socket.isConnecting();
+</code></pre><!-- __LANG=%%__ -->
+<h5 id="-mightbeabouttoautoconnect-" permalink="mightbeabouttoautoconnect()">.mightBeAboutToAutoConnect()</h5>
+<p>Determines whether the SailsSocket instance is loaded, but has not yet fully configured and started its automatic connection attempt.</p>
+<p>The <code>sails.io.js</code> library waits one tick of the event loop before checking whether <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails#?iosailsautoconnect"><code>autoConnect</code></a> is enabled and, if so, trying to connect.  This allows you to configure the <code>SailsSocket</code> instance (for example, by setting <code>io.sails.url</code>) before an attempt is made to estabilish a connection.  The <code>mightBeAboutToAutoConnect()</code> method allows you to detect the situation where <code>sails.io.js</code> has loaded, but the requisite tick of the event loop has not yet elapsed.</p>
+<pre><code data-language="javascript">io.socket.mightBeAboutToAutoConnect();
 </code></pre><!-- __LANG=%%__ -->
 <h5 id="-disconnect-" permalink="disconnect()">.disconnect()</h5>
 <p>Disconnect a SailsSocket instance from the server.  Will throw an error if the socket is already disconnected.</p>

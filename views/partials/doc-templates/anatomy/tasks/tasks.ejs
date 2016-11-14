@@ -1,0 +1,32 @@
+<h1 id="tasks-">tasks/</h1>
+<h3 id="about-the-tasks-folder" permalink="about-the-tasks/-folder">About the <code>tasks/</code> folder</h3>
+<p>The <code>tasks</code> directory is a suite of Grunt tasks and their configurations, bundled for your convenience.  The Grunt integration is mainly useful for bundling front-end assets, (like stylesheets, scripts, &amp; markup templates) but it can also be used to run all kinds of development tasks, from browserify compilation to database migrations.</p>
+<p>If you haven&apos;t used <a href="http://gruntjs.com/" target="_blank">Grunt</a> before, be sure to check out the <a href="http://gruntjs.com/getting-started" target="_blank">Getting Started</a> guide, as it explains how to create a <a href="http://gruntjs.com/sample-gruntfile" target="_blank">Gruntfile</a> as well as install and use Grunt plugins. Once you&apos;re familiar with that process, read on!</p>
+<h3 id="how-does-this-work-" permalink="how-does-this-work">How does this work?</h3>
+<p>The asset pipeline bundled in Sails is a set of Grunt tasks configured with conventional defaults designed to make your project more consistent and productive.</p>
+<p>The entire front-end asset workflow in Sails is completely customizable-- while it provides some suggestions out of the box, Sails makes no pretense that it can anticipate all of the needs you&apos;ll encounter building the browser-based/front-end portion of your application.  Who&apos;s to say you&apos;re even building an app for a browser?</p>
+<h3 id="what-tasks-does-sails-run-automatically-" permalink="what-tasks-does-sails-run-automatically">What tasks does Sails run automatically?</h3>
+<p>Sails runs some of these tasks (the ones in the <code>tasks/register</code> folder) automatically when you run certain commands.</p>
+<h6 id="-sails-lift-"><code>sails lift</code></h6>
+<p>Runs the <code>default</code> task (<code>tasks/register/default.js</code>).</p>
+<h6 id="-sails-lift-prod-"><code>sails lift --prod</code></h6>
+<p>Runs the <code>prod</code> task (<code>tasks/register/prod.js</code>).</p>
+<h6 id="-sails-www-"><code>sails www</code></h6>
+<p>Runs the <code>build</code> task (<code>tasks/register/build.js</code>).</p>
+<h6 id="-sails-www-prod-production-"><code>sails www --prod</code> (production)</h6>
+<p>Runs the <code>buildProd</code> task (<code>tasks/register/buildProd.js</code>).</p>
+<h3 id="can-i-customize-this-for-sass-angular-client-side-jade-templates-etc-" permalink="can-i-customize-this-for-sass,-angular,-clientside-jade-templates,-etc">Can I customize this for SASS, Angular, client-side Jade templates, etc?</h3>
+<p>You can modify, omit, or replace any of these Grunt tasks to fit your requirements. You can also add your own Grunt tasks- just add a <code>someTask.js</code> file in the <code>grunt/config</code> directory to configure the new task, then register it with the appropriate parent task(s) (see files in <code>grunt/register/*.js</code>).</p>
+<h3 id="do-i-have-to-use-grunt-" permalink="do-i-have-to-use-grunt">Do I have to use Grunt?</h3>
+<p>Nope! To disable Grunt integration in Sails, just delete your Gruntfile or disable the Grunt hook.</p>
+<h3 id="what-if-i-m-not-building-a-web-frontend-" permalink="what-if-im-not-building-a-web-frontend">What if I&apos;m not building a web frontend?</h3>
+<p>That&apos;s ok! A core tenant of Sails is client-agnosticism-- it&apos;s especially designed for building APIs used by all sorts of clients; native Android/iOS/Cordova, serverside SDKs, etc.</p>
+<p>You can completely disable Grunt by following the instructions above.</p>
+<p>If you still want to use Grunt for other purposes, but don&apos;t want any of the default web front-end stuff, just delete your project&apos;s <code>assets</code> folder and remove the front-end oriented tasks from the <code>grunt/register</code> and <code>grunt/config</code> folders.  You can also run <code>sails new myCoolApi --no-frontend</code> to omit the <code>assets</code> folder and front-end-oriented Grunt tasks for future projects.  You can also replace your <code>sails-generate-frontend</code> module with alternative community generators, or create your own.  This allows <code>sails new</code> to create the boilerplate for native iOS apps, Android apps, Cordova apps, SteroidsJS apps, etc.</p>
+<h3 id="more-info" permalink="more-info">More info</h3>
+<blockquote>
+<p>More information on using Grunt to work with static assets: <a href="http://gruntjs.com/configuring-tasks" target="_blank">http://gruntjs.com/configuring-tasks</a></p>
+</blockquote>
+<docmeta name="displayName" value="tasks">
+
+</docmeta>
