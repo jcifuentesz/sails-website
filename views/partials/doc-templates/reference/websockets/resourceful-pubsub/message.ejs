@@ -37,7 +37,7 @@
 </tr>
 </tbody>
 </table>
-<p><code>message()</code> broadcasts to all sockets subscribed to the record (e.g. via <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe" target="_blank"><code>.subscribe()</code></a>) and uses the model&apos;s <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity" target="_blank">identity</a> as the event name.  The broadcasted event data received by the subscribed sockets will be a dictionary with the following properties:</p>
+<p><code>message()</code> broadcasts to all sockets subscribed to the record (e.g. via <a href="http://sailsjs.org/documentation/reference/web-sockets/resourceful-pub-sub/subscribe"><code>.subscribe()</code></a>) and uses the model&apos;s <a href="http://sailsjs.org/documentation/concepts/models-and-orm/model-settings#?identity">identity</a> as the event name.  The broadcasted event data received by the subscribed sockets will be a dictionary with the following properties:</p>
 <ul>
 <li><strong>verb</strong>  - a <bubble type="string" colors="true"></bubble> constant: <code>&apos;messaged&apos;</code></li>
 <li><strong>id</strong> - the record&apos;s <code>id</code> which is a <bubble type="string" colors="true"></bubble> or <bubble type="number" colors="true"></bubble></li>

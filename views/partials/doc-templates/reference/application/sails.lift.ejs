@@ -1,6 +1,6 @@
 <h1 id="sails-lift-">sails.lift()</h1>
 <p>Lift a Sails app programmatically.</p>
-<p><em>This does exactly what you might be used to seeing by now when you run <code>sails lift</code>.  It <a href="http://preview.sailsjs.org/documentation/reference/application/sails-load" target="_blank">loads</a> the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.  Useful for building top-to-bottom integration tests that rely on HTTP requests, and for building higher-level tooling on top of Sails.</em></p>
+<p><em>This does exactly what you might be used to seeing by now when you run <code>sails lift</code>.  It <a href="http://preview.sailsjs.org/documentation/reference/application/sails-load">loads</a> the app, runs its bootstrap, then starts listening for HTTP requests and WebSocket connections.  Useful for building top-to-bottom integration tests that rely on HTTP requests, and for building higher-level tooling on top of Sails.</em></p>
 <pre><code data-language="javascript">sailsApp.lift(configOverrides, function (err) {
 
 });
@@ -24,7 +24,7 @@
 <td>1</td>
 <td style="text-align:left">configOverrides</td>
 <td><bubble type="dictionary?" colors="true"></bubble></td>
-<td style="text-align:left">A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files.  If provided, this will be merged on top of <a href="http://sailsjs.org/documentation/reference/configuration" target="_blank"><code>sails.config</code></a>.</td>
+<td style="text-align:left">A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files.  If provided, this will be merged on top of <a href="http://sailsjs.org/documentation/reference/configuration"><code>sails.config</code></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -69,7 +69,7 @@ sailsApp.lift({
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>The difference between <a href="http://sailsjs.org/documentation/reference/application/sails-lift" target="_blank"><code>.lift()</code></a> and <a href="http://sailsjs.org/documentation/reference/application/sails-load" target="_blank"><code>.load()</code></a> is that <code>.lift()</code> takes the additional steps of (1) running the app&apos;s <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap" target="_blank">bootstrap</a> (if any), and (2) emitting the <code>ready</code> event.  The core <code>http</code> hook will typically respond to the <code>ready</code> event by starting an HTTP server on the port configured via <code>sails.config.port</code> (1337 by default).</li>
+<li>The difference between <a href="http://sailsjs.org/documentation/reference/application/sails-lift"><code>.lift()</code></a> and <a href="http://sailsjs.org/documentation/reference/application/sails-load"><code>.load()</code></a> is that <code>.lift()</code> takes the additional steps of (1) running the app&apos;s <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap">bootstrap</a> (if any), and (2) emitting the <code>ready</code> event.  The core <code>http</code> hook will typically respond to the <code>ready</code> event by starting an HTTP server on the port configured via <code>sails.config.port</code> (1337 by default).</li>
 <li>When a Sails app is fully lifted, it also emits the <code>lifted</code> event.</li>
 </ul>
 </blockquote>

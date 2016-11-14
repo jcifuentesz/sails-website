@@ -1,7 +1,7 @@
 <h1 id="io-socket-request-">io.socket.request()</h1>
 <p>Send a virtual request to a Sails server using Socket.io.</p>
-<p>This function is very similar to <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get" target="_blank"><code>io.socket.get()</code></a>, <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-post" target="_blank"><code>io.socket.post()</code></a>, etc. except that it provides lower-level access to the request headers, parameters, method, and URL of the request.</p>
-<p>Using the automatically-created <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket" target="_blank"><code>io.socket</code></a> instance:</p>
+<p>This function is very similar to <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-get"><code>io.socket.get()</code></a>, <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket-post"><code>io.socket.post()</code></a>, etc. except that it provides lower-level access to the request headers, parameters, method, and URL of the request.</p>
+<p>Using the automatically-created <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-socket"><code>io.socket</code></a> instance:</p>
 <pre><code data-language="javascript">io.socket.request(options, function (resData, jwres)){
   // ...
   // jwres.headers
@@ -90,7 +90,7 @@
 <ul>
 <li>A helpful analogy might be to think of the difference between <code>io.socket.get</code> and this method as the difference between JQuery&apos;s <code>$.get</code> and <code>$.ajax</code>.</li>
 <li>Remember that you can communicate with <em>any of your routes</em> using socket requests.</li>
-<li>Need to set custom headers for <em>all</em> outgoing requests?  Check out <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails" target="_blank"><code>io.sails.headers</code></a>.</li>
+<li>Need to set custom headers for <em>all</em> outgoing requests?  Check out <a href="http://sailsjs.org/documentation/reference/web-sockets/socket-client/io-sails"><code>io.sails.headers</code></a>.</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="io.socket.request()"></docmeta></p>

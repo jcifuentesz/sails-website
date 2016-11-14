@@ -43,10 +43,10 @@
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>This function searches the Sails app&apos;s explicitly configured routes; <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-routes" target="_blank"><code>sails.config.routes</code></a>.  Shadow routes bound by hooks (including <a href="http://sailsjs.org/documentation/reference/blueprint-api#?blueprint-routes" target="_blank">blueprint routes</a>) will not be matched.</li>
+<li>This function searches the Sails app&apos;s explicitly configured routes; <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-routes"><code>sails.config.routes</code></a>.  Shadow routes bound by hooks (including <a href="http://sailsjs.org/documentation/reference/blueprint-api#?blueprint-routes">blueprint routes</a>) will not be matched.</li>
 <li>If a matching target cannot be found, this function throws an <code>E_NOT_FOUND</code> error (i.e. if you catch the error and check its <code>code</code> property, it will be the string <code>E_NOT_FOUND</code>).</li>
 <li>If more than one route matches the specified target, the first match is returned.</li>
-<li>If you only need the URL for a route (e.g. to use as an <code>href</code> from within one of your views), you may want to use <a href="http://sailsjs.org/documentation/reference/application/sails-get-url-for" target="_blank"><code>sails.getUrlFor()</code></a> instead of this function.</li>
+<li>If you only need the URL for a route (e.g. to use as an <code>href</code> from within one of your views), you may want to use <a href="http://sailsjs.org/documentation/reference/application/sails-get-url-for"><code>sails.getUrlFor()</code></a> instead of this function.</li>
 </ul>
 </blockquote>
 <p><docmeta name="displayName" value="sails.getRouteFor()"></docmeta></p>

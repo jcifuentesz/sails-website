@@ -24,7 +24,7 @@
 <td>1</td>
 <td style="text-align:left">configOverrides</td>
 <td><bubble type="dictionary?" colors="true"></bubble></td>
-<td style="text-align:left">A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files.  If provided, this will be merged on top of <a href="http://sailsjs.org/documentation/reference/configuration" target="_blank"><code>sails.config</code></a>.</td>
+<td style="text-align:left">A dictionary of config that will override any conflicting options present on the command line, in environment variables, or in configuration files.  If provided, this will be merged on top of <a href="http://sailsjs.org/documentation/reference/configuration"><code>sails.config</code></a>.</td>
 </tr>
 </tbody>
 </table>
@@ -70,8 +70,8 @@ sailsApp.load({
 <blockquote>
 <ul>
 <li>This takes care of loading configuration files, initializing hooks (including the ORM), and binding routes.  It <strong>does not</strong> run the bootstrap, and it <strong>does not</strong> start listening for HTTP requests and WebSocket connections.</li>
-<li>More specifically, the difference between <a href="http://sailsjs.org/documentation/reference/application/sails-lift" target="_blank"><code>.lift()</code></a> and <a href="http://sailsjs.org/documentation/reference/application/sails-load" target="_blank"><code>.load()</code></a> is that <code>.lift()</code> takes the additional steps of (1) running the app&apos;s <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap" target="_blank">bootstrap</a> (if any), and (2) emitting the <code>ready</code> event.  The core <code>http</code> hook will typically respond to the <code>ready</code> event by starting an HTTP server on the port configured via <code>sails.config.port</code> (1337 by default).</li>
-<li>Even though a &quot;loaded-but-not-lifted&quot; Sails app does not listen for requests on an HTTP port, you can make &quot;virtual&quot; requests to it using <a href="http://sailsjs.org/documentation/reference/application/sails-request" target="_blank"><code>sails.request</code></a></li>
+<li>More specifically, the difference between <a href="http://sailsjs.org/documentation/reference/application/sails-lift"><code>.lift()</code></a> and <a href="http://sailsjs.org/documentation/reference/application/sails-load"><code>.load()</code></a> is that <code>.lift()</code> takes the additional steps of (1) running the app&apos;s <a href="http://sailsjs.org/documentation/reference/configuration/sails-config-bootstrap">bootstrap</a> (if any), and (2) emitting the <code>ready</code> event.  The core <code>http</code> hook will typically respond to the <code>ready</code> event by starting an HTTP server on the port configured via <code>sails.config.port</code> (1337 by default).</li>
+<li>Even though a &quot;loaded-but-not-lifted&quot; Sails app does not listen for requests on an HTTP port, you can make &quot;virtual&quot; requests to it using <a href="http://sailsjs.org/documentation/reference/application/sails-request"><code>sails.request</code></a></li>
 <li>For an example of this in practice, see <a href="https://github.com/treelinehq/machine-as-script/blob/ec8972137489afd24562bdf0b6a10ada11e540cc/index.js#L778-L791" target="_blank">machine-as-script</a>.</li>
 </ul>
 </blockquote>

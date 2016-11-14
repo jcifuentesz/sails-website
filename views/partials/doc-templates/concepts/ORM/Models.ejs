@@ -42,7 +42,7 @@ module.exports = {
 }
 -->
 <h3 id="using-models" permalink="using-models">Using models</h3>
-<p>Models may be accessed from our controllers, policies, services, responses, tests, and in custom model methods.  There are many built-in methods available on models, the most important of which are the query methods: <a href="http://sailsjs.org/documentation/reference/waterline/models/find.html" target="_blank">find</a>, <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html" target="_blank">create</a>, <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html" target="_blank">update</a>, and <a href="http://sailsjs.org/documentation/reference/waterline/models/destroy.html" target="_blank">destroy</a>.  These methods are <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">asynchronous</a> - under the covers, Waterline has to send a query to the database and wait for a response.</p>
+<p>Models may be accessed from our controllers, policies, services, responses, tests, and in custom model methods.  There are many built-in methods available on models, the most important of which are the query methods: <a href="http://sailsjs.org/documentation/reference/waterline/models/find.html">find</a>, <a href="http://sailsjs.org/documentation/reference/waterline/models/create.html">create</a>, <a href="http://sailsjs.org/documentation/reference/waterline/models/update.html">update</a>, and <a href="http://sailsjs.org/documentation/reference/waterline/models/destroy.html">destroy</a>.  These methods are <a href="https://github.com/balderdashy/sails-docs/blob/master/PAGE_NEEDED.md" target="_blank">asynchronous</a> - under the covers, Waterline has to send a query to the database and wait for a response.</p>
 <p>Consequently, query methods return a deferred query object.  To actually execute a query, <code>.exec(cb)</code> must be called on this deferred object, where <code>cb</code> is a callback function to run after the query is complete.</p>
 <p>Waterline also includes opt-in support for promises.  Instead of calling <code>.exec()</code> on a query object, we can call <code>.then()</code>, <code>.spread()</code>, or <code>.catch()</code>, which will return a <a href="https://github.com/petkaantonov/bluebird" target="_blank">Bluebird promise</a>.</p>
 <h3 id="model-methods-aka-static-or-class-methods-" permalink="model-methods-(aka-static-or-class-methods)">Model Methods (aka &quot;static&quot; or &quot;class&quot; methods)</h3>
@@ -129,7 +129,7 @@ module.exports = {
 <pre><code data-language="javascript">Person.findByFirstName(&apos;emma&apos;).exec(function(err,people){ ... });
 </code></pre><!-- __LANG=%%__ -->
 <h4 id="resourceful-pubsub-methods" permalink="resourceful-pubsub-methods">Resourceful Pubsub Methods</h4>
-<p>A special type of model methods which are attached by the pubsub hook.  More on that in the <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub" target="_blank">section of the docs on resourceful pubsub</a>.</p>
+<p>A special type of model methods which are attached by the pubsub hook.  More on that in the <a href="http://sailsjs.org/documentation/reference/websockets/resourceful-pubsub">section of the docs on resourceful pubsub</a>.</p>
 <!--
 another special type of class method.  It stands for 'Publish, Subscribe' and that's just what they do. These methods play a big role in how Sails integrates and utilizes Socket.IO.  They are used to subscribe clients to and publish messages about the creation, update, and destruction of models.  If you want to build real-time functionality in Sails, these will come in handy.
 -->
@@ -138,10 +138,10 @@ another special type of class method.  It stands for 'Publish, Subscribe' and th
 <h6 id="built-in-attribute-methods">Built-in attribute methods</h6>
 <p>Every Waterline model includes some attribute methods automatically, including:</p>
 <ul>
-<li><a href="http://sailsjs.org/documentation/reference/waterline/records/toJSON.html" target="_blank"><code>.toJSON()</code></a></li>
-<li><a href="http://sailsjs.org/documentation/reference/waterline/records/save.html" target="_blank"><code>.save()</code></a></li>
-<li><a href="http://sailsjs.org/documentation/reference/waterline/models/destroy.html" target="_blank"><code>.destroy()</code></a></li>
-<li><a href="http://sailsjs.org/documentation/reference/waterline/records/validate.html" target="_blank"><code>.validate()</code></a></li>
+<li><a href="http://sailsjs.org/documentation/reference/waterline/records/toJSON.html"><code>.toJSON()</code></a></li>
+<li><a href="http://sailsjs.org/documentation/reference/waterline/records/save.html"><code>.save()</code></a></li>
+<li><a href="http://sailsjs.org/documentation/reference/waterline/models/destroy.html"><code>.destroy()</code></a></li>
+<li><a href="http://sailsjs.org/documentation/reference/waterline/records/validate.html"><code>.validate()</code></a></li>
 </ul>
 <!-- note to self- we should bundle a getPrimaryKeyValue() attribute method on every model in waterline core (or maybe just getId() since "id" is simpler to understand) ~mike - aug2,2014 -->
 <h6 id="custom-attribute-methods">Custom attribute methods</h6>
@@ -182,7 +182,7 @@ module.exports = {
 </code></pre><!-- __LANG=%%__ -->
 <blockquote>
 <p>Note that with the notable exception of the built-in <code>.save()</code> and <code>.destroy()</code> attribute methods, attribute methods are almost always <em>synchronous</em> by convention.</p>
-<p>Also note that custom attributes methods are not serialized to JSON by default.  To serialize them, you can override <a href="http://sailsjs.org/documentation/reference/waterline-orm/records/to-json" target="_blank">toJSON</a>.</p>
+<p>Also note that custom attributes methods are not serialized to JSON by default.  To serialize them, you can override <a href="http://sailsjs.org/documentation/reference/waterline-orm/records/to-json">toJSON</a>.</p>
 </blockquote>
 <h6 id="when-to-write-a-custom-attribute-method">When to write a custom attribute method</h6>
 <p>Custom attribute methods are particularly useful for extracting some information out of a record.  I.e. you might want to reduce some information from one or more attributes (i.e. &quot;is this person married?&quot;&quot;)</p>

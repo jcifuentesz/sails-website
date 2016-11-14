@@ -1,6 +1,6 @@
 <h1 id="tips-and-tricks-for-programmatic-usage">Tips and Tricks for Programmatic Usage</h1>
 <p>When loading a Sails app programmatically, you will usually want to turn off certain hooks that are not being actively used, both for reasons of optimization and to ensure minimal interference between the Sails app and the Node script enclosing it.  To turn off a hook, set it to <code>false</code> in a <code>hooks</code> dictionary that you send as part of the first argument to <code>.load()</code> or <code>.lift()</code>.</p>
-<p>Additionally, you will often want to turn off Sails <a href="http://sailsjs.org/documentation/concepts/globals" target="_blank">globals</a>, <em>especially when loading more than one Sails app simultaneously</em>.  Since all Node apps in the same process share the same globals, starting more than one Sails app with globals turned on is a surefire way to end up with collisions between models, controllers and other app-wide entities.</p>
+<p>Additionally, you will often want to turn off Sails <a href="http://sailsjs.org/documentation/concepts/globals">globals</a>, <em>especially when loading more than one Sails app simultaneously</em>.  Since all Node apps in the same process share the same globals, starting more than one Sails app with globals turned on is a surefire way to end up with collisions between models, controllers and other app-wide entities.</p>
 <pre><code data-language="javascript">// Turn off globala and commonly unused hooks in programmatic apps
 mySailsApp.load({
   hooks: {

@@ -1,5 +1,5 @@
 <h1 id="sails-log-">sails.log()</h1>
-<p>Log a message or some data at the &quot;debug&quot; <a href="http://preview.sailsjs.org/documentation/reference/configuration/sails-config-log" target="_blank">log level</a> using Sails&apos; <a href="http://sailsjs.org/documentation/concepts/logging" target="_blank">built-in logger</a>.</p>
+<p>Log a message or some data at the &quot;debug&quot; <a href="http://preview.sailsjs.org/documentation/reference/configuration/sails-config-log">log level</a> using Sails&apos; <a href="http://sailsjs.org/documentation/concepts/logging">built-in logger</a>.</p>
 <pre><code data-language="javascript">sails.log(...);
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="usage" permalink="usage">Usage</h3>
@@ -24,8 +24,8 @@ return res.ok();
 <h3 id="notes" permalink="notes">Notes</h3>
 <blockquote>
 <ul>
-<li>For a deeper conceptual exploration of logging in Sails, see <a href="http://sailsjs.org/documentation/concepts/logging" target="_blank">concepts/logging</a>.</li>
-<li>Remember: in addition to being exposed as an alternative to calling <code>console.log</code> directly, the built-in logger in Sails is called internally by the framework.  The Sails logger can be configured, or completely overridden using built-in log configuration settings (<a href="http://sailsjs.org/documentation/reference/configuration/sails-config-log" target="_blank"><code>sails.config.log</code></a>).</li>
+<li>For a deeper conceptual exploration of logging in Sails, see <a href="http://sailsjs.org/documentation/concepts/logging">concepts/logging</a>.</li>
+<li>Remember: in addition to being exposed as an alternative to calling <code>console.log</code> directly, the built-in logger in Sails is called internally by the framework.  The Sails logger can be configured, or completely overridden using built-in log configuration settings (<a href="http://sailsjs.org/documentation/reference/configuration/sails-config-log"><code>sails.config.log</code></a>).</li>
 <li>Keep in mind that, like any part of Sails, using <code>sails.log</code> is completely optional.  Most Sails apps take advantage of the built-in logger; while some users prefer to stick with <code>console.log()</code>, while still others <code>require()</code> more feature-rich libraries like <a href="https://www.npmjs.com/package/winston" target="_blank">Winston</a>. If you aren&apos;t sure what your app needs yet, start with the built-in logger and go from there.</li>
 </ul>
 </blockquote>

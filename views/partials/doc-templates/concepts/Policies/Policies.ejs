@@ -3,7 +3,7 @@
 <p>Policies in Sails are versatile tools for authorization and access control-- they let you allow or deny access to your controllers down to a fine level of granularity.  For example, if you were building Dropbox, before letting a user upload a file to a folder, you might check that she <code>isAuthenticated</code>, then ensure that she <code>canWrite</code> (has write permissions on the folder.)  Finally, you&apos;d want to check that the folder she&apos;s uploading into <code>hasEnoughSpace</code>.</p>
 <p>Policies can be used for anything: HTTP BasicAuth, 3rd party single-sign-on, OAuth 2.0, or your own custom authorization/authentication scheme.</p>
 <blockquote>
-<p>NOTE: policies apply <strong>only</strong> to controller actions, not to views.  If you define a route in your <a href="http://sailsjs.org/documentation/reference/sails.config/sails.config.routes.html" target="_blank">routes.js config file</a> that points directly to a view, no policies will be applied to it.  To make sure policies are applied, you can instead define a controller action which displays your view, and point your route to that action.</p>
+<p>NOTE: policies apply <strong>only</strong> to controller actions, not to views.  If you define a route in your <a href="http://sailsjs.com/docs/reference/configuration/sails-config-routes">routes.js config file</a> that points directly to a view, no policies will be applied to it.  To make sure policies are applied, you can instead define a controller action which displays your view, and point your route to that action. &#xA0;</p>
 </blockquote>
 <h3 id="writing-your-first-policy" permalink="writing-your-first-policy">Writing Your First Policy</h3>
 <p>Policies are files defined in the <code>api/policies</code> folder in your Sails app.  Each policy file should contain a single function.</p>
@@ -12,28 +12,43 @@
 <pre><code data-language="javascript">// policies/canWrite.js
 module.exports = function canWrite (req, res, next) {
   var targetFolderId = req.param(&apos;id&apos;);
-  var userId = req.session.user.id;
 
-  Permission
-  .findOneByFolderId( targetFolderId )
-  .exec( function foundPermission (err, permission) {
+  // If the requesting user is not logged in, then they are _never_ allowed to write.
+  // No reason to continue-- we can go ahead and bail out now.
+  if (!req.session.me) {
+    return res.redirect(&apos;/login&apos;);
+  }
 
-    // Unexpected error occurred-- skip to the app&apos;s default error (500) handler
-    if (err) return next(err);
+  // Check the database to see if a permission record exists which matches both the
+  // target folder id, the appropriate &quot;type&quot;, and the id of the logged-in user.
+  Permission.findOne({
+    folder: targetFolderId,
+    user: req.session.me,
+    type: &apos;write&apos;
+  })
+  .exec(function (err, permission) {
 
-    // No permission exists linking this user to this folder.  Maybe they got removed from it?  Maybe they never had permission in the first place?  Who cares?
-    if ( ! permission ) return res.redirect(&apos;/notAllowed&apos;);
+    // Unexpected error occurred-- use the app&apos;s default error (500) handler.
+    //
+    // &gt; We do this because this should never happen, and if it does, it means there
+    // &gt; is probably something wrong with our database, and we want to know about it!)
+    if (err) { return res.serverError(err); }
 
-    // OK, so a permission was found.  Let&apos;s be sure it&apos;s a &quot;write&quot;.
-    if ( permission.type !== &apos;write&apos; ) return res.redirect(&apos;/notAllowed&apos;);
+    // No &quot;write&quot; permission record exists linking this user to this folder.
+    // Maybe they got removed from it?  Or maybe they never had permission in the first place...
+    if (!permission) {
+      return res.redirect(&apos;/login&apos;);
+    }
 
-    // If we made it all the way down here, looks like everything&apos;s ok, so we&apos;ll let the user through
-    next();
+    // If we made it all the way down here, looks like everything&apos;s ok, so we&apos;ll let the user through.
+    // (from here, the next policy or the controller action will run)
+    return next();
+
   });
 };
 </code></pre><!-- __LANG=%%__ -->
 <h3 id="protecting-controllers-with-policies" permalink="protecting-controllers-with-policies">Protecting Controllers with Policies</h3>
-<p>Sails has a built in ACL (access control list) located in <code>config/policies.js</code>.  This file is used to map policies to your controllers.  </p>
+<p>Sails has a built in ACL (access control list) located in <code>config/policies.js</code>.  This file is used to map policies to your controllers.</p>
 <p>This file is  <em>declarative</em>, meaning it describes <em>what</em> the permissions for your app should look like, not <em>how</em> they should work.  This makes it easier for new developers to jump in and understand what&apos;s going on, plus it makes your app more flexible as your requirements inevitably change over time.</p>
 <p>Your <code>config/policies.js</code> file should export a Javascript object whose keys are controller names (or <code>&apos;*&apos;</code> for  global policies), and whose values are objects mapping action names to one or more policies.  See below for more details and examples.</p>
 <h5 id="to-apply-a-policy-to-a-specific-controller-action-" permalink="to-apply-a-policy-to-a-specific-controller-action">To apply a policy to a specific controller action:</h5>
@@ -73,6 +88,16 @@ module.exports = function canWrite (req, res, next) {
 <blockquote>
 <p>Remember, default policies will not be applied to any controller / action that is given an explicit mapping.</p>
 </blockquote>
+<h5 id="using-policies-with-blueprint-actions" permalink="using-policies-with-blueprint-actions">Using policies with blueprint actions</h5>
+<p>Sails&apos; built-in <a href="http://sailsjs.org/documentation/concepts/blueprints">blueprint API</a> is implemented using regular Sails controller actions.  The only difference is that blueprint actions are implicit.</p>
+<p>To apply your policies to blueprint actions, set up your policy mappings just like we did in the example above, but pointed at name of the relevant implicit <a href="http://sailsjs.org/documentation/concepts/blueprints/blueprint-actions">blueprint action</a> in your controller.  For example:</p>
+<pre><code data-language="javascript">{
+  UserController: {
+    // Apply the &apos;isLoggedIn&apos; policy to the &apos;update&apos; action of &apos;UserController&apos;
+    update: &apos;isLoggedIn&apos;
+  }
+}
+</code></pre><!-- __LANG=%%__ -->
 <h3 id="built-in-policies" permalink="builtin-policies">Built-in policies</h3>
 <p>Sails provides two built-in policies that can be applied globally, or to a specific controller or action.</p>
 <ul>

@@ -8,7 +8,7 @@
 <li><code>sails.request(url, callback)</code></li>
 <li><code>sails.request(url, body, callback)</code></li>
 </ul>
-<p>This method can be used on a instances that have been started with <a href="http://sailsjs.org/documentation/reference/application/sails-load" target="_blank"><code>sails.load()</code></a>, which are not actively listening for HTTP requests on a server port.  This makes it useful for testing scenarios where running <a href="http://sailsjs.org/documentation/reference/application/sails-lift" target="_blank"><code>sails.lift()</code></a> is not necessary.  However, it should be noted that the data may not be processed in exactly the same way as an HTTP request; in particular, a much simpler body parser will be employed, and Express middleware such as the static asset server will not be used.</p>
+<p>This method can be used on a instances that have been started with <a href="http://sailsjs.org/documentation/reference/application/sails-load"><code>sails.load()</code></a>, which are not actively listening for HTTP requests on a server port.  This makes it useful for testing scenarios where running <a href="http://sailsjs.org/documentation/reference/application/sails-lift"><code>sails.lift()</code></a> is not necessary.  However, it should be noted that the data may not be processed in exactly the same way as an HTTP request; in particular, a much simpler body parser will be employed, and Express middleware such as the static asset server will not be used.</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <table>
 <thead>
