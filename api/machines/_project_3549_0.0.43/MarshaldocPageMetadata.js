@@ -162,7 +162,7 @@ module.exports = {
           fullPathAndFileName: parentPath
         });
 
-        if (slugParent) {
+        if (slugParent && !slugParent.data.isOverviewPage === 'true' && !slugParent.data.isTableOfContents === 'true') {
           var parentDisplayName = slugParent.data.displayName || _.startCase(slugParent.path);
           // Convert the parent's display name to kebabcase and add a slash to the end
           parentDisplayName = _.kebabCase(parentDisplayName) + '/';
