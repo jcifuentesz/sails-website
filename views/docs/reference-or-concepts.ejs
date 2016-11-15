@@ -26,10 +26,8 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
           <ol>
             <% _.each(data.templateList, function(navItem) {
             // Only show top-level nav items initially
-            // (Except for the ones that don't have children, because those are
-            // the wierd ones that aren't really part of the docs.
-            var isTopLvlNavItem = !navItem.isChild && _.isArray(navItem.children) && navItem.children.length > 0;
-            if(!navItem.isOverviewPage && !navItem.isTableOfContents && isTopLvlNavItem) { %>
+            // (Except for the wierd ones that aren't really part of the docs.
+            if(!navItem.isOverviewPage && !navItem.isTableOfContents && !navItem.isChild && !navItem.notShownOnWebsite) { %>
             <li><%- partial('../partials/table-of-contents-item', {navItem: navItem, navItems: data.templateList}) %></li>
             <% }
             }) %>
@@ -56,7 +54,7 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
 
         // Only show top-level nav items initially
         // (Except for the wierd ones that aren't really part of the docs.
-        if(!navItem.isOverviewPage && !navItem.isTableOfContents && !navItem.isChild) { %>
+        if(!navItem.isOverviewPage && !navItem.isTableOfContents && !navItem.isChild && !navItem.notShownOnWebsite) { %>
 
         <li class="<%= navItem.isInitiallyExpanded && !navItem.isParent ? 'expanded' : navItem.isInitiallyExpanded && navItem.isParent ? 'expanded current-parent' : '' %>" ng-class="{'current': getIsCurrent('<%= navItem.slug %>')}">
           <%- partial('../partials/nav-item', {navItem: navItem, navItems: data.templateList, section: data.section, expandedItems: data.expandedItems}) %>

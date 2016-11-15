@@ -39,7 +39,7 @@ window.MENU_DATA = <%- JSON.stringify(data.templateList) %>;
             else navItem.isInitiallyExpanded = false;
             // Only show top-level nav item initially
             // (Except for the wierd ones that aren't really part of the docs.
-            if(!navItem.isOverviewPage && !navItem.isTableOfContents && !navItem.isChild) { %>
+            if(!navItem.isOverviewPage && !navItem.isChild && !navItem.notShownOnWebsite) { %>
           <li class="<%= navItem.isInitiallyExpanded && !navItem.isParent ? 'expanded' : navItem.isInitiallyExpanded && navItem.isParent ? 'expanded current-parent' : '' %>" ng-class="{'current': getIsCurrent('<%= navItem.slug %>'), 'expanded': getIsExpanded('<%= navItem.path %>'), 'folder': <%= navItem.isParent %>}">
             <%- partial('../partials/nav-item', {navItem: navItem, navItems: data.templateList, section: data.section, expandedItems: data.expandedItems}) %>
           </li>
