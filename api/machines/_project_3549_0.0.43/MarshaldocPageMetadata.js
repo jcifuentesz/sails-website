@@ -89,7 +89,7 @@ module.exports = {
 
 
     // Marshal menu metadata
-    _.reduce(docPageMetadatas, function normalizeEachDocPage(memo, docPage) {
+    _.each(docPageMetadatas, function normalizeEachDocPage(docPage) {
 
       // If this template is not to be shown (e.g. in the case of a README):
       if(docPage.data.notShownOnWebsite === 'true') {
@@ -136,11 +136,28 @@ module.exports = {
         slugParts.push(_.kebabCase(docPage.displayName));
       }
 
-
       // Build up the array of parents for the slug.
       if (docPage.parent) {
-        getSlugParts(docPage.parent);
+        (function getSlugParts(parentPath) {
+          // Find the parent data so we can grab `displayName`
+          var slugParent = _.find(inputs.docPageMetadatas, {
+            fullPathAndFileName: parentPath
+          });
+
+          if (slugParent && slugParent.data.isOverviewPage !== 'true' && slugParent.data.isTableOfContents !== 'true') {
+            var parentDisplayName = slugParent.data.displayName || _.startCase(slugParent.path);
+            // Convert the parent's display name to kebabcase and add a slash to the end
+            parentDisplayName = _.kebabCase(parentDisplayName) + '/';
+            // now add it to the beginning of the `slugParts` array
+            slugParts.unshift(parentDisplayName);
+            // If the parent has a parent, take the recursive step.
+            if (slugParent.parent) {
+              getSlugParts(slugParent.parent);
+            }
+          }
+        })(docPage.parent);
       }
+
 
       // Now convert the array into a string, remove the commas, and set it as the slug.
       docPage.slug = slugParts.join().replace(/,/g, '');
@@ -154,31 +171,6 @@ module.exports = {
       docPage.slug = docPage.topSection + docPage.slug;
 
 
-
-      // The recursive function for collecting the 'parents' of this docPage.
-      function getSlugParts(parentPath) {
-        // Find the parent data so we can grab `displayName`
-        var slugParent = _.find(inputs.docPageMetadatas, {
-          fullPathAndFileName: parentPath
-        });
-
-        if (slugParent && !slugParent.data.isOverviewPage === 'true' && !slugParent.data.isTableOfContents === 'true') {
-          var parentDisplayName = slugParent.data.displayName || _.startCase(slugParent.path);
-          // Convert the parent's display name to kebabcase and add a slash to the end
-          parentDisplayName = _.kebabCase(parentDisplayName) + '/';
-          // now add it to the beginning of the `slugParts` array
-          slugParts.unshift(parentDisplayName);
-          // If the parent has a parent, take the recursive step.
-          if (slugParent.parent) {
-            getSlugParts(slugParent.parent);
-          }
-        }
-      }
-
-
-
-
-
       // then create an id for places where slug makes things tricky,
       // that's just the slug with dashes instead of slashes.
       docPage.id = docPage.slug.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -186,7 +178,7 @@ module.exports = {
 
       docPage.version = docPage.data.version || '';
 
-      docPage.displayNameSlug = docPage.displayName.replace(/ /g, '-').replace(/\./g, 'point').toLowerCase();
+      // docPage.displayNameSlug = docPage.displayName.replace(/ /g, '-').replace(/\./g, 'point').toLowerCase();
 
       docPage.isDeprecated = docPage.data.isDeprecated;
 
@@ -205,10 +197,7 @@ module.exports = {
       if (docPage.children.length) {
         docPage.isParent = true;
       }
-
-      memo.push(docPage);
-      return memo;
-    }, []);
+    });
 
     // Now, update the 'isChild' flag for any section whose parent is an 'overview' or 'table of contents' page.
     // (These will be considered top-level nav items, instead of being nested under the parent item.)
@@ -224,41 +213,62 @@ module.exports = {
     });
 
 
-    inputs.docPageMetadatas = docPageMetadatas;
+    // inputs.docPageMetadatas = docPageMetadatas;
 
-    // Now sort the metadatas, first by 'isParent', then by 'displayName'.
-    inputs.docPageMetadatas = _.sortByOrder(inputs.docPageMetadatas, ['isParent', 'displayName'], [false, true]);
-
-
-    // Sort the pages by version, if applicable.
-    inputs.docPageMetadatas = inputs.docPageMetadatas.sort(function(a, b) {
-      if(a.version === '' && b.version === '') {
-        return 0;
-      }
-      else if(a.version === '') {
+    // Now sort the metadatas.
+    // First by version, then by whether it's a folder, then by display name.
+    inputs.docPageMetadatas = docPageMetadatas.sort(function(a, b) {
+      if(a.version === '' && b.version !== '') {
         return -1;
       }
-      else if(b.version === '') {
+      else if(a.version !== '' && b.version === '') {
         return 1;
       }
-      else {
+      else if(a.version !== '' && b.version !== '') {
         var semver = require('semver');
         var comparison = semver.rcompare(a.version, b.version);
         return comparison;
       }
+      else {
+        if((a.isParent) && !b.isParent) {
+          return -1;
+        }
+        else if((a.isParent && !a.isChild) && (b.isParent && b.isChild)) {
+          return -1;
+        }
+        else if(!a.isParent && b.isParent) {
+          return 1;
+        }
+        else if((a.isParent && a.isChild) && (b.isParent && !b.isChild)) {
+          return 1;
+        }
+        else {
+          if(a.displayName < b.displayName) {
+            return -1;
+          }
+          else if(a.displayName > b.displayName) {
+            return 1;
+          }
+          else {
+            return 0;
+          }
+        }
+      }
     });
+
 
     // Grab out the deprecated pages
     var deprecatedPages = _.remove(inputs.docPageMetadatas, function(pageData) {
-      return pageData.isDeprecated;
+      return pageData.data.isDeprecated;
     });
     // Grab out the method pages
     var methodPages = _.remove(inputs.docPageMetadatas, function(pageData) {
-      return pageData.pageType === 'method';
+      return pageData.data.pageType === 'method';
     });
     // Then re-add the method pages at the end,
     // followed by the deprecated pages.
     inputs.docPageMetadatas = inputs.docPageMetadatas.concat(methodPages).concat(deprecatedPages);
+
     return exits.success(inputs.docPageMetadatas);
   },
   "identity": "MarshaldocPageMetadata"
