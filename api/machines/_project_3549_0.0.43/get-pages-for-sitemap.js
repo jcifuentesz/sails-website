@@ -18,7 +18,7 @@ module.exports = {
       "friendlyName": "then",
       "description": "Normal outcome.",
       "example": [{
-        "url": "http://sailsjs.org",
+        "url": "http://sailsjs.com",
         "lastModified": "2015-01-01T06:00:00.000Z"
       }]
     }
@@ -31,19 +31,19 @@ module.exports = {
 
     // Start off with the hard-coded pages:
     var sitemapEntries = [{
-      url: 'http://sailsjs.org',
+      url: 'http://sailsjs.com',
       lastModified: '2014-01-01T06:00:00.000Z'
     }, {
-      url: 'http://sailsjs.org/get-started',
+      url: 'http://sailsjs.com/get-started',
       lastModified: '2014-06-25T06:00:00.000Z'
     }, {
-      url: 'http://sailsjs.org/features',
+      url: 'http://sailsjs.com/features',
       lastModified: '2014-06-25T06:00:00.000Z'
     }, {
-      url: 'http://sailsjs.org/support',
+      url: 'http://sailsjs.com/support',
       lastModified: '2014-06-25T06:00:00.000Z'
     }, {
-      url: 'http://sailsjs.org/support/about-irc',
+      url: 'http://sailsjs.com/support/about-irc',
       lastModified: '2014-06-25T06:00:00.000Z'
     }, ];
 
@@ -51,8 +51,8 @@ module.exports = {
     _.each(inputs.docPageMetadatas, function(docPage) {
       var url;
       if (docPage.path.indexOf('version-notes') >= 0) {
-        url = 'http://sailsjs.org/version-notes/' + docPage.displayNameSlug;
-      } else url = 'http://sailsjs.org/documentation/' + docPage.slug;
+        url = 'http://sailsjs.com/version-notes/' + docPage.displayNameSlug;
+      } else url = 'http://sailsjs.com/documentation/' + docPage.slug;
       sitemapEntries.push({
         url: url,
         lastModified: docPage.lastModified || '2015-06-25T06:00:00.000Z'
