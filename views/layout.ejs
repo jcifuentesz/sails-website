@@ -22,8 +22,8 @@
     */
     %>
     <%
-    if (typeof req !== 'object' || ( req.host !== 'sailsjs.org' && req.host !== '0.11.sailsjs.org' ) ) {
-      %><!-- Analytics code excluded because you sort of smell a developer... (this page is being served from <%= req.host %> instead of sailsjs.org or a versioned subdomain) -->
+    if (typeof req !== 'object' || ( req.host !== 'sailsjs.com' && req.host !== '0.11.sailsjs.com' ) ) {
+      %><!-- Analytics code excluded because you sort of smell like a developer... (this page is being served from <%= req.host %> instead of sailsjs.com or a versioned subdomain) -->
       <meta name="robots" content="noindex"><%
     }
     else {
