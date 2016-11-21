@@ -1,5 +1,5 @@
 <h1 id="req-allparams-">req.allParams()</h1>
-<p>Returns the value of <em>all</em> parameters sent in the request, merged together into a single object. Includes parameters parsed from the url path, the query string, and the request body. See <a href="http://sailsjs.org/documentation/reference/req.param"><code>req.param()</code></a> for details.</p>
+<p>Returns the value of <em>all</em> parameters sent in the request, merged together into a single dictionary (plain JavaScript object). Includes parameters parsed from the url path, the query string, and the request body. See <a href="http://sailsjs.org/documentation/reference/request-req/req-param"><code>req.param()</code></a> for details.</p>
 <h3 id="usage" permalink="usage">Usage</h3>
 <pre><code data-language="javascript">req.allParams();
 </code></pre><!-- __LANG=%%__ -->
@@ -16,7 +16,7 @@ delete values.isAvailable;
 
 Product.update({sku: sku})
 .set(values)
-.then(function (newProduct) {
+.exec(function (err, newProduct) {
   // ...
 });
 </code></pre><!-- __LANG=%%__ -->
