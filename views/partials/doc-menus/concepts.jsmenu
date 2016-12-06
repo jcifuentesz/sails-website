@@ -17,9 +17,9 @@
       "displayName": "Assets"
     },
     "children": [
-      "concepts/Assets/DisablingGrunt.ejs",
       "concepts/Assets/DefaultTasks.ejs",
-      "concepts/Assets/TaskAutomation.ejs"
+      "concepts/Assets/TaskAutomation.ejs",
+      "concepts/Assets/DisablingGrunt.ejs"
     ],
     "isParent": true
   },
@@ -120,8 +120,8 @@
       "displayName": "Controllers"
     },
     "children": [
-      "concepts/Controllers/GeneratingControllers.ejs",
-      "concepts/Controllers/RoutingToControllers.ejs"
+      "concepts/Controllers/RoutingToControllers.ejs",
+      "concepts/Controllers/GeneratingControllers.ejs"
     ],
     "isParent": true
   },
@@ -182,8 +182,8 @@
       "displayName": "Deployment"
     },
     "children": [
-      "concepts/Deployment/FAQ.ejs",
       "concepts/Deployment/Scaling.ejs",
+      "concepts/Deployment/FAQ.ejs",
       "concepts/Deployment/Hosting.ejs"
     ],
     "isParent": true
@@ -275,8 +275,8 @@
       "displayName": "Internationalization"
     },
     "children": [
-      "concepts/Internationalization/Locales.ejs",
-      "concepts/Internationalization/TranslatingDynamicContent.ejs"
+      "concepts/Internationalization/TranslatingDynamicContent.ejs",
+      "concepts/Internationalization/Locales.ejs"
     ],
     "isParent": true
   },
@@ -350,12 +350,12 @@
     "parent": "concepts/ORM/ORM.ejs",
     "isChild": true,
     "children": [
-      "concepts/ORM/Associations/ThroughAssociations.ejs",
       "concepts/ORM/Associations/Dominance.ejs",
       "concepts/ORM/Associations/ManytoMany.ejs",
+      "concepts/ORM/Associations/OnetoMany.ejs",
       "concepts/ORM/Associations/OneWayAssociation.ejs",
       "concepts/ORM/Associations/OnetoOne.ejs",
-      "concepts/ORM/Associations/OnetoMany.ejs"
+      "concepts/ORM/Associations/ThroughAssociations.ejs"
     ],
     "isParent": true
   },
@@ -449,11 +449,11 @@
     },
     "children": [
       "concepts/ORM/Attributes.ejs",
-      "concepts/ORM/Models.ejs",
       "concepts/ORM/Querylanguage.ejs",
+      "concepts/ORM/Models.ejs",
+      "concepts/ORM/Lifecyclecallbacks.ejs",
       "concepts/ORM/Validations.ejs",
       "concepts/ORM/model-settings.ejs",
-      "concepts/ORM/Lifecyclecallbacks.ejs",
       "concepts/ORM/Associations/Associations.ejs"
     ],
     "isParent": true
@@ -590,8 +590,8 @@
       "displayName": "Routes"
     },
     "children": [
-      "concepts/Routes/RouteTargetSyntax.ejs",
-      "concepts/Routes/URLSlugs.ejs"
+      "concepts/Routes/URLSlugs.ejs",
+      "concepts/Routes/RouteTargetSyntax.ejs"
     ],
     "isParent": true
   },
@@ -669,9 +669,9 @@
     "children": [
       "concepts/Security/CORS.ejs",
       "concepts/Security/CSRF.ejs",
+      "concepts/Security/DDOS.ejs",
       "concepts/Security/Clickjacking.ejs",
       "concepts/Security/ContentSecurityPolicy.ejs",
-      "concepts/Security/DDOS.ejs",
       "concepts/Security/P3P.ejs",
       "concepts/Security/SocketHijacking.ejs",
       "concepts/Security/StrictTransportSecurity.ejs",
@@ -829,10 +829,10 @@
       "displayName": "Views"
     },
     "children": [
-      "concepts/Views/Locals.ejs",
       "concepts/Views/Partials.ejs",
       "concepts/Views/Layouts.ejs",
-      "concepts/Views/ViewEngines.ejs"
+      "concepts/Views/ViewEngines.ejs",
+      "concepts/Views/Locals.ejs"
     ],
     "isParent": true
   },
@@ -847,8 +847,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Adapters/adapterList.ejs",
-      "concepts/extending-sails/Adapters/customAdapters.ejs"
+      "concepts/extending-sails/Adapters/customAdapters.ejs",
+      "concepts/extending-sails/Adapters/adapterList.ejs"
     ],
     "isParent": true
   },
@@ -881,8 +881,8 @@
     "parent": "concepts/extending-sails/extending-sails.ejs",
     "isChild": true,
     "children": [
-      "concepts/extending-sails/Generators/generatorList.ejs",
-      "concepts/extending-sails/Generators/customGenerators.ejs"
+      "concepts/extending-sails/Generators/customGenerators.ejs",
+      "concepts/extending-sails/Generators/generatorList.ejs"
     ],
     "isParent": true
   },
@@ -916,8 +916,8 @@
     "isChild": true,
     "children": [
       "concepts/extending-sails/Hooks/installablehooks.ejs",
-      "concepts/extending-sails/Hooks/usinghooks.ejs",
       "concepts/extending-sails/Hooks/projecthooks.ejs",
+      "concepts/extending-sails/Hooks/usinghooks.ejs",
       "concepts/extending-sails/Hooks/hookspec/hookspec.ejs"
     ],
     "isParent": true
@@ -1019,8 +1019,8 @@
     },
     "children": [
       "concepts/extending-sails/Adapters/Adapters.ejs",
-      "concepts/extending-sails/Hooks/Hooks.ejs",
-      "concepts/extending-sails/Generators/Generators.ejs"
+      "concepts/extending-sails/Generators/Generators.ejs",
+      "concepts/extending-sails/Hooks/Hooks.ejs"
     ],
     "isParent": true
   }
