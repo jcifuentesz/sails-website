@@ -15,6 +15,12 @@
     <meta name="author" content="Mike McNeil and contributors" />
 
     <%
+    /* If this is the main site (aka not 0.X.sailsjs.com, next.sailsjs.com, etc.), add a special li'l meta tag for our robot friends. */
+    if (typeof req === 'object' && req.host === 'sailsjs.com') { %>
+    <meta name="robots" content="index, follow"/>
+    <% } %>
+
+    <%
     /* If this is sailsjs.org proper, or 0.11.sailsjs.org, then inject Google analytics.
 
       Otherwise, don't- and instead inject a robots/noindex meta tag
