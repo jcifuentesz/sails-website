@@ -7,6 +7,8 @@ angular.module('SailsWebsite').controller('HeaderCtrl', [
 
     $scope.menu = {};
     $scope.menu.visible = false;
+    $scope.versionDropdown = {};
+    $scope.versionDropdown.visible = false;
 
     // Check for the old '/#/' and '/#!/' links and redirect to the right place.
     if($window.location.hash && window.location.hash.indexOf('#?') < 0) {
@@ -57,6 +59,23 @@ angular.module('SailsWebsite').controller('HeaderCtrl', [
 
 
     $scope.intent = angular.extend($scope.intent || {}, {
+      toggleVersionDropdown: function() {
+        console.log('TOGGLE DAT');
+        if($scope.versionDropdown.visible) {
+          $scope.intent.hideVersionDropdown();
+        }
+        else {
+          $scope.intent.showVersionDropdown();
+        }
+      },
+
+      showVersionDropdown: function() {
+        $scope.versionDropdown.visible = true;
+      },
+
+      hideVersionDropdown: function() {
+        $scope.versionDropdown.visible = false;
+      },
 
       showMenu: function() {
         $scope.menu.visible = true;

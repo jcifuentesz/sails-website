@@ -101,7 +101,22 @@
           <a href="/">
             <img class="logo" src="/images/logo_sails.png" alt="Sails logo" />
           </a>
-          <span class="version"><%= typeof topbarVersionString !== 'undefined' ? topbarVersionString : '' %></span>
+          <span class="version" ng-click="intent.toggleVersionDropdown()"><%= typeof topbarVersionString !== 'undefined' ? topbarVersionString : '' %>
+            <i class="dropdown-arrow"><img src="/images/arrow_blue.png"/></i>
+            <div class="version-menu" ng-show="versionDropdown.visible">
+              <ul>
+                <li class="<%= typeof topbarVersionString !== 'undefined' && (topbarVersionString === '1.0' || topbarVersionString === 'v1.0') ? 'current' : ''%>">
+                  <a href="http://1.0.sailsjs.com">v1.0</a>
+                </li>
+                <li class="<%= typeof topbarVersionString !== 'undefined' && (topbarVersionString === '0.12' || topbarVersionString === 'v0.12') ? 'current' : ''%>">
+                  <a href="http://0.12.sailsjs.com">v0.12</a>
+                </li>
+                <li class="<%= typeof topbarVersionString !== 'undefined' && (topbarVersionString === '0.11' || topbarVersionString === 'v0.11') ? 'current' : ''%>">
+                  <a href="http://0.11.sailsjs.com">v0.11</a>
+                </li>
+              </ul>
+            </div>
+          </span>
         </div>
         <div class="nav-overlay" ng-class="{'menu-open': menu.visible}">
           <div class="veil" ng-click="intent.hideMenu()"></div>

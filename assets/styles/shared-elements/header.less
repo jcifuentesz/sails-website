@@ -40,6 +40,25 @@
       font-size: 12px;
       padding-top: 35px;
       padding-left: 3px;
+      position: relative;
+      .dropdown-arrow {
+        .borderBox();
+        position: absolute;
+        width: 20px;
+        right: -20px;
+        top: 37px;
+        padding-left: 4px;
+        img {
+          height: 10px;
+          .rotate(90deg);
+        }
+      }
+      .version-menu {
+        .borderBox();
+        width: 80px;
+        background-color: @white;
+        position: absolute;
+      }
     }
   }
 
