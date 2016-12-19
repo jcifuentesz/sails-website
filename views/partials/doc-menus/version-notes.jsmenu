@@ -144,8 +144,8 @@
       "version": "0.9.0"
     },
     "children": [
-      "version-notes/0.9.x/Changelog0.9.16.ejs",
       "version-notes/0.9.x/Changelog0.9.0.ejs",
+      "version-notes/0.9.x/Changelog0.9.16.ejs",
       "version-notes/0.9.x/Changelog0.9.4.ejs",
       "version-notes/0.9.x/Changelog0.9.7.ejs"
     ],

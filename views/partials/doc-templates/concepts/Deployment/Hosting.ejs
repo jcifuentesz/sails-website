@@ -11,7 +11,8 @@ Open up <code>config/local.js</code> in your app folder. In here, you&apos;ll ne
     host: process.env.OPENSHIFT_NODEJS_IP,
 </code></pre><!-- __LANG=%%__ -->
 <p>You will also need to install <code>grunt-cli</code> with <code>npm i --save grunt-cli</code>.</p>
-<p>After doing that, create the file <code>.openshift/action_hooks/pre_start_nodejs</code> with the following contents. (<a href="https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6" target="_blank">source</a>)</p>
+<p>After doing that, create the file <code>.openshift/action_hooks/pre_start_nodejs</code> with the following contents. (<a href="https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6" target="_blank">source</a>)
+This action_hook tells OpenShift&apos;s supervisor to run all &apos;prod&apos; grunt tasks, before Sails lifted.</p>
 <pre><code data-language="text">#!/bin/bash
 export NODE_ENV=production
 
@@ -19,9 +20,22 @@ if [ -f &quot;${OPENSHIFT_REPO_DIR}&quot;/Gruntfile.js ]; then
     (cd &quot;${OPENSHIFT_REPO_DIR}&quot;; node_modules/grunt-cli/bin/grunt prod)
 fi
 </code></pre><!-- __LANG=%%__ -->
+<p>Then disable Sails Grunt integration hook. 
+To do this set the <code>grunt</code> property to <code>false</code> in <code>.sailsrc</code> hooks like this:</p>
+<pre><code data-language="json">{
+    &quot;hooks&quot;: {
+        &quot;grunt&quot;: false
+    }
+}
+</code></pre><!-- __LANG=%%__ -->
+<h3 id="note-" permalink="note">NOTE:</h3>
+<p>Do not remove Gruntfile.js to disable Grunt hook, this file still using by OpenShift&apos;s supervisor.</p>
 <p>Then create the file <code>/supervisor_opts</code> with the following contents. This tells OpenShift&apos;s supervisor to ignore Sails&apos; <code>.tmp</code> directory for the hot reload functionality. (<a href="https://gist.github.com/mdunisch/4a56bdf972c2f708ccc6#comment-1318102" target="_blank">source</a>)</p>
 <pre><code data-language="text">-i .tmp
 </code></pre><!-- __LANG=%%__ -->
+<h3 id="note-" permalink="note">NOTE:</h3>
+<p>This deployment guide works only on Openshift&apos;s &quot;SCALABLE&quot; gears, nodejs v0.10.
+If you&apos;re using non-scalable gear, the <code>/supervisor_opts</code> file will be ignored and Sails will not lift on it. </p>
 <p>You can now <code>git add . &amp;&amp; git commit -a -m &quot;your message&quot; &amp;&amp; git push</code> to deploy to OpenShift.</p>
 <h5 id="using-digitalocean-" permalink="using-digitalocean">Using DigitalOcean?</h5>
 <ul>
