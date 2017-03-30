@@ -41,8 +41,6 @@ module.exports = {
         '<changefreq>monthly</changefreq>' +
         '</url>';
 
-        console.log(webpage.url);
-
       return sitemapXML;
     });
 
